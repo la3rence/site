@@ -1,0 +1,46 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "markdown": "github",
+  "scripts": {
+    "dev": "pnpm run fmt && next dev -H 0.0.0.0",
+    "start": "next start",
+    "build": "next build",
+    "lint": "next lint",
+    "fmt": "prettier --write ."
+  },
+  "dependencies": {
+    "@babel/core": "7.18.10",
+    "@babel/preset-react": "7.18.6",
+    "@node-loader/babel": "2.0.1",
+    "gray-matter": "4.0.3",
+    "highlight.js": "11.6.0",
+    "next": "12.2.5",
+    "next-themes": "0.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rehype-autolink-headings": "6.1.1",
+    "rehype-document": "6.1.0",
+    "rehype-highlight": "5.0.2",
+    "rehype-slug": "5.0.1",
+    "rehype-stringify": "9.0.3",
+    "rehype-video": "1.2.2",
+    "rehype-wrap-all": "1.1.0",
+    "remark": "14.0.2",
+    "remark-gfm": "3.0.1",
+    "remark-rehype": "10.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.4",
+    "autoprefixer": "10.4.8",
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.2.5",
+    "postcss": "8.4.16",
+    "prettier": "2.7.1",
+    "tailwindcss": "3.1.8",
+    "typescript": "4.8.2"
+  },
+  "prettier": {
+    "arrowParens": "avoid"
+  }
+}

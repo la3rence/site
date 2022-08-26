@@ -1,0 +1,15 @@
+@tailwind base;
+
+@layer base {
+  body {
+    @apply my-8 mx-auto max-w-prose scroll-smooth;
+  }
+
+  img {
+    @apply w-full mb-5;
+  }
+}
+
+@tailwind components;
+
+@tailwind utilities;
