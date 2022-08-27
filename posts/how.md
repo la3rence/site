@@ -4,14 +4,16 @@ date: "2022-08-29"
 author: "Lawrence"
 ---
 
-此文用于端到端测试 Markdown 的展示效果。
+:::
+_此文用于端到端测试 Markdown 的展示效果_
+:::
 
 ## 使用方式
 
 直接将 Markdown 文件 (.md) 存放在 `posts` 文件夹下即可渲染当前文件，使之成为静态页面([SSG](/blog/ssg-ssr))。
 博客的首页索引目录也为同步生成，而无需手动维护。
 
-**Aboud** 页面也同理基于 `readme.md` 文件生成而来。
+**About** 页面也同理基于 `readme.md` 文件生成而来。
 
 博客相关的信息配置，如标题、作者等可在 `lib/config.json` 文件中配置。
 
@@ -54,23 +56,35 @@ export const getStaticProps = async context => {
 
 不光如此，Next.js 也提供了**服务端渲染**的能力，同样也能带来较好的 SEO 体验，不展开说了。
 
-上述这种技术被称之为 JAMstack：**J**avaScript, **A**PI & **M**arkup.
+上述这种技术被称之为 [JAMstack](#tables)：**J**avaScript, **A**PI & **M**arkup.
 
 一种有趣的说法是，JAMstack 是 CDN 优先的应用程序。
 
 > It's now possible, instead, to push content directly to the network and design frameworks that optimize for this capability. As a result, with optimizations like static asset hoisting, websites are now becoming faster and more reliable than ever before.
 
-站点部署在 Vercel.
+---
+
+### Images
+
+彩蛋：随机展示一些黑白风格的图片。每次刷新都会变化：
+
+![Random Image](https://picsum.photos/900/600?grayscale)
+
+~~我被横线划过。~~
+
+## Tables
+
+JAMstack.
+
+| ROLE | PROVIDED BY                                                                                                    |
+| ---- | -------------------------------------------------------------------------------------------------------------- |
+| J    | Client-side JS injected via React Hooks (state, event listeners, effects)                                      |
+| A    | API pages inside the pages/api directory.                                                                      |
+| M    | Pages with no data dependencies or pages with static data deps that trigger build-time static site generation. |
 
 ## Ref 参考链接
 
-- <https://rauchg.com/2020/static-hoisting>
-- <https://jamstack.org>
 - <https://nextjs.org>
 - <https://tailwindcss.com>
-
-## Images
-
-文末彩蛋：随机展示一些黑白风格的图片。每次刷新都会变化：
-
-![Random Image](https://picsum.photos/900/600?grayscale)
+- <https://rauchg.com/2020/static-hoisting>
+- <https://jamstack.org>
