@@ -1,6 +1,10 @@
 {
   "blogTitle": "Title",
-  "authorName": "your name",
+  "authorName": "Lawrence",
   "authorEmail": "name@example.com",
-  "authorGithub": "https://github.com/"
+  "navItems": [
+    { "label": "Blog", "path": "/" },
+    { "label": "About", "path": "/about" },
+    { "label": "GitHub", "path": "?github" }
+  ]
 }

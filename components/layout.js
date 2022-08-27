@@ -1,11 +1,10 @@
 import Header from "./header";
 
 export default function Layout(props) {
-  const { children } = props;
+  const { children, title } = props;
   return (
     <>
-      <Header />
-      {/* different main part */}
+      <Header title={title} />
       <main
         className="prose prose-slate
       dark:prose-invert
@@ -16,9 +15,9 @@ export default function Layout(props) {
       prose-blockquote:border-l-2
       prose-p:before:content-none
       prose-headings:[*>a]:no-unnderline
-      mx-3"
+      mx-6"
       >
-        <div className="">{children}</div>
+        <div className="my-10">{children}</div>
       </main>
     </>
   );

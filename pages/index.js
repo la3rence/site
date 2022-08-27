@@ -4,8 +4,8 @@ import { getAllPostData } from "./../lib/ssg.js";
 
 export default function index({ allPostsData }) {
   return (
-    <Layout blogIndex>
-      <div className="blogIndex mt-12 px-3">
+    <Layout blogIndex title={"Blog"}>
+      <div className="blogIndex mt-12">
         {allPostsData.map(post => (
           <div className="my-3" key={post.id}>
             <Link href={`/blog/${post.id}`}>

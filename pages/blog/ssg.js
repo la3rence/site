@@ -1,12 +1,15 @@
 import Blog from "../../components/blog";
 import Image from "next/image";
+import config from "./../../lib/config.json";
+import { useRouter } from "next/router";
+export const author = config.authorName;
 export const title = "SSG Example";
 export const date = "2022-08-26";
-export const author = "Test";
 
 export default function Example() {
+  const router = useRouter();
   return (
-    <Blog title={title} date={date} author={author}>
+    <Blog title={title} date={date} author={author} id={router.pathname}>
       <p>
         This page is fully rendered by <code>JSX</code>. You can update this
         page with JavaScript and React components.

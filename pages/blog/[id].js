@@ -1,16 +1,11 @@
-import { useRouter } from "next/router";
 import Blog from "../../components/blog";
 import { getMdContent, getMdPostsData } from "../../lib/ssg";
+import path from "path";
 
 export default function PathId(props) {
-  const router = useRouter();
-  const { id } = router.query;
   return (
     <Blog {...props}>
-      <div
-        className={id}
-        dangerouslySetInnerHTML={{ __html: props.htmlStringContent }}
-      ></div>
+      <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }}></div>
     </Blog>
   );
 }
@@ -24,7 +19,7 @@ export const getStaticProps = async context => {
 };
 
 export const getStaticPaths = async () => {
-  const mdPostsData = getMdPostsData();
+  const mdPostsData = getMdPostsData(path.join(process.cwd(), "posts"));
   const paths = mdPostsData.map(data => {
     return {
       params: data,
