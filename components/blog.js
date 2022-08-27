@@ -19,9 +19,10 @@ export default function Blog({ children, title, date, author, id }) {
                   height={25}
                   alt={author}
                 ></NextImage>
-                <small className="pl-2">{author}</small>
-                <small className="pl-2">/</small>
-                <small className="pl-2">{date}</small>
+                <small className="px-2">{author}</small>
+                <small className="before:content-['/'] before:pr-2">
+                  {date}
+                </small>
               </div>
             </Link>
           </div>

@@ -4,6 +4,7 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./lib/**/*.js",
   ],
   theme: {
     // screens: {
@@ -25,10 +26,6 @@ module.exports = {
             },
             "h1 a, h2 a, h3 a, h4 a, h5 a, h6 a": {
               "text-decoration": "none",
-            },
-            ".-mx-patch": {
-              "margin-left": "-24px", // marginPatch = -mx-6
-              "margin-right": "-24px",
             },
           },
         },
