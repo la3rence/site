@@ -10,7 +10,7 @@
     "fmt": "prettier --write ."
   },
   "dependencies": {
-    "@babel/core": "7.18.10",
+    "@babel/core": "7.18.13",
     "@babel/preset-react": "7.18.6",
     "@node-loader/babel": "2.0.1",
     "gray-matter": "4.0.3",
