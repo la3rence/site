@@ -3,9 +3,19 @@
   "authorName": "Lawrence",
   "authorEmail": "hi@lawrenceli.me",
   "baseURL": "https://site.lawrenceli.me",
+  "feedPath": "/atom.xml",
   "navItems": [
-    { "label": "Blog", "path": "/" },
-    { "label": "About", "path": "/about" },
-    { "label": "GitHub", "path": "?github" }
+    {
+      "label": "Blog",
+      "path": "/"
+    },
+    {
+      "label": "About",
+      "path": "/about"
+    },
+    {
+      "label": "RSS",
+      "path": "/atom.xml"
+    }
   ]
 }
