@@ -106,4 +106,9 @@ dist
 # Vercel
 .vercel
 
+# macOS file system
 .DS_Store
+
+# site
+public/atom*
+public/sitemap*

@@ -38,7 +38,7 @@ Next.js 会主动调用我们写好的一些函数 (`getStaticProps()`)，让组
 // [id].js
 export const getStaticProps = async context => {
   const { id } = context.params;
-  const mdData = await getMdContent(id);
+  const mdData = await getMdContentById(id);
   return {
     props: mdData,
   };

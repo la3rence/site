@@ -1,7 +1,8 @@
 {
-  "blogTitle": "Title",
+  "blogTitle": "Demo",
   "authorName": "Lawrence",
-  "authorEmail": "name@example.com",
+  "authorEmail": "hi@lawrenceli.me",
+  "baseURL": "https://site.lawrenceli.me",
   "navItems": [
     { "label": "Blog", "path": "/" },
     { "label": "About", "path": "/about" },

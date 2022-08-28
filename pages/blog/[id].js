@@ -1,5 +1,5 @@
 import Blog from "../../components/blog";
-import { getMdContent, getMdPostsData } from "../../lib/ssg";
+import { getMdContentById, getMdPostsData } from "../../lib/ssg";
 import path from "path";
 
 export default function PathId(props) {
@@ -12,7 +12,7 @@ export default function PathId(props) {
 
 export const getStaticProps = async context => {
   const { id } = context.params;
-  const mdData = await getMdContent(id);
+  const mdData = await getMdContentById(id);
   return {
     props: mdData,
   };

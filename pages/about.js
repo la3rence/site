@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import { getMdContent } from "../lib/ssg";
+import { getMdContentById } from "../lib/ssg";
 
 export default function About(props) {
   return (
@@ -11,7 +11,7 @@ export default function About(props) {
 
 // render `./readme.md`
 export const getStaticProps = async () => {
-  const mdData = await getMdContent("readme", process.cwd());
+  const mdData = await getMdContentById("readme", process.cwd());
   return {
     props: mdData,
   };
