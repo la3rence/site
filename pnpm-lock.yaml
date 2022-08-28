@@ -17,7 +17,6 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   rehype-autolink-headings: 6.1.1
-  rehype-document: 6.1.0
   rehype-highlight: 5.0.2
   rehype-slug: 5.0.1
   rehype-stringify: 9.0.3
@@ -40,7 +39,6 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rehype-autolink-headings: 6.1.1
-  rehype-document: 6.1.0
   rehype-highlight: 5.0.2
   rehype-slug: 5.0.1
   rehype-stringify: 9.0.3
@@ -2464,15 +2462,6 @@ packages:
       }
     dev: false
 
-  /hast-util-parse-selector/3.1.0:
-    resolution:
-      {
-        integrity: sha512-AyjlI2pTAZEOeu7GeBPZhROx0RHBnydkQIXlhnFzDi0qfXTmGUWoCYZtomHbrdrheV4VFUlPcfJ6LMF5T6sQzg==,
-      }
-    dependencies:
-      "@types/hast": 2.3.4
-    dev: false
-
   /hast-util-select/4.0.2:
     resolution:
       {
@@ -2552,19 +2541,6 @@ packages:
       {
         integrity: sha512-Pkw+xBHuV6xFeJprJe2BBEoDV+AvQySaz3pPDRUs5PNZEMQjpXJJueqrpcHIXxnWTcAGi/UOCgVShlkY6kLoqg==,
       }
-    dev: false
-
-  /hastscript/7.0.2:
-    resolution:
-      {
-        integrity: sha512-uA8ooUY4ipaBvKcMuPehTAB/YfFLSSzCwFSwT6ltJbocFUKH/GDHLN+tflq7lSRf9H86uOuxOFkh1KgIy3Gg2g==,
-      }
-    dependencies:
-      "@types/hast": 2.3.4
-      comma-separated-tokens: 2.0.2
-      hast-util-parse-selector: 3.1.0
-      property-information: 6.1.1
-      space-separated-tokens: 2.0.1
     dev: false
 
   /highlight.js/11.6.0:
@@ -4166,17 +4142,6 @@ packages:
       hast-util-is-element: 2.1.2
       unified: 10.1.2
       unist-util-visit: 4.1.1
-    dev: false
-
-  /rehype-document/6.1.0:
-    resolution:
-      {
-        integrity: sha512-znEODHIhSjfBlvFO6z9k/6z7lJor1hqqpYy15W5vj/VLxcWsCL22hBdDSai5tYOymmGOInDLvepmS+6MIIXjFg==,
-      }
-    dependencies:
-      "@types/hast": 2.3.4
-      hastscript: 7.0.2
-      unified: 10.1.2
     dev: false
 
   /rehype-highlight/5.0.2:
