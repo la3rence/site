@@ -1,5 +1,3 @@
-# Blog Template
+## About
 
-A simple blog built with `Next.js` and `TailWindCSS`.
-
-Source code: <https://github.com/Lonor/site>
+**Lawrence Li** (aka Lonor elsewhere) is an fundamentalist for Open World Wide Web. He was born in 1994. He's interested in DevOps, especially Kubernetes. He hates mechanical duplication of effort or conformity. He is always concerned about the open source community and new technologies - recently very into the serverless and JAMstack. He learned several programming languages driven by interest and created stuff for fun. He is a fan of minimalist design, mind twisting movies and electronic music. He worked for an online education (start-up) company as a backend developer and now he works for an investment bank in Shanghai.

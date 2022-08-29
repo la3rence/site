@@ -1,8 +1,8 @@
 {
-  "blogTitle": "Demo",
+  "blogTitle": "Lawrencce Li",
   "authorName": "Lawrence",
   "authorEmail": "hi@lawrenceli.me",
-  "baseURL": "https://site.lawrenceli.me",
+  "baseURL": "https://lawrenceli.me",
   "feedPath": "/atom.xml",
   "enablePageView": true,
   "navItems": [
