@@ -8,7 +8,6 @@ const workersKV = new WorkersKVREST({
   cfEmail: CF_EMAIL,
 });
 
-// https://dash.cloudflare.com/f193bb9e16174232d8d83952d0cf64b8/workers/kv/namespaces/620b0d26c548437a86a761036ce2c656
 export default async function view(req, res) {
   let page = req.query.page ? req.query.page : "/";
   const currentPageView = await viewPage(page);

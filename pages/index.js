@@ -1,10 +1,11 @@
 import Link from "next/link";
+import withView from "../components/withView";
 import Layout from "./../components/layout";
 import { getAllPostData } from "./../lib/ssg.js";
 
-export default function index({ allPostsData }) {
+const Index = function index({ allPostsData }) {
   return (
-    <Layout blogIndex title={"Blog"} id="/">
+    <Layout blogIndex title={"Blog"}>
       <div className="blogIndex mt-12">
         {allPostsData.map(post => (
           <div className="my-3" key={post.id}>
@@ -18,7 +19,9 @@ export default function index({ allPostsData }) {
       </div>
     </Layout>
   );
-}
+};
+
+export default withView(Index);
 
 export const getStaticProps = async () => {
   const allPostsData = await getAllPostData();

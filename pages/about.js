@@ -1,13 +1,16 @@
 import Layout from "../components/layout";
 import { getMdContentById } from "../lib/ssg";
+import withView from "../components/withView";
 
-export default function About(props) {
+const About = props => {
   return (
     <Layout title={"About"}>
       <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }}></div>
     </Layout>
   );
-}
+};
+
+export default withView(About);
 
 // render `./readme.md`
 export const getStaticProps = async () => {
