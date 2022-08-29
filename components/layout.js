@@ -7,6 +7,7 @@ export default function Layout(props) {
       <Header title={title} />
       <main
         className="prose prose-slate
+      max-w-3xl
       dark:prose-invert
       prose-pre:rounded-none 
       prose-pre:bg-[#0d1117] 
