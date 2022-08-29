@@ -2,7 +2,7 @@
 
 @layer base {
   body {
-    @apply my-8 mx-auto max-w-prose scroll-smooth;
+    @apply my-8 mx-auto scroll-smooth max-w-3xl;
   }
 
   img {
