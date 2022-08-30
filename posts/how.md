@@ -9,6 +9,8 @@ date: "2022-08-27"
 
 ## 使用方式
 
+本站源码完全公开：[GitHub - Lonor/site](https://github.com/Lonor/site).
+
 直接将 Markdown 文件 (.md) 存放在 `posts` 文件夹下即可渲染当前文件，使之成为静态页面([SSG](/blog/ssg-ssr))。
 博客的首页索引目录也为同步生成，而无需手动维护。
 
@@ -29,7 +31,7 @@ pnpm run dev
 
 ## 技术细节
 
-此站点由 `Next.js` 框架和 `TailWindCSS` 样式构成。前者是一项基于 React 的 SSG/SSR 开源项目，后者是一个目前流行的原子化 CSS 工具，让不会写 CSS 基础薄弱的我也能快速的写出灵活的样式。
+此站点由 `Next.js` 框架和 `TailWindCSS` 样式构成。前者是一项基于 React 的 SSG/SSR 开源项目，后者是一个目前流行的原子化 CSS 库，让不太会写 CSS、基础薄弱的我也能快速的写出灵活的样式。
 
 Next.js 会主动调用我们写好的一些函数 (`getStaticProps()`)，让组件得到数据的输入，从而**在构建阶段**将 React 组件提前渲染完成。`remark` 库可以将原生的 markdown 语法编译成 html 对应的 dom - 在此项目中，我们让它固定遍历 `posts` 文件夹下的 markdown 文件，依次编译，让其作为 `[id].js` 的动态路由页面的 `props`，从而渲染出博客文章:
 
@@ -61,8 +63,6 @@ export const getStaticProps = async context => {
 
 > It's now possible, instead, to push content directly to the network and design frameworks that optimize for this capability. As a result, with optimizations like static asset hoisting, websites are now becoming faster and more reliable than ever before.
 
----
-
 ### Images
 
 彩蛋：随机展示一些黑白风格的图片。每次刷新都会变化：
@@ -70,6 +70,8 @@ export const getStaticProps = async context => {
 ![Random Image](https://picsum.photos/900/600?grayscale)
 
 ~~我被横线划过。~~
+
+---
 
 ## Tables
 

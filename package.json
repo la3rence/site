@@ -8,7 +8,9 @@
     "start": "next start",
     "build": "next build && pnpm run feed",
     "lint": "next lint",
-    "fmt": "prettier --write ."
+    "export": "next export",
+    "fmt": "prettier --write .",
+    "clean": "rm -rf .next; rm -rf node_modules"
   },
   "dependencies": {
     "@babel/core": "7.18.13",

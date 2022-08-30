@@ -12,7 +12,9 @@ const Index = function index({ allPostsData }) {
             <Link href={`/blog/${post.id}`}>
               <a className="no-underline hover:underline">{post.title}</a>
             </Link>
-            <span className="before:content-['/'] before:px-3">{post.date}</span>
+            <span className="before:content-['/'] before:px-3">
+              {post.date}
+            </span>
           </div>
         ))}
       </div>

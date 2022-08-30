@@ -9,38 +9,26 @@ const workersKV = new WorkersKVREST({
 });
 
 export default async function view(req, res) {
-  let page = req.query.page ? req.query.page : "/";
+  const page = req.query.page ? req.query.page : "/";
   const currentPageView = await viewPage(page);
   res.json(currentPageView);
 }
 
 const viewPage = async page => {
-  await addPageView(page);
-  const allPageViews = await getAllPageViews();
-  const thisPageView = allPageViews.filter(item => {
-    return item.page === page;
-  });
-  return thisPageView[0];
+  const res = await addPageView(page);
+  return res;
 };
 
 const addPageView = async page => {
   const currentPageView = await getPageViewCount(page);
-  console.log(`page ${page} count: ${currentPageView}`);
-  const added = await writeKeyValue(page, currentPageView + 1);
-  return added;
-};
-
-const getAllPageViews = async () => {
-  const { result } = await workersKV.listAllKeys({
-    namespaceId: CF_NAMESPACE_ID,
-  });
-  const viewMapping = await Promise.all(
-    result.map(async item => {
-      const viewCountByName = await getPageViewCount(item.name);
-      return { page: item.name, view: viewCountByName };
-    })
-  );
-  return viewMapping;
+  const view = currentPageView + 1;
+  console.log(`page: ${page} count: ${view}`);
+  const writeResult = await writeKeyValue(page, view);
+  return {
+    page,
+    view,
+    writeResult,
+  };
 };
 
 const getPageViewCount = async page => {
