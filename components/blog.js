@@ -20,8 +20,8 @@ export default withView(({ children, title, date, author, view, id }) => {
                   height={25}
                   alt={author}
                 ></NextImage>
-                <small className="px-2">{author}</small>
-                <small className="before:content-['/'] before:pr-2">
+                <small className="pl-2">{author}</small>
+                <small className="before:content-['/'] before:px-2">
                   {date}
                 </small>
               </div>

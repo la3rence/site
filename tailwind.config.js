@@ -19,10 +19,11 @@ module.exports = {
         DEFAULT: {
           css: {
             "p>a, .blog li>a": {
-              color: "#3182ce",
+              "color": "#3182ce",
               "&:hover": {
-                color: "#2c5282",
+                "color": "#2c5282",
               },
+              "word-break": "break-all",
             },
             "h1 a, h2 a, h3 a, h4 a, h5 a, h6 a": {
               "text-decoration": "none",
