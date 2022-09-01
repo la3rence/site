@@ -14,6 +14,7 @@ export default function Layout(props) {
       prose-blockquote:border-purple-500
       prose-blockquote:text-purple-500
       prose-blockquote:border-l-2
+      prose-blockquote:not-italic
       prose-p:before:content-none
       prose-headings:[*>a]:no-unnderline
       mx-6"
