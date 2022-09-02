@@ -14,7 +14,7 @@ specifiers:
   highlight.js: 11.6.0
   next: 12.2.5
   next-themes: 0.2.0
-  node-fetch: ^3.2.10
+  node-fetch: ^2.6.1
   postcss: 8.4.16
   prettier: 2.7.1
   react: 18.2.0
@@ -36,7 +36,7 @@ specifiers:
 dependencies:
   "@sagi.io/workers-kv": 0.0.13
   "@tailwindcss/typography": 0.5.7_tailwindcss@3.1.8
-  "@vercel/fetch": 6.2.0_23abv5xl6fjijgjrpg2j7pr62u
+  "@vercel/fetch": 6.2.0_wbqoqouw2iimn65bqgaw3lwmza
   autoprefixer: 10.4.8_postcss@8.4.16
   date-fns: 2.29.2
   dotenv: 16.0.2
@@ -44,7 +44,7 @@ dependencies:
   highlight.js: 11.6.0
   next: 12.2.5_biqbaboplfbrettd7655fr4n2y
   next-themes: 0.2.0_3xcjr4wz26biff45sz3jtokgje
-  node-fetch: 3.2.10
+  node-fetch: 2.6.7
   postcss: 8.4.16
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -58,7 +58,7 @@ dependencies:
   remark: 14.0.2
   remark-gfm: 3.0.1
   remark-rehype: 10.1.0
-  static-tweets: 0.8.0_23abv5xl6fjijgjrpg2j7pr62u
+  static-tweets: 0.8.0_wbqoqouw2iimn65bqgaw3lwmza
   tailwindcss: 3.1.8
 
 devDependencies:
@@ -590,7 +590,7 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vercel/fetch-cached-dns/2.1.0_node-fetch@3.2.10:
+  /@vercel/fetch-cached-dns/2.1.0_node-fetch@2.6.7:
     resolution:
       {
         integrity: sha512-dIQWF+bG2EOYeCCCeT3E77qZZa7VgW2quEKw4k8/keeoD8lRMjiNi//Ww7LJ8wXecfv7XXtprwN5uLLLGo/ktg==,
@@ -600,10 +600,10 @@ packages:
     dependencies:
       "@types/node-fetch": 2.6.2
       "@zeit/dns-cached-resolve": 2.1.2
-      node-fetch: 3.2.10
+      node-fetch: 2.6.7
     dev: false
 
-  /@vercel/fetch-retry/5.1.3_node-fetch@3.2.10:
+  /@vercel/fetch-retry/5.1.3_node-fetch@2.6.7:
     resolution:
       {
         integrity: sha512-UIbFc4VsEZHOr6dWuE+kxY4NxnOLXFMCWm0fSKRRHUEtrIzaJLzHpWk2QskCXTSzFgFvhkLAvSrBK2XZg7NSzg==,
@@ -613,12 +613,12 @@ packages:
     dependencies:
       async-retry: 1.3.3
       debug: 4.3.4
-      node-fetch: 3.2.10
+      node-fetch: 2.6.7
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@vercel/fetch/6.2.0_23abv5xl6fjijgjrpg2j7pr62u:
+  /@vercel/fetch/6.2.0_wbqoqouw2iimn65bqgaw3lwmza:
     resolution:
       {
         integrity: sha512-MU+Mzh06NIAXxwdnyHmBFg+/lTKBbzDkCSNhAwWTFJ4rHuBc4pHc8E6XP+qnwqaWugjOBQgFfQCGDLnV820c9A==,
@@ -629,11 +629,11 @@ packages:
     dependencies:
       "@types/async-retry": 1.4.5
       "@types/node-fetch": 2.6.2
-      "@vercel/fetch-cached-dns": 2.1.0_node-fetch@3.2.10
-      "@vercel/fetch-retry": 5.1.3_node-fetch@3.2.10
+      "@vercel/fetch-cached-dns": 2.1.0_node-fetch@2.6.7
+      "@vercel/fetch-retry": 5.1.3_node-fetch@2.6.7
       agentkeepalive: 4.2.1
       debug: 4.3.4
-      node-fetch: 3.2.10
+      node-fetch: 2.6.7
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1234,14 +1234,6 @@ packages:
         integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==,
       }
     dev: true
-
-  /data-uri-to-buffer/4.0.0:
-    resolution:
-      {
-        integrity: sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==,
-      }
-    engines: { node: ">= 12" }
-    dev: false
 
   /date-fns/2.29.2:
     resolution:
@@ -1976,17 +1968,6 @@ packages:
       format: 0.2.2
     dev: false
 
-  /fetch-blob/3.2.0:
-    resolution:
-      {
-        integrity: sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==,
-      }
-    engines: { node: ^12.20 || >= 14.13 }
-    dependencies:
-      node-domexception: 1.0.0
-      web-streams-polyfill: 3.2.1
-    dev: false
-
   /file-entry-cache/6.0.1:
     resolution:
       {
@@ -2052,16 +2033,6 @@ packages:
         integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==,
       }
     engines: { node: ">=0.4.x" }
-    dev: false
-
-  /formdata-polyfill/4.0.10:
-    resolution:
-      {
-        integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==,
-      }
-    engines: { node: ">=12.20.0" }
-    dependencies:
-      fetch-blob: 3.2.0
     dev: false
 
   /fraction.js/4.2.0:
@@ -3727,24 +3698,19 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /node-domexception/1.0.0:
+  /node-fetch/2.6.7:
     resolution:
       {
-        integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==,
+        integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==,
       }
-    engines: { node: ">=10.5.0" }
-    dev: false
-
-  /node-fetch/3.2.10:
-    resolution:
-      {
-        integrity: sha512-MhuzNwdURnZ1Cp4XTazr69K0BTizsBroX7Zx3UgDSVcZYKF/6p0CBe4EUb/hLqmzVhl0UpYfgRljQ4yxE+iCxA==,
-      }
-    engines: { node: ^12.20.0 || ^14.13.1 || >=16.0.0 }
+    engines: { node: 4.x || >=6.0.0 }
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
     dependencies:
-      data-uri-to-buffer: 4.0.0
-      fetch-blob: 3.2.0
-      formdata-polyfill: 4.0.10
+      whatwg-url: 5.0.0
     dev: false
 
   /node-releases/2.0.6:
@@ -4690,7 +4656,7 @@ packages:
       }
     dev: false
 
-  /static-tweets/0.8.0_23abv5xl6fjijgjrpg2j7pr62u:
+  /static-tweets/0.8.0_wbqoqouw2iimn65bqgaw3lwmza:
     resolution:
       {
         integrity: sha512-0fl3OfhdV5AABnXwe/6oYlCntILoumJVgwvwgnVkW4+PrNqqXoQnXL86Gw/QojLuczlq6IixyWTi08/NQtVqgQ==,
@@ -4698,7 +4664,7 @@ packages:
     engines: { node: ">=12" }
     dependencies:
       "@mapbox/rehype-prism": 0.5.0
-      "@vercel/fetch": 6.2.0_23abv5xl6fjijgjrpg2j7pr62u
+      "@vercel/fetch": 6.2.0_wbqoqouw2iimn65bqgaw3lwmza
       cheerio: 1.0.0-rc.12
       github-slugger: 1.4.0
       rehype-parse: 7.0.1
@@ -4900,6 +4866,13 @@ packages:
     engines: { node: ">=8.0" }
     dependencies:
       is-number: 7.0.0
+
+  /tr46/0.0.3:
+    resolution:
+      {
+        integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==,
+      }
+    dev: false
 
   /trim-lines/3.0.1:
     resolution:
@@ -5272,12 +5245,21 @@ packages:
       }
     dev: false
 
-  /web-streams-polyfill/3.2.1:
+  /webidl-conversions/3.0.1:
     resolution:
       {
-        integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==,
+        integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==,
       }
-    engines: { node: ">= 8" }
+    dev: false
+
+  /whatwg-url/5.0.0:
+    resolution:
+      {
+        integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==,
+      }
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
     dev: false
 
   /which-boxed-primitive/1.0.2:
