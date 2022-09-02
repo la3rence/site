@@ -6,7 +6,7 @@
   }
 
   img {
-    @apply w-full mb-5;
+    @apply mx-auto;
   }
 }
 

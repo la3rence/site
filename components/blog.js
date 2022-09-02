@@ -32,7 +32,7 @@ export default withView(({ children, title, date, author, view, id }) => {
             {view > 0 && <small>{view} views</small>}
           </div>
         </div>
-        <div className="article pt-3">{children}</div>
+        <div className="article">{children}</div>
       </div>
     </Layout>
   );

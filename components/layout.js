@@ -17,7 +17,8 @@ export default function Layout(props) {
       prose-blockquote:not-italic
       prose-p:before:content-none
       prose-headings:[*>a]:no-unnderline
-      mx-6"
+      mx-6
+      mb-24"
       >
         <div className="my-10">{children}</div>
       </main>
