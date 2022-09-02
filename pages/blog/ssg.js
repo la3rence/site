@@ -12,7 +12,7 @@ export default function Example() {
         This page is fully rendered by <code>JSX</code>. You can update this
         page with JavaScript and React components.
       </p>
-      <div className="-mx-6">
+      <div className="-mx-6 filter dark:brightness-50">
         <Image
           src={`https://i.picsum.photos/id/1072/400/400.jpg?grayscale&hmac=CpiwecRoY6G5F_ZTZceMHxJkhHWv24p1ebO5iNvL24M`}
           width={"100%"}
