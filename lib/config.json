@@ -4,7 +4,6 @@
   "authorEmail": "hi@lawrenceli.me",
   "baseURL": "https://lawrenceli.me",
   "feedPath": "/atom.xml",
-  "enablePageView": true,
   "navItems": [
     {
       "label": "Blog",

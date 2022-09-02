@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import config from "./../lib/config.json";
 
 // eslint-disable-next-line react/display-name
 const withView = Component => props => {
-  // if this enabled, will load page view from cf workers kv
-  if (!config.enablePageView) {
-    return <Component {...props} />;
-  }
+  // skip this HOC by: return <Component {...props} />;
 
   const { asPath: id } = useRouter();
   const [view, setView] = useState(0);

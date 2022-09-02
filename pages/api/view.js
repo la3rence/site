@@ -1,12 +1,20 @@
 import WorkersKVREST from "@sagi.io/workers-kv";
 import env from "./../../lib/env";
-const { CF_ACCOUNT_ID, CF_AUTH_KV_TOKEN, CF_EMAIL, CF_NAMESPACE_ID } = env;
+const {
+  CF_ACCOUNT_ID,
+  CF_AUTH_KV_TOKEN,
+  CF_EMAIL,
+  CF_NAMESPACE_ID,
+  VERCEL_ENV,
+} = env;
 
 const workersKV = new WorkersKVREST({
   cfAccountId: CF_ACCOUNT_ID,
   cfAuthToken: CF_AUTH_KV_TOKEN,
   cfEmail: CF_EMAIL,
 });
+
+const isProd = VERCEL_ENV === "production";
 
 export default async function view(req, res) {
   const page = req.query.page ? req.query.page : "/";
@@ -22,8 +30,12 @@ const viewPage = async page => {
 const addPageView = async page => {
   const currentPageView = await getPageViewCount(page);
   const view = currentPageView + 1;
-  console.log(`page: ${page} count: ${view}`);
-  const writeResult = await writeKeyValue(page, view);
+  console.log(`page: ${page} count: ${view} write enabled: ${isProd}`);
+  let writeResult;
+  if (isProd) {
+    // increment only in production
+    writeResult = await writeKeyValue(page, view);
+  }
   return {
     page,
     view,
