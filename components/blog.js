@@ -7,7 +7,7 @@ import "highlight.js/styles/github-dark.css";
 export default withView(
   ({ children, title, date, author, view, id, vertical }) => {
     return (
-      <Layout blog title={title} id={id} vertical>
+      <Layout blog title={title} id={id} vertical={vertical}>
         <div className={`blog ${vertical ? "vertical" : ""}`} id={id}>
           <h3>{title}</h3>
           <div className="flex justify-start items-center flex-wrap">

@@ -5,7 +5,6 @@ import config from "../lib/config.json";
 
 export default function Header({ title }) {
   const router = useRouter();
-  console.log(JSON.stringify(router));
   const { blogTitle, navItems, authorName, baseURL, description, twitter } =
     config;
   const pageTitle = title ? `${title} - ${blogTitle}` : blogTitle;

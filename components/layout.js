@@ -19,10 +19,8 @@ export default function Layout(props) {
       ${
         vertical
           ? "prose-blockquote:border-t-2 prose-blockquote:border-l-0 prose-blockquote:pt-4 prose-blockquote:pl-0"
-          : "prose-blockquote:border-l-2"
-      }
-      mx-6
-      mb-24`}
+          : "prose-blockquote:border-l-2 mb-24 mx-6"
+      }`}
       >
         <div className="my-6">{children}</div>
       </main>
