@@ -21,7 +21,7 @@ export default function Header({ title }) {
         <meta property="og:site_name" content={blogTitle} />
         <meta property="og:description" content={description} />
         <meta name="twitter:site" content={twitter} />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
       <header className="flex mx-6 my-6 text-gray-500">
