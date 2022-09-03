@@ -14,15 +14,18 @@
   },
   "dependencies": {
     "@sagi.io/workers-kv": "0.0.13",
+    "@tailwindcss/typography": "0.5.7",
     "autoprefixer": "10.4.8",
     "dotenv": "16.0.2",
     "gray-matter": "4.0.3",
     "highlight.js": "11.6.0",
     "next": "12.2.5",
     "next-themes": "0.2.0",
+    "postcss": "8.4.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rehype-autolink-headings": "6.1.1",
+    "rehype-external-links": "2.0.1",
     "rehype-highlight": "5.0.2",
     "rehype-slug": "5.0.1",
     "rehype-stringify": "9.0.3",
@@ -31,9 +34,7 @@
     "remark": "14.0.2",
     "remark-gfm": "3.0.1",
     "remark-rehype": "10.1.0",
-    "postcss": "8.4.16",
-    "tailwindcss": "3.1.8",
-    "@tailwindcss/typography": "0.5.7"
+    "tailwindcss": "3.1.8"
   },
   "devDependencies": {
     "eslint": "8.23.0",
