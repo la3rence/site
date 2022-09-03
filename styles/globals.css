@@ -12,4 +12,20 @@
 
 @tailwind components;
 
+@layer components {
+  .vertical {
+    @apply w-full overflow-auto font-serif;
+    writing-mode: vertical-rl;
+  }
+
+  .vertical p,
+  .vertical h3 {
+    @apply my-0 px-2;
+  }
+
+  .vertical img {
+    @apply mx-6;
+  }
+}
+
 @tailwind utilities;
