@@ -1,13 +1,27 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import config from "../lib/config.json";
 
 export default function Header({ title }) {
-  const { blogTitle, navItems } = config;
+  const router = useRouter();
+  console.log(JSON.stringify(router));
+  const { blogTitle, navItems, authorName, baseURL, description, twitter } =
+    config;
+  const pageTitle = title ? `${title} - ${blogTitle}` : blogTitle;
   return (
     <>
       <Head>
-        <title>{title ? `${title} - ${blogTitle}` : blogTitle}</title>
+        <title>{pageTitle}</title>
+        <meta name="keywords" content={`${blogTitle}, ${authorName}, Blog`} />
+        <meta name="Description" content={description} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:url" content={`${baseURL}${router.asPath}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={blogTitle} />
+        <meta property="og:description" content={description} />
+        <meta name="twitter:site" content={twitter} />
+        <meta name="twitter:card" content="summary_large_image" />
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
       <header className="flex mx-6 my-6 text-gray-500">

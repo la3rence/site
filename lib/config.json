@@ -4,6 +4,9 @@
   "authorEmail": "hi@lawrenceli.me",
   "baseURL": "https://lawrenceli.me",
   "feedPath": "/atom.xml",
+  "description": "Blog",
+  "twitter": "@lawrenceli75",
+  "github": "Lonor",
   "navItems": [
     {
       "label": "Blog",
