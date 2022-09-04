@@ -9,11 +9,13 @@ const Index = function index({ allPostsData }) {
       <div className="blogIndex mt-12">
         {allPostsData.map(post => (
           <div className="my-3" key={post.id}>
-            <Link href={`/blog/${post.id}`}>
-              <a className="no-underline hover:underline">{post.title}</a>
-            </Link>
-            <span className="before:content-['/'] before:px-3">
-              {post.date}
+            <span className="font-mono">{post.date}</span>
+            <span className="px-5">
+              <Link href={`/blog/${post.id}`}>
+                <a className="no-underline hover:underline font-normal">
+                  {post.title}
+                </a>
+              </Link>
             </span>
           </div>
         ))}
