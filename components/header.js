@@ -8,6 +8,8 @@ export default function Header({ title }) {
   const { blogTitle, navItems, authorName, baseURL, description, twitter } =
     config;
   const pageTitle = title ? `${title} - ${blogTitle}` : blogTitle;
+  const hoverTabStyle =
+    "rounded hover:bg-gray-200 text-gray-700 transition duration-500 dark:hover:bg-blue-500 dark:text-gray-300";
   return (
     <>
       <Head>
@@ -26,7 +28,7 @@ export default function Header({ title }) {
       <header className="flex mx-6 my-6 text-gray-500">
         <h2 className="w-28">
           <Link href={"/"}>
-            <div className="rounded cursor-pointer bg-gray-100 text-gray-700 dark:bg-opacity-0 dark:text-gray-300 p-2 -mx-2">
+            <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
               {blogTitle}
             </div>
           </Link>
@@ -36,7 +38,7 @@ export default function Header({ title }) {
           <ul className="flex">
             {navItems.map(item => {
               return (
-                <li key={item.label} className="px-3">
+                <li key={item.label} className={`px-3 py-1 ${hoverTabStyle}`}>
                   <Link href={item.path}>{item.label}</Link>
                 </li>
               );
