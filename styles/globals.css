@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap");
+
 @tailwind base;
 
 @layer base {
@@ -14,8 +16,12 @@
 
 @layer components {
   .vertical {
-    @apply w-full overflow-auto font-serif;
+    @apply w-full overflow-auto noto-serif;
     writing-mode: vertical-rl;
+  }
+
+  .noto-serif {
+    font-family: "Nato Serif SC", ui-serif, Georgia, Cambria, Times, serif;
   }
 
   .vertical p,
