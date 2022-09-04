@@ -21,7 +21,8 @@
   }
 
   .noto-serif {
-    font-family: "Nato Serif SC", ui-serif, Georgia, Cambria, Times, serif;
+    font-family: "Noto Serif SC", ui-serif, Georgia, Cambria, Times, serif;
+    font-display: optional;
   }
 
   .vertical p,
