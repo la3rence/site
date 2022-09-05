@@ -2,14 +2,25 @@ import NextImage from "next/image";
 import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
+import { useState } from "react";
 import "highlight.js/styles/github-dark.css";
 
 export default withView(
   ({ children, title, date, author, view, id, vertical }) => {
+    // allow default vertical article chage back to normal style
+    const [clientVertical, setClentVertical] = useState(vertical);
+    const reverseVertical = () => {
+      if (vertical) {
+        setClentVertical(!clientVertical);
+      }
+    };
+
     return (
-      <Layout blog title={title} id={id} vertical={vertical}>
-        <div className={`blog ${vertical ? "vertical" : ""}`} id={id}>
-          <h3>{title}</h3>
+      <Layout blog title={title} id={id} vertical={clientVertical}>
+        <div className={`blog ${clientVertical ? "vertical" : ""}`} id={id}>
+          <h3 className="cursor-pointer" onClick={() => reverseVertical()}>
+            {title}
+          </h3>
           <div className="flex justify-start items-center flex-wrap">
             <div className="flex flex-2 items-center justify-center cursor-pointer">
               <Link href={"/about"}>

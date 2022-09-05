@@ -8,9 +8,11 @@ export default function Tategaki() {
     <>
       <Blog title={title} date={date} author={author} vertical>
         <p>
-          周末凌晨突发奇想让此博客也支持一下竖排文字（tategaki），样式的实现比自己想象中简单了不少。这里贴一篇文章试试看效果，我也将该样式引入到静态生成的
-          Markdown 文件中，只需要将 <code>vertical</code> 字段设置为
-          <code>true</code> 就能启用此样式了。
+          周末凌晨突发奇想让此博客也支持一下竖排文字（tategaki），样式的实现比自己想象中简单了不少。这里贴一篇文章试试看效果，默认也启用了衬线体文字。
+          我也将该样式引入到用以静态生成的 Markdown 文件中，只需要将
+          <code>vertical</code> 字段设置为
+          <code>true</code>
+          就能启用此样式了。倘若读者不习惯，可点击一下标题，就可以切换回常规的水平排版的文章。本站对竖排的洋文、阿拉伯文字的支持尚未完善，还请读者见谅。
         </p>
         <hr />
         <h3>出师表</h3>
