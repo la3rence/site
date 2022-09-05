@@ -13,8 +13,8 @@ export default function Layout(props) {
       prose-pre:bg-[#0d1117] 
       prose-p:before:content-none
       prose-headings:[*>a]:no-unnderline
-      prose-blockquote:border-purple-500
-      prose-blockquote:text-purple-500
+      prose-blockquote:border-purple-600
+      prose-blockquote:text-purple-600
       prose-blockquote:not-italic
       ${
         vertical

@@ -18,7 +18,7 @@ export default withView(
     return (
       <Layout blog title={title} id={id} vertical={clientVertical}>
         <div className={`blog ${clientVertical ? "vertical" : ""}`} id={id}>
-          <h3 className="cursor-pointer" onClick={() => reverseVertical()}>
+          <h3 id="title" className="cursor-pointer" onClick={reverseVertical}>
             {title}
           </h3>
           <div className="flex justify-start items-center flex-wrap">
@@ -34,7 +34,7 @@ export default withView(
                       alt={author}
                     ></NextImage>
                   </small>
-                  <small className={`${vertical ? "mt-2" : "ml-2"}`}>
+                  <small className={`${clientVertical ? "mt-2" : "ml-2"}`}>
                     {author}
                   </small>
                   <small className="before:content-['/'] before:p-0 before:m-2">
