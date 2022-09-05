@@ -8,7 +8,7 @@ const Index = function index({ allPostsData }) {
     "hover:bg-gray-200 transition duration-200 dark:hover:bg-gray-700 dark:text-gray-300";
   return (
     <Layout blogIndex title={"Blog"}>
-      <div className="blogIndex mt-12">
+      <div className="blogIndex mt-8">
         {allPostsData.map(post => (
           <div className="my-4" key={post.id}>
             <span className="font-mono text-gray-500">{post.date}</span>

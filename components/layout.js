@@ -1,10 +1,10 @@
 import Header from "./header";
 
 export default function Layout(props) {
-  const { children, title, vertical } = props;
+  const { children, title, vertical, blog } = props;
   return (
     <>
-      <Header title={title} />
+      <Header title={title} blog={blog} />
       <main
         className={`prose prose-slate
       max-w-3xl

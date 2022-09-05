@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import config from "../lib/config.json";
 import Logo from "./logo";
 
-export default function Header({ title }) {
+export default function Header({ title, blog }) {
   const router = useRouter();
   const { blogTitle, navItems, authorName, baseURL, description, twitter } =
     config;
@@ -26,27 +26,29 @@ export default function Header({ title }) {
         <meta name="twitter:card" content="summary" />
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
-      <header className="flex mx-6 my-6 text-gray-500">
-        <h2 className="w-36">
-          <Link href={"/"}>
-            <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
-              <Logo title={blogTitle} />
-            </div>
-          </Link>
-        </h2>
-        <div className="flex-1"></div>
-        <div className="flex-4 flex items-center">
-          <ul className="flex">
-            {navItems.map(item => {
-              return (
-                <li key={item.label} className={`px-3 py-1 ${hoverTabStyle}`}>
-                  <Link href={item.path}>{item.label}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </header>
+      {!blog && (
+        <header className="flex mx-6 mt-12 text-gray-500">
+          <h2 className="w-36">
+            <Link href={"/"}>
+              <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
+                <Logo title={blogTitle} />
+              </div>
+            </Link>
+          </h2>
+          <div className="flex-1"></div>
+          <div className="flex-4 flex items-center">
+            <ul className="flex">
+              {navItems.map(item => {
+                return (
+                  <li key={item.label} className={`px-3 py-1 ${hoverTabStyle}`}>
+                    <Link href={item.path}>{item.label}</Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </header>
+      )}
     </>
   );
 }

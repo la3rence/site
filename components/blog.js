@@ -17,13 +17,16 @@ export default withView(
 
     return (
       <Layout blog title={title} id={id} vertical={clientVertical}>
-        <div className={`blog ${clientVertical ? "vertical" : ""}`} id={id}>
+        <div
+          className={`blog mt-9 ${clientVertical ? "vertical" : ""}`}
+          id={id}
+        >
           <h3 id="title" className="cursor-pointer" onClick={reverseVertical}>
             {title}
           </h3>
-          <div className="flex justify-start items-center flex-wrap">
-            <div className="flex flex-2 items-center justify-center cursor-pointer">
-              <Link href={"/about"}>
+          <div className="flex justify-start items-center flex-wrap mb-8">
+            <div className="flex flex-2 items-center justify-center cursor-pointer rounded hover:bg-gray-300 pr-2">
+              <Link href={"/"}>
                 <div className="flex items-center justify-start flex-wrap">
                   <small className="w-25 h-25 mt-1">
                     <NextImage

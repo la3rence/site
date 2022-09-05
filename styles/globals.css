@@ -16,7 +16,7 @@
 
 @layer components {
   .vertical {
-    @apply w-full overflow-auto noto-serif;
+    @apply noto-serif sm:max-w-fit max-w-full overflow-y-auto;
     writing-mode: vertical-rl;
   }
 
