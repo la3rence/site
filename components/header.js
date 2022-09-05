@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import config from "../lib/config.json";
+import Logo from "./logo";
 
 export default function Header({ title }) {
   const router = useRouter();
@@ -9,7 +10,7 @@ export default function Header({ title }) {
     config;
   const pageTitle = title ? `${title} - ${blogTitle}` : blogTitle;
   const hoverTabStyle =
-    "rounded hover:bg-gray-200 text-gray-700 transition duration-500 dark:hover:bg-blue-500 dark:text-gray-300";
+    "hover:bg-gray-200 text-gray-700 transition duration-500 dark:hover:bg-gray-700 dark:text-gray-300";
   return (
     <>
       <Head>
@@ -26,10 +27,10 @@ export default function Header({ title }) {
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
       <header className="flex mx-6 my-6 text-gray-500">
-        <h2 className="w-28">
+        <h2 className="w-36">
           <Link href={"/"}>
             <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
-              {blogTitle}
+              <Logo title={blogTitle} />
             </div>
           </Link>
         </h2>

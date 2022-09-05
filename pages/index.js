@@ -5,7 +5,7 @@ import { getAllPostData } from "./../lib/ssg.js";
 
 const Index = function index({ allPostsData }) {
   const hoverTabStyle =
-    "rounded hover:bg-gray-200 text-gray-700 transition duration-200 dark:hover:bg-gray-700 dark:text-gray-300";
+    "hover:bg-gray-200 transition duration-200 dark:hover:bg-gray-700 dark:text-gray-300";
   return (
     <Layout blogIndex title={"Blog"}>
       <div className="blogIndex mt-12">
