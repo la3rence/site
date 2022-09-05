@@ -3,11 +3,7 @@ title: "声明式编程"
 date: "2019-12-29"
 ---
 
-写 YAML 上瘾了。
-
----
-
-命令式编程注重过程，声明式编程注重结果。前者强调代码本身的逻辑，需要开发者重视程序的上下文，以一步一步地实现应用功能。后者基于完善的 API / SDK，告诉（声明）程序需要达到的状态，程序会主动向其驱动以达到声明的目标，有时甚至无需在意底层实现。
+命令式编程注重过程，声明式编程注重结果。前者强调代码本身的逻辑，需要开发者重视程序每个阶段的上下文，以一步一步地实现应用功能。后者基于完善的 API / SDK，告诉（声明）程序需要达到的状态（一种状态机），程序会主动、不遗余力地向其驱动一直到达到声明的目标，应用层人员无需在意底层实现。
 
 优雅的 API 往往是声明式的，通常也非常简洁明了。
 
@@ -17,23 +13,25 @@ date: "2019-12-29"
 
 空调：它是声明式的。你**无需关注**空调自身的实现原理，只需要通过遥控器**声明**它应当达到的温度即可，空调就会驱动自身来实现密闭空间的恒温调节到达期望值 —— 哪怕空间的温度骤变。
 
-虽然栗子并不够恰当，但是我们拥有了倾向意识：空调调节起来多简单方便！
+虽然栗子并不够恰当，但是用户已经意识到：空调调节起来多简单方便！
 
 软件开发亦如此。
 
 我们其实早已经频繁地和声明式编程打交道了：其实 HTML、CSS、SQL 这些语言自己就是声明式语言；纯函数编程语言也被认为是声明式语言，这非常有趣。另外，前端流行的 React、Vue 都利用了 Virtual DOM 和 diff 算法实现了声明式的 JavaScript 用户界面框架，再也不需要前端开发者去使用 jQuery 或原生写法来操作 DOM。
 
-Java 开发者在开发阶段使用声明式 API 的最典型例子就是运用注解。比如 Spring 提供 `@Autowired` 注解实现 Bean 的依赖注入，其实现是基于 Java 语言的反射。Spring 更是提供了大量内置的注解简化了开发人员的开发: `@Transactional` 实现声明式事务, `@Component` , `@Value`, `@Data` ...
+Java 开发者在开发阶段使用声明式 API 的最典型例子就是运用注解。比如 Spring 提供 `@Autowired` 注解实现 Bean 对象的依赖注入，其实现是基于 Java 语言的反射。Spring 更是提供了大量内置的注解简化了开发人员的开发: `@Transactional` 实现声明式事务, `@Component` , `@Value`, `@Data` ...
 
-首个毕业于 CNCF 的项目 [Kubernetes](https://k8s.io) 中也在充分地让 DevOps 拥抱声明式。它提供了给予 YAML 语法的配置文件（用以描述容器集群的拓扑状态），自动地向配置的声明驱动。云原生应用的一个必要特性就是声明式。
+首个毕业于 CNCF 的项目 [Kubernetes](https://k8s.io) 中也在充分地让 DevOps 拥抱声明式。它提供了基于 YAML 语法的配置文件（manifest，用以描述容器集群期望的拓扑状态），自动地向配置的声明驱动。云原生应用的一个必要特性就是声明式。
 
-GraphQL 让原本的 REST 更加声明式。这是一个非常适合全栈开发的 HTTP 接口规范，热度最近有在攀升，能否颠覆 REST 不得而知。
+GraphQL 让原本的 REST 更加声明式。这是一个非常适合全栈开发的 HTTP 接口规范，热度最近有在攀升，能否颠覆传统的 REST 不得而知。
 
-Apple 在 WWDC 2019 上发布的 [SwiftUI](https://developer.apple.com/cn/xcode/swiftui/) 和 Google 开源的 [Flutter](https://flutter.cn/docs/get-started/flutter-for/declarative) 一样都是移动端的原生声明式 UI 框架。
+Apple 在 WWDC 2019 上发布的 [SwiftUI](https://developer.apple.com/cn/xcode/swiftui/) 和 Google 开源的 [Flutter](https://flutter.cn/docs/get-started/flutter-for/declarative) 一样都是移动端、跨多个操作系统的声明式 UI 框架。
 
-Maven、Gradle、npm、yarn、pip、go module 等提供了 Java、JavaScript / TypeScript、Python、GoLang 开发者声明式依赖管理工具，现代的应用开发几乎离不开它们。
+Maven、Gradle、npm、pip、go module 等提供了 Java、JavaScript / TypeScript、Python、GoLang 开发者声明式依赖管理工具，现代的应用开发几乎离不开它们。我还记得第一次手写 Makefile 的痛苦。
 
-GitHub、GitLab、Jenkins Pipeline 提供了基于声明式配置文件（大部分为 YAML）的持续集成流水线，可以让开发人员也能低成本地学习实践 CI/CD。
+GitHub Actions、GitLab、Jenkins Pipeline 提供了基于声明式配置文件（大部分为 YAML）的持续集成流水线，可以让开发人员也能低成本地学习实践 CI/CD。这里 Jenkins Pileline 的实现是基于另一门 JVM 语言 Groovy 的 DSL。
+
+在软件测试领域，BDD (Behavior Driven Development，行为驱动开发) 同样也是声明式。BDD 是为了能让熟悉业务但是不懂编程的用户也能实现业务范畴的自动化测试。 Gherkin 剧本语法面向业务人员提供特定的领域语言来描述软件行为。
 
 开发声明式 API 是很困难的，往往需要开发人员对语言以及框架的拥有深刻认知，并且是一种的利他主义美德:
 
