@@ -10,11 +10,33 @@
   img {
     @apply mx-auto;
   }
+
+  /* iframe  */
+  .embed {
+    @apply relative w-full overflow-hidden pt-[56%];
+  }
+
+  iframe {
+    @apply absolute w-full h-full top-0 border-none;
+  }
 }
 
 @tailwind components;
 
 @layer components {
+  /* margin all content except media like images */
+  .blogIndex,
+  .articleTitle,
+  p:not(:has(img)),
+  blockquote,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply mx-4;
+  }
+
   .vertical {
     @apply noto-serif sm:max-w-fit max-w-full overflow-y-auto;
     writing-mode: vertical-rl;
