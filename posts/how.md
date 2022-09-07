@@ -65,9 +65,7 @@ export const getStaticProps = async context => {
 
 ### Images
 
-彩蛋：随机展示一些黑白风格的图片。每次刷新都会变化：
-
-![Random Image](https://mygymonline.oss-cn-shanghai.aliyuncs.com/file/1662545213149.png)
+![Random Image](https://reflare.lawrenceli.me/file/1662549316419.jpg)
 
 ~~我被横线划过。~~
 

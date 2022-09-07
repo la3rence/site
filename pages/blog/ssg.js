@@ -15,8 +15,8 @@ export default function Example() {
       </p>
 
       <Bilibili bv="BV1ys411a7Wu"></Bilibili>
-
-      <div className="filter dark:brightness-50">
+      <br className="mt-6"></br>
+      <div className="filter dark:brightness-75">
         <Image
           src={`https://i.picsum.photos/id/1072/400/400.jpg?grayscale&hmac=CpiwecRoY6G5F_ZTZceMHxJkhHWv24p1ebO5iNvL24M`}
           width={"100%"}

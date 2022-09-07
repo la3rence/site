@@ -8,7 +8,7 @@
   }
 
   img {
-    @apply mx-auto;
+    @apply mx-auto dark:filter dark:brightness-75;
   }
 
   /* iframe  */
@@ -29,6 +29,7 @@
   .articleTitle,
   p:not(:has(img)),
   blockquote,
+  ul,
   h1,
   h2,
   h3,
