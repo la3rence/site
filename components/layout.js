@@ -16,11 +16,10 @@ export default function Layout(props) {
       prose-blockquote:border-purple-700
       prose-blockquote:text-purple-600
       prose-blockquote:not-italic
-      prose-blockquote:pl-0
       ${
         vertical
-          ? "prose-blockquote:border-t-2 prose-blockquote:border-l-0 prose-blockquote:pt-4 "
-          : "prose-blockquote:border-l-[2.6px]"
+          ? "prose-blockquote:border-t-2 prose-blockquote:border-l-0 prose-blockquote:pt-4 prose-blockquote:pl-0 "
+          : "prose-blockquote:border-l-[2.6px] prose-blockquote:pl-2"
       }`}
       >
         <div className="my-6">{children}</div>
