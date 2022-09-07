@@ -72,7 +72,7 @@ export const getStaticProps = async context => {
 ### Video
 
 <div class="embed" >
-  <iframe src="//player.bilibili.com/player.html?bvid=BV1ys411a7Wu&danmaku=0&high_quality=1"
+  <iframe src="//player.bilibili.com/player.html?bvid=BV1i44y1N7kU&danmaku=0&high_quality=1"
   ></iframe>
 </div>
 
