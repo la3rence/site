@@ -13,13 +13,14 @@ export default function Layout(props) {
       prose-pre:bg-[#0d1117] 
       prose-p:before:content-none
       prose-headings:[*>a]:no-unnderline
-      prose-blockquote:border-purple-600
+      prose-blockquote:border-purple-700
       prose-blockquote:text-purple-600
       prose-blockquote:not-italic
+      prose-blockquote:pl-0
       ${
         vertical
-          ? "prose-blockquote:border-t-2 prose-blockquote:border-l-0 prose-blockquote:pt-4 prose-blockquote:pl-0"
-          : "prose-blockquote:border-l-2 mb-24 mx-6"
+          ? "prose-blockquote:border-t-2 prose-blockquote:border-l-0 prose-blockquote:pt-4 "
+          : "prose-blockquote:border-l-[2.6px]"
       }`}
       >
         <div className="my-6">{children}</div>

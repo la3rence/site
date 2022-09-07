@@ -16,7 +16,9 @@ export default function Tategaki() {
         </p>
         <hr />
         <h3>出师表</h3>
-        <small>诸葛亮</small>
+        <p>
+          <small>诸葛亮</small>
+        </p>
         <p>
           <strong className="text-xl">先</strong>
           帝創業未半，而中道崩殂；今天下三分，益州疲弊，此誠危急存亡之秋也﹗然侍衞之臣，不懈於內；忠志之士，忘身於外者，蓋追先帝之殊遇，欲報之於陛下也。

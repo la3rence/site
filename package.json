@@ -30,7 +30,6 @@
     "rehype-slug": "5.0.1",
     "rehype-stringify": "9.0.3",
     "rehype-video": "1.2.2",
-    "rehype-wrap-all": "1.1.0",
     "remark": "14.0.2",
     "remark-gfm": "3.0.1",
     "remark-rehype": "10.1.0",

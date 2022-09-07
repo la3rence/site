@@ -21,10 +21,14 @@ export default withView(
           className={`blog mt-9 ${clientVertical ? "vertical" : ""}`}
           id={id}
         >
-          <h3 id="title" className="cursor-pointer" onClick={reverseVertical}>
+          <h3
+            id="title"
+            className="articleTitle cursor-pointer"
+            onClick={reverseVertical}
+          >
             {title}
           </h3>
-          <div className="flex justify-start items-center flex-wrap mb-8">
+          <div className="articleTitle flex justify-start items-center flex-wrap mb-8">
             <div className="flex flex-2 items-center justify-center cursor-pointer rounded hover:bg-gray-300 pr-2">
               <Link href={"/"}>
                 <div className="flex items-center justify-start flex-wrap">

@@ -27,7 +27,7 @@ export default function Header({ title, blog }) {
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
       {!blog && (
-        <header className="flex mx-6 mt-12 text-gray-500">
+        <header className="flex mt-12 text-gray-500">
           <h2 className="w-36">
             <Link href={"/"}>
               <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
