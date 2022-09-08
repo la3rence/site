@@ -1,11 +1,11 @@
 ---
-title: "这个网站是如何构建的"
+title: 这个网站是如何构建的
 date: "2022-08-27"
+vertical: false
+image: https://reflare.lawrenceli.me/file/1662549316419.jpg
+description: 此文用于端到端测试 Markdown 样式
+someKey: someValue # available in props of <Header />
 ---
-
-:::
-此文用于端到端测试 Markdown 样式
-:::
 
 ## 使用方式
 

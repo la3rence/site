@@ -1,12 +1,17 @@
 import Blog from "../../components/blog";
-export const author = "Lawrence";
-export const title = "竖排样式测试";
-export const date = "2022-09-04";
+
+export const blogProps = {
+  author: "Lawrence",
+  title: "竖排样式测试",
+  date: "2022-09-04",
+  someKey: "tategaki",
+  vertical: true,
+};
 
 export default function Tategaki() {
   return (
     <>
-      <Blog title={title} date={date} author={author} vertical>
+      <Blog {...blogProps}>
         <p>
           周末凌晨突发奇想让此博客也支持一下竖排文字（tategaki），样式的实现比自己想象中简单了不少。这里贴一篇文章试试看效果，默认也启用了衬线体文字。
           我也将该样式引入到用以静态生成的 Markdown 文件中，只需要将

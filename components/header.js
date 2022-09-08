@@ -4,26 +4,29 @@ import { useRouter } from "next/router";
 import config from "../lib/config.json";
 import Logo from "./logo";
 
-export default function Header({ title, blog }) {
+export default function Header({ title, blog, image, description }) {
   const router = useRouter();
-  const { blogTitle, navItems, authorName, baseURL, description, twitter } =
+  let { siteTitle, navItems, authorName, baseURL, siteDescription, twitter } =
     config;
-  const pageTitle = title ? `${title} - ${blogTitle}` : blogTitle;
+  const theDescription = description || siteDescription;
+  const pageTitle = title || siteTitle;
   const hoverTabStyle =
     "hover:bg-gray-200 text-gray-700 transition duration-500 dark:hover:bg-gray-700 dark:text-gray-300";
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="keywords" content={`${blogTitle}, ${authorName}, Blog`} />
-        <meta name="Description" content={description} />
+        <meta name="keywords" content={`${siteTitle}, ${authorName}, Blog`} />
+        <meta name="Description" content={theDescription} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:url" content={`${baseURL}${router.asPath}`} />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content={blogTitle} />
-        <meta property="og:description" content={description} />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:description" content={theDescription} />
+        <meta property="og:image" content={image} />
+        <meta name="twitter:image" content={image} />
         <meta name="twitter:site" content={twitter} />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
       {!blog && (
@@ -31,7 +34,7 @@ export default function Header({ title, blog }) {
           <h2 className="w-36">
             <Link href={"/"}>
               <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
-                <Logo title={blogTitle} />
+                <Logo title={siteTitle} />
               </div>
             </Link>
           </h2>

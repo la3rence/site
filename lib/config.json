@@ -1,10 +1,10 @@
 {
-  "blogTitle": "Lawrence Li",
+  "siteTitle": "Lawrence Li",
   "authorName": "Lawrence",
   "authorEmail": "hi@lawrenceli.me",
   "baseURL": "https://lawrenceli.me",
   "feedPath": "/atom.xml",
-  "description": "Blog",
+  "siteDescription": "Blog",
   "twitter": "@lawrenceli75",
   "github": "Lonor",
   "navItems": [

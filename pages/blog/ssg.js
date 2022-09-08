@@ -2,18 +2,21 @@ import Blog from "../../components/blog";
 import Image from "next/image";
 import config from "./../../lib/config.json";
 import Bilibili from "../../components/bilibili";
-export const author = config.authorName;
-export const title = "SSG Example";
-export const date = "2022-08-26";
+
+export const blogProps = {
+  author: config.authorName,
+  title: "SSG Example",
+  date: "2022-08-26",
+  someKey: "someValeInJSXProps",
+};
 
 export default function Example() {
   return (
-    <Blog title={title} date={date} author={author}>
+    <Blog {...blogProps}>
       <p>
         This page is fully rendered by <code>JSX</code>. You can update this
         page with JavaScript and React components.
       </p>
-
       <Bilibili bv="BV1ys411a7Wu"></Bilibili>
       <br className="mt-6"></br>
       <div className="filter dark:brightness-75">

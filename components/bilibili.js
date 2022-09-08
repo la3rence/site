@@ -1,5 +1,4 @@
 export default function Bilibili({ bv, page, danmaku }) {
-  //player.bilibili.com/player.html?aid=7707512&bvid=BV1ys411a7Wu&page=1&high_quality=1
   const src = `//player.bilibili.com/player.html?bvid=${bv}&page=${
     page ? page : 1
   }&danmaku=${danmaku ? danmaku : 0}&high_quality=1`;
