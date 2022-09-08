@@ -1,5 +1,6 @@
 ---
-title: "Invert binary tree"
+title: Invert binary tree
+image: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_tree.svg
 date: "2017-12-22"
 ---
 
