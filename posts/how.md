@@ -2,7 +2,7 @@
 title: 这个网站是如何构建的
 date: "2022-08-27"
 vertical: false
-image: https://reflare.lawrenceli.me/file/1662549316419.jpg
+image: https://reflare.lawrenceli.me/file/1662688541295.png
 description: 此文用于端到端测试 Markdown 样式
 someKey: someValue # available in props of <Header />
 ---
