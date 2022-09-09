@@ -8,6 +8,7 @@ const Moment = props => {
   const posts = JSON.parse(timeline);
   return (
     <Layout title={"Moment"}>
+      <h2>Moment</h2>
       {posts.map(item => {
         return <Fanfou {...item} key={item.id} />;
       })}
@@ -20,15 +21,17 @@ export default withView(Moment);
 // get fanfou posts
 export const getStaticProps = async () => {
   const ff = await fanfouClient();
-  const timeline = await ff.get("/statuses/user_timeline/jaylee.me", {
-    count: 20,
+  const timeline = await ff.get("/statuses/user_timeline", {
+    id: "jaylee.me",
+    count: 12, // weird, it always got 12 items
+    page: 1,
   });
   return {
     props: {
       timeline: JSON.stringify(timeline),
     },
     // Incremental Static Regeneration
-    revalidate: 30,
+    revalidate: 2 * 3600,
   };
 };
 
