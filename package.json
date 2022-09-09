@@ -17,6 +17,7 @@
     "@tailwindcss/typography": "0.5.7",
     "autoprefixer": "10.4.8",
     "dotenv": "16.0.2",
+    "fanfou-sdk": "4.2.0",
     "gray-matter": "4.0.3",
     "highlight.js": "11.6.0",
     "next": "12.3.0",
