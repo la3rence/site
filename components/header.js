@@ -24,9 +24,10 @@ export default function Header({ title, blog, image, description }) {
         <meta property="og:site_name" content={siteTitle} />
         <meta property="og:description" content={theDescription} />
         <meta property="og:image" content={image} />
-        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:title" content={`${pageTitle} (${twitter})`} />
         <meta name="twitter:image" content={image} />
         <meta name="twitter:creator" content={twitter} />
+        <meta name="twitter:site" content={twitter} />
         <meta name="twitter:card" content="summary_large_image" />
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
