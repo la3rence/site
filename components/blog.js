@@ -26,7 +26,7 @@ export default withView(props => {
           {title}
         </h3>
         <div className="articleTitle flex justify-start items-center flex-wrap mb-8">
-          <div className="flex flex-2 items-center justify-center cursor-pointer rounded hover:bg-gray-300 pr-2">
+          <div className="flex flex-2 items-center justify-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2">
             <Link href={"/"}>
               <div className="flex items-center justify-start flex-wrap">
                 <small className="w-25 h-25 mt-1">
@@ -48,8 +48,8 @@ export default withView(props => {
             </Link>
           </div>
           <div className="flex-1"></div>
-          <div className="pr-2 flex justify-end">
-            {view > 0 && <small>{view} views</small>}
+          <div className="flex justify-end">
+            {view > 0 && !clientVertical && <small>{view} views</small>}
           </div>
         </div>
         <div className="article">{children}</div>

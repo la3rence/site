@@ -23,15 +23,15 @@ export const getStaticProps = async () => {
   const ff = await fanfouClient();
   const timeline = await ff.get("/statuses/user_timeline", {
     id: "jaylee.me",
-    count: 12, // weird, it always got 12 items
-    page: 1,
+    count: 13, // weird, it always got 13 items
+    format: "html",
   });
   return {
     props: {
       timeline: JSON.stringify(timeline),
     },
     // Incremental Static Regeneration
-    revalidate: 2 * 3600,
+    revalidate: 1 * 3600,
   };
 };
 
