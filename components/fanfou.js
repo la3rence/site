@@ -16,7 +16,7 @@ const Fanfou = ({ created_at, text, id, photo }) => {
             src={photo.originurl}
             alt={text}
             width="100%"
-            height="100%"
+            height="60%"
             layout="responsive"
             objectFit="contain"
           ></Image>

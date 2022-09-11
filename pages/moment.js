@@ -8,7 +8,10 @@ const Moment = props => {
   const posts = JSON.parse(timeline);
   return (
     <Layout title={"Moment"}>
-      <h2>Moment</h2>
+      <h3 className="rounded bg-[#00ccff] text-white dark:text-black w-fit">
+        饭否
+      </h3>
+      {/* {view > 0 && <div className="text-right mb-4 text-gray-500">{view} views</div>} */}
       {posts.map(item => {
         return <Fanfou {...item} key={item.id} />;
       })}
