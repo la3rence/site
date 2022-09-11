@@ -5,7 +5,7 @@ import path from "path";
 export default function PathId(props) {
   return (
     <Blog {...props}>
-      <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }}></div>
+      <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
     </Blog>
   );
 }

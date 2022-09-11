@@ -36,7 +36,7 @@ export default withView(props => {
                     width={25}
                     height={25}
                     alt={author}
-                  ></NextImage>
+                  />
                 </small>
                 <small className={`${clientVertical ? "mt-2" : "ml-2"}`}>
                   {author}
@@ -47,7 +47,7 @@ export default withView(props => {
               </div>
             </Link>
           </div>
-          <div className="flex-1"></div>
+          <div className="flex-1" />
           <div className="flex justify-end">
             {view > 0 && !clientVertical && <small>{view} views</small>}
           </div>

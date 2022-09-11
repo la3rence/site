@@ -5,7 +5,7 @@ import withView from "../components/withView";
 const About = props => {
   return (
     <Layout title={"About"}>
-      <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }}></div>
+      <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
     </Layout>
   );
 };

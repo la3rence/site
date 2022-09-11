@@ -40,7 +40,7 @@ export default function Header({ title, blog, image, description }) {
               </div>
             </Link>
           </h2>
-          <div className="flex-1"></div>
+          <div className="flex-1" />
           <div className="flex-4 flex items-center">
             <ul className="flex">
               {navItems.map(item => {

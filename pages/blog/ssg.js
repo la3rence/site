@@ -17,8 +17,8 @@ export default function Example() {
         This page is fully rendered by <code>JSX</code>. You can update this
         page with JavaScript and React components.
       </p>
-      <Bilibili bv="BV1ys411a7Wu"></Bilibili>
-      <br className="mt-6"></br>
+      <Bilibili bv="BV1ys411a7Wu" />
+      <br className="mt-6" />
       <div className="filter dark:brightness-75">
         <Image
           src={`https://i.picsum.photos/id/1072/400/400.jpg?grayscale&hmac=CpiwecRoY6G5F_ZTZceMHxJkhHWv24p1ebO5iNvL24M`}
@@ -26,7 +26,7 @@ export default function Example() {
           height={"100%"}
           layout="responsive"
           alt={"Random image"}
-        ></Image>
+        />
       </div>
     </Blog>
   );

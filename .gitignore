@@ -107,6 +107,9 @@ dist
 # Vercel
 .vercel
 
+# InteliJ
+.idea/
+
 # macOS file system
 .DS_Store
 

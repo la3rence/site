@@ -1,7 +1,7 @@
 import Link from "next/link";
 import withView from "../components/withView";
 import Layout from "./../components/layout";
-import { getAllPostData } from "./../lib/ssg.js";
+import { getAllPostData } from "../lib/ssg";
 
 const Index = function index({ allPostsData }) {
   const hoverTabStyle =

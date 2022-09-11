@@ -11,7 +11,7 @@ export default function Bilibili({ bv, page, danmaku }) {
         border={0}
         frameBorder={0}
         allowFullScreen={true}
-      ></iframe>
+      />
     </div>
   );
 }

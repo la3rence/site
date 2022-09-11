@@ -9,7 +9,7 @@ const Fanfou = ({ created_at, text, id, photo }) => {
       <p
         className="mt-0 self-center flex-1"
         dangerouslySetInnerHTML={{ __html: text }}
-      ></p>
+      />
       {photo && (
         <div className="w-72">
           <Image
@@ -19,7 +19,7 @@ const Fanfou = ({ created_at, text, id, photo }) => {
             height="60%"
             layout="responsive"
             objectFit="contain"
-          ></Image>
+          />
         </div>
       )}
     </div>

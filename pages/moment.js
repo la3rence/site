@@ -34,7 +34,7 @@ export const getStaticProps = async () => {
       timeline: JSON.stringify(timeline),
     },
     // Incremental Static Regeneration
-    revalidate: 1 * 3600,
+    revalidate: 3600,
   };
 };
 

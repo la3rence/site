@@ -1,5 +1,6 @@
 import WorkersKVREST from "@sagi.io/workers-kv";
 import env from "./../../lib/env";
+
 const {
   CF_ACCOUNT_ID,
   CF_AUTH_KV_TOKEN,
@@ -23,8 +24,7 @@ export default async function view(req, res) {
 }
 
 const viewPage = async page => {
-  const res = await addPageView(page);
-  return res;
+  return await addPageView(page);
 };
 
 const addPageView = async page => {
@@ -54,11 +54,10 @@ const getPageViewCount = async page => {
 // ----- Workers KV API -----
 // the `key` require URL encoded
 const readKey = async key => {
-  const readResult = await workersKV.readKey({
+  return await workersKV.readKey({
     key: encodeURIComponent(key),
     namespaceId: CF_NAMESPACE_ID,
   });
-  return readResult;
 };
 
 const writeKeyValue = async (key, value) => {
@@ -67,6 +66,5 @@ const writeKeyValue = async (key, value) => {
     value: `${value}`,
     namespaceId: CF_NAMESPACE_ID,
   };
-  const writeResult = await workersKV.writeKey(objToWrite);
-  return writeResult;
+  return await workersKV.writeKey(objToWrite);
 };
