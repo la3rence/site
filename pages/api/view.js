@@ -17,9 +17,10 @@ const workersKV = new WorkersKVREST({
 
 const isProd = VERCEL_ENV === "production";
 
-export const config = {
-  runtime: "experimental-edge",
-};
+// edge functions enable:
+// export const config = {
+//   runtime: "experimental-edge",
+// };
 
 export default async function view(req, res) {
   const page = req.query.page ? req.query.page : "/";
