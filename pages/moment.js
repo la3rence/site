@@ -26,7 +26,7 @@ export const getStaticProps = async () => {
   const ff = await fanfouClient();
   const timeline = await ff.get("/statuses/user_timeline", {
     id: "jaylee.me",
-    count: 13, // weird, it always got 13 items
+    count: 12, // weird, it always got 12 items
     format: "html",
   });
   return {
