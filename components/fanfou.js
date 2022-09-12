@@ -13,7 +13,7 @@ const Fanfou = ({ createdAt, text, id, photo }) => {
       {photo && (
         <div className="w-72">
           <Image
-            src={photo.originurl}
+            src={photo.largeurl}
             alt={text}
             width="100%"
             height="60%"
