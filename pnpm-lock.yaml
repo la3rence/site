@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@sagi.io/workers-kv': 0.0.13
   '@tailwindcss/typography': 0.5.7
-  autoprefixer: 10.4.10
+  autoprefixer: 10.4.11
   dotenv: 16.0.2
   eslint: 8.23.1
   eslint-config-next: 12.3.0
@@ -31,7 +31,7 @@ specifiers:
 dependencies:
   '@sagi.io/workers-kv': 0.0.13
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
-  autoprefixer: 10.4.10_postcss@8.4.16
+  autoprefixer: 10.4.11_postcss@8.4.16
   dotenv: 16.0.2
   fanfou-sdk: 5.0.0
   gray-matter: 4.0.3
@@ -552,8 +552,8 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
-  /autoprefixer/10.4.10_postcss@8.4.16:
-    resolution: {integrity: sha512-nMaiDARyp1e74c8IeAXkr+BmFKa8By4Zak7tyaNPF09Iu39WFpNXOWrVirmXjKr+5cOyERwvtbMOLYz6iBJYgQ==}
+  /autoprefixer/10.4.11_postcss@8.4.16:
+    resolution: {integrity: sha512-5lHp6DgRodxlBLSkzHOTcufWFflH1ewfy2hvFQyjrblBFlP/0Yh4O/Wrg4ow8WRlN3AAUFFLAQwX8hTptzqVHg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
