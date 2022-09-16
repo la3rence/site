@@ -9,6 +9,7 @@ export default function Douban(props) {
       const res = await fetch(`https://douban.8610000.xyz/data/${id}.json`);
       const json = await res.json();
       setMovie(json);
+      // console.log(json);
     };
     fetchMovie(props.id).catch(console.error);
   }, []);

@@ -9,6 +9,10 @@ someKey: someValue # available in props of <Header />
 
 ## 使用方式
 
+<douban id="3205624" />
+
+---
+
 本站源码完全公开：[GitHub - Lonor/site](https://github.com/Lonor/site).
 
 直接将 Markdown 文件 (.md) 存放在 `posts` 文件夹下即可渲染当前文件，使之成为静态页面([SSG](/blog/ssg-ssr))。
