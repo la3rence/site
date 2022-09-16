@@ -29,6 +29,7 @@ export default function Header({ title, blog, image, description }) {
         <meta name="twitter:creator" content={twitter} />
         <meta name="twitter:site" content={twitter} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="referrer" content="never" />
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
       {!blog && (

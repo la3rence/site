@@ -2,6 +2,7 @@ import Blog from "../../components/blog";
 import Image from "next/image";
 import config from "./../../lib/config.json";
 import Bilibili from "../../components/bilibili";
+import Douban from "../../components/douban";
 
 export const blogProps = {
   author: config.authorName,
@@ -17,8 +18,12 @@ export default function Example() {
         This page is fully rendered by <code>JSX</code>. You can update this
         page with JavaScript and React components.
       </p>
+      <p>Movie example:</p>
+      <Douban id="3205624" />
+      <p>Video example:</p>
       <Bilibili bv="BV1ys411a7Wu" />
-      <br className="mt-6" />
+      <br className="mt-4" />
+      <p>Image example:</p>
       <div className="filter dark:brightness-75">
         <Image
           src={`https://i.picsum.photos/id/1072/400/400.jpg?grayscale&hmac=CpiwecRoY6G5F_ZTZceMHxJkhHWv24p1ebO5iNvL24M`}

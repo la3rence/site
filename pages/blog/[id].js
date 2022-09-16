@@ -2,13 +2,15 @@ import Blog from "../../components/blog";
 import { getMdContentById, getMdPostsData } from "../../lib/ssg";
 import path from "path";
 
-export default function PathId(props) {
+const PathId = props => {
   return (
     <Blog {...props}>
       <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
     </Blog>
   );
-}
+};
+
+export default PathId;
 
 export const getStaticProps = async context => {
   const { id } = context.params;
