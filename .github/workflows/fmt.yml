@@ -29,6 +29,7 @@ jobs:
       - name: Format Code
         run: |
           printenv
+          pnpm add -g prettier
           pnpm run fmt
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
