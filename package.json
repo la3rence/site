@@ -15,7 +15,7 @@
   "dependencies": {
     "@sagi.io/workers-kv": "0.0.13",
     "@tailwindcss/typography": "0.5.7",
-    "autoprefixer": "10.4.9",
+    "autoprefixer": "10.4.11",
     "dotenv": "16.0.2",
     "fanfou-sdk": "5.0.0",
     "gray-matter": "4.0.3",
