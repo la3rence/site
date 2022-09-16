@@ -2,6 +2,7 @@
 title: "When to Use Static Generation v.s. Server-side Rendering"
 date: "2020-02-20"
 author: "Lawrence"
+description: "SSG & SSR"
 ---
 
 We recommend using **Static Generation** (with and without data) whenever possible because your page can be built once

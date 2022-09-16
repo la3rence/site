@@ -1,6 +1,7 @@
 ---
 title: 草台班子
 date: "2022-09-01"
+description: "出自 S1 社区的草台班子理论，全员草台。"
 image: https://lawrenceli.me/images/makeshift-troupe/infra.png
 ---
 

@@ -1,5 +1,7 @@
 ---
-title: 'WebSocket 集群方案' date: '2020-12-22'
+title: 'WebSocket 集群方案'
+date: '2020-12-22'
+description: "WebSocket 在 Spring Cloud 中如何实践分布式集群：一致性哈希的实现和 Fanout 广播"
 ---
 
 基于 Spring Cloud 使用一致性哈希算法实现分布式 WebSocket. / 基于 RabbitMQ 广播实现分布式 WebSocket.

@@ -1,10 +1,7 @@
 ---
 title: "没有银弹"
 date: "2017-09-01"
----
-
-软件工程的一般规律。
-
+description: "软件工程的一般规律。"
 ---
 
 维基： [https://zh.wikipedia.org/wiki/没有银弹](https://zh.wikipedia.org/wiki/%E6%B2%A1%E6%9C%89%E9%93%B6%E5%BC%B9)
