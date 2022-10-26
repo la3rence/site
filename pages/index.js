@@ -13,10 +13,11 @@ const Index = function index({ allPostsData }) {
           <div className="my-4" key={post.id}>
             <span className="font-mono text-gray-500">{post.date}</span>
             <span className="p-2">
-              <Link href={`/blog/${post.id}`}>
-                <a className={`p-3 no-underline font-normal ${hoverTabStyle}`}>
-                  <span>{post.title}</span>
-                </a>
+              <Link
+                href={`/blog/${post.id}`}
+                className={`p-3 no-underline font-normal ${hoverTabStyle}`}
+              >
+                <span>{post.title}</span>
               </Link>
             </span>
           </div>

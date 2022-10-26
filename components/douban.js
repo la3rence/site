@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 export default function Douban(props) {
   const [movie, setMovie] = useState({ intro: "Loading..." });
@@ -12,6 +12,7 @@ export default function Douban(props) {
       // console.log(json);
     };
     fetchMovie(props.id).catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -37,13 +38,12 @@ export default function Douban(props) {
         </div>
       </div>
       {movie.pic && (
-        <div className="w-1/3 relative">
-          <Image
+        <div className="w-1/3 not-prose">
+          <img
+            className="object-cover w-full h-full"
             src={movie.pic.large}
             alt={`${movie.title} 评分: ${movie.rating.value}`}
-            layout="fill"
-            objectFit="cover"
-            title={`${movie.title} 评分: ${movie.rating.value}`}
+            title={`《${movie.title}》 评分: ${movie.rating.value}`}
           />
         </div>
       )}
