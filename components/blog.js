@@ -1,4 +1,4 @@
-import NextImage from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
@@ -27,17 +27,15 @@ export default withView(props => {
         </h3>
         <div className="articleTitle flex justify-start items-center flex-wrap mb-8">
           <div className="flex flex-2 items-center justify-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2">
-            <Link href={"/"}>
-              <div className="flex items-center justify-start flex-wrap">
-                <small className="w-25 h-25 mt-1">
-                  <NextImage
-                    className="rounded-full"
-                    src={`/images/author/${author}.jpg`}
-                    width={25}
-                    height={25}
-                    alt={author}
-                  />
-                </small>
+            <Link href={"/"} className="no-underline py-2">
+              <div className="flex items-center justify-start flex-wrap not-prose">
+                <Image
+                  className="rounded-full"
+                  src={`/images/author/${author}.jpg`}
+                  width={25}
+                  height={25}
+                  alt={author}
+                />
                 <small className={`${clientVertical ? "mt-2" : "ml-2"}`}>
                   {author}
                 </small>
