@@ -22,7 +22,7 @@ export default function Layout(props) {
           : "prose-blockquote:border-l-[2.6px] prose-blockquote:pl-2"
       }`}
       >
-        <div className="my-6">{children}</div>
+        <div>{children}</div>
       </main>
     </>
   );

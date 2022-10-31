@@ -17,17 +17,20 @@ export default withView(props => {
 
   return (
     <Layout blog {...props} vertical={clientVertical}>
-      <div className={`blog mt-9 ${clientVertical ? "vertical" : ""}`} id={id}>
-        <h3
+      <div className={`blog ${clientVertical ? "vertical" : ""}`} id={id}>
+        <h2
           id="title"
-          className="articleTitle cursor-pointer"
+          className="articleTitle cursor-pointer mt-28"
           onClick={reverseVertical}
         >
           {title}
-        </h3>
+        </h2>
         <div className="articleTitle flex justify-start items-center flex-wrap mb-8">
-          <div className="flex flex-2 items-center justify-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2">
-            <Link href={"/"} className="no-underline py-2">
+          <div
+            className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
+           hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2"
+          >
+            <Link href={"/"} className="no-underline p-1">
               <div className="flex items-center justify-start flex-wrap not-prose">
                 <Image
                   className="rounded-full"
