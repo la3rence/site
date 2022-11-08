@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   "@sagi.io/workers-kv": 0.0.13
   "@tailwindcss/typography": 0.5.8
+  "@vercel/analytics": ^0.1.3
   autoprefixer: 10.4.13
   dotenv: 16.0.3
   eslint: 8.27.0
@@ -30,6 +31,7 @@ specifiers:
 
 dependencies:
   "@sagi.io/workers-kv": 0.0.13
+  "@vercel/analytics": 0.1.3_react@18.2.0
   dotenv: 16.0.3
   fanfou-sdk: 5.0.0
   gray-matter: 4.0.3
@@ -55,7 +57,7 @@ devDependencies:
   eslint-config-next: 13.0.2_rmayb2veg2btbq6mbmnyivgasy
   postcss: 8.4.18
   prettier: 2.7.1
-  tailwindcss: 3.2.2_postcss@8.4.18
+  tailwindcss: 3.2.2
   typescript: 4.8.4
 
 packages:
@@ -384,7 +386,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.2_postcss@8.4.18
+      tailwindcss: 3.2.2
     dev: true
 
   /@types/debug/4.1.7:
@@ -518,6 +520,17 @@ packages:
       "@typescript-eslint/types": 5.38.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@vercel/analytics/0.1.3_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-zJuEwzvi0bBmWrMrj9jvyMS+X6iUdW3m/y5P7aOLwJQKHsJyfpdINo/4Rv+wxubz3gl4nRqIQdtOFCe1P1ErXQ==,
+      }
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.0:
     resolution:
@@ -4320,15 +4333,13 @@ packages:
     engines: { node: ">= 0.4" }
     dev: true
 
-  /tailwindcss/3.2.2_postcss@8.4.18:
+  /tailwindcss/3.2.2:
     resolution:
       {
         integrity: sha512-c2GtSdqg+harR4QeoTmex0Ngfg8IIHNeLQH5yr2B9uZbZR1Xt1rYbjWOWTcj3YLTZhrmZnPowoQDbSRFyZHQ5Q==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
