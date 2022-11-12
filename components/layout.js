@@ -1,4 +1,5 @@
 import Header from "./header";
+import Contact from "./contact";
 
 export default function Layout(props) {
   const { children, vertical } = props;
@@ -23,6 +24,7 @@ export default function Layout(props) {
       }`}
       >
         <div>{children}</div>
+        {!props.blogIndex && <Contact />}
       </main>
     </>
   );

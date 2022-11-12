@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   "@sagi.io/workers-kv": 0.0.13
   "@tailwindcss/typography": 0.5.8
-  "@vercel/analytics": ^0.1.3
+  "@vercel/analytics": 0.1.3
   autoprefixer: 10.4.13
   dotenv: 16.0.3
   eslint: 8.27.0
@@ -17,6 +17,8 @@ specifiers:
   prettier: 2.7.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-qr-code: ^2.0.8
+  react-social-icons: 5.15.0
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
   rehype-highlight: 6.0.0
@@ -40,6 +42,8 @@ dependencies:
   next-themes: 0.2.1_ogpkrxaz2lg6nectum6dl66tn4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-qr-code: 2.0.8_react@18.2.0
+  react-social-icons: 5.15.0_react@18.2.0
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
   rehype-highlight: 6.0.0
@@ -57,7 +61,7 @@ devDependencies:
   eslint-config-next: 13.0.3_rmayb2veg2btbq6mbmnyivgasy
   postcss: 8.4.19
   prettier: 2.7.1
-  tailwindcss: 3.2.4_postcss@8.4.19
+  tailwindcss: 3.2.4
   typescript: 4.8.4
 
 packages:
@@ -386,7 +390,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_postcss@8.4.19
+      tailwindcss: 3.2.4
     dev: true
 
   /@types/debug/4.1.7:
@@ -3415,7 +3419,6 @@ packages:
         integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==,
       }
     engines: { node: ">=0.10.0" }
-    dev: true
 
   /object-hash/3.0.0:
     resolution:
@@ -3751,7 +3754,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /property-information/6.1.1:
     resolution:
@@ -3767,6 +3769,13 @@ packages:
       }
     engines: { node: ">=6" }
     dev: true
+
+  /qr.js/0.0.0:
+    resolution:
+      {
+        integrity: sha512-c4iYnWb+k2E+vYpRimHqSu575b1/wKl4XFeJGpFmrJQz5I88v9aY2czh7s0w36srfCM1sXgC/xpoJz5dJfq+OQ==,
+      }
+    dev: false
 
   /query-string/7.1.1:
     resolution:
@@ -3813,7 +3822,35 @@ packages:
       {
         integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==,
       }
-    dev: true
+
+  /react-qr-code/2.0.8_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-zYO9EAPQU8IIeD6c6uAle7NlKOiVKs8ji9hpbWPTGxO+FLqBN2on+XCXQvnhm91nrRd306RvNXUkUNcXXSfhWA==,
+      }
+    peerDependencies:
+      react: ^16.x || ^17.x || ^18.x
+      react-native-svg: "*"
+    peerDependenciesMeta:
+      react-native-svg:
+        optional: true
+    dependencies:
+      prop-types: 15.8.1
+      qr.js: 0.0.0
+      react: 18.2.0
+    dev: false
+
+  /react-social-icons/5.15.0_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-khfDgUiUwEBe34T6br2+mkXQg3hLVDdviVjexxZoVCsogMgxTy/m8+KlX/j6Wa7P2BPxgZ7yZ2jXw3X06pUUFQ==,
+      }
+    peerDependencies:
+      react: 15.x.x || 16.x.x || 17.x.x || 18.x.x
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution:
@@ -4333,15 +4370,13 @@ packages:
     engines: { node: ">= 0.4" }
     dev: true
 
-  /tailwindcss/3.2.4_postcss@8.4.19:
+  /tailwindcss/3.2.4:
     resolution:
       {
         integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
