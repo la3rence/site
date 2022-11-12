@@ -25,7 +25,7 @@ description: "DevOps / ChatOps with Dingtalk by GoLang (bot) 钉钉机器人开�
 
 ### 系统拓扑
 
-![ChatOPS](/images/chat-ops/1.png)
+![ChatOPS](images/chat-ops/1.png)
 
 懒汉只会和机器人以聊天的形式交互，[其余的脏活累活重复劳动交给机器人做](/blog/the-world-as-i-see-it)。大致流程如图，重点实现：
 

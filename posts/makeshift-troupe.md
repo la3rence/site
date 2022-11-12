@@ -36,7 +36,7 @@ image: https://lawrenceli.me/images/makeshift-troupe/infra.png
 
 现代社会发展的历史，也是革草台命的历史。或许有人会因为工业化的成就而沾沾自喜，但在[脱节的国度](https://books.google.com.hk/books?id=lINbEAAAQBAJ&printsec=frontcover&dq=%E8%84%B1%E8%8A%82%E7%9A%84%E5%9B%BD%E5%BA%A6&hl=zh-CN&sa=X&ved=2ahUKEwiKi8r2_fP5AhVaslYBHdv5AR4Q6AF6BAgIEAI#v=onepage&q=%E8%84%B1%E8%8A%82%E7%9A%84%E5%9B%BD%E5%BA%A6&f=false)里我反而希望有更多冒名顶替综合征患者。加入外企一年多，我感受到 M 国公司为 Business Continuity 做出的基础设施投入相比国内的草台来说高了不少，也让员工产生出「你处于我们的系统之中」这样的幻想，但是我们不能保证这些基础设施都不是草台，因为供应链攻击是常有的事。一个恰当的 meme：
 
-![Mordern Infrastructor](/images/makeshift-troupe/infra.png)
+![Mordern Infrastructor](images/makeshift-troupe/infra.png)
 
 大多数人原本或许并不草台，当他们加入某个草台团体时，会因团体的草台而被迫草台，或者离开。死海效应则是最佳例证。西语也有类似观点：
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import config from "./../../lib/config.json";
 import Bilibili from "../../components/bilibili";
 import Douban from "../../components/douban";
-import demoPic from "../../public/images/the1975.jpg";
+import demoPic from "../../posts/images/the1975.jpg";
 
 export const blogProps = {
   author: config.authorName,

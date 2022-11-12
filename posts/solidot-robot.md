@@ -10,7 +10,7 @@ description: "饭否机器人🤖️ Solidot Serverless Robot with MongoDB"
 的免费数据库、以及 [GitHub Action 提供的声明式定时任务](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#onschedule)一起运行来实现的 Serverless 实践。[作者](https://lawrenceli.me/about)充分利用互联网免费基础设施 ~~(白嫖)~~，让它每隔一段时间（大概 30 分钟）爬取 solidot.org
 网站的 [RSS](https://www.solidot.org/index.rss)，比较新旧的数据后，将新的内容通过 [饭否 Node SDK](https://github.com/fanfoujs/fanfou-sdk-node) 发布。
 
-![solidot](/images/solidot-robot/solidot.png)
+![solidot](images/solidot-robot/solidot.png)
 
 [源代码](https://github.com/Lonor/SolidotRobot)以 MIT 协议开放，写的很简陋，凑合着能用。
 
