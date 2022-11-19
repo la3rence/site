@@ -2,6 +2,7 @@
 title: "Solidot 机器人"
 date: "2020-09-05"
 description: "饭否机器人🤖️ Solidot Serverless Robot with MongoDB"
+author: "solibot"
 ---
 
 ## 奇客的资讯，重要的东西 🤖️
