@@ -76,7 +76,7 @@ export default withView(props => {
       </div>
       <div className="ml-4 mt-8">
         <button
-          className="w-14 border border-gray-500 rounded-lg hover:bg-gray-500 transition duration-500"
+          className="w-14 border border-yellow-300 rounded-lg hover:bg-yellow-300 dark:hover:bg-gray-600 transition duration-300"
           onClick={addLike}
         >
           👍 {like > 0 && like}
