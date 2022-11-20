@@ -13,7 +13,6 @@
     "clean": "rm -rf .next; rm -rf node_modules"
   },
   "dependencies": {
-    "@sagi.io/workers-kv": "0.0.13",
     "@vercel/analytics": "0.1.5",
     "dotenv": "16.0.3",
     "fanfou-sdk": "5.0.0",
@@ -25,6 +24,7 @@
     "react-dom": "18.2.0",
     "react-qr-code": "^2.0.8",
     "react-social-icons": "5.15.0",
+    "redis": "4.5.0",
     "rehype-autolink-headings": "6.1.1",
     "rehype-external-links": "2.0.1",
     "rehype-highlight": "6.0.0",
