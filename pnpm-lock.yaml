@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  "@sagi.io/workers-kv": 0.0.13
   "@tailwindcss/typography": 0.5.8
   "@vercel/analytics": 0.1.5
   autoprefixer: 10.4.13
@@ -19,6 +18,7 @@ specifiers:
   react-dom: 18.2.0
   react-qr-code: ^2.0.8
   react-social-icons: 5.15.0
+  redis: ^4.5.0
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
   rehype-highlight: 6.0.0
@@ -32,7 +32,6 @@ specifiers:
   typescript: 4.9.3
 
 dependencies:
-  "@sagi.io/workers-kv": 0.0.13
   "@vercel/analytics": 0.1.5_react@18.2.0
   dotenv: 16.0.3
   fanfou-sdk: 5.0.0
@@ -44,6 +43,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-qr-code: 2.0.8_react@18.2.0
   react-social-icons: 5.15.0_react@18.2.0
+  redis: 4.5.0
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
   rehype-highlight: 6.0.0
@@ -61,7 +61,7 @@ devDependencies:
   eslint-config-next: 13.0.4_hsf322ms6xhhd4b5ne6lb74y4a
   postcss: 8.4.19
   prettier: 2.7.1
-  tailwindcss: 3.2.4_postcss@8.4.19
+  tailwindcss: 3.2.4
   typescript: 4.9.3
 
 packages:
@@ -352,19 +352,79 @@ packages:
       tslib: 2.4.0
     dev: true
 
+  /@redis/bloom/1.1.0_@redis+client@1.4.0:
+    resolution:
+      {
+        integrity: sha512-9QovlxmpRtvxVbN0UBcv8WfdSMudNZZTFqCsnBszcQXqaZb/TVe30ScgGEO7u1EAIacTPAo7/oCYjYAxiHLanQ==,
+      }
+    peerDependencies:
+      "@redis/client": ^1.0.0
+    dependencies:
+      "@redis/client": 1.4.0
+    dev: false
+
+  /@redis/client/1.4.0:
+    resolution:
+      {
+        integrity: sha512-1gEj1AkyXPlkcC/9/T5xpDcQF8ntERURjLBgEWMTdUZqe181zfI9BY3jc2OzjTLkvZh5GV7VT4ktoJG2fV2ufw==,
+      }
+    engines: { node: ">=14" }
+    dependencies:
+      cluster-key-slot: 1.1.1
+      generic-pool: 3.9.0
+      yallist: 4.0.0
+    dev: false
+
+  /@redis/graph/1.1.0_@redis+client@1.4.0:
+    resolution:
+      {
+        integrity: sha512-16yZWngxyXPd+MJxeSr0dqh2AIOi8j9yXKcKCwVaKDbH3HTuETpDVPcLujhFYVPtYrngSco31BUcSa9TH31Gqg==,
+      }
+    peerDependencies:
+      "@redis/client": ^1.0.0
+    dependencies:
+      "@redis/client": 1.4.0
+    dev: false
+
+  /@redis/json/1.0.4_@redis+client@1.4.0:
+    resolution:
+      {
+        integrity: sha512-LUZE2Gdrhg0Rx7AN+cZkb1e6HjoSKaeeW8rYnt89Tly13GBI5eP4CwDVr+MY8BAYfCg4/N15OUrtLoona9uSgw==,
+      }
+    peerDependencies:
+      "@redis/client": ^1.0.0
+    dependencies:
+      "@redis/client": 1.4.0
+    dev: false
+
+  /@redis/search/1.1.0_@redis+client@1.4.0:
+    resolution:
+      {
+        integrity: sha512-NyFZEVnxIJEybpy+YskjgOJRNsfTYqaPbK/Buv6W2kmFNaRk85JiqjJZA5QkRmWvGbyQYwoO5QfDi2wHskKrQQ==,
+      }
+    peerDependencies:
+      "@redis/client": ^1.0.0
+    dependencies:
+      "@redis/client": 1.4.0
+    dev: false
+
+  /@redis/time-series/1.0.4_@redis+client@1.4.0:
+    resolution:
+      {
+        integrity: sha512-ThUIgo2U/g7cCuZavucQTQzA9g9JbDDY2f64u3AbAoz/8vE2lt2U37LamDUVChhaDA3IRT9R6VvJwqnUfTJzng==,
+      }
+    peerDependencies:
+      "@redis/client": ^1.0.0
+    dependencies:
+      "@redis/client": 1.4.0
+    dev: false
+
   /@rushstack/eslint-patch/1.2.0:
     resolution:
       {
         integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==,
       }
     dev: true
-
-  /@sagi.io/workers-kv/0.0.13:
-    resolution:
-      {
-        integrity: sha512-e8AUz323s9vMB3vuJDEAhklhIN9Kr01uCoZiJJHRJoYWQ2tv8UKiH/c9QMZAunjSFlv+calRDiM5X/tEW2hDBg==,
-      }
-    dev: false
 
   /@sindresorhus/is/5.3.0:
     resolution:
@@ -405,7 +465,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_postcss@8.4.19
+      tailwindcss: 3.2.4
     dev: true
 
   /@types/debug/4.1.7:
@@ -964,6 +1024,14 @@ packages:
       {
         integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==,
       }
+    dev: false
+
+  /cluster-key-slot/1.1.1:
+    resolution:
+      {
+        integrity: sha512-rwHwUfXL40Chm1r08yrhU3qpUvdVlgkKNeyeGPOxnW8/SyVDvgRaed/Uz54AqWNaTCAThlj6QAs3TZcKI0xDEw==,
+      }
+    engines: { node: ">=0.10.0" }
     dev: false
 
   /color-convert/2.0.1:
@@ -1927,6 +1995,14 @@ packages:
         integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==,
       }
     dev: true
+
+  /generic-pool/3.9.0:
+    resolution:
+      {
+        integrity: sha512-hymDOu5B53XvN4QT9dBmZxPX4CWhBPPLguTZ9MMFeFa/Kg0xWVfylOVNlJji/E7yTZWFd/q9GO5TxDLq156D7g==,
+      }
+    engines: { node: ">= 4" }
+    dev: false
 
   /get-intrinsic/1.1.3:
     resolution:
@@ -3990,6 +4066,20 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /redis/4.5.0:
+    resolution:
+      {
+        integrity: sha512-oZGAmOKG+RPnHo0UxM5GGjJ0dBd/Vi4fs3MYwM1p2baDoXC0wpm0yOdpxVS9K+0hM84ycdysp2eHg2xGoQ4FEw==,
+      }
+    dependencies:
+      "@redis/bloom": 1.1.0_@redis+client@1.4.0
+      "@redis/client": 1.4.0
+      "@redis/graph": 1.1.0_@redis+client@1.4.0
+      "@redis/json": 1.0.4_@redis+client@1.4.0
+      "@redis/search": 1.1.0_@redis+client@1.4.0
+      "@redis/time-series": 1.0.4_@redis+client@1.4.0
+    dev: false
+
   /regenerator-runtime/0.13.9:
     resolution:
       {
@@ -4498,15 +4588,13 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /tailwindcss/3.2.4_postcss@8.4.19:
+  /tailwindcss/3.2.4:
     resolution:
       {
         integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -4885,7 +4973,6 @@ packages:
       {
         integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==,
       }
-    dev: true
 
   /yaml/1.10.2:
     resolution:
