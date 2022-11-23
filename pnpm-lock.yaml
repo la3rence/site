@@ -13,7 +13,7 @@ specifiers:
   next: 13.0.4
   next-themes: 0.2.1
   postcss: 8.4.19
-  prettier: 2.7.1
+  prettier: 2.8.0
   react: 18.2.0
   react-dom: 18.2.0
   react-qr-code: ^2.0.8
@@ -60,8 +60,8 @@ devDependencies:
   eslint: 8.28.0
   eslint-config-next: 13.0.4_hsf322ms6xhhd4b5ne6lb74y4a
   postcss: 8.4.19
-  prettier: 2.7.1
-  tailwindcss: 3.2.4
+  prettier: 2.8.0
+  tailwindcss: 3.2.4_postcss@8.4.19
   typescript: 4.9.3
 
 packages:
@@ -465,7 +465,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4
+      tailwindcss: 3.2.4_postcss@8.4.19
     dev: true
 
   /@types/debug/4.1.7:
@@ -3928,10 +3928,10 @@ packages:
     engines: { node: ">= 0.8.0" }
     dev: true
 
-  /prettier/2.7.1:
+  /prettier/2.8.0:
     resolution:
       {
-        integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==,
+        integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==,
       }
     engines: { node: ">=10.13.0" }
     hasBin: true
@@ -4606,13 +4606,15 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /tailwindcss/3.2.4:
+  /tailwindcss/3.2.4_postcss@8.4.19:
     resolution:
       {
         integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
