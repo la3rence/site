@@ -10,9 +10,13 @@ const isProd = VERCEL_ENV === "production";
 // };
 
 export default async function view(req, res) {
-  const page = req.query.page ? req.query.page : "/";
-  const currentPageView = await viewPage(page);
-  res.json(currentPageView);
+  let result = {};
+  if (isProd) {
+    const page = req.query.page ? req.query.page : "/";
+    const currentPageView = await viewPage(page);
+    result = currentPageView;
+  }
+  res.json(result);
 }
 
 const viewPage = async page => {

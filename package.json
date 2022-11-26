@@ -4,9 +4,9 @@
   "markdown": "github",
   "scripts": {
     "feed": "node ./lib/feed.js > ./public/atom.xml",
-    "dev": "pnpm run feed && pnpm run fmt && next dev -H 0.0.0.0",
+    "dev": "pnpm feed && pnpm fmt && next dev -H 0.0.0.0",
     "start": "next start",
-    "build": "next build && pnpm run feed",
+    "build": "next build && pnpm feed",
     "lint": "next lint",
     "export": "next export",
     "fmt": "prettier --write .",
