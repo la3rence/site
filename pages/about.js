@@ -1,11 +1,23 @@
 import Layout from "../components/layout";
 import { getMdContentById } from "../lib/ssg";
 import withView from "../components/withView";
+import Project from "../components/project";
+import config from "./../lib/config.json";
 
 const About = props => {
   return (
     <Layout title={"About"}>
       <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
+      {config.projects && (
+        <>
+          <h2 id="projects">Projects</h2>
+          <div className="flex flex-wrap gap-3">
+            {config.projects.map(project => (
+              <Project {...project} key={project.name} />
+            ))}
+          </div>
+        </>
+      )}
     </Layout>
   );
 };
