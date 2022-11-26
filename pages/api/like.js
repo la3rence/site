@@ -9,7 +9,7 @@ export default async function like(req, res) {
     res.json({ pageKey, likeCount });
   } else if (method === "POST") {
     const likeCount = await incrementKey(pageKey);
-    console.log("Someone likes the page " + page);
+    console.log(`Someone likes the page ${page} (${likeCount})`);
     res.json({ pageKey, likeCount });
   } else {
     res.json({ pageKey, likeCount: 0 });
