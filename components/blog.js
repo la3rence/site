@@ -18,10 +18,10 @@ export default withView(props => {
   };
 
   useEffect(() => {
-    getLikes();
+    getLikes(id);
   }, [id]);
 
-  const getLikes = async () => {
+  const getLikes = async id => {
     const res = await (await fetch(`/api/like?page=${id}`)).json();
     setLike(res.likeCount);
   };
