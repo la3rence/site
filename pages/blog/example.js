@@ -1,15 +1,16 @@
 import Blog from "../../components/blog";
 import Image from "next/image";
-import config from "./../../lib/config.json";
+import config from "../../lib/config.json";
 import Bilibili from "../../components/bilibili";
 import Douban from "../../components/douban";
 import demoPic from "../../public/images/the1975.jpg";
 
 export const blogProps = {
   author: config.authorName,
-  title: "SSG Example",
+  title: "Example",
   date: "2022-08-26",
   someKey: "someValeInJSXProps",
+  tag: "Example, Test",
 };
 
 export default function Example() {

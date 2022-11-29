@@ -2,6 +2,7 @@
 title: Invert binary tree
 date: "2017-12-22"
 description: "the author of Homebrew can't do."
+tag: Programming
 ---
 
 A problem that Homebrew's author complained.

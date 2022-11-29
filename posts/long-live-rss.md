@@ -2,6 +2,7 @@
 title: "Long Live RSS"
 date: "2020-09-30"
 description: "Aaron Swartz never leaves us."
+tag: RSS
 ---
 
 RSS: A family of Web feed formats used to publish frequently updated works (blog entries, news headlines, audio, and video) in a standardized format. [Aaron Swartz](http://www.aaronsw.com/) helped create it at the age of 14 and committed suicide at 26.
