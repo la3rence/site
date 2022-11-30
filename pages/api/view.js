@@ -1,4 +1,3 @@
-import env from "./../../lib/env";
 import { readKey, writeKeyValue } from "../../lib/redis";
 
 // edge functions enable:
