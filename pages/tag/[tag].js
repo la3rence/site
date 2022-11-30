@@ -8,10 +8,16 @@ export default function TagPage(props) {
   const { query } = useRouter();
   return (
     <Layout>
-      <h2>Tagged with <code>{query.tag}</code></h2>
+      <h2>
+        Tagged with <code>{query.tag}</code>
+      </h2>
       <div className="mt-8 mx-2">
         {props.tags.map(tag => (
-          <Tag tag={tag} key={tag} highlight={query.tag.toLowerCase().trim() === tag} />
+          <Tag
+            tag={tag}
+            key={tag}
+            highlight={query.tag.toLowerCase().trim() === tag}
+          />
         ))}
       </div>
       <div className="mt-8 mx-4">
@@ -45,7 +51,7 @@ export const getStaticProps = async context => {
   return {
     props: {
       data: postData,
-      tags: tags
+      tags: tags,
     },
   };
 };
