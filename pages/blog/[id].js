@@ -7,7 +7,7 @@ const PathId = props => {
   return (
     <Blog {...props}>
       <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
-      <div id="tag">
+      <div id="tag" className="ml-4 mt-8">
         {props.tag.split(",").map(tag => (
           <Tag tag={tag} key={tag} />
         ))}

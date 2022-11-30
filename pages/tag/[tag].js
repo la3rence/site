@@ -8,19 +8,24 @@ export default function TagPage(props) {
   const { query } = useRouter();
   return (
     <Layout>
-      <h2>Tag: {query.tag}</h2>
-      <div className="mt-8 px-1">
+      <h2>Tagged with <code>{query.tag}</code></h2>
+      <div className="mt-8 mx-2">
+        {props.tags.map(tag => (
+          <Tag tag={tag} key={tag} highlight={query.tag.toLowerCase().trim() === tag} />
+        ))}
+      </div>
+      <div className="mt-8 mx-4">
         {props.data.map(post => (
-          <div className="my-4" key={post.id}>
+          <div className="mt-6" key={post.id}>
             <span className="text-lg">
               <Link
                 href={`/blog/${post.id}`}
-                className={`p-3 no-underline font-normal `}
+                className={`p-0 no-underline font-normal `}
               >
-                <span>{post.title}</span>
+                {post.title}
               </Link>
             </span>
-            <div className="font-mono p-3">
+            <div className="font-mono pt-2">
               <span className="pr-2">{post.date}</span>
               {post.tag.split(",").map(tag => (
                 <Tag tag={tag} key={tag} />
@@ -36,9 +41,11 @@ export default function TagPage(props) {
 export const getStaticProps = async context => {
   const { tag } = context.params;
   const postData = await getPostsByTag(tag);
+  const tags = await getAllTags();
   return {
     props: {
       data: postData,
+      tags: tags
     },
   };
 };

@@ -7,6 +7,7 @@
   "siteDescription": "Blog",
   "twitter": "@lawrenceli75",
   "github": "Lonor",
+  "enableLike": true,
   "navItems": [
     {
       "label": "Blog",
@@ -35,12 +36,12 @@
     {
       "name": "WebSocket Cluster with Spring Cloud",
       "desc": "Scalable distributed WebSocket service implemented with consistent hash algorithm",
-      "url": "https://lawrenceli.me/blog/websocket-cluster"
+      "url": "/blog/websocket-cluster"
     },
     {
       "name": "Solidot Robot",
       "desc": "A serverless robot posts the news from solidot.org to fanfou.com with data stored via MongoDB",
-      "url": "https://lawrenceli.me/blog/solidot-robot"
+      "url": "/blog/solidot-robot"
     },
     {
       "name": "Send message to Lawrence",

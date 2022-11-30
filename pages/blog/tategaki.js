@@ -6,6 +6,7 @@ export const blogProps = {
   date: "2022-09-04",
   someKey: "tategaki",
   vertical: true,
+  tag: "Example, Test, Tategaki",
 };
 
 export default function Tategaki() {

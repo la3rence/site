@@ -3,7 +3,7 @@ title: 草台班子
 date: "2022-09-01"
 description: "出自 S1 社区的草台班子理论，全员草台。"
 image: https://lawrenceli.me/images/makeshift-troupe/infra.png
-tag: Viewpoint
+tag: Viewpoint, Thinking
 ---
 
 鲁迅童年时代看的那些社戏，也叫草台戏，草台班子得名于此。通常有三五人在乡村空旷处搭上一处简陋布篷，水平不一的戏曲演员唱些群众喜闻乐见的戏曲，天黑了收点门票钱就拆台收东西继续赶往下一处演出。我很小的时候在外婆家有幸听过一回，都是老人带着小孩去听戏，内容全无印象。

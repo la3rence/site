@@ -5,7 +5,7 @@ vertical: false
 image: https://reflare.lawrenceli.me/file/1662688541295.png
 description: 此文用于端到端测试 Markdown 样式
 someKey: someValue # available in props of <Header />
-tag: 网站, MarkDown, Example
+tag: MarkDown, Example, Guide, JAMstack
 ---
 
 ## 使用方式

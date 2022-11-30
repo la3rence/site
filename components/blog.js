@@ -4,6 +4,7 @@ import Layout from "./layout";
 import withView from "./withView";
 import { useEffect, useState } from "react";
 import "highlight.js/styles/github-dark.css";
+import config from "../lib/config.json";
 
 export default withView(props => {
   const { children, title, date, author, view, id, vertical } = props;
@@ -74,14 +75,16 @@ export default withView(props => {
         </div>
         <div className="article">{children}</div>
       </div>
-      <div className="ml-4 mt-8">
-        <button
-          className="w-14 border border-yellow-300 rounded-lg hover:bg-yellow-300 dark:hover:bg-gray-600 transition duration-300"
-          onClick={addLike}
-        >
-          👍 {like > 0 && like}
-        </button>
-      </div>
+      {config.enableLike && (
+        <div className="ml-4 mt-8">
+          <button
+            className="w-14 border text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300"
+            onClick={addLike}
+          >
+            👍 {like > 0 && like}
+          </button>
+        </div>
+      )}
     </Layout>
   );
 });
