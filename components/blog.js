@@ -5,9 +5,10 @@ import withView from "./withView";
 import { useEffect, useState } from "react";
 import "highlight.js/styles/github-dark.css";
 import config from "../lib/config.json";
+import Tag from "./tag";
 
 export default withView(props => {
-  const { children, title, date, author, view, id, vertical } = props;
+  const { children, title, date, author, view, id, vertical, tag } = props;
   // allow default vertical article chage back to normal style
   const [clientVertical, setClentVertical] = useState(vertical);
   // like button
@@ -69,22 +70,29 @@ export default withView(props => {
             </Link>
           </div>
           <div className="flex-1" />
-          <div className="flex justify-end">
+          <div className="justify-end">
             {view > 0 && !clientVertical && <small>{view} views</small>}
           </div>
         </div>
         <div className="article">{children}</div>
       </div>
-      {config.enableLike && (
-        <div className="ml-4 mt-8">
-          <button
-            className="w-14 border text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300"
-            onClick={addLike}
-          >
-            👍 {like > 0 && like}
-          </button>
+      <div className="mx-2 mt-10 flex flex-nowrap">
+        {config.enableLike && (
+          <div className="flex-1">
+            <button
+              className="w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300"
+              onClick={addLike}
+            >
+              👍 {like > 0 && like}
+            </button>
+          </div>
+        )}
+        <div id="tag">
+          {tag.split(",").map(each => (
+            <Tag tag={each} key={each} />
+          ))}
         </div>
-      )}
+      </div>
     </Layout>
   );
 });
