@@ -34,4 +34,5 @@ const Contact = () => {
   );
 };
 
+// footer component
 export default Contact;
