@@ -12,7 +12,6 @@ specifiers:
   highlight.js: 11.7.0
   next: 13.0.6
   next-themes: 0.2.1
-  openai: ^3.1.0
   postcss: 8.4.19
   prettier: 2.8.0
   react: 18.2.0
@@ -40,7 +39,6 @@ dependencies:
   highlight.js: 11.7.0
   next: 13.0.6_biqbaboplfbrettd7655fr4n2y
   next-themes: 0.2.1_6jx7hpii6hgsrmhxgqrmo3277u
-  openai: 3.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-qr-code: 2.0.8_react@18.2.0
@@ -837,17 +835,6 @@ packages:
       }
     engines: { node: ">=4" }
     dev: true
-
-  /axios/0.26.1:
-    resolution:
-      {
-        integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==,
-      }
-    dependencies:
-      follow-redirects: 1.15.2
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /axobject-query/2.2.0:
     resolution:
@@ -1944,19 +1931,6 @@ packages:
         integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==,
       }
     dev: true
-
-  /follow-redirects/1.15.2:
-    resolution:
-      {
-        integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==,
-      }
-    engines: { node: ">=4.0" }
-    peerDependencies:
-      debug: "*"
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: false
 
   /form-data-encoder/2.1.3:
     resolution:
@@ -3735,18 +3709,6 @@ packages:
       is-docker: 2.2.1
       is-wsl: 2.2.0
     dev: true
-
-  /openai/3.1.0:
-    resolution:
-      {
-        integrity: sha512-v5kKFH5o+8ld+t0arudj833Mgm3GcgBnbyN9946bj6u7bvel4Yg6YFz2A4HLIYDzmMjIo0s6vSG9x73kOwvdCg==,
-      }
-    dependencies:
-      axios: 0.26.1
-      form-data: 4.0.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /optionator/0.9.1:
     resolution:

@@ -1,16 +1,26 @@
 import { useRef, useState } from "react";
-import Layout from "../components/layout";
+import Blog from "../components/blog";
+import Logo from "../components/logo";
 
-const Message = ({ text }) => (
-  <p className="dark:black whitespace-pre-wrap ">{text}</p>
-);
+const Message = ({ type, text, waiting }) => {
+  if (type === "human") {
+    return (
+      <div className="bg-zinc-200 dark:bg-zinc-900 px-4 py-2">{`Human: ${text}`}</div>
+    );
+  }
+  return (
+    <div className="bg-zinc-300 dark:bg-zinc-800 whitespace-pre-wrap px-4">
+      {waiting ? <Logo duration="3s"></Logo> : `AI: ${text}`}
+    </div>
+  );
+};
 
-const greeting = `The following is a conversation with an AI assistant. 
-The assistant is helpful, creative, clever, and very friendly.
-测试用，请勿分享页面给他人。`;
+const greeting = `测试用，请勿分享页面给他人。不建议使用网络用语。禁止敏感内容。`;
 
 const Chat = () => {
-  const [chat, setChat] = useState([greeting]);
+  const [chat, setChat] = useState([
+    { type: "human", message: greeting, waiting: false },
+  ]);
   const inputRef = useRef();
 
   const send = async () => {
@@ -18,28 +28,37 @@ const Chat = () => {
     if (question === "" || !question) {
       return;
     }
-    chat.push("Human: " + question);
+    chat.push({ type: "human", message: question });
     setChat([...chat]);
     inputRef.current.value = "";
     await answer(question);
   };
 
   const answer = async question => {
+    chat.push({ type: "ai", message: "Waiting...", waiting: true });
+    setChat([...chat]);
     const res = await (
       await fetch(`${process.env.NEXT_PUBLIC_CHAT_API}?question=${question}`, {
         method: "POST",
       })
     ).json();
-    chat.push(`AI: ${res.response}`);
+    chat.pop();
+    chat.push({ type: "ai", message: res.response, waiting: false });
     setChat([...chat]);
   };
 
   return (
-    <Layout chat>
-      <h2>OpenAI: ChatGPT</h2>
+    <Blog chat title="OpenAPI: ChatGPT" noMeta>
       <div>
-        {chat.map((text, index) => {
-          return <Message text={text} key={index} />;
+        {chat.map((messageObj, index) => {
+          return (
+            <Message
+              text={messageObj.message}
+              type={messageObj.type}
+              key={index}
+              waiting={messageObj.waiting}
+            />
+          );
         })}
       </div>
       <div id="input" className="mt-20">
@@ -58,7 +77,7 @@ const Chat = () => {
           </button>
         </div>
       </div>
-    </Layout>
+    </Blog>
   );
 };
 

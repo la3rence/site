@@ -1,4 +1,4 @@
-const Logo = ({ title }) => (
+const Logo = ({ title, duration = "360s" }) => (
   <span className="inline-flex mt-1 items-center">
     <svg
       className="mr-4"
@@ -14,7 +14,7 @@ const Logo = ({ title }) => (
         type="rotate"
         from="0"
         to="360"
-        dur="360s"
+        dur={duration}
         repeatCount="indefinite"
       />
     </svg>

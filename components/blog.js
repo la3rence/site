@@ -46,34 +46,36 @@ export default withView(props => {
         >
           {title}
         </h2>
-        <div className="articleTitle flex justify-start items-center flex-wrap mb-8">
-          <div
-            className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
+        {!props.noMeta && (
+          <div className="articleTitle flex justify-start items-center flex-wrap mb-8">
+            <div
+              className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
            hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2"
-          >
-            <Link href={"/"} className="no-underline p-1">
-              <div className="flex items-center justify-start flex-wrap not-prose">
-                <Image
-                  className="rounded-full"
-                  src={`/images/author/${author}.png`}
-                  width={25}
-                  height={25}
-                  alt={author}
-                />
-                <small className={`${clientVertical ? "mt-2" : "ml-2"}`}>
-                  {author}
-                </small>
-                <small className="before:content-['/'] before:p-0 before:m-2">
-                  {date}
-                </small>
-              </div>
-            </Link>
+            >
+              <Link href={"/"} className="no-underline p-1">
+                <div className="flex items-center justify-start flex-wrap not-prose">
+                  <Image
+                    className="rounded-full"
+                    src={`/images/author/${author}.png`}
+                    width={25}
+                    height={25}
+                    alt={author}
+                  />
+                  <small className={`${clientVertical ? "mt-2" : "ml-2"}`}>
+                    {author}
+                  </small>
+                  <small className="before:content-['/'] before:p-0 before:m-2">
+                    {date}
+                  </small>
+                </div>
+              </Link>
+            </div>
+            <div className="flex-1" />
+            <div className="justify-end">
+              {view > 0 && !clientVertical && <small>{view} views</small>}
+            </div>
           </div>
-          <div className="flex-1" />
-          <div className="justify-end">
-            {view > 0 && !clientVertical && <small>{view} views</small>}
-          </div>
-        </div>
+        )}
         <div className="article">{children}</div>
       </div>
       <div className="mx-2 mt-10 flex flex-nowrap">
@@ -88,9 +90,7 @@ export default withView(props => {
           </div>
         )}
         <div id="tag">
-          {tag.split(",").map(each => (
-            <Tag tag={each} key={each} />
-          ))}
+          {tag && tag.split(",").map(each => <Tag tag={each} key={each} />)}
         </div>
       </div>
     </Layout>
