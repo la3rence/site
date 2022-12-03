@@ -24,7 +24,7 @@ export default function Layout(props) {
       }`}
       >
         <div>{children}</div>
-        {!props.blogIndex && <Contact />}
+        {!props.blogIndex && !props.chat && <Contact />}
       </main>
     </>
   );
