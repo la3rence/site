@@ -49,10 +49,10 @@ const Chat = () => {
             className="h-12 p-3 bg-zinc-300 flex-1 dark:bg-zinc-800 rounded-none outline-none"
           />
           <button
-            className="w-12 h-12 bg-zinc-400 dark:bg-zinc-800 text-2xl -rotate-90"
+            className="w-12 h-12 bg-zinc-400 dark:bg-zinc-800 text-2xl"
             onClick={send}
           >
-            ▶️
+            ▲
           </button>
         </div>
       </div>
