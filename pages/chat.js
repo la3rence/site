@@ -2,13 +2,11 @@ import { useRef, useState } from "react";
 import Layout from "../components/layout";
 
 const Message = ({ text }) => (
-  <div className="text-lg p-6 bg-zinc-300 dark:bg-zinc-600 border border-spacing-1">
-    {text}
-  </div>
+  <p className="dark:black whitespace-pre">{text}</p>
 );
 
 const greeting = `The following is a conversation with an AI assistant. 
-The assistant is helpful, creative, clever, and very friendly. 
+The assistant is helpful, creative, clever, and very friendly.
 测试用，请勿分享页面给他人。`;
 
 const Chat = () => {
@@ -27,7 +25,11 @@ const Chat = () => {
   };
 
   const answer = async question => {
-    const res = await (await fetch(`/api/chat?question=${question}`)).json();
+    const res = await (
+      await fetch(`${process.env.NEXT_PUBLIC_CHAT_API}?question=${question}`, {
+        method: "POST",
+      })
+    ).json();
     chat.push(`AI: ${res.response}`);
     setChat([...chat]);
   };
@@ -46,10 +48,10 @@ const Chat = () => {
             ref={inputRef}
             type="text"
             placeholder="Ask AI..."
-            className="h-12 p-3 bg-zinc-300 flex-1 dark:bg-zinc-800 rounded-none outline-none"
+            className="h-12 p-3 bg-zinc-200 flex-1 dark:bg-zinc-800 rounded-none outline-none"
           />
           <button
-            className="w-12 h-12 bg-zinc-400 dark:bg-zinc-800 text-2xl"
+            className="w-12 h-12 bg-zinc-200 dark:bg-zinc-800 text-2xl"
             onClick={send}
           >
             ▲
