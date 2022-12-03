@@ -10,12 +10,19 @@ const Message = ({ type, text, waiting }) => {
   }
   return (
     <div className="bg-zinc-300 dark:bg-zinc-800 whitespace-pre-wrap px-4">
-      {waiting ? <Logo duration="3s"></Logo> : `AI: ${text}`}
+      {waiting ? (
+        <>
+          <Logo duration="3s"></Logo>
+          <span>Waiting...</span>
+        </>
+      ) : (
+        `AI: ${text}`
+      )}
     </div>
   );
 };
 
-const greeting = `测试用，请勿分享页面给他人。不建议使用网络用语。禁止敏感内容。`;
+const greeting = `在下方输入问题向 AI 提问（支持任意语言）。临时测试用，请勿分享页面给他人。不建议使用网络用语。禁止敏感字眼。不定时停服。`;
 
 const Chat = () => {
   const [chat, setChat] = useState([
@@ -48,7 +55,7 @@ const Chat = () => {
   };
 
   return (
-    <Blog chat title="OpenAPI: ChatGPT" noMeta>
+    <Blog chat title="OpenAI: ChatGPT" noMeta>
       <div>
         {chat.map((messageObj, index) => {
           return (
