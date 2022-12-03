@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import Layout from "../components/layout";
 
 const Message = ({ text }) => (
-  <p className="dark:black whitespace-pre">{text}</p>
+  <p className="dark:black whitespace-pre-wrap ">{text}</p>
 );
 
 const greeting = `The following is a conversation with an AI assistant. 
