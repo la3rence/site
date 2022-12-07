@@ -26,7 +26,6 @@ let messageParentId = null;
 let conversationId = null;
 
 const Chat = () => {
-
   const [chat, setChat] = useState([
     { type: "human", message: greeting, waiting: false },
   ]);
@@ -45,7 +44,7 @@ const Chat = () => {
   };
 
   const answer = async question => {
-    console.log('messageCacheId', messageParentId);
+    console.log("messageCacheId", messageParentId);
     console.log("conversationId", conversationId);
     let reply = "";
     chat.push({ type: "ai", message: reply, waiting: false });
@@ -58,7 +57,7 @@ const Chat = () => {
         id: uuidv4(),
         message: question,
         message_pid: messageParentId ? messageParentId : uuidv4(),
-        conversation_id: conversationId ? conversationId : ""
+        conversation_id: conversationId ? conversationId : "",
       }),
       onmessage(event) {
         if (event.data === "[DONE]") {
