@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import Blog from "../../components/blog";
+import Blog from "../components/blog";
 import { v4 as uuidv4 } from "uuid";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 
