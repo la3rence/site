@@ -82,6 +82,11 @@ const Chat = () => {
         console.log("Connection closed by the server");
       },
     });
+    const fly = await fetch(
+      `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
+    );
+    const res = await fly.json();
+    console.log(res);
   };
 
   return (
