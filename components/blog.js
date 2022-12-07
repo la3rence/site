@@ -78,7 +78,7 @@ export default withView(props => {
         )}
         <div className="article">{children}</div>
       </div>
-      <div className="mx-2 mt-10 flex flex-nowrap">
+      {!props.noMeta && <div className="mx-2 mt-10 flex flex-nowrap">
         {config.enableLike && (
           <div className="flex-1">
             <button
@@ -92,7 +92,7 @@ export default withView(props => {
         <div id="tag">
           {tag && tag.split(",").map(each => <Tag tag={each} key={each} />)}
         </div>
-      </div>
+      </div>}
     </Layout>
   );
 });

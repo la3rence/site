@@ -22,8 +22,11 @@ const Message = ({ type, text }) => {
 };
 
 const greeting = `在下方输入问题向 AI 提问（支持任意语言）。临时测试用，请勿分享页面给他人。不建议使用网络用语。禁止敏感字眼。不定时停服。`;
+let messageParentId = null;
+let conversationId = null;
 
 const Chat = () => {
+
   const [chat, setChat] = useState([
     { type: "human", message: greeting, waiting: false },
   ]);
@@ -42,6 +45,8 @@ const Chat = () => {
   };
 
   const answer = async question => {
+    console.log('messageCacheId', messageParentId);
+    console.log("conversationId", conversationId);
     let reply = "";
     chat.push({ type: "ai", message: reply, waiting: false });
     await fetchEventSource(process.env.NEXT_PUBLIC_CHAT_API, {
@@ -52,7 +57,8 @@ const Chat = () => {
       body: JSON.stringify({
         id: uuidv4(),
         message: question,
-        message_pid: uuidv4(),
+        message_pid: messageParentId ? messageParentId : uuidv4(),
+        conversation_id: conversationId ? conversationId : ""
       }),
       onmessage(event) {
         if (event.data === "[DONE]") {
@@ -64,6 +70,8 @@ const Chat = () => {
         const data = JSON.parse(event.data);
         // console.log("sse onmessage", event.data);
         reply = data.message.content.parts[0];
+        conversationId = data.conversation_id;
+        messageParentId = data.message.id;
         chat.push({ type: "ai", message: reply, waiting: false });
         setChat([...chat]);
       },
