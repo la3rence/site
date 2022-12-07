@@ -1,10 +1,10 @@
 import A, { Icon } from "./a";
-import config from "./../lib/config.json";
+import config from "../lib/config.json";
 import QRCode from "react-qr-code";
 import { useState } from "react";
 let { siteTitle, twitter, github, authorEmail } = config;
 
-const Contact = () => {
+const Footer = () => {
   let [showQR, setShouQR] = useState(false);
   const showQRCode = () => setShouQR(!showQR);
 
@@ -35,4 +35,4 @@ const Contact = () => {
 };
 
 // footer component
-export default Contact;
+export default Footer;

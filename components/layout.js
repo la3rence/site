@@ -1,5 +1,5 @@
 import Header from "./header";
-import Contact from "./contact";
+import Footer from "./footer";
 
 export default function Layout(props) {
   const { children, vertical } = props;
@@ -24,7 +24,7 @@ export default function Layout(props) {
       }`}
       >
         <div>{children}</div>
-        {!props.blogIndex && !props.chat && <Contact />}
+        {!props.blogIndex && !props.noFooter && <Footer />}
       </main>
     </>
   );

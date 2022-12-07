@@ -1,16 +1,23 @@
 import { useRef, useState } from "react";
-import Blog from "../components/blog";
+import Blog from "../../components/blog";
 import { v4 as uuidv4 } from "uuid";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
+
+export const blogProps = {
+  author: "OpenAI",
+  title: "Demo: ChatGPT",
+  date: "2022-12-02",
+  tag: "AI, Chat, SSE",
+};
 
 const Message = ({ type, text }) => {
   if (type === "human") {
     return (
-      <div className="bg-zinc-200 dark:bg-zinc-900 px-4 py-2">{`Human: ${text}`}</div>
+      <div className="bg-zinc-200 dark:bg-zinc-900 px-4 py-2">{`🙋: ${text}`}</div>
     );
   }
   return (
-    <div className="bg-zinc-300 dark:bg-zinc-800 whitespace-pre-wrap px-4">{`ChatGPT: ${text}`}</div>
+    <div className="bg-zinc-300 dark:bg-zinc-800 whitespace-pre-wrap px-4">{`🤖️: ${text}`}</div>
   );
 };
 
@@ -71,7 +78,7 @@ const Chat = () => {
   };
 
   return (
-    <Blog chat title="OpenAI: ChatGPT" noMeta>
+    <Blog noMeta noFooter {...blogProps}>
       <div>
         {chat.map((messageObj, index) => {
           return (
