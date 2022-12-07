@@ -1,24 +1,16 @@
 import { useRef, useState } from "react";
 import Blog from "../components/blog";
-import Logo from "../components/logo";
+import { v4 as uuidv4 } from "uuid";
+import { fetchEventSource } from "@microsoft/fetch-event-source";
 
-const Message = ({ type, text, waiting }) => {
+const Message = ({ type, text }) => {
   if (type === "human") {
     return (
       <div className="bg-zinc-200 dark:bg-zinc-900 px-4 py-2">{`Human: ${text}`}</div>
     );
   }
   return (
-    <div className="bg-zinc-300 dark:bg-zinc-800 whitespace-pre-wrap px-4">
-      {waiting ? (
-        <>
-          <Logo duration="3s"></Logo>
-          <span>Waiting...</span>
-        </>
-      ) : (
-        `AI: ${text}`
-      )}
-    </div>
+    <div className="bg-zinc-300 dark:bg-zinc-800 whitespace-pre-wrap px-4">{`ChatGPT: ${text}`}</div>
   );
 };
 
@@ -28,6 +20,7 @@ const Chat = () => {
   const [chat, setChat] = useState([
     { type: "human", message: greeting, waiting: false },
   ]);
+
   const inputRef = useRef();
 
   const send = async () => {
@@ -42,16 +35,39 @@ const Chat = () => {
   };
 
   const answer = async question => {
-    chat.push({ type: "ai", message: "Waiting...", waiting: true });
-    setChat([...chat]);
-    const res = await (
-      await fetch(`${process.env.NEXT_PUBLIC_CHAT_API}?question=${question}`, {
-        method: "POST",
-      })
-    ).json();
-    chat.pop();
-    chat.push({ type: "ai", message: res.response, waiting: false });
-    setChat([...chat]);
+    let reply = "";
+    chat.push({ type: "ai", message: reply, waiting: false });
+    await fetchEventSource(process.env.NEXT_PUBLIC_CHAT_API, {
+      method: "POST",
+      headers: {
+        Accept: "text/event-stream",
+      },
+      body: JSON.stringify({
+        id: uuidv4(),
+        message: question,
+        message_pid: uuidv4(),
+      }),
+      onmessage(event) {
+        if (event.data === "[DONE]") {
+          console.log("sse done");
+          return;
+        }
+        chat.pop();
+        setChat([...chat]);
+        const data = JSON.parse(event.data);
+        // console.log("sse onmessage", event.data);
+        reply = data.message.content.parts[0];
+        chat.push({ type: "ai", message: reply, waiting: false });
+        setChat([...chat]);
+      },
+      onerror(err) {
+        setChat([...chat]);
+        console.log("There was an error from server", err);
+      },
+      onclose() {
+        console.log("Connection closed by the server");
+      },
+    });
   };
 
   return (
@@ -63,7 +79,6 @@ const Chat = () => {
               text={messageObj.message}
               type={messageObj.type}
               key={index}
-              waiting={messageObj.waiting}
             />
           );
         })}
