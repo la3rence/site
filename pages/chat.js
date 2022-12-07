@@ -2,6 +2,21 @@ import { useRef, useState } from "react";
 import Blog from "../components/blog";
 import { v4 as uuidv4 } from "uuid";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
+import MarkdownIt from "markdown-it";
+import hljs from "highlight.js";
+
+let messageParentId = null;
+let conversationId = null;
+
+const md = new MarkdownIt({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      return hljs.highlight(str, { language: lang, ignoreIllegals: true })
+        .value;
+    }
+    return "";
+  },
+});
 
 export const blogProps = {
   author: "OpenAI",
@@ -13,21 +28,27 @@ export const blogProps = {
 const Message = ({ type, text }) => {
   if (type === "human") {
     return (
-      <div className="bg-zinc-200 dark:bg-zinc-900 px-4 py-2">{`🙋: ${text}`}</div>
+      <div
+        className="bg-zinc-200 dark:bg-zinc-900 p-2"
+        dangerouslySetInnerHTML={{ __html: md.render(`🙋 ${text}`) }}
+      ></div>
     );
   }
   return (
-    <div className="bg-zinc-300 dark:bg-zinc-800 whitespace-pre-wrap px-4">{`🤖️: ${text}`}</div>
+    <div
+      className="bg-zinc-300 dark:bg-zinc-800 prose-p:p-2 prose-p:my-0 prose-pre:p-2 prose-pre:my-0"
+      dangerouslySetInnerHTML={{ __html: md.render(`🤖️ ${text}`) }}
+    ></div>
   );
 };
 
-const greeting = `在下方输入问题向 AI 提问（支持任意语言）。临时测试用，请勿分享页面给他人。不建议使用网络用语。禁止敏感字眼。不定时停服。`;
-let messageParentId = null;
-let conversationId = null;
-
 const Chat = () => {
   const [chat, setChat] = useState([
-    { type: "human", message: greeting, waiting: false },
+    {
+      type: "ai",
+      message: `在下方输入问题向 AI 提问（支持任意语言）。
+      测试用，请勿分享页面给他人。不建议使用网络用语。禁止敏感字眼。受限于网络状况回复可能较慢。`,
+    },
   ]);
 
   const inputRef = useRef();
@@ -61,22 +82,24 @@ const Chat = () => {
       }),
       onmessage(event) {
         if (event.data === "[DONE]") {
-          console.log("sse done");
           return;
         }
         chat.pop();
         setChat([...chat]);
         const data = JSON.parse(event.data);
         // console.log("sse onmessage", event.data);
-        reply = data.message.content.parts[0];
+        reply = data.message?.content?.parts?.[0];
         conversationId = data.conversation_id;
         messageParentId = data.message.id;
-        chat.push({ type: "ai", message: reply, waiting: false });
+        chat.push({
+          type: "ai",
+          message: reply,
+        });
         setChat([...chat]);
       },
       onerror(err) {
         setChat([...chat]);
-        console.log("There was an error from server", err);
+        alert("Server error", err);
       },
       onclose() {
         console.log("Connection closed by the server");
