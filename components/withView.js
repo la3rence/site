@@ -15,7 +15,7 @@ const withView = Component => props => {
   const getViews = async id => {
     const res = await (await fetch(`/api/view?page=${id}`)).json();
     setView(res.view);
-    console.log(`page: ${id} view: ${res.view}`);
+    console.debug(`page: ${id} view: ${res.view}`);
   };
   const withViewProps = { ...props, id, view };
   return <Component {...withViewProps} />;

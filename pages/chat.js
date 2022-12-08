@@ -61,14 +61,18 @@ const Chat = () => {
     chat.push({ type: "human", message: question });
     setChat([...chat]);
     inputRef.current.value = "";
-    await answer(question);
+    try {
+      await answer(question);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const answer = async question => {
-    console.log("messageCacheId", messageParentId);
-    console.log("conversationId", conversationId);
+    console.debug("messageCacheId", messageParentId);
+    console.debug("conversationId", conversationId);
     let reply = "";
-    chat.push({ type: "ai", message: reply, waiting: false });
+    chat.push({ type: "ai", message: reply });
     await fetchEventSource(process.env.NEXT_PUBLIC_CHAT_API, {
       method: "POST",
       headers: {
@@ -80,14 +84,14 @@ const Chat = () => {
         message_pid: messageParentId ? messageParentId : uuidv4(),
         conversation_id: conversationId ? conversationId : "",
       }),
-      onmessage(event) {
+      async onmessage(event) {
         if (event.data === "[DONE]") {
           return;
         }
         chat.pop();
         setChat([...chat]);
         const data = JSON.parse(event.data);
-        // console.log("sse onmessage", event.data);
+        console.debug("sse onmessage", event.data);
         reply = data.message?.content?.parts?.[0];
         conversationId = data.conversation_id;
         messageParentId = data.message.id;
@@ -96,20 +100,19 @@ const Chat = () => {
           message: reply,
         });
         setChat([...chat]);
+        const fly = await fetch(
+          `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
+        );
+        const res = await fly.json();
+        console.debug(res);
       },
-      onerror(err) {
-        setChat([...chat]);
-        alert("Server error", err);
+      onerror(error) {
+        throw error; // rethrow to stop the operation
       },
       onclose() {
-        console.log("Connection closed by the server");
+        console.debug("sse closed");
       },
     });
-    const fly = await fetch(
-      `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
-    );
-    const res = await fly.json();
-    console.log(res);
   };
 
   return (
@@ -131,7 +134,7 @@ const Chat = () => {
             ref={inputRef}
             type="text"
             placeholder="Ask AI..."
-            className="h-12 p-3 bg-zinc-200 flex-1 dark:bg-zinc-800 rounded-none outline-none"
+            className="h-12 px-4 py-3 bg-zinc-200 flex-1 dark:bg-zinc-800 rounded-none outline-none"
           />
           <button
             className="w-12 h-12 bg-zinc-200 dark:bg-zinc-800 text-2xl"
