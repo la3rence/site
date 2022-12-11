@@ -75,6 +75,7 @@ const Chat = () => {
     chat.push({ type: "ai", message: reply });
     await fetchEventSource(process.env.NEXT_PUBLIC_CHAT_API, {
       method: "POST",
+      mode: "cors",
       headers: {
         Accept: "text/event-stream",
       },
@@ -84,7 +85,7 @@ const Chat = () => {
         message_pid: messageParentId ? messageParentId : uuidv4(),
         conversation_id: conversationId ? conversationId : "",
       }),
-      async onmessage(event) {
+      onmessage(event) {
         if (event.data === "[DONE]") {
           return;
         }
@@ -100,17 +101,17 @@ const Chat = () => {
           message: reply,
         });
         setChat([...chat]);
+      },
+      onerror(error) {
+        throw error; // rethrow to stop the operation
+      },
+      async onclose() {
+        console.debug("sse closed");
         const fly = await fetch(
           `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
         );
         const res = await fly.json();
         console.debug(res);
-      },
-      onerror(error) {
-        throw error; // rethrow to stop the operation
-      },
-      onclose() {
-        console.debug("sse closed");
       },
     });
   };
