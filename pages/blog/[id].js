@@ -1,21 +1,27 @@
 import Blog from "../../components/blog";
 import { getMdContentById, getMdPostsData } from "../../lib/ssg";
 import path from "path";
-import React from "react";
+import { createElement } from "react";
 import rehypeReact from "rehype-react";
-import Douban from "../../components/douban";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+// import Douban from "../../components/douban";
+const Douban = dynamic(() => import("../../components/douban"), { ssr: false });
 
 const renderAst = new rehypeReact({
-  createElement: React.createElement,
+  createElement,
   components: { douban: Douban },
 }).Compiler;
 
 const PathId = props => {
+  console.log(props.htmlStringContent);
   return (
-    <Blog {...props}>
-      {/* <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} /> */}
-      {renderAst(props.htmlAst)}
-    </Blog>
+    <Suspense fallback={`Loading...`}>
+      <Blog {...props}>
+        {/* <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} /> */}
+        <main>{renderAst(props.htmlAst)}</main>
+      </Blog>
+    </Suspense>
   );
 };
 
