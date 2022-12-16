@@ -64,6 +64,25 @@ export const getStaticProps = async context => {
 
 > It's now possible, instead, to push content directly to the network and design frameworks that optimize for this capability. As a result, with optimizations like static asset hoisting, websites are now becoming faster and more reliable than ever before.
 
+### Movie
+
+The source of this component is coded via react component in markdown!
+
+Code:
+
+```jsx
+// filename: how.md
+<div>
+  <douban id="3042261"></douban>
+<div>
+```
+
+Result:
+
+<div>
+  <douban id="3042261"></douban>
+<div>
+
 ### Images
 
 ![Random Image](https://reflare.lawrenceli.me/file/1662549316419.jpg)
@@ -72,10 +91,17 @@ export const getStaticProps = async context => {
 
 ### Video
 
+Same as the movie component:
+
+<div>
+  <bilibili bv="BV1ys411a7Wu"></bilibili>
+</div>
+
+<!-- or:
 <div class="embed">
   <iframe src="//player.bilibili.com/player.html?bvid=BV1i44y1N7kU&danmaku=0&high_quality=1"
   ></iframe>
-</div>
+</div> -->
 
 ## Tables
 
