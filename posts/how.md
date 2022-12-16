@@ -66,9 +66,22 @@ export const getStaticProps = async context => {
 
 ### Movie
 
+The source of this component is coded via react component in markdown!
+
+Code:
+
+```jsx
+// filename: how.md
 <div>
-  <douban id="30194980"></douban>
-</div>
+  <douban id="3042261"></douban>
+<div>
+```
+
+Result:
+
+<div>
+  <douban id="3042261"></douban>
+<div>
 
 ### Images
 
@@ -78,7 +91,13 @@ export const getStaticProps = async context => {
 
 ### Video
 
-<!--
+Same as the movie component:
+
+<div>
+  <bilibili bv="BV1ys411a7Wu"></bilibili>
+</div>
+
+<!-- or:
 <div class="embed">
   <iframe src="//player.bilibili.com/player.html?bvid=BV1i44y1N7kU&danmaku=0&high_quality=1"
   ></iframe>
