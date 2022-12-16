@@ -1,11 +1,20 @@
 import Blog from "../../components/blog";
 import { getMdContentById, getMdPostsData } from "../../lib/ssg";
 import path from "path";
+import React from "react";
+import rehypeReact from "rehype-react";
+import Douban from "../../components/douban";
+
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: { douban: Douban },
+}).Compiler;
 
 const PathId = props => {
   return (
     <Blog {...props}>
-      <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} /> */}
+      {renderAst(props.htmlAst)}
     </Blog>
   );
 };
