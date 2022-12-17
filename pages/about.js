@@ -18,6 +18,18 @@ const About = props => {
           </div>
         </>
       )}
+      {config.mailchimp && (
+        <>
+          <h2 id="mailchimp">Mail Subscription</h2>
+          <p>
+            Subscribe this blog via{" "}
+            <a href={config.mailchimp} target="_blank" className="text-black">
+              MailChimp
+            </a>
+            . You will receive the mail about my new post when it published.
+          </p>
+        </>
+      )}
     </Layout>
   );
 };

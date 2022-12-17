@@ -11,7 +11,7 @@ export default function Header({ title, blog, image, description }) {
   const theDescription = description || siteDescription;
   const pageTitle = title || siteTitle;
   const hoverTabStyle =
-    "hover:bg-gray-200 text-gray-700 transition duration-500 dark:hover:bg-gray-700 dark:text-gray-300";
+    "hover:bg-gray-200 text-gray-700 transition duration-500 dark:hover:bg-gray-700 dark:text-gray-300 hover:scale-105 hover:transition-transform";
   return (
     <>
       <Head>

@@ -33,7 +33,7 @@ CVA Trading Desk 其实是一家内部保险公司。负责保障 Business Line 
 
 ![CVA Desk](/images/2022-in-review/cva-desk.gif)
 
-每天有数以百计的 Batch Job 去处理这些 Trade 数据。最累的还是作为一个开发去解决各种突如其来的 produciton issue。
+每天有数以百计的 Batch Job 去处理这些 Trade 数据。最累的还是作为一个开发去解决各种突如其来的 production issue。
 
 ## Life
 

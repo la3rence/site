@@ -22,6 +22,7 @@
       "path": "/atom.xml"
     }
   ],
+  "mailchimp": "https://subscribe.lawrenceli.me/",
   "projects": [
     {
       "name": "Ops Bot",

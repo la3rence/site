@@ -16,7 +16,7 @@ export const Icon = props => {
     <SocialIcon
       {...props}
       style={{ height: 35, width: 35 }}
-      className="cursor-pointer"
+      className="cursor-pointer hover:scale-125 hover:transition-transform hover:rounded-full"
       bgColor="transparent"
       fgColor="#777"
       target={"_blank"}

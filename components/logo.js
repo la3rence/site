@@ -1,7 +1,7 @@
 const Logo = ({ title, duration = "360s" }) => (
   <span className="inline-flex mt-1 items-center">
     <svg
-      className="mr-4"
+      className="mr-4 shadow-2xl rounded-sm hover:scale-150 hover:transition-transform"
       viewBox="0 0 20 20"
       width="20"
       height="20"

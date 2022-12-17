@@ -22,12 +22,17 @@ module.exports = {
             "p>a, .blog li>a": {
               color: "#3182ce",
               "&:hover": {
+                "text-decoration": "underline",
                 color: "#2c5282",
               },
-              "word-break": "break-all",
+              "text-decoration": "none",
+              "word-break": "break-word",
             },
             "h1 a, h2 a, h3 a, h4 a, h5 a, h6 a": {
               "text-decoration": "none",
+              "&:hover": {
+                "text-decoration": "underline",
+              },
             },
           },
         },
