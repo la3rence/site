@@ -8,16 +8,9 @@ import config from "../lib/config.json";
 import Tag from "./tag";
 
 export default withView(props => {
-  const { children, title, date, author, view, id, vertical, tag } = props;
-  // allow default vertical article chage back to normal style
-  const [clientVertical, setClentVertical] = useState(vertical);
+  const { children, title, date, author, view, id, tag } = props;
   // like button
   const [like, setLike] = useState(0);
-  const reverseVertical = () => {
-    if (vertical) {
-      setClentVertical(!clientVertical);
-    }
-  };
 
   useEffect(() => {
     getLikes(id);
@@ -37,17 +30,18 @@ export default withView(props => {
   };
 
   return (
-    <Layout blog {...props} vertical={clientVertical}>
-      <div className={`blog ${clientVertical ? "vertical" : ""}`} id={id}>
-        <h2
-          id="title"
-          className="articleTitle cursor-pointer mt-28"
-          onClick={reverseVertical}
-        >
-          {title}
+    <Layout blog {...props}>
+      <div className="blog" id={id}>
+        <h2 id="title" className="articleTitle cursor-pointer mt-28">
+          <a href={`#title`} className="hover:no-underline">
+            {title}
+          </a>
         </h2>
         {!props.noMeta && (
-          <div className="articleTitle flex justify-start items-center flex-wrap mb-8">
+          <div
+            className="articleTitle flex justify-start items-center flex-wrap mb-8"
+            id="meta"
+          >
             <div
               className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
            hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2"
@@ -61,9 +55,7 @@ export default withView(props => {
                     height={25}
                     alt={author}
                   />
-                  <small className={`${clientVertical ? "mt-2" : "ml-2"}`}>
-                    {author}
-                  </small>
+                  <small className="ml-2">{author}</small>
                   <small className="before:content-['/'] before:p-0 before:m-2">
                     {date}
                   </small>
@@ -72,7 +64,7 @@ export default withView(props => {
             </div>
             <div className="flex-1" />
             <div className="justify-end">
-              {view > 0 && !clientVertical && <small>{view} views</small>}
+              {view > 0 && <small>{view} views</small>}
             </div>
           </div>
         )}
@@ -81,7 +73,7 @@ export default withView(props => {
       {!props.noMeta && (
         <div className="mx-2 mt-10 flex flex-nowrap">
           {config.enableLike && (
-            <div className="flex-1">
+            <div className="flex-1" id="like">
               <button
                 className="w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300"
                 onClick={addLike}

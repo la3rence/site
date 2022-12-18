@@ -2,7 +2,7 @@ import Header from "./header";
 import Footer from "./footer";
 
 export default function Layout(props) {
-  const { children, vertical } = props;
+  const { children } = props;
   return (
     <>
       <Header {...props} />
@@ -17,11 +17,7 @@ export default function Layout(props) {
       prose-blockquote:border-purple-600
       prose-blockquote:text-purple-600
       prose-blockquote:not-italic
-      ${
-        vertical
-          ? "prose-blockquote:border-t-2 prose-blockquote:border-l-0 prose-blockquote:pt-4 prose-blockquote:pl-0 "
-          : "prose-blockquote:border-l-[2.6px] prose-blockquote:pl-2"
-      }`}
+      prose-blockquote:border-l-[2.6px] prose-blockquote:pl-2`}
       >
         <div>{children}</div>
         {!props.blogIndex && !props.noFooter && <Footer />}

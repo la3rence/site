@@ -20,10 +20,8 @@ module.exports = {
         DEFAULT: {
           css: {
             "p>a, .blog li>a": {
-              color: "#3182ce",
               "&:hover": {
                 "text-decoration": "underline",
-                color: "#2c5282",
               },
               "text-decoration": "none",
               "word-break": "break-word",

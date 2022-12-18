@@ -1,7 +1,6 @@
 ---
 title: 这个网站是如何构建的
 date: "2022-08-27"
-vertical: false
 image: https://reflare.lawrenceli.me/file/1662688541295.png
 description: 此文用于端到端测试 Markdown 样式
 someKey: someValue # available in props of <Header />
@@ -107,11 +106,11 @@ Same as the movie component:
 
 JAMstack.
 
-| ROLE | PROVIDED BY                                                                                                    |
-| ---- | -------------------------------------------------------------------------------------------------------------- |
-| J    | Client-side JS injected via React Hooks (state, event listeners, effects)                                      |
-| A    | API pages inside the pages/api directory.                                                                      |
-| M    | Pages with no data dependencies or pages with static data deps that trigger build-time static site generation. |
+| ROLE |                                                  PROVIDED BY                                                   |
+| :--: | :------------------------------------------------------------------------------------------------------------: |
+|  J   |                   Client-side JS injected via React Hooks (state, event listeners, effects)                    |
+|  A   |                                   API pages inside the pages/api directory.                                    |
+|  M   | Pages with no data dependencies or pages with static data deps that trigger build-time static site generation. |
 
 ## Ref 参考链接
 

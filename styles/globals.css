@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500&display=swap");
-
 @tailwind base;
 
 @layer base {
@@ -27,7 +25,7 @@
   /* margin all content except media like images */
   .blogIndex,
   .articleTitle,
-  p:not(:has(img)),
+  p,
   blockquote,
   ul,
   h1,
@@ -38,23 +36,9 @@
     @apply mx-4;
   }
 
-  .vertical {
-    @apply noto-serif sm:max-w-fit max-w-full overflow-y-auto;
-    writing-mode: vertical-rl;
-  }
-
-  .noto-serif {
-    font-family: "Noto Serif SC", ui-serif, Georgia, Cambria, Times, serif;
-    font-display: optional;
-  }
-
-  .vertical p,
-  .vertical h3 {
-    @apply my-0 px-2;
-  }
-
-  .vertical img {
-    @apply mx-6;
+  p:has(img),
+  li > p {
+    @apply mx-0;
   }
 }
 
