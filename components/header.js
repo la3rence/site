@@ -34,13 +34,13 @@ export default function Header({ title, blog, image, description }) {
       </Head>
       {!blog && (
         <header className="flex mt-12 text-gray-500">
-          <h2 className="w-36">
+          <h1 className="w-36">
             <Link href={"/"}>
               <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
                 <Logo title={siteTitle} />
               </div>
             </Link>
-          </h2>
+          </h1>
           <div className="flex-1" />
           <div className="flex-4 flex items-center">
             <ul className="flex">

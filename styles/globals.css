@@ -40,6 +40,13 @@
   li > p {
     @apply mx-0;
   }
+
+  h2 a,
+  h3 a,
+  h4 a,
+  h5 a {
+    @apply hover:after:content-['#'] hover:after:mx-2 hover:after:text-gray-400;
+  }
 }
 
 @tailwind utilities;
