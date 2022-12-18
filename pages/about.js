@@ -7,7 +7,11 @@ import config from "./../lib/config.json";
 const About = props => {
   return (
     <Layout title={"About"}>
-      <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: props.htmlStringContent,
+        }}
+      />
       {config.projects && (
         <>
           <h2 id="projects">Projects</h2>

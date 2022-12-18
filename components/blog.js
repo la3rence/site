@@ -23,7 +23,9 @@ export default withView(props => {
 
   const addLike = async () => {
     const res = await (
-      await fetch(`/api/like?page=${id}`, { method: "POST" })
+      await fetch(`/api/like?page=${id}`, {
+        method: "POST",
+      })
     ).json();
     setLike(res.likeCount);
     console.log(`page: ${id} like: ${res.likeCount}`);

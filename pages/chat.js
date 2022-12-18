@@ -11,8 +11,10 @@ let conversationId = null;
 const md = new MarkdownIt({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
-      return hljs.highlight(str, { language: lang, ignoreIllegals: true })
-        .value;
+      return hljs.highlight(str, {
+        language: lang,
+        ignoreIllegals: true,
+      }).value;
     }
     return "";
   },
@@ -30,14 +32,18 @@ const Message = ({ type, text }) => {
     return (
       <div
         className="bg-zinc-200 dark:bg-zinc-900 p-2"
-        dangerouslySetInnerHTML={{ __html: md.render(`🙋 ${text}`) }}
+        dangerouslySetInnerHTML={{
+          __html: md.render(`🙋 ${text}`),
+        }}
       ></div>
     );
   }
   return (
     <div
       className="bg-zinc-300 dark:bg-zinc-800 prose-p:p-2 prose-p:my-0 prose-pre:p-2 prose-pre:my-0"
-      dangerouslySetInnerHTML={{ __html: md.render(`🤖️ ${text}`) }}
+      dangerouslySetInnerHTML={{
+        __html: md.render(`🤖️ ${text}`),
+      }}
     ></div>
   );
 };
