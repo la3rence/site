@@ -8,7 +8,7 @@ class Site extends App {
     const { Component, pageProps } = this.props;
     return (
       <>
-        <ThemeProvider storageKey="">
+        <ThemeProvider storageKey="theme" attribute="class">
           <Component {...pageProps} />
         </ThemeProvider>
         <Analytics />
