@@ -9,11 +9,12 @@ import Tag from "./tag";
 
 export default withView(props => {
   const { children, title, date, author, view, id, tag } = props;
-  // like button
   const [like, setLike] = useState(0);
+  const [likeFlag, setLikeFlag] = useState(false);
 
   useEffect(() => {
     getLikes(id);
+    setLikeFlag(!!localStorage.getItem(`like:${id}`));
   }, [id]);
 
   const getLikes = async id => {
@@ -22,13 +23,17 @@ export default withView(props => {
   };
 
   const addLike = async () => {
-    const res = await (
-      await fetch(`/api/like?page=${id}`, {
-        method: "POST",
-      })
-    ).json();
-    setLike(res.likeCount);
-    console.log(`page: ${id} like: ${res.likeCount}`);
+    if (!likeFlag) {
+      const res = await (
+        await fetch(`/api/like?page=${id}`, {
+          method: "POST",
+        })
+      ).json();
+      setLike(res.likeCount);
+      setLikeFlag(true);
+      localStorage.setItem(`like:${id}`, true);
+      console.debug(`page: ${id} like: ${res.likeCount}`);
+    }
   };
 
   return (
@@ -77,7 +82,9 @@ export default withView(props => {
           {config.enableLike && (
             <div className="flex-1" id="like">
               <button
-                className="w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300"
+                className={`${
+                  likeFlag ? "bg-yellow-300 dark:bg-zinc-700" : ""
+                } w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300`}
                 onClick={addLike}
               >
                 👍 {like > 0 && like}
