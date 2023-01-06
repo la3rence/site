@@ -158,6 +158,10 @@ Robot 回复: 当前支持指令列表, 带 * 需要特定人员发起
 
 社区也有不少钉钉机器人的 SDK，阿里没有提供 Go 版本的，但写起来也不复杂，顺手提供自己写的[钉钉群机器人 Go 语言的 SDK](https://github.com/Lonor/dingtalkbot-sdk)，目前就只用来发文本消息。
 
+<div>
+  <github user="Lonor" repo="dingtalkbot-sdk"></github>
+</div>
+
 最近一次更新，让机器人支持了多个仓库，直接在 `/tag` 最后加一个可选参数 `[repo]`，然后 SDK 的参数做出相应的变动就实现了。
 
 相关链接：

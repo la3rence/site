@@ -11,6 +11,10 @@ tag: MarkDown, Example, Guide, JAMstack
 
 本站源码完全公开：[GitHub - Lonor/site](https://github.com/Lonor/site).
 
+<div>
+  <github user="Lonor" repo="site"></github>
+</div>
+
 直接将 Markdown 文件 (.md) 存放在 `posts` 文件夹下即可渲染当前文件，使之成为静态页面([SSG](/blog/ssg-ssr))。
 博客的首页索引目录也为同步生成，而无需手动维护。
 

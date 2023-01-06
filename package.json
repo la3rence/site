@@ -4,7 +4,7 @@
   "markdown": "github",
   "scripts": {
     "feed": "node ./lib/feed.mjs > ./public/atom.xml",
-    "dev": "pnpm feed && pnpm fmt && next dev -H 0.0.0.0",
+    "dev": "pnpm feed && next dev -H 0.0.0.0",
     "start": "next start",
     "build": "next build && pnpm feed",
     "lint": "next lint",

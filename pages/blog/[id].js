@@ -5,10 +5,11 @@ import { createElement } from "react";
 import rehypeReact from "rehype-react";
 import Douban from "../../components/douban";
 import Bilibili from "../../components/bilibili";
+import GitHub from "../../components/github";
 
 const renderAst = new rehypeReact({
   createElement,
-  components: { douban: Douban, bilibili: Bilibili },
+  components: { douban: Douban, bilibili: Bilibili, github: GitHub },
 }).Compiler;
 
 const PathId = props => {
