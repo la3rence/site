@@ -34,8 +34,11 @@ Nacos、Redis、RabbitMQ 基于 Spring Cloud 写了一个通过一致性哈希�
 [WebSocket 集群的一致性哈希实践(Spring Cloud 后端) - GitHub](https://github.com/Lonor/websocket-cluster)
 , [WebSocket 客户端模拟与服务列表(React 前端) - GitHub](https://github.com/Lonor/websocket-cluster-front),
 最近刚刚写好基本的功能，参考 [@ufiredong](https://github.com/ufiredong)
-的方式利用 [Java 语言的 Docker SDK](https://github.com/docker-java/docker-java) 实现模拟 WebSocket 实例的上下线。未来还会稍微做细微的优化。欢迎提交 issue 或
-pull request。
+的方式利用 [Java 语言的 Docker SDK](https://github.com/docker-java/docker-java) 实现模拟 WebSocket 实例的上下线。未来还会稍微做细微的优化。
+
+<div>
+    <github user="Lonor" repo="websocket-cluster"></github>
+</div>
 
 ![HashRing:虚拟节点上线后部分客户端需要迁移节点](/images/websocket-cluster/hashring.png)
 

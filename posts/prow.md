@@ -1055,3 +1055,7 @@ presubmits:
 
 GitHub 大规模使用 WebSocket 来动态修改 Issue 或 PR 页面的 DOM，在视觉上非常令人享受。笔者后来也参考 Prow 用 Go
 写了一个简单了 [OpsBot](https://github.com/Lonor/OpsBot) 帮助自己的仓库做一些简单的 PR、Issue 的管理，现已开源，欢迎任何 Issue / PR！
+
+<div>
+  <github user="Lonor" repo="OpsBot"></github>
+</div>

@@ -16,6 +16,10 @@ tag: Robot, Serverless, Fanfou, MongoDB
 
 [源代码](https://github.com/Lonor/SolidotRobot)以 MIT 协议开放，写的很简陋，凑合着能用。
 
+<div>
+  <github user="Lonor" repo="SolidotRobot"></github>
+</div>
+
 你也可以帮我调用[这个 REST API](https://post-solidot-news-to-fanfou.now.sh/api/start) 来帮助触发机器人行动：
 
 ```bash
