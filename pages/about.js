@@ -14,7 +14,9 @@ const About = props => {
       />
       {config.projects && (
         <>
-          <h2 id="projects">Projects</h2>
+          <h2 id="projects">
+            <a href="#projects">Projects</a>
+          </h2>
           <div className="flex flex-wrap gap-3">
             {config.projects.map(project => (
               <Project {...project} key={project.name} />
@@ -24,7 +26,9 @@ const About = props => {
       )}
       {config.mailchimp && (
         <>
-          <h2 id="mailchimp">Mail Subscription</h2>
+          <h2 id="mailchimp">
+            <a href="#mailchimp">Mail Subscription</a>
+          </h2>
           <p>
             Subscribe this blog via{" "}
             <a
@@ -38,6 +42,16 @@ const About = props => {
           </p>
         </>
       )}
+      <>
+        <h2 id="social-media">
+          <a href="#social-media">Social Media</a>
+        </h2>
+        <p>
+          <a rel="me" href="https://mstdn.social/@lawrence" target="_blank">
+            Mastodon
+          </a>
+        </p>
+      </>
     </Layout>
   );
 };
