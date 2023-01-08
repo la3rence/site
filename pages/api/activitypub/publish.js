@@ -13,7 +13,7 @@ export default async function publish(req, res) {
     res.json({ error: "missing id" });
   }
   const post = await getMdContentById(id);
-  
+
   const createMessage = {
     "@context": "https://www.w3.org/ns/activitystreams",
     id: `${origin}/blog/${post.id}?create=true&id=${post.id}&v=1`,
@@ -23,8 +23,8 @@ export default async function publish(req, res) {
     // "cc": [],
     object: generateNote(origin, post),
   };
-  console.log('message', createMessage);
-  
+  console.log("message", createMessage);
+
   const response = await sendSignedRequest(
     `${origin}/api/activitypub/actor#main-key`,
     new URL("https://mstdn.social/inbox"),
