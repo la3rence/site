@@ -1,7 +1,6 @@
 import { generateNote } from "./outbox";
 import { getMdContentById } from "../../../lib/ssg.mjs";
 import { sendSignedRequest } from "../../../lib/httpSign.mjs";
-import { createElement } from "react";
 
 export default async function publish(req, res) {
   let origin = req.headers.host;
