@@ -1,3 +1,10 @@
+import {
+  authorName,
+  siteTitle,
+  baseURL,
+  siteDescription,
+} from "./../../../lib/config.mjs";
+
 export default async function actor(req, res) {
   let origin = req.headers.host;
   origin = origin.includes("localhost")
@@ -13,10 +20,10 @@ export default async function actor(req, res) {
     following: `${origin}/api/activitypub/following`,
     followers: `${origin}/api/activitypub/followers`,
     inbox: `${origin}/api/activitypub/inbox`,
-    preferredUsername: "lawrence",
-    name: "Lawrence Li",
-    summary: "This is summary.",
-    icon: [`${origin}/images/author/Lawrence.png`],
+    preferredUsername: `${authorName}`,
+    name: siteTitle,
+    summary: `${siteDescription}`,
+    icon: [`${origin}/images/author/${authorName}.png`],
     publicKey: {
       "@context": "https://w3id.org/security/v1",
       "@type": "Key",
