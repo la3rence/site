@@ -1,4 +1,4 @@
-const apAccountName = "acct:lawrence@mstdn.social";
+import config from "../../../lib/config.mjs";
 
 export default async function webfinger(req, res) {
   let origin = req.headers.host;
@@ -8,7 +8,7 @@ export default async function webfinger(req, res) {
   res.statusCode = 200;
   res.setHeader("Content-Type", `application/jrd+json`);
   res.end(`{  
-    "subject": "${apAccountName}",
+    "subject": "${config.apAccountName}",
     "aliases": [],
     "links": [
       {
