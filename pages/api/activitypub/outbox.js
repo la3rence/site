@@ -19,7 +19,7 @@ export default async function outbox(req, res) {
   res.json(outbox);
 }
 
-const generateNote = (origin, post) => {
+export const generateNote = (origin, post) => {
   return {
     "@context": ["https://www.w3.org/ns/activitystreams"],
     id: `${origin}/blog/${post.id}?id=${post.id}&v=1`,

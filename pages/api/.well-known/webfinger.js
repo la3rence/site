@@ -12,6 +12,11 @@ export default async function webfinger(req, res) {
     "aliases": [],
     "links": [
       {
+        "rel": "http://webfinger.net/rel/profile-page",
+        "type": "text/html",
+        "href": "${origin}/about"
+      },
+      {
         "rel": "self",
         "type": "application/activity+json",
         "href": "${origin}/api/activitypub/actor"
