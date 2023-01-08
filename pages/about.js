@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import { getMdContentById } from "../lib/ssg";
 import withView from "../components/withView";
 import Project from "../components/project";
-import config from "./../lib/config.json";
+import config from "../lib/config.mjs";
 
 const About = props => {
   return (

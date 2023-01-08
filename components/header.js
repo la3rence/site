@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import config from "../lib/config.json";
+import config from "../lib/config.mjs";
 import Logo from "./logo";
 
 export default function Header({ title, blog, image, description }) {

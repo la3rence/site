@@ -1,6 +1,6 @@
 import Blog from "../../components/blog";
 import Image from "next/image";
-import config from "../../lib/config.json";
+import config from "../../lib/config.mjs";
 import Bilibili from "../../components/bilibili";
 import Douban from "../../components/douban";
 import GitHub from "../../components/github";
