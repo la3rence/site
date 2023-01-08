@@ -29,6 +29,7 @@ export default async function publish(req, res) {
     new URL("https://mstdn.social/inbox"),
     createMessage
   );
-  console.log("res", response);
-  res.json(response);
+  const text = await response.text();
+  console.log("Following result", response.status, response.statusText, text);
+  res.end(text);
 }
