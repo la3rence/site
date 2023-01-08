@@ -5,7 +5,6 @@ export default async function webfinger(req, res) {
   origin = origin.includes("localhost")
     ? "http://" + origin
     : "https://" + origin;
-  console.log("resource", req.query.resource);
   res.statusCode = 200;
   res.setHeader("Content-Type", `application/jrd+json`);
   res.end(`{  
