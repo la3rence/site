@@ -1,5 +1,5 @@
 import A, { Icon } from "./a";
-import config from "../lib/config.json";
+import config from "../lib/config.mjs";
 import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";

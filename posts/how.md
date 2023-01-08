@@ -20,7 +20,7 @@ tag: MarkDown, Example, Guide, JAMstack
 
 **About** 页面也同理基于 `readme.md` 文件生成而来。
 
-博客相关的信息配置，如标题、作者等可在 `lib/config.json` 文件中配置。
+博客相关的信息配置，如标题、作者等可在 `lib/config.mjs` 文件中配置。
 
 推荐使用 [pnpm](https://pnpm.io/zh/) 来作为 node.js 的依赖管理工具。
 

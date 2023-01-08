@@ -3,6 +3,14 @@ module.exports = {
   // experimental: {
   //   appDir: true,
   // },
+  async rewrites() {
+    return [
+      {
+        source: "/.well-known/:param",
+        destination: "/api/.well-known/:param",
+      },
+    ];
+  },
   async redirects() {
     return [
       {

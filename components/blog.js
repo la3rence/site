@@ -4,7 +4,7 @@ import Layout from "./layout";
 import withView from "./withView";
 import { useEffect, useState } from "react";
 import "highlight.js/styles/github-dark.css";
-import config from "../lib/config.json";
+import config from "../lib/config.mjs";
 import Tag from "./tag";
 
 export default withView(props => {
