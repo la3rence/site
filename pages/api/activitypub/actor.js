@@ -15,7 +15,7 @@ export default async function actor(req, res) {
     following: `${origin}/api/activitypub/following`,
     followers: `${origin}/api/activitypub/followers`,
     inbox: `${origin}/api/activitypub/inbox`,
-    preferredUsername: config.authorName,
+    preferredUsername: config.authorName.toLowerCase(),
     name: config.siteTitle,
     summary: config.siteDescription,
     icon: [`${origin}/images/author/${config.authorName}.png`],
