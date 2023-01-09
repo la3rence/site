@@ -1,4 +1,5 @@
 import { sendSignedRequest } from "../../../lib/httpSign.mjs";
+import { saveFollower } from "./followers";
 
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
@@ -22,6 +23,7 @@ export default async function inbox(req, res) {
     console.log("follower to accept & save");
     // Accept & save to my own db
     await sendAcceptMessage(message, origin);
+    await saveFollower(message.actor);
   }
   if (message.type == "Like") {
     console.log("like to save");

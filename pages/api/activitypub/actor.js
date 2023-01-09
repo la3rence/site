@@ -28,7 +28,7 @@ export default async function actor(req, res) {
     type: "Person",
     id: `${origin}/api/activitypub/actor`,
     outbox: `${origin}/api/activitypub/outbox`,
-    following: `${origin}/api/activitypub/following`,
+    // following: `${origin}/api/activitypub/following`,
     followers: `${origin}/api/activitypub/followers`,
     inbox: `${origin}/api/activitypub/inbox`,
     preferredUsername: config.authorName.toLowerCase(),
