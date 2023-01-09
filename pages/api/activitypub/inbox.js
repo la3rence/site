@@ -1,18 +1,4 @@
-import parser, { verifySignature } from "../../../lib/signature";
-import { fetchActorInformation } from "./actor";
-
-function parseSignature(request) {
-  const { url, method, headers } = request;
-  return parser.parse({ url, method, headers });
-}
-
-async function buffer(readable) {
-  const chunks = [];
-  for await (const chunk of readable) {
-    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
-  }
-  return Buffer.concat(chunks);
-}
+import { sendSignedRequest } from "../../../lib/httpSign.mjs";
 
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
@@ -20,32 +6,22 @@ export default async function inbox(req, res) {
     res.end("method not allowed");
     return;
   }
-  console.log("inbox incoming req body", req.body);
-  // verify signature
-  const buf = await buffer(req);
-  const rawBody = buf.toString("utf8");
-  console.log("rawBody", rawBody);
-  const message = JSON.parse(rawBody);
+  let origin = req.headers.host;
+  origin = origin.includes("localhost")
+    ? "http://" + origin
+    : "https://" + origin;
+  // todo: verify signature
+  const message = req.body;
   console.log("inbox msg", message);
-  const signature = parseSignature(req);
-  const actorInformation = await fetchActorInformation(signature.keyId);
-  const signatureValid = verifySignature(signature, actorInformation.publicKey);
-  if (signatureValid == null || signatureValid == false) {
-    res.statusCode = 401;
-    res.end("invalid signature");
-    return;
-  }
-  if (actorInformation != null) {
-    console.log("actor info to save: ", actorInformation);
+  if (message.actor != null) {
+    console.log("actor info to save: ", message.actor);
     // todo: await saveActor(actorInformation);
     // Add the actor information to the message so that it's saved directly.
-    message.actor = actorInformation;
   }
-  console.log("msg type", message.type);
-  if (message.type == "Follow" && actorInformation != null) {
-    // We are following.
-    console.log("following to save");
-    // await saveFollow(message, actorInformation);
+  if (message.type == "Follow" && message.actor != null) {
+    console.log("follower to accept & save");
+    // Accept & save to my own db
+    await sendAcceptMessage(message, origin);
   }
   if (message.type == "Like") {
     console.log("like to save");
@@ -64,5 +40,22 @@ export default async function inbox(req, res) {
     // TODO: We need to update the messages
     console.log("Update message", message);
   }
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/activity+json");
   res.end("ok");
+}
+
+async function sendAcceptMessage(body, originDomain) {
+  const message = {
+    "@context": "https://www.w3.org/ns/activitystreams",
+    id: `${originDomain}}/${crypto.randomBytes(16).toString("hex")}`,
+    type: "Accept",
+    actor: `${originDomain}/api/activitypub/actor`,
+    object: body,
+  };
+  await sendSignedRequest(
+    `${origin}/api/activitypub/actor#main-key`,
+    new URL(body.actor + "/inbox"),
+    message
+  );
 }
