@@ -7,12 +7,15 @@ export default async function inbox(req, res) {
     res.end("method not allowed");
     return;
   }
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/activity+json");
   let origin = req.headers.host;
   origin = origin.includes("localhost")
     ? "http://" + origin
     : "https://" + origin;
   // todo: verify signature
-  const message = req.body;
+  const requestBody = req.body;
+  const message = JSON.parse(requestBody);
   console.log("inbox msg", message);
   if (message.actor != null) {
     console.log("actor info to save: ", message.actor);
@@ -22,8 +25,8 @@ export default async function inbox(req, res) {
   if (message.type == "Follow" && message.actor != null) {
     console.log("follower to accept & save");
     // Accept & save to my own db
-    await sendAcceptMessage(message, origin);
     await saveFollower(message.actor);
+    await sendAcceptMessage(message, origin);
   }
   if (message.type == "Like") {
     console.log("like to save");
@@ -42,8 +45,6 @@ export default async function inbox(req, res) {
     // TODO: We need to update the messages
     console.log("Update message", message);
   }
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/activity+json");
   res.end("ok");
 }
 
