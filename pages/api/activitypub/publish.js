@@ -25,7 +25,6 @@ export default async function publish(req, res) {
     object: generateNote(origin, post),
   };
   console.log("message", createMessage);
-
   const response = await sendSignedRequest(
     `${origin}/api/activitypub/actor#main-key`,
     new URL("https://mstdn.social/inbox"),

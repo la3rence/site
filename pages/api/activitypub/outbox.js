@@ -27,9 +27,10 @@ export const generateNote = (origin, post) => {
     published: new Date(post.date).toUTCString(),
     attributedTo: `${origin}/api/activitypub/actor`,
     actor: `${origin}/api/activitypub/actor`,
-    content: `<a href="${origin}/blog/${post.id}">${post.title}: ${post.description}</a>`,
+    content: `<a href="${origin}/blog/${post.id}">${post.title}</a><br>${post.description}`,
     url: `${origin}/blog/${post.id}`,
     to: ["https://www.w3.org/ns/activitystreams#Public"],
+    cc: [`${origin}/api/activitypub/followers`],
     // "replies": {
     //   "id": `${origin}/api/activitypub/reply/${post.id}`,
     //   "type": "Collection",
