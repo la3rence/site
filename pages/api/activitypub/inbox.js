@@ -18,6 +18,7 @@ export default async function inbox(req, res) {
   if (req.method !== "POST") {
     res.statusCode = 404;
     res.end("method not allowed");
+    return;
   }
   // verify signature
   const buf = await buffer(req);
