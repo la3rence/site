@@ -1,5 +1,21 @@
 import config from "../../../lib/config.mjs";
 
+export async function fetchActorInformation(actorUrl) {
+  console.log("Fetching actor from: ", actorUrl);
+  try {
+    const response = await fetch(actorUrl, {
+      headers: {
+        "Content-Type": "application/activity+json",
+        Accept: "application/activity+json",
+      },
+    });
+    return await response.json();
+  } catch (error) {
+    console.log("Unable to fetch action information", actorUrl);
+  }
+  return null;
+}
+
 export default async function actor(req, res) {
   let origin = req.headers.host;
   origin = origin.includes("localhost")
