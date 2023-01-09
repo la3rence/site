@@ -23,6 +23,7 @@ export default async function inbox(req, res) {
   // verify signature
   const buf = await buffer(req);
   const rawBody = buf.toString("utf8");
+  console.log("rawBody", rawBody);
   const message = JSON.parse(rawBody);
   console.log("inbox msg", message);
   const signature = parseSignature(req);
