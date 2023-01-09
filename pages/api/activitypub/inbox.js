@@ -1,5 +1,7 @@
 import { sendSignedRequest } from "../../../lib/httpSign.mjs";
 import { saveFollower } from "./followers";
+import { v4 as uuidv4 } from "uuid";
+
 
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
@@ -51,7 +53,7 @@ export default async function inbox(req, res) {
 async function sendAcceptMessage(body, originDomain) {
   const message = {
     "@context": "https://www.w3.org/ns/activitystreams",
-    id: `${originDomain}}/${crypto.randomBytes(16).toString("hex")}`,
+    id: `${originDomain}}/${uuidv4()}`,
     type: "Accept",
     actor: `${originDomain}/api/activitypub/actor`,
     object: body,
