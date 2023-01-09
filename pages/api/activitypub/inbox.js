@@ -2,7 +2,6 @@ import { sendSignedRequest } from "../../../lib/httpSign.mjs";
 import { saveFollower } from "./followers";
 import { v4 as uuidv4 } from "uuid";
 
-
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
     res.statusCode = 404;
