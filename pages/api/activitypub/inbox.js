@@ -20,6 +20,7 @@ export default async function inbox(req, res) {
     res.end("method not allowed");
     return;
   }
+  console.log('inbox incoming req body', req.body);
   // verify signature
   const buf = await buffer(req);
   const rawBody = buf.toString("utf8");
