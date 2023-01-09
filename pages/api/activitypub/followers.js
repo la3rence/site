@@ -7,13 +7,12 @@ export default async function followers(req, res) {
   origin = origin.includes("localhost")
     ? "http://" + origin
     : "https://" + origin;
-  const followers = await getList(FOLLOWERS_KEY);
   const response = {
     "@context": "https://www.w3.org/ns/activitystreams",
     id: `${origin}/api/activitypub/followers`,
     type: "OrderedCollection",
     totalItems: followers.length,
-    orderedItems: followers,
+    orderedItems: await getAllFollowers(),
   };
   res.json(response);
 }
@@ -23,4 +22,8 @@ export async function saveFollower(follower) {
   if (!followers.includes(follower)) {
     await pushToList(FOLLOWERS_KEY, [follower]);
   }
+}
+
+export async function getAllFollowers() {
+  return await getList(FOLLOWERS_KEY);
 }
