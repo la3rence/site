@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    {
+      "source": "/blog/:path",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*activity.*"
+        }
+      ],
+      "destination": "/api/activitypub/blog/:path"
+    }
+  ]
+}
