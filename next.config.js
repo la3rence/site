@@ -15,7 +15,7 @@ module.exports = {
           {
             type: "header",
             key: "Accept",
-            value: "(.*json.*)",
+            value: ".*application.*",
           },
         ],
         destination: "/api/activitypub/blog/:path",
