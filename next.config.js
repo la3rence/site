@@ -9,6 +9,17 @@ module.exports = {
         source: "/.well-known/:param",
         destination: "/api/.well-known/:param",
       },
+      {
+        source: "/blog/:path",
+        has: [
+          {
+            type: "header",
+            key: "Accept",
+            value: "(.*json.*)",
+          },
+        ],
+        destination: "/api/activitypub/blog/:path",
+      },
     ];
   },
   async redirects() {

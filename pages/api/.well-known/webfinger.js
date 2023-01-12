@@ -4,15 +4,15 @@ import { getOrigin } from "../../../lib/util";
 export default async function webfinger(req, res) {
   res.setHeader("Content-Type", "application/jrd+json");
   const origin = getOrigin(req);
-  // const resource = req.query.resource;
-  // if (
-  //   !resource ||
-  //   resource != `${config.activityPubUser}@${req.headers.host}`
-  // ) {
-  //   res.statusCode = 404;
-  //   res.end(`{"error": "unknown resource"}`);
-  //   return;
-  // }
+  const resource = req.query.resource;
+  if (
+    !resource ||
+    resource != `${config.activityPubUser}@${req.headers.host}`
+  ) {
+    res.statusCode = 404;
+    res.end(`{"error": "unknown resource"}`);
+    return;
+  }
   res.statusCode = 200;
   res.end(`{  
     "subject": "acct:${config.activityPubUser}@${req.headers.host}",
