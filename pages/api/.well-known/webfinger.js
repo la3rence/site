@@ -1,14 +1,21 @@
 import config from "../../../lib/config.mjs";
+import { getOrigin } from "../../../lib/util";
 
 export default async function webfinger(req, res) {
-  let origin = req.headers.host;
-  origin = origin.includes("localhost")
-    ? "http://" + origin
-    : "https://" + origin;
+  res.setHeader("Content-Type", "application/jrd+json");
+  const origin = getOrigin(req);
+  // const resource = req.query.resource;
+  // if (
+  //   !resource ||
+  //   resource != `${config.activityPubUser}@${req.headers.host}`
+  // ) {
+  //   res.statusCode = 404;
+  //   res.end(`{"error": "unknown resource"}`);
+  //   return;
+  // }
   res.statusCode = 200;
-  res.setHeader("Content-Type", `application/jrd+json`);
   res.end(`{  
-    "subject": "${config.apAccountName}",
+    "subject": "acct:${config.activityPubUser}@${req.headers.host}",
     "aliases": [],
     "links": [
       {

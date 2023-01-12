@@ -1,6 +1,6 @@
-import { sendSignedRequest } from "../../../lib/httpSign.mjs";
 import { saveFollower } from "./followers";
 import { v4 as uuidv4 } from "uuid";
+import { getOrigin, sendSignedRequest } from "../../../lib/util.js";
 
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
@@ -8,12 +8,9 @@ export default async function inbox(req, res) {
     res.end("method not allowed");
     return;
   }
+  const origin = getOrigin(req);
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/activity+json");
-  let origin = req.headers.host;
-  origin = origin.includes("localhost")
-    ? "http://" + origin
-    : "https://" + origin;
   // todo: verify signature
   const requestBody = req.body;
   const message = JSON.parse(requestBody);

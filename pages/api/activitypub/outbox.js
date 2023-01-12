@@ -1,22 +1,19 @@
 import { getMdPostsData } from "../../../lib/ssg.mjs";
+import { getOrigin, respondActivityJSON } from "../../../lib/util.js";
+import config from "../../../lib/config.mjs";
 
 export default async function outbox(req, res) {
-  let origin = req.headers.host;
-  origin = origin.includes("localhost")
-    ? "http://" + origin
-    : "https://" + origin;
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/activity+json");
+  const origin = getOrigin(req);
   const posts = await getMdPostsData();
   const outbox = {
     "@context": "https://www.w3.org/ns/activitystreams",
     id: `${origin}/api/activitypub/outbox`,
-    summary: "",
+    summary: config.siteDescription,
     type: "OrderedCollection",
     totalItems: posts.length,
     orderedItems: posts.map(post => generateNote(origin, post)),
   };
-  res.json(outbox);
+  respondActivityJSON(res, outbox);
 }
 
 export const generateNote = (origin, post) => {
