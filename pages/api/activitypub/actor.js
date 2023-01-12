@@ -20,20 +20,21 @@ export async function fetchActorInformation(actorUrl) {
 export default async function actor(req, res) {
   const origin = getOrigin(req);
   respondActivityJSON(res, {
-    "@context": ["https://www.w3.org/ns/activitystreams"],
-    type: "Person",
+    "@context": [
+      "https://www.w3.org/ns/activitystreams",
+      "https://w3id.org/security/v1",
+    ],
     id: `${origin}/api/activitypub/actor`,
-    outbox: `${origin}/api/activitypub/outbox`,
-    // following: `${origin}/api/activitypub/following`,
-    followers: `${origin}/api/activitypub/followers`,
-    inbox: `${origin}/api/activitypub/inbox`,
-    preferredUsername: config.authorName.toLowerCase(),
+    type: "Person",
     name: config.siteTitle,
+    preferredUsername: config.activityPubUser,
     summary: config.siteDescription,
+    inbox: `${origin}/api/activitypub/inbox`,
+    outbox: `${origin}/api/activitypub/outbox`,
+    followers: `${origin}/api/activitypub/followers`,
+    // following: `${origin}/api/activitypub/following`,
     icon: [`${origin}/images/author/${config.authorName}.png`],
     publicKey: {
-      "@context": "https://w3id.org/security/v1",
-      "@type": "Key",
       id: `${origin}/api/activitypub/actor#main-key`,
       owner: `${origin}/api/activitypub/actor`,
       publicKeyPem: process.env.ACTIVITYPUB_PUBLIC_KEY,
