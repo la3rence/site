@@ -14,8 +14,8 @@ module.exports = {
         has: [
           {
             type: "header",
-            key: "Accept",
-            value: ".*application.*",
+            key: "accept",
+            value: ".*activity.*",
           },
         ],
         destination: "/api/activitypub/blog/:path",
