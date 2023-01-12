@@ -1,14 +1,10 @@
 import { pushToList, getList } from "../../../lib/redis";
+import { getOrigin, respondActivityJSON } from "../../../lib/util";
 
 const FOLLOWERS_KEY = "ap:followers";
 
 export default async function followers(req, res) {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/activity+json");
-  let origin = req.headers.host;
-  origin = origin.includes("localhost")
-    ? "http://" + origin
-    : "https://" + origin;
+  const origin = getOrigin(req);
   const followers = await getAllFollowers();
   const response = {
     "@context": "https://www.w3.org/ns/activitystreams",
@@ -17,7 +13,7 @@ export default async function followers(req, res) {
     totalItems: followers.length,
     orderedItems: followers,
   };
-  res.json(response);
+  respondActivityJSON(res, response);
 }
 
 export async function saveFollower(follower) {
