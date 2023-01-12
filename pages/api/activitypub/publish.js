@@ -11,7 +11,7 @@ export default async function publish(req, res) {
   const post = await getMdContentById(id);
   const createMessage = {
     "@context": "https://www.w3.org/ns/activitystreams",
-    id: `${origin}/blog/${post.id}?create=true&id=${post.id}&v=1`,
+    id: `${origin}/api/activitypub/blog/${post.id}?create=true`,
     type: "Create",
     actor: `${origin}/api/activitypub/actor`,
     to: ["https://www.w3.org/ns/activitystreams#Public"],

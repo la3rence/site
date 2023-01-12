@@ -19,13 +19,13 @@ export default async function outbox(req, res) {
 export const generateNote = (origin, post) => {
   return {
     "@context": ["https://www.w3.org/ns/activitystreams"],
-    id: `${origin}/blog/${post.id}?id=${post.uuid ? post.uuid : post.id}&v=1`,
+    id: `${origin}/api/activitypub/blog/${post.id}`,
     type: "Note",
     published: new Date(post.date).toUTCString(),
     attributedTo: `${origin}/api/activitypub/actor`,
     // actor: `${origin}/api/activitypub/actor`,
     content: `<a href="${origin}/blog/${post.id}">${post.title}</a><br>${post.description}`,
-    // url: `${origin}/blog/${post.id}`,
+    url: `${origin}/blog/${post.id}`,
     to: ["https://www.w3.org/ns/activitystreams#Public"],
     cc: [`${origin}/api/activitypub/followers`],
     // "replies": {
