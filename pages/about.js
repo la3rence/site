@@ -43,13 +43,15 @@ const About = props => {
         </>
       )}
       <>
-        <h2 id="social-media">
-          <a href="#social-media">Social Media</a>
+        <h2 id="ActivityPub">
+          <a href="#activitypub">ActivityPub</a>
         </h2>
         <p>
-          <a rel="me" href="https://mstdn.social/@lawrence" target="_blank">
-            Mastodon
-          </a>
+          This blog is now in the <strong>Fediverse</strong>. Follow it with
+          ActivityPub:{" "}
+          <code>
+            @{config.activityPubUser}@{config.domain}
+          </code>
         </p>
       </>
     </Layout>
