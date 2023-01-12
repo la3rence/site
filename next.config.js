@@ -9,17 +9,17 @@ module.exports = {
         source: "/.well-known/:param",
         destination: "/api/.well-known/:param",
       },
-      {
-        source: "/blog/:path",
-        has: [
-          {
-            type: "header",
-            key: "accept",
-            value: ".*activity.*",
-          },
-        ],
-        destination: "/api/activitypub/blog/:path",
-      },
+      // {
+      //   source: "/blog/:path",
+      //   has: [
+      //     {
+      //       type: "header",
+      //       key: "accept",
+      //       value: "(.*activity.*)",
+      //     },
+      //   ],
+      //   destination: "/api/activitypub/blog/:path",
+      // },
     ];
   },
   async redirects() {
