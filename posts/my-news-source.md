@@ -1,9 +1,8 @@
 ---
-title: 我的信息源
-date: "2023-01-11"
-description: 最近获取信息的途径
+title: Media sites I follow
+date: "2023-01-12"
+description: Some news(tech) site I am interested in. (Chinese & English)
 tag: news, share, reading
-visible: false
 ---
 
 ## 简体中文内容
