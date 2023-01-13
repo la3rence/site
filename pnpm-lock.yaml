@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   "@microsoft/fetch-event-source": 2.0.1
   "@tailwindcss/typography": 0.5.9
-  "@vercel/analytics": 0.1.6
+  "@vercel/analytics": 0.1.7
   autoprefixer: 10.4.13
   dotenv: 16.0.3
   eslint: 8.31.0
@@ -40,7 +40,7 @@ specifiers:
 
 dependencies:
   "@microsoft/fetch-event-source": 2.0.1
-  "@vercel/analytics": 0.1.6_react@18.2.0
+  "@vercel/analytics": 0.1.7_react@18.2.0
   dotenv: 16.0.3
   fanfou-sdk: 5.0.0
   gray-matter: 4.0.3
@@ -75,7 +75,7 @@ devDependencies:
   eslint-config-next: 13.1.2_iukboom6ndih5an6iafl45j2fe
   postcss: 8.4.21
   prettier: 2.8.2
-  tailwindcss: 3.2.4
+  tailwindcss: 3.2.4_postcss@8.4.21
   typescript: 4.9.4
 
 packages:
@@ -1508,7 +1508,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4
+      tailwindcss: 3.2.4_postcss@8.4.21
     dev: true
 
   /@types/debug/4.1.7:
@@ -1674,10 +1674,10 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vercel/analytics/0.1.6_react@18.2.0:
+  /@vercel/analytics/0.1.7_react@18.2.0:
     resolution:
       {
-        integrity: sha512-zNd5pj3iDvq8IMBQHa1YRcIteiw6ZiPB8AsONHd8ieFXlNpLqhXfIYnf4WvTfZ7S1NSJ++mIM14aJnNac/VMXQ==,
+        integrity: sha512-vaHVFggK1lPBbm73NRONI/D6oBM/Ot1zIXI9IpjxgUsvQMZrO4JpPEIDvGihgnAWbzH7LfpjOOJccxRoaDRtDA==,
       }
     peerDependencies:
       react: ^16.8||^17||^18
@@ -6013,13 +6013,15 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /tailwindcss/3.2.4:
+  /tailwindcss/3.2.4_postcss@8.4.21:
     resolution:
       {
         integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
