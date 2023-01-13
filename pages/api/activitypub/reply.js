@@ -1,6 +1,6 @@
 import { insertOne, findByField } from "../../../lib/mongo";
 import { fetchActorInformation, getFediAcctFromActor } from "./actor";
-import config from "../../../lib/config.mjs";
+import { getOrigin } from "../../../lib/util";
 
 const REPLY_COLLECTION = "reply";
 
@@ -30,8 +30,9 @@ export const saveReply = async msg => {
 };
 
 export default async function reply(req, res) {
+  const origin = getOrigin(req);
   const query = {
-    inReplyTo: `${config.baseURL}${req.query.id}`,
+    inReplyTo: `${origin}${req.query.id}`,
   };
   console.log(query);
   const replies = await findByField(REPLY_COLLECTION, query);

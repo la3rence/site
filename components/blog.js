@@ -12,11 +12,13 @@ export default withView(props => {
   const [like, setLike] = useState(0);
   const [likeFlag, setLikeFlag] = useState(false);
   const [replies, setReplies] = useState([]);
+  const [pageURL, setPageURL] = useState("");
 
   useEffect(() => {
     getLikes(id);
     getReplies(id);
     setLikeFlag(!!localStorage.getItem(`like:${id}`));
+    setPageURL(window.location.href.split("?")[0]);
   }, [id]);
 
   const getReplies = async id => {
@@ -92,7 +94,7 @@ export default withView(props => {
         <div className="mx-4 text-sm">
           Seach with this URL (ActivityPub ID) in any Mastodon instance to
           comment:
-          <div className="font-mono my-2">{config.baseURL + id}</div>
+          <div className="font-mono my-2">{pageURL}</div>
           {replies.map(reply => {
             return (
               <div key={reply.url} className="mt-2">
