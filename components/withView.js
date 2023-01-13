@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 // eslint-disable-next-line react/display-name
 const withView = Component => props => {
   // skip this HOC by: return <Component {...props} />;
-
-  const { asPath: id } = useRouter();
+  const id = useRouter().asPath.split("?")[0];
   const [view, setView] = useState(0);
 
   useEffect(() => {

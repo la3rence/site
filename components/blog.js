@@ -11,11 +11,22 @@ export default withView(props => {
   const { children, title, date, author, view, id, tag } = props;
   const [like, setLike] = useState(0);
   const [likeFlag, setLikeFlag] = useState(false);
+  const [replies, setReplies] = useState([]);
+  const [pageURL, setPageURL] = useState("");
 
   useEffect(() => {
     getLikes(id);
+    getReplies(id);
     setLikeFlag(!!localStorage.getItem(`like:${id}`));
+    setPageURL(window.location.href.split("?")[0]);
   }, [id]);
+
+  const getReplies = async id => {
+    const replies = await (
+      await fetch(`/api/activitypub/reply?id=${id}`)
+    ).json();
+    setReplies(replies);
+  };
 
   const getLikes = async id => {
     const res = await (await fetch(`/api/like?page=${id}`)).json();
@@ -76,6 +87,37 @@ export default withView(props => {
           </div>
         )}
         <div className="article">{children}</div>
+      </div>
+      <hr />
+      <div>
+        <h4 id="reply">Replies</h4>
+        <div className="mx-4 mt-6 text-sm">
+          <span>Search this link in any Mastodon site to leave a comment:</span>
+          <div className="font-mono my-4">{pageURL}</div>
+          <div className="mt-6">
+            {replies.map(reply => {
+              return (
+                <div key={reply.url} className="mt-1">
+                  <div>
+                    <a
+                      href={reply.url}
+                      target="_blank"
+                      className="no-underline hover:underline"
+                    >
+                      {reply.account}{" "}
+                      <span>
+                        replied at {new Date(reply.published).toLocaleString()}:
+                      </span>
+                    </a>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: reply.content }}
+                    ></span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
       {!props.noMeta && (
         <div className="mx-2 mt-10 flex flex-nowrap">
