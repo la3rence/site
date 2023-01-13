@@ -1,6 +1,7 @@
 import { saveFollower } from "./followers";
 import { v4 as uuidv4 } from "uuid";
 import { getOrigin, sendSignedRequest } from "../../../lib/util.js";
+import { saveReply } from "./reply";
 
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
@@ -34,7 +35,8 @@ export default async function inbox(req, res) {
   }
   if (message.type == "Create") {
     // Someone is sending us a message
-    console.log("Message type Create");
+    console.log("Incoming Message To Create");
+    await saveReply(message);
   }
   if (message.type == "Undo") {
     console.log("Undo to update");

@@ -11,11 +11,20 @@ export default withView(props => {
   const { children, title, date, author, view, id, tag } = props;
   const [like, setLike] = useState(0);
   const [likeFlag, setLikeFlag] = useState(false);
+  const [replies, setReplies] = useState([]);
 
   useEffect(() => {
     getLikes(id);
+    getReplies(id);
     setLikeFlag(!!localStorage.getItem(`like:${id}`));
   }, [id]);
+
+  const getReplies = async id => {
+    const replies = await (
+      await fetch(`/api/activitypub/reply?id=${id}`)
+    ).json();
+    setReplies(replies);
+  };
 
   const getLikes = async id => {
     const res = await (await fetch(`/api/like?page=${id}`)).json();
@@ -76,6 +85,31 @@ export default withView(props => {
           </div>
         )}
         <div className="article">{children}</div>
+      </div>
+      <hr />
+      <div>
+        <h4 id="reply">Replies</h4>
+        <div className="mx-4 text-sm">
+          Seach with this URL (ActivityPub ID) in any Mastodon instance to
+          comment:
+          <div className="font-mono my-2">{config.baseURL + id}</div>
+          {replies.map(reply => {
+            return (
+              <div key={reply.url} className="mt-2">
+                <div>
+                  <a
+                    href={reply.url}
+                    target="_blank"
+                    className="no-underline hover:underline"
+                  >
+                    {reply.account}
+                  </a>
+                  : {reply.comment}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
       {!props.noMeta && (
         <div className="mx-2 mt-10 flex flex-nowrap">

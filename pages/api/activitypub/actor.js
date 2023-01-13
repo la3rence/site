@@ -1,6 +1,12 @@
 import config from "../../../lib/config.mjs";
 import { getOrigin, respondActivityJSON } from "../../../lib/util.js";
 
+export const getFediAcctFromActor = (username, actor) => {
+  const actorURL = new URL(actor);
+  const domain = actorURL.hostname;
+  return `@${username}@${domain}`;
+};
+
 export async function fetchActorInformation(actorUrl) {
   console.log("Fetching actor from: ", actorUrl);
   try {
