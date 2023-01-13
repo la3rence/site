@@ -25,7 +25,7 @@ export const saveReply = async msg => {
       content,
       account,
     });
-    console.log("inserted reply: ", inserted);
+    console.log("Inserted reply: ", inserted);
   }
 };
 
@@ -34,7 +34,6 @@ export default async function reply(req, res) {
   const query = {
     inReplyTo: `${origin}${req.query.id}`,
   };
-  console.log(query);
   const replies = await findByField(REPLY_COLLECTION, query);
   res.json(replies);
 }

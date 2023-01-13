@@ -94,26 +94,30 @@ export default withView(props => {
         <div className="mx-4 text-sm">
           Seach with this URL (ActivityPub ID) in any Mastodon instance to
           comment:
-          <div className="font-mono my-2">{pageURL}</div>
-          {replies.map(reply => {
-            return (
-              <div key={reply.url} className="mt-2">
-                <div>
-                  <a
-                    href={reply.url}
-                    target="_blank"
-                    className="no-underline hover:underline"
-                  >
-                    {reply.account}
-                  </a>
-                  :
-                  <span
-                    dangerouslySetInnerHTML={{ __html: reply.content }}
-                  ></span>
+          <div className="font-mono my-4">{pageURL}</div>
+          <div>
+            {replies.map(reply => {
+              return (
+                <div key={reply.url} className="mt-1">
+                  <div>
+                    <a
+                      href={reply.url}
+                      target="_blank"
+                      className="no-underline hover:underline"
+                    >
+                      {reply.account}{" "}
+                      <span>
+                        replied at {new Date(reply.published).toLocaleString()}:
+                      </span>
+                    </a>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: reply.content }}
+                    ></span>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
       {!props.noMeta && (
