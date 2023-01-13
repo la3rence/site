@@ -7,7 +7,7 @@ const REPLY_COLLECTION = "reply";
 // msg example: https://toot.io/users/lawrence/statuses/109679255155820013/activity
 export const saveReply = async msg => {
   if (msg.object.type === "Note") {
-    const inReployTo = msg.object.inReplyTo; // blog id
+    const inReplyTo = msg.object.inReplyTo; // blog id
     const actor = msg.actor; // who replied.
     const published = msg.published;
     const url = msg.object.url; // origin reply url
@@ -18,7 +18,7 @@ export const saveReply = async msg => {
     const account = getFediAcctFromActor(username, actor);
     // save to db
     const inserted = await insertOne(REPLY_COLLECTION, {
-      inReployTo,
+      inReplyTo,
       actor,
       published,
       url,
