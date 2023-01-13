@@ -92,9 +92,7 @@ export default withView(props => {
       <div>
         <h4 id="reply">Replies</h4>
         <div className="mx-4 mt-6 text-sm">
-          <span>
-            Search this link in any Mastodon site to leave a comment:
-          </span>
+          <span>Search this link in any Mastodon site to leave a comment:</span>
           <div className="font-mono my-4">{pageURL}</div>
           <div className="mt-6">
             {replies.map(reply => {
