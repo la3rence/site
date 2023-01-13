@@ -7,7 +7,7 @@ export default async function webfinger(req, res) {
   const resource = req.query.resource;
   if (
     !resource ||
-    resource != `${config.activityPubUser}@${req.headers.host}`
+    resource != `acct:${config.activityPubUser}@${req.headers.host}`
   ) {
     res.statusCode = 404;
     res.end(`{"error": "unknown resource"}`);
