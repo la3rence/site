@@ -106,7 +106,10 @@ export default withView(props => {
                   >
                     {reply.account}
                   </a>
-                  : {reply.content}
+                  :
+                  <span
+                    dangerouslySetInnerHTML={{ __html: reply.content }}
+                  ></span>
                 </div>
               </div>
             );
