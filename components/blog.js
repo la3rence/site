@@ -106,7 +106,7 @@ export default withView(props => {
                   >
                     {reply.account}
                   </a>
-                  : {reply.comment}
+                  : {reply.content}
                 </div>
               </div>
             );
