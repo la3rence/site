@@ -91,11 +91,12 @@ export default withView(props => {
       <hr />
       <div>
         <h4 id="reply">Replies</h4>
-        <div className="mx-4 text-sm">
-          Seach with this URL (ActivityPub ID) in any Mastodon instance to
-          comment:
+        <div className="mx-4 mt-6 text-sm">
+          <span>
+            Search this link in any Mastodon site to leave a comment:
+          </span>
           <div className="font-mono my-4">{pageURL}</div>
-          <div>
+          <div className="mt-6">
             {replies.map(reply => {
               return (
                 <div key={reply.url} className="mt-1">
