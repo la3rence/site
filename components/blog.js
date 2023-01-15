@@ -8,17 +8,15 @@ import config from "../lib/config.mjs";
 import Tag from "./tag";
 
 export default withView(props => {
-  const { children, title, date, author, view, id, tag } = props;
+  const { children, title, date, author, view, id, tag, pageURL } = props;
   const [like, setLike] = useState(0);
   const [likeFlag, setLikeFlag] = useState(false);
   const [replies, setReplies] = useState([]);
-  const [pageURL, setPageURL] = useState("");
 
   useEffect(() => {
     getLikes(id);
     getReplies(id);
     setLikeFlag(!!localStorage.getItem(`like:${id}`));
-    setPageURL(window.location.href.split("?")[0]);
   }, [id]);
 
   const getReplies = async id => {
@@ -48,7 +46,7 @@ export default withView(props => {
   };
 
   return (
-    <Layout blog {...props}>
+    <Layout blog {...props} domain={new URL(pageURL).hostname}>
       <div className="blog" id={id}>
         <h1 id="title" className="articleTitle cursor-pointer mt-28">
           <a href={`#title`} className="no-underline">

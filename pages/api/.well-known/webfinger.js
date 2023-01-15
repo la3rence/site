@@ -3,6 +3,7 @@ import { getOrigin } from "../../../lib/util";
 
 export default async function webfinger(req, res) {
   res.setHeader("Content-Type", "application/jrd+json");
+  res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=60");
   const origin = getOrigin(req);
   const resource = req.query.resource;
   if (

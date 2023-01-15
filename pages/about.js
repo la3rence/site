@@ -50,7 +50,7 @@ const About = props => {
           This blog is now in the <strong>Fediverse</strong>. Follow it with
           ActivityPub:{" "}
           <code>
-            @{config.activityPubUser}@{config.domain}
+            @{config.activityPubUser}@{props.domain}
           </code>
         </p>
       </>

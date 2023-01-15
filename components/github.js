@@ -14,7 +14,7 @@ export default function GitHub(props) {
     const getGitHubRepo = async (user, repo) => {
       const res = await fetch(`https://api.github.com/repos/${user}/${repo}`);
       const data = await res.json();
-      console.log("data", data);
+      console.debug("GitHub API", data);
       setData(data);
     };
     getGitHubRepo(props.user, props.repo);

@@ -12,7 +12,6 @@ export default function Douban(props) {
       const res = await fetch(`https://douban.8610000.xyz/data/${id}.json`);
       const json = await res.json();
       setMovie(json);
-      // console.log(json);
     };
     fetchMovie(props.id).catch(console.error);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,7 +20,6 @@ export default function Douban(props) {
   return (
     <div
       className={`flex h-36 cursor-pointer border my-4 dark:border-gray-500 shadow-lg 
-      hover:scale-105 hover:transition-transform duration-300
       ${props.reverse ? "flex-row-reverse" : ""}`}
     >
       <div className="w-2/3 flex flex-col px-4">
