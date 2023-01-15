@@ -17,16 +17,16 @@ const Footer = () => {
     setMounted(true);
   }, []);
 
-  const QR = () => (
-    <div className={"p-1 border inline-block mt-2"}>
-      <QRCode
-        value={window.location.href}
-        size={64}
-        bgColor="#fff"
-        fgColor="#222"
-      />
-    </div>
-  );
+  // const QR = () => (
+  //   <div className={"p-1 border inline-block mt-2"}>
+  //     <QRCode
+  //       value={window.location.href}
+  //       size={64}
+  //       bgColor="#fff"
+  //       fgColor="#222"
+  //     />
+  //   </div>
+  // );
 
   if (!mounted) {
     return null;
