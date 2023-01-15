@@ -2,15 +2,15 @@ import A, { Icon } from "./a";
 import config from "../lib/config.mjs";
 import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import { SocialIcon } from "react-social-icons";
+// import { useTheme } from "next-themes";
+// import { SocialIcon } from "react-social-icons";
 
 let { siteTitle, twitter, github, authorEmail } = config;
 
 const Footer = () => {
-  let [showQR, setShouQR] = useState(false);
-  const showQRCode = () => setShouQR(!showQR);
-  const { theme, setTheme } = useTheme();
+  // let [showQR, setShouQR] = useState(false);
+  // const showQRCode = () => setShouQR(!showQR);
+  // const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
