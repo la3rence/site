@@ -1,7 +1,8 @@
 import A, { Icon } from "./a";
 import config from "../lib/config.mjs";
-import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
+
+// import QRCode from "react-qr-code";
 // import { useTheme } from "next-themes";
 // import { SocialIcon } from "react-social-icons";
 
