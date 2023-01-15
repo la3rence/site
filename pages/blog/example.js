@@ -11,7 +11,7 @@ export const blogProps = {
   title: "Example",
   date: "2022-08-26",
   someKey: "someValeInJSXProps",
-  tag: "Example, Test, Video, Douban",
+  tags: "Example, Test, Video, Douban",
 };
 
 export default function Example() {

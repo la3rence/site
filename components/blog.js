@@ -8,7 +8,7 @@ import config from "../lib/config.mjs";
 import Tag from "./tag";
 
 export default withView(props => {
-  const { children, title, date, author, view, id, tag, pageURL } = props;
+  const { children, title, date, author, view, id, tags, pageURL } = props;
   const [like, setLike] = useState(0);
   const [likeFlag, setLikeFlag] = useState(false);
   const [replies, setReplies] = useState([]);
@@ -86,12 +86,33 @@ export default withView(props => {
         )}
         <div className="article">{children}</div>
       </div>
-      <hr />
+      {!props.noMeta && (
+        <div className="mx-2 mt-10 mb-5 flex flex-nowrap">
+          <div className="flex-1" id="like">
+            {config.enableLike && (
+              <button
+                className={`${
+                  likeFlag ? "bg-yellow-300 dark:bg-zinc-700" : ""
+                } w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300`}
+                onClick={addLike}
+              >
+                👍 {like > 0 && like}
+              </button>
+            )}
+          </div>
+          <div id="tags">
+            {tags && tags.split(",").map(each => <Tag tag={each} key={each} />)}
+          </div>
+        </div>
+      )}
+      <hr className="my-0" />
       <div>
-        <h4 id="reply">Replies</h4>
-        <div className="mx-4 mt-6 text-sm">
-          <span>Search this link in any Mastodon site to leave a comment:</span>
-          <div className="font-mono my-4">{pageURL}</div>
+        <h4 id="reply">
+          Replies {replies.length > 0 ? `(${replies.length})` : ""}
+        </h4>
+        <div className="mx-4 mt-4 text-sm">
+          <span>Search this URL on mastodon to reply:</span>
+          <div className="font-mono my-4 break-words">{pageURL}</div>
           <div className="mt-6">
             {replies.map(reply => {
               return (
@@ -117,25 +138,6 @@ export default withView(props => {
           </div>
         </div>
       </div>
-      {!props.noMeta && (
-        <div className="mx-2 mt-10 flex flex-nowrap">
-          {config.enableLike && (
-            <div className="flex-1" id="like">
-              <button
-                className={`${
-                  likeFlag ? "bg-yellow-300 dark:bg-zinc-700" : ""
-                } w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300`}
-                onClick={addLike}
-              >
-                👍 {like > 0 && like}
-              </button>
-            </div>
-          )}
-          <div id="tag">
-            {tag && tag.split(",").map(each => <Tag tag={each} key={each} />)}
-          </div>
-        </div>
-      )}
     </Layout>
   );
 });

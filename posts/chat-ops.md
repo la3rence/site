@@ -2,7 +2,7 @@
 title: "基于 Go 的 ChatOps 实践"
 date: "2021-02-06"
 description: "DevOps / ChatOps with Dingtalk by GoLang (bot) 钉钉机器人开发应用于运维自动化 Jenkins + WebHook + Git + Pull Request"
-tag: DevOps, GoLang, ChatOps, CI/CD
+tags: DevOps, GoLang, ChatOps, CI/CD
 ---
 
 聊着天就把活干了。

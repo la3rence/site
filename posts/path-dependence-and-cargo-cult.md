@@ -2,7 +2,7 @@
 title: "路径依赖与货物崇拜"
 date: "2019-03-12"
 description: "关于职业规划的思考——软件工程师如何避免陷入路径依赖与货物崇拜编程。"
-tag: Viewpoint, Career
+tags: Viewpoint, Career
 ---
 
 警惕、避免。

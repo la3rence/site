@@ -2,7 +2,7 @@
 title: "Linux 下进程间通信的实例"
 date: "2017-03-10"
 description: "Linux process communication examples"
-tag: linux, note
+tags: linux, note
 visible: false
 ---
 

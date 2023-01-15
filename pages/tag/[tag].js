@@ -33,7 +33,7 @@ export default function TagPage(props) {
             </span>
             <div className="font-mono pt-2">
               <span className="pr-2">{post.date}</span>
-              {post.tag.split(",").map(tag => (
+              {post.tags.split(",").map(tag => (
                 <Tag tag={tag} key={tag} />
               ))}
             </div>

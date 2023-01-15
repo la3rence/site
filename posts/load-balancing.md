@@ -2,7 +2,7 @@
 title: "四层负载均衡和七层负载均衡"
 date: "2018-10-09"
 description: "在于 OSI 的层级"
-tag: Network
+tags: Network
 ---
 
 对于初次了解负载均衡的人来说，可能会被理解成「四次负载均衡」、「七次负载均衡」，这就完全错了。这里要理解的话直接参考英文：layer 4 load-balancing & layer 7 load-balancing. 其实应当理解为工作在 OSI 第四层、第七层的负载均衡。

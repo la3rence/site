@@ -33,12 +33,12 @@ const Footer = () => {
   }
 
   return (
-    <div className="mx-4 mt-16 mb-4 text-sm text-gray-400 text-center">
+    <div className="mx-4 mt-16 mb-24 text-sm text-gray-400 text-center">
       <Icon network="twitter" url={`https://twitter.com/${twitter}`} />
-      <Icon network="github" url={`https://github.com/${github}`} />
       <Icon network="email" url={`mailto:${authorEmail}`} />
-      <Icon onClick={showQRCode} />
-      <SocialIcon
+      <Icon network="github" url={`https://github.com/${github}`} />
+      {/* <Icon onClick={showQRCode} /> */}
+      {/* <SocialIcon
         network="tiktok"
         style={{ height: 20, width: 20 }}
         className="ml-2 cursor-pointer hover:scale-150 hover:transition-transform rounded-full border-2 border-zinc-300 dark:border-zinc-600"
@@ -51,13 +51,14 @@ const Footer = () => {
             setTheme("light");
           }
         }}
-      />
-      <br />
-      <A href="/" self="true">
-        {new Date().getFullYear()} ©️ {siteTitle}
-      </A>
-      <br />
-      {showQR && <QR />}
+      /> */}
+      <div className="mt-2">
+        <A href="/" self="true">
+          {new Date().getFullYear()} ©️{" "}
+          <span className="underline">{siteTitle}</span>
+        </A>
+      </div>
+      {/* {showQR && <QR />} */}
     </div>
   );
 };

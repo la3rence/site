@@ -24,7 +24,7 @@ export const blogProps = {
   author: "OpenAI",
   title: "Demo: ChatGPT",
   date: "2022-12-02",
-  tag: "AI, Chat, SSE",
+  tags: "AI, Chat, SSE",
 };
 
 const Message = ({ type, text }) => {
