@@ -55,6 +55,29 @@ openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 ```
 
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1"
+  ],
+  "id": "https://lawrenceli.me/api/activitypub/actor",
+  "type": "Person",
+  "name": "Lawrence Li",
+  "preferredUsername": "lawrence",
+  "summary": "Blog",
+  "inbox": "https://lawrenceli.me/api/activitypub/inbox",
+  "outbox": "https://lawrenceli.me/api/activitypub/outbox",
+  "followers": "https://lawrenceli.me/api/activitypub/followers",
+  "icon": ["https://lawrenceli.me/images/author/Lawrence.png"],
+  "publicKey": {
+    "id": "https://lawrenceli.me/api/activitypub/actor#main-key",
+    "owner": "https://lawrenceli.me/api/activitypub/actor",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0RHqCKo3Zl+ZmwsyJUFe\niUBYdiWQe6C3W+d89DEzAEtigH8bI5lDWW0Q7rT60eppaSnoN3ykaWFFOrtUiVJT\nNqyMBz3aPbs6BpAE5lId9aPu6s9MFyZrK5QtuWfAGwv9VZPwUHrEJCFiY1G5IgK/\n+ZErSKYUTUYw2xSAZnLkalMFTRmLbmj8SlWp/5fryQd4jyRX/tBlsyFs/qvuwBtw\nuGSkWgTIMAYV71Wny9ns+Nwr4HYfF5eo2zInpwIYTCEbil79HcikUUTTO/vMMoqx\n46IiHcMj0SPlzDXxelZgqm0ojK2Z7BGudjvwSbWq/GtLoaXHeMUVpcOCtpyvtLr2\nYwIDAQAB\n-----END PUBLIC KEY-----"
+  }
+}
+```
+
 ## Outbox
 
 类似 RSS/JSON Feed, 类型为 `OrderedCollection`，必须按照时间顺序将最新内容放在 `orderedItems` 的最前。
