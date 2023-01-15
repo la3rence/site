@@ -5,12 +5,12 @@ import config from "../lib/config.mjs";
 // eslint-disable-next-line react/display-name
 const withView = Component => props => {
   // skip this HOC by: return <Component {...props} />;
-  const id = useRouter().asPath.split("?")[0];
+  const id = useRouter().asPath.split("?")[0].split("#")[0];
   const [view, setView] = useState(0);
   const [pageURL, setPageURL] = useState(config.baseURL + id);
 
   useEffect(() => {
-    setPageURL(window.location.href.split("?")[0]);
+    setPageURL(window.location.href.split("?")[0].split("#")[0]);
     getViews(id);
   }, [id]);
 

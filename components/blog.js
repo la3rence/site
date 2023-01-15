@@ -47,7 +47,7 @@ export default withView(props => {
 
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
-      <div className="blog" id={id}>
+      <div className="blog">
         <h1 id="title" className="articleTitle cursor-pointer mt-28">
           <a href={`#title`} className="no-underline">
             {title}
