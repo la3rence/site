@@ -5,6 +5,7 @@ const languageColorMapping = {
   Java: "bg-[#b07219]",
   Go: "bg-[#00ADD8]",
   JavaScript: "bg-[#f1e05a]",
+  TypeScript: "bg-[#3178c6]",
 };
 
 export default function GitHub(props) {
