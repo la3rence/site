@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import StarRating from "react-star-ratings";
 import useSWR from "swr";
-import Skeleton from "./skeleton";
-import { fetcher, swrConfig } from "../lib/util";
+import Skeleton, { fetcher, swrConfig } from "./loading";
 
 export default function Douban({ id, reverse }) {
   const [mounted, setMounted] = useState(false);

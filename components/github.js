@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
-import Skeleton from "./skeleton";
+import Skeleton, { fetcher, swrConfig } from "./loading";
 import useSWR from "swr";
-import { fetcher, swrConfig } from "../lib/util";
 
 const languageColorMapping = {
   Java: "bg-[#b07219]",

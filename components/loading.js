@@ -18,3 +18,20 @@ export default function Skeleton() {
     </div>
   );
 }
+
+export const swrConfig = {
+  revalidateIfStale: false,
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+};
+
+export const fetcher = async (...args) => {
+  // sleep 500ms because I like to see the skeleton
+  await new Promise(x => setTimeout(x, 500));
+  const res = await fetch(...args);
+  if (!res.ok) {
+    // weird, error uncaught when use with suspense enabled
+    return Promise.reject(res);
+  }
+  return res.json();
+};
