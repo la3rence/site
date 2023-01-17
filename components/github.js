@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
+import Skeleton, { fetcher, swrConfig } from "./loading";
+import useSWR from "swr";
 
 const languageColorMapping = {
   Java: "bg-[#b07219]",
@@ -8,24 +10,27 @@ const languageColorMapping = {
   TypeScript: "bg-[#3178c6]",
 };
 
-export default function GitHub(props) {
-  const [data, setData] = useState({});
+export default function GitHub({ user, repo }) {
+  const [mounted, setMounted] = useState(false);
+  const { data, error } = useSWR(
+    mounted ? `https://api.github.com/repos/${user}/${repo}` : null,
+    fetcher,
+    swrConfig
+  );
 
   useEffect(() => {
-    const getGitHubRepo = async (user, repo) => {
-      const res = await fetch(`https://api.github.com/repos/${user}/${repo}`);
-      const data = await res.json();
-      console.debug("GitHub API", data);
-      setData(data);
-    };
-    getGitHubRepo(props.user, props.repo);
+    setMounted(true);
   }, []);
 
+  if (error || !data) {
+    return <Skeleton />;
+  }
+
   return (
-    <div className="border border-zinc-500 my-5 flex items-center">
+    <div className="border border-zinc-500 my-6 flex items-center shadow-lg">
       <div className="flex-1">
-        <p className="my-1">
-          📔{" "}
+        <p className="my-2">
+          <span className="mr-1">📔</span>
           <a href={data.html_url} target="_blank">
             {data.name}
           </a>
@@ -34,7 +39,7 @@ export default function GitHub(props) {
           </span>
         </p>
         <p className="my-3 text-sm">{data.description}</p>
-        <p className="my-2 text-sm">
+        <p className="my-3 text-sm">
           {data && (
             <span
               className={`w-3 h-3 inline-block rounded-full mr-1 ${
