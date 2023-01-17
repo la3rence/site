@@ -1,26 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import StarRating from "react-star-ratings";
+import useSWR from "swr";
+import Skeleton from "./skeleton";
+import { fetcher, swrConfig } from "../lib/util";
 
-export default function Douban(props) {
-  const [movie, setMovie] = useState({
-    intro: "Loading...",
-  });
+export default function Douban({ id, reverse }) {
+  const [mounted, setMounted] = useState(false);
 
+  const { data: movie, error } = useSWR(
+    mounted ? `https://douban.8610000.xyz/data/${id}.json` : null,
+    fetcher,
+    swrConfig
+  );
   useEffect(() => {
-    const fetchMovie = async id => {
-      const res = await fetch(`https://douban.8610000.xyz/data/${id}.json`);
-      const json = await res.json();
-      setMovie(json);
-    };
-    fetchMovie(props.id).catch(console.error);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setMounted(true);
   }, []);
+
+  if (!movie || error) {
+    return <Skeleton />;
+  }
 
   return (
     <div
       className={`flex h-36 cursor-pointer border my-4 dark:border-gray-500 shadow-lg 
-      ${props.reverse ? "flex-row-reverse" : ""}`}
+      ${reverse ? "flex-row-reverse" : ""}`}
     >
       <div className="w-2/3 flex flex-col px-4">
         <div className="truncate py-2 flex">
