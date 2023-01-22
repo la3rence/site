@@ -48,7 +48,7 @@ Nacos 的维护人员竟然没有能够理解这样的需求，还是有点令�
 最终效果如下, 上线一个新的服务实例后，客户端会自动根据最新哈希环重新路由到最新节点上，收发消息一切正常：
 
 <div class="embed">
-  <iframe src="//player.bilibili.com/player.html?bvid=BV1sg411q78V&danmaku=0&high_quality=1"
+  <iframe src="//www.bilibili.com/blackboard/html5mobileplayer.html?bvid=BV1sg411q78V&danmaku=0&high_quality=1"
   ></iframe>
 </div>
 

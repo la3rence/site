@@ -105,7 +105,7 @@ export default withView(props => {
           </div>
         </div>
       )}
-      <hr className="my-0" />
+      <hr className="no-prose"></hr>
       <div>
         <h4 id="reply">
           Replies {replies.length > 0 ? `(${replies.length})` : ""}
