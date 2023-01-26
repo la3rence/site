@@ -29,7 +29,7 @@
     "react-qr-code": "^2.0.8",
     "react-social-icons": "5.15.0",
     "react-star-ratings": "^2.3.0",
-    "redis": "4.6.0",
+    "redis": "4.6.1",
     "rehype-autolink-headings": "6.1.1",
     "rehype-external-links": "2.0.1",
     "rehype-highlight": "6.0.0",
