@@ -3,4 +3,5 @@ node_modules
 .idea
 .obsidian
 .git
-atom.xml
+public/atom*
+public/sitemap*
