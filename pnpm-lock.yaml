@@ -15,6 +15,7 @@ specifiers:
   markdown-it: 13.0.1
   mongodb: ^4.13.0
   next: 13.1.6
+  next-sitemap: ^3.1.48
   next-themes: 0.2.1
   postcss: 8.4.21
   prettier: 2.8.3
@@ -50,6 +51,7 @@ dependencies:
   markdown-it: 13.0.1
   mongodb: 4.13.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+  next-sitemap: 3.1.48_next@13.1.6
   next-themes: 0.2.1_3vryta7zmbcsw4rrqf4axjqggm
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -77,7 +79,7 @@ devDependencies:
   eslint-config-next: 13.1.6_zkdaqh7it7uc4cvz2haft7rc6u
   postcss: 8.4.21
   prettier: 2.8.3
-  tailwindcss: 3.2.4_postcss@8.4.21
+  tailwindcss: 3.2.4
   typescript: 4.9.4
 
 packages:
@@ -1114,6 +1116,13 @@ packages:
       regenerator-runtime: 0.13.11
     dev: true
 
+  /@corex/deepmerge/4.0.37:
+    resolution:
+      {
+        integrity: sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw==,
+      }
+    dev: false
+
   /@eslint/eslintrc/1.4.1:
     resolution:
       {
@@ -1510,7 +1519,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_postcss@8.4.21
+      tailwindcss: 3.2.4
     dev: true
 
   /@types/debug/4.1.7:
@@ -4715,7 +4724,6 @@ packages:
       {
         integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==,
       }
-    dev: true
 
   /mongodb-connection-string-url/2.6.0:
     resolution:
@@ -4786,6 +4794,22 @@ packages:
         integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==,
       }
     dev: true
+
+  /next-sitemap/3.1.48_next@13.1.6:
+    resolution:
+      {
+        integrity: sha512-cUyjkoac+HeYrn8m3Pwq7DbcSK9+wW+AgPI7Q0Ipv85p4qDKTznS95ihahJXVKLZNRMTV6V45cxStiXW8+I2dA==,
+      }
+    engines: { node: ">=14.18" }
+    hasBin: true
+    peerDependencies:
+      "@next/env": "*"
+      next: "*"
+    dependencies:
+      "@corex/deepmerge": 4.0.37
+      minimist: 1.2.7
+      next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+    dev: false
 
   /next-themes/0.2.1_3vryta7zmbcsw4rrqf4axjqggm:
     resolution:
@@ -6028,15 +6052,13 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /tailwindcss/3.2.4_postcss@8.4.21:
+  /tailwindcss/3.2.4:
     resolution:
       {
         integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
