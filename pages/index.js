@@ -3,25 +3,44 @@ import withView from "../components/withView";
 import Layout from "./../components/layout";
 import { getAllPostData } from "../lib/ssg";
 
+const getYear = date => new Date(date).getFullYear();
+
 const Index = function index({ allPostsData }) {
-  const hoverTabStyle =
-    "hover:bg-gray-200 transition duration-200 dark:hover:bg-gray-700 dark:text-gray-300";
+  const aggregatedPosts = allPostsData.reduce((result, currentPost) => {
+    (result[getYear(currentPost.date)] =
+      result[getYear(currentPost.date)] || []).push(currentPost);
+    return result;
+  }, {});
   return (
     <Layout blogIndex title={"Blog"}>
       <div className="blogIndex mt-8">
-        {allPostsData.map(post => (
-          <div className="my-4" key={post.id}>
-            <span className="font-mono text-gray-500">{post.date}</span>
-            <span className="p-2">
-              <Link
-                href={`/blog/${post.id}`}
-                className={`p-3 no-underline font-normal ${hoverTabStyle}`}
-              >
-                <span>{post.title}</span>
-              </Link>
-            </span>
-          </div>
-        ))}
+        {Object.keys(aggregatedPosts)
+          .sort((a, b) => b - a)
+          .map(year => {
+            return (
+              <div key={year}>
+                <div
+                  className="text-zinc-400 dark:text-zinc-600 text-2xl mt-12 mb-6"
+                  id={year}
+                >
+                  {year}
+                </div>
+                {aggregatedPosts[year].map(post => (
+                  <div className="my-4" key={post.id}>
+                    <Link
+                      href={`/blog/${post.id}`}
+                      className={`text-lg font-normal no-underline hover:text-zinc-500`}
+                    >
+                      <span>{post.title}</span>
+                      <span className="font-mono text-base text-zinc-500 float-right">
+                        {post.date}
+                      </span>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
       </div>
     </Layout>
   );
