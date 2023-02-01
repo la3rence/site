@@ -4,7 +4,7 @@ module.exports = {
   //   appDir: true,
   // },
   i18n: {
-    locales: ["zh", "en"],
+    locales: ["zh"],
     defaultLocale: "zh",
   },
   async rewrites() {
