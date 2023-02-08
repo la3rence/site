@@ -18,7 +18,7 @@ specifiers:
   next-sitemap: ^3.1.48
   next-themes: 0.2.1
   postcss: 8.4.21
-  prettier: 2.8.3
+  prettier: 2.8.4
   react: 18.2.0
   react-dom: 18.2.0
   react-social-icons: 5.15.0
@@ -76,7 +76,7 @@ devDependencies:
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   postcss: 8.4.21
-  prettier: 2.8.3
+  prettier: 2.8.4
   tailwindcss: 3.2.4_postcss@8.4.21
   typescript: 4.9.5
 
@@ -4215,10 +4215,10 @@ packages:
     engines: { node: ">= 0.8.0" }
     dev: true
 
-  /prettier/2.8.3:
+  /prettier/2.8.4:
     resolution:
       {
-        integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==,
+        integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==,
       }
     engines: { node: ">=10.13.0" }
     hasBin: true
