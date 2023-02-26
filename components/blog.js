@@ -87,57 +87,61 @@ export default withView(props => {
         <div className="article">{children}</div>
       </div>
       {!props.noMeta && (
-        <div className="mx-2 mt-10 mb-5 flex flex-nowrap">
-          <div className="flex-1" id="like">
-            {config.enableLike && (
-              <button
-                className={`${
-                  likeFlag ? "bg-yellow-300 dark:bg-zinc-700" : ""
-                } w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300`}
-                onClick={addLike}
-              >
-                👍 {like > 0 && like}
-              </button>
-            )}
+        <>
+          <div className="mx-2 mt-10 mb-5 flex flex-nowrap">
+            <div className="flex-1" id="like">
+              {config.enableLike && (
+                <button
+                  className={`${
+                    likeFlag ? "bg-yellow-300 dark:bg-zinc-700" : ""
+                  } w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300`}
+                  onClick={addLike}
+                >
+                  👍 {like > 0 && like}
+                </button>
+              )}
+            </div>
+            <div id="tags">
+              {tags &&
+                tags.split(",").map(each => <Tag tag={each} key={each} />)}
+            </div>
           </div>
-          <div id="tags">
-            {tags && tags.split(",").map(each => <Tag tag={each} key={each} />)}
+          <hr className="no-prose"></hr>
+          <div>
+            <h4 id="reply">
+              Replies {replies.length > 0 ? `(${replies.length})` : ""}
+            </h4>
+            <div className="mx-4 mt-4 text-sm">
+              <span>Search this URL on mastodon to reply:</span>
+              <div className="font-mono my-4 break-words">{pageURL}</div>
+              <div className="mt-6">
+                {replies.map(reply => {
+                  return (
+                    <div key={reply.url} className="mt-1">
+                      <div>
+                        <a
+                          href={reply.url}
+                          target="_blank"
+                          className="no-underline hover:underline"
+                        >
+                          {reply.account}{" "}
+                          <span>
+                            replied at{" "}
+                            {new Date(reply.published).toLocaleString()}:
+                          </span>
+                        </a>
+                        <span
+                          dangerouslySetInnerHTML={{ __html: reply.content }}
+                        ></span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
-      <hr className="no-prose"></hr>
-      <div>
-        <h4 id="reply">
-          Replies {replies.length > 0 ? `(${replies.length})` : ""}
-        </h4>
-        <div className="mx-4 mt-4 text-sm">
-          <span>Search this URL on mastodon to reply:</span>
-          <div className="font-mono my-4 break-words">{pageURL}</div>
-          <div className="mt-6">
-            {replies.map(reply => {
-              return (
-                <div key={reply.url} className="mt-1">
-                  <div>
-                    <a
-                      href={reply.url}
-                      target="_blank"
-                      className="no-underline hover:underline"
-                    >
-                      {reply.account}{" "}
-                      <span>
-                        replied at {new Date(reply.published).toLocaleString()}:
-                      </span>
-                    </a>
-                    <span
-                      dangerouslySetInnerHTML={{ __html: reply.content }}
-                    ></span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
     </Layout>
   );
 });
