@@ -1,12 +1,9 @@
 import { useRef, useState } from "react";
 import Blog from "../components/blog";
-import { v4 as uuidv4 } from "uuid";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import MarkdownIt from "markdown-it";
 import hljs from "highlight.js";
-
-let messageParentId = null;
-let conversationId = null;
+import withView from "../components/withView";
 
 const md = new MarkdownIt({
   highlight: function (str, lang) {
@@ -21,9 +18,9 @@ const md = new MarkdownIt({
 });
 
 export const blogProps = {
-  author: "OpenAI",
-  title: "Demo: ChatGPT",
-  date: "2022-12-02",
+  author: "Phind AI",
+  title: "AI Search Engine",
+  date: "2022-02-26",
   tags: "AI, Chat, SSE",
 };
 
@@ -75,33 +72,26 @@ const Chat = () => {
   };
 
   const answer = async question => {
-    console.debug("messageCacheId", messageParentId);
-    console.debug("conversationId", conversationId);
     let reply = "";
     chat.push({ type: "ai", message: reply });
     await fetchEventSource(process.env.NEXT_PUBLIC_CHAT_API, {
       method: "POST",
       mode: "cors",
       headers: {
-        Accept: "text/event-stream",
+        accept: "*/*",
       },
       body: JSON.stringify({
-        id: uuidv4(),
-        message: question,
-        message_pid: messageParentId ? messageParentId : uuidv4(),
-        conversation_id: conversationId ? conversationId : "",
+        question,
+        bingResults: {},
       }),
       onmessage(event) {
-        if (event.data === "[DONE]") {
-          return;
-        }
         chat.pop();
         setChat([...chat]);
         const data = JSON.parse(event.data);
-        console.debug("sse onmessage", event.data);
-        reply = data.message?.content?.parts?.[0];
-        conversationId = data.conversation_id;
-        messageParentId = data.message.id;
+        console.debug("sse onmessage", data.token);
+        if (data.token) {
+          reply += data.token;
+        }
         chat.push({
           type: "ai",
           message: reply,
@@ -155,4 +145,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default withView(Chat);
