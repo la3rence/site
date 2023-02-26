@@ -45,18 +45,22 @@ const Message = ({ type, text }) => {
   );
 };
 
-const Chat = () => {
+const Chat = props => {
+  const { q } = props;
+
   const [chat, setChat] = useState([
     {
       type: "ai",
-      message: `在下方输入问题向 AI 提问（支持任意语言）。
-      测试用，请勿分享页面给他人。不建议使用网络用语。禁止敏感字眼。受限于网络状况回复可能较慢。`,
+      message: `输入问题向 AI 提问。`,
     },
   ]);
 
   const inputRef = useRef();
   const bottomRef = useRef(null);
   useEffect(() => {
+    (async function sendQ() {
+      await send();
+    })();
     bottomRef.current.scrollIntoView({ behavior: "smooth" });
   }, [chat]);
 
@@ -141,6 +145,7 @@ const Chat = () => {
             ref={inputRef}
             type="text"
             placeholder="Ask AI..."
+            defaultValue={q}
             onKeyDown={handleKeyDown}
             className="h-12 px-4 py-3 bg-zinc-200 flex-1 dark:bg-zinc-800 rounded-none outline-none"
           />
@@ -157,3 +162,18 @@ const Chat = () => {
 };
 
 export default withView(Chat);
+
+export async function getServerSideProps(context) {
+  const { q } = context.query;
+  if (q) {
+    return {
+      props: {
+        q,
+      },
+    };
+  } else {
+    return {
+      props: {},
+    };
+  }
+}
