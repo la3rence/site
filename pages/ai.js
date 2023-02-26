@@ -17,13 +17,6 @@ const md = new MarkdownIt({
   },
 });
 
-export const blogProps = {
-  author: "Phind AI",
-  title: "AI Search Engine",
-  date: "2022-02-26",
-  tags: "AI, Chat, SSE",
-};
-
 const Message = ({ type, text }) => {
   if (type === "human") {
     return (
@@ -51,7 +44,7 @@ const Chat = props => {
   const [chat, setChat] = useState([
     {
       type: "ai",
-      message: `输入问题向 AI 提问。`,
+      message: `输入问题向 AI 提问`,
     },
   ]);
 
@@ -127,7 +120,7 @@ const Chat = props => {
   };
 
   return (
-    <Blog noMeta noFooter {...blogProps}>
+    <Blog noMeta noFooter title={`AI Search${q ? ": " + q : ""}`}>
       <div>
         {chat.map((messageObj, index) => {
           return (
