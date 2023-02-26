@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Blog from "../components/blog";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import MarkdownIt from "markdown-it";
@@ -55,6 +55,16 @@ const Chat = () => {
   ]);
 
   const inputRef = useRef();
+  const bottomRef = useRef(null);
+  useEffect(() => {
+    bottomRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
+
+  const handleKeyDown = event => {
+    if (event.keyCode === 13) {
+      send();
+    }
+  };
 
   const send = async () => {
     const question = inputRef.current.value;
@@ -81,7 +91,7 @@ const Chat = () => {
         accept: "*/*",
       },
       body: JSON.stringify({
-        question,
+        question: `用中文回复: ${question}`,
         bingResults: {},
       }),
       onmessage(event) {
@@ -125,12 +135,13 @@ const Chat = () => {
           );
         })}
       </div>
-      <div id="input" className="mt-20">
+      <div ref={bottomRef} id="input" className="mt-20">
         <div className="flex">
           <input
             ref={inputRef}
             type="text"
             placeholder="Ask AI..."
+            onKeyDown={handleKeyDown}
             className="h-12 px-4 py-3 bg-zinc-200 flex-1 dark:bg-zinc-800 rounded-none outline-none"
           />
           <button
