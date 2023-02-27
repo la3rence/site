@@ -30,7 +30,7 @@ const Message = ({ type, text }) => {
   }
   return (
     <div
-      className="bg-zinc-300 dark:bg-zinc-800 prose-p:p-2 prose-p:my-0 prose-pre:p-2 prose-pre:my-0"
+      className="bg-zinc-300 dark:bg-zinc-800 py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
       dangerouslySetInnerHTML={{
         __html: md.render(`🤖️ ${text}`),
       }}
@@ -120,7 +120,12 @@ const Chat = props => {
   };
 
   return (
-    <Blog noMeta noFooter title={`AI Search${q ? ": " + q : ""}`}>
+    <Blog
+      noMeta
+      noFooter
+      title={`AI Search${q ? ": " + q : ""}`}
+      description="Get instant answers, explanations, and examples for all of your technical questions."
+    >
       <div>
         {chat.map((messageObj, index) => {
           return (
