@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "./layout";
@@ -118,22 +119,33 @@ export default withView(props => {
                 {replies.map(reply => {
                   return (
                     <div key={reply.url} className="mt-1">
-                      <div>
+                      <div className="flex">
+                        <span className="mr-2">
+                          <img
+                            className="rounded-full m-0"
+                            width={25}
+                            height={25}
+                            src={reply.avatar}
+                            alt="avatar"
+                          />
+                        </span>
                         <a
                           href={reply.url}
                           target="_blank"
                           className="no-underline hover:underline"
                         >
-                          {reply.account}{" "}
-                          <span>
+                          <span className="h-6 leading-6">
+                            {reply.account} commented:
+                          </span>
+                          {/* <span>
                             replied at{" "}
                             {new Date(reply.published).toLocaleString()}:
-                          </span>
+                          </span> */}
                         </a>
-                        <span
-                          dangerouslySetInnerHTML={{ __html: reply.content }}
-                        ></span>
                       </div>
+                      <span
+                        dangerouslySetInnerHTML={{ __html: reply.content }}
+                      ></span>
                     </div>
                   );
                 })}
