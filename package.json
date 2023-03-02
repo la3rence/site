@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@microsoft/fetch-event-source": "2.0.1",
-    "@vercel/analytics": "0.1.10",
+    "@vercel/analytics": "0.1.11",
     "dotenv": "16.0.3",
     "fanfou-sdk": "5.0.0",
     "gray-matter": "4.0.3",
