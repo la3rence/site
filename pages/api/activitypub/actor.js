@@ -39,7 +39,11 @@ export default async function actor(req, res) {
     outbox: `${origin}/api/activitypub/outbox`,
     followers: `${origin}/api/activitypub/followers`,
     // following: `${origin}/api/activitypub/following`,
-    icon: [`${origin}/images/author/${config.authorName}.png`],
+    icon: {
+      type: "Image",
+      mediaType: "image/png",
+      url: `${origin}/images/author/${config.authorName}.png`,
+    },
     publicKey: {
       id: `${origin}/api/activitypub/actor#main-key`,
       owner: `${origin}/api/activitypub/actor`,

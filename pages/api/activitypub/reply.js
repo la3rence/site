@@ -35,5 +35,19 @@ export default async function reply(req, res) {
     inReplyTo: `${origin}${req.query.id}`,
   };
   const replies = await findByField(REPLY_COLLECTION, query);
+  await Promise.all(
+    replies.map(async reply => {
+      reply.avatar = await fetchAvatar(reply.actor);
+    })
+  );
   res.json(replies);
 }
+
+const fetchAvatar = async actor => {
+  const actorInfo = await fetchActorInformation(actor);
+  if (actorInfo.icon.url) {
+    return actorInfo.icon.url;
+  } else {
+    return "https://mastodon.social/avatars/original/missing.png";
+  }
+};
