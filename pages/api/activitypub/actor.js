@@ -42,7 +42,7 @@ export default async function actor(req, res) {
     icon: {
       type: "Image",
       mediaType: "image/png",
-      url: `${origin}/images/author/${config.authorName}.png`,
+      url: `${origin}/icon.png`,
     },
     publicKey: {
       id: `${origin}/api/activitypub/actor#main-key`,
