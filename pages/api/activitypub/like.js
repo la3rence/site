@@ -21,6 +21,5 @@ export const getLikeForObjectId = async objectId => {
   const result = await likesCollection
     .find(queryObject, projectionObject)
     .toArray();
-  console.log(result);
   return result;
 };

@@ -73,11 +73,6 @@ export default withView(props => {
       {!props.noMeta && (
         <>
           <div className="mx-2 mt-10 mb-5 flex flex-nowrap">
-            <div className="flex-1" id="like">
-              {likes.map(like => {
-                <span>{like}</span>;
-              })}
-            </div>
             <div id="tags">
               {tags &&
                 tags.split(",").map(each => <Tag tag={each} key={each} />)}
@@ -85,6 +80,26 @@ export default withView(props => {
           </div>
           <hr className="no-prose"></hr>
           <div>
+            {likes.length > 0 && (
+              <>
+                <h4 id="like">Likes ({likes.length})</h4>
+                <div className="mx-4 mt-2 mr-1 flex">
+                  {likes.map(like => {
+                    return (
+                      <a href={like.actor} target="_blank" key={like._id}>
+                        <img
+                          className="rounded-full m-0 mr-1"
+                          width={25}
+                          height={25}
+                          src={like.avatar}
+                          alt={like.actor}
+                        />
+                      </a>
+                    );
+                  })}
+                </div>
+              </>
+            )}
             <h4 id="reply">
               Replies {replies.length > 0 ? `(${replies.length})` : ""}
             </h4>

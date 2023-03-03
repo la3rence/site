@@ -23,6 +23,15 @@ export async function fetchActorInformation(actorUrl) {
   return null;
 }
 
+export const fetchAvatar = async actor => {
+  const actorInfo = await fetchActorInformation(actor);
+  if (actorInfo.icon.url) {
+    return actorInfo.icon.url;
+  } else {
+    return "https://mastodon.social/avatars/original/missing.png";
+  }
+};
+
 export default async function actor(req, res) {
   const origin = getOrigin(req);
   respondActivityJSON(res, {

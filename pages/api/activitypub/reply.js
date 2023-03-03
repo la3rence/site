@@ -1,5 +1,9 @@
 import { insertOne, findByField } from "../../../lib/mongo";
-import { fetchActorInformation, getFediAcctFromActor } from "./actor";
+import {
+  fetchActorInformation,
+  getFediAcctFromActor,
+  fetchAvatar,
+} from "./actor";
 import { getOrigin } from "../../../lib/util";
 
 const REPLY_COLLECTION = "reply";
@@ -42,12 +46,3 @@ export default async function reply(req, res) {
   );
   res.json(replies);
 }
-
-const fetchAvatar = async actor => {
-  const actorInfo = await fetchActorInformation(actor);
-  if (actorInfo.icon.url) {
-    return actorInfo.icon.url;
-  } else {
-    return "https://mastodon.social/avatars/original/missing.png";
-  }
-};
