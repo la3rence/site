@@ -10,9 +10,11 @@ import Tag from "./tag";
 export default withView(props => {
   const { children, title, date, author, view, id, tags, pageURL } = props;
   const [replies, setReplies] = useState([]);
+  const [likes, setLikes] = useState([]);
 
   useEffect(() => {
     getReplies(id);
+    getLikes(id);
   }, [id]);
 
   const getReplies = async id => {
@@ -20,6 +22,11 @@ export default withView(props => {
       await fetch(`/api/activitypub/reply?id=${id}`)
     ).json();
     setReplies(replies);
+  };
+
+  const getLikes = async id => {
+    const likes = await (await fetch(`/api/like?id=${id}`)).json();
+    setLikes(likes);
   };
 
   return (
@@ -66,7 +73,11 @@ export default withView(props => {
       {!props.noMeta && (
         <>
           <div className="mx-2 mt-10 mb-5 flex flex-nowrap">
-            <div className="flex-1" id="like"></div>
+            <div className="flex-1" id="like">
+              {likes.map(like => {
+                <span>{like}</span>;
+              })}
+            </div>
             <div id="tags">
               {tags &&
                 tags.split(",").map(each => <Tag tag={each} key={each} />)}

@@ -10,7 +10,7 @@ export const saveLike = async message => {
     createdAt: new Date(),
   };
   await likesCollection.insertOne(like);
-  console.log(`like saved: ${JSON.parse(like)}`);
+  console.log(`like saved: ${JSON.stringify(like)}`);
 };
 
 // object: actually the blog url
