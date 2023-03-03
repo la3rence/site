@@ -15,7 +15,7 @@ specifiers:
   markdown-it: 13.0.1
   mongodb: ^5.0.0
   next: 13.2.3
-  next-sitemap: ^3.1.48
+  next-sitemap: ^4.0.0
   next-themes: 0.2.1
   postcss: 8.4.21
   prettier: 2.8.4
@@ -50,7 +50,7 @@ dependencies:
   markdown-it: 13.0.1
   mongodb: 5.0.0
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
-  next-sitemap: 3.1.48_next@13.2.3
+  next-sitemap: 4.0.1_next@13.2.3
   next-themes: 0.2.1_nvzgbose6yf6w7ijjprgspqefi
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1373,7 +1373,7 @@ packages:
     dependencies:
       acorn-node: 1.8.2
       defined: 1.0.1
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /didyoumean/1.2.2:
@@ -2906,7 +2906,7 @@ packages:
       }
     hasBin: true
     dependencies:
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /jsx-ast-utils/3.3.3:
@@ -3669,10 +3669,10 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
-  /minimist/1.2.7:
+  /minimist/1.2.8:
     resolution:
       {
-        integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==,
+        integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==,
       }
 
   /mongodb-connection-string-url/2.6.0:
@@ -3753,10 +3753,10 @@ packages:
       }
     dev: true
 
-  /next-sitemap/3.1.48_next@13.2.3:
+  /next-sitemap/4.0.1_next@13.2.3:
     resolution:
       {
-        integrity: sha512-cUyjkoac+HeYrn8m3Pwq7DbcSK9+wW+AgPI7Q0Ipv85p4qDKTznS95ihahJXVKLZNRMTV6V45cxStiXW8+I2dA==,
+        integrity: sha512-dY6vKE/uayNYSfhXA64U9NZYSJtFzK01oBouY+XqgQieksKBG9BWNmq8yGSJUermyux4wCnNa9gLHwSk38emhA==,
       }
     engines: { node: ">=14.18" }
     hasBin: true
@@ -3765,7 +3765,7 @@ packages:
       next: "*"
     dependencies:
       "@corex/deepmerge": 4.0.37
-      minimist: 1.2.7
+      minimist: 1.2.8
       next: 13.2.3_biqbaboplfbrettd7655fr4n2y
     dev: false
 
@@ -5085,7 +5085,7 @@ packages:
     dependencies:
       "@types/json5": 0.0.29
       json5: 1.0.1
-      minimist: 1.2.7
+      minimist: 1.2.8
       strip-bom: 3.0.0
     dev: true
 
