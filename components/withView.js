@@ -18,7 +18,7 @@ const withView = Component => props => {
   const withViewProps = {
     ...props,
     id,
-    view: data ? data.view : 0,
+    view: data ? data.count : 0,
     pageURL,
     domain: new URL(pageURL).hostname,
   };
