@@ -1,5 +1,6 @@
 import { getOrigin, respondActivityJSON } from "../../../lib/util";
 import { getCollection } from "../../../lib/mongo";
+import { IS_PROD } from "../../../lib/env";
 
 const FOLLOWERS_COLLECTION = "followers";
 
@@ -10,8 +11,8 @@ export default async function followers(req, res) {
     "@context": "https://www.w3.org/ns/activitystreams",
     id: `${origin}/api/activitypub/followers`,
     type: "OrderedCollection",
-    totalItems: followers.length,
-    orderedItems: followers,
+    totalItems: IS_PROD ? followers.length : 0,
+    orderedItems: IS_PROD ? followers : [],
   };
   respondActivityJSON(res, response);
 }
@@ -50,7 +51,7 @@ export async function removeFollower(follower) {
     if (index !== -1) {
       orderedItems.splice(index, 1);
       await followers.updateOne({}, { $set: { orderedItems } });
-      console.log(`follower ${follower}removed successfully`);
+      console.log(`follower ${follower} removed successfully`);
       return;
     }
   }
