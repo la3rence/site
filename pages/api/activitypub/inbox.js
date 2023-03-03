@@ -2,6 +2,7 @@ import { removeFollower, saveFollower } from "./followers";
 import { v4 as uuidv4 } from "uuid";
 import { getOrigin, sendSignedRequest } from "../../../lib/util.js";
 import { saveReply } from "./reply";
+import { saveLike } from "./like";
 
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
@@ -28,7 +29,7 @@ export default async function inbox(req, res) {
     await saveFollower(message.actor);
   }
   if (message.type == "Like") {
-    console.log("like to save");
+    await saveLike(message);
   }
   if (message.type == "Announce") {
     console.log("announce to save");
