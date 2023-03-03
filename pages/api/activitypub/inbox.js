@@ -1,4 +1,4 @@
-import { saveFollower } from "./followers";
+import { removeFollower, saveFollower } from "./followers";
 import { v4 as uuidv4 } from "uuid";
 import { getOrigin, sendSignedRequest } from "../../../lib/util.js";
 import { saveReply } from "./reply";
@@ -39,7 +39,11 @@ export default async function inbox(req, res) {
     await saveReply(message);
   }
   if (message.type == "Undo") {
-    console.log("Undo to update");
+    // undo also has different types
+    console.log("Undo Action Triggered");
+    if (message.object.type === "Follow") {
+      await removeFollower(message.actor);
+    }
   }
   if (message.type == "Update") {
     // TODO: We need to update the messages

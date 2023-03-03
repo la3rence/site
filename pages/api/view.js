@@ -1,4 +1,4 @@
-import { readKey, writeKeyValue } from "../../lib/redis";
+import { getCollection } from "../../lib/mongo";
 
 // edge functions enable:
 // export const config = {
@@ -7,28 +7,16 @@ import { readKey, writeKeyValue } from "../../lib/redis";
 
 export default async function view(req, res) {
   const page = req.query.page ? req.query.page : "/";
-  const currentPageView = await viewPage(page);
-  res.json(currentPageView);
+  const currentPageView = await recordPageView(page);
+  res.json(currentPageView); // pageKey, view
 }
 
-const viewPage = async page => {
-  return await addPageView(page);
-};
-
-const addPageView = async page => {
-  const pageKey = "view:" + page;
-  const currentPageView = await getPageViewCount(pageKey);
-  const view = currentPageView + 1;
-  console.log(`page: ${page} count: ${view}`);
-  // increment only in production
-  await writeKeyValue(pageKey, view);
-  return {
-    pageKey,
-    view: currentPageView,
-  };
-};
-
-const getPageViewCount = async page => {
-  const readResult = await readKey(page);
-  return Number(readResult); // direct value with Number type
-};
+export async function recordPageView(path) {
+  const pageViews = await getCollection("pageViews");
+  const filter = { path: path };
+  const update = { $inc: { count: 1 } };
+  const options = { upsert: true, returnOriginal: false };
+  const result = await pageViews.findOneAndUpdate(filter, update, options);
+  console.log(`Page view ${path}, Result: ${JSON.stringify(result.value)}`);
+  return result.value; // {id, path, value}
+}

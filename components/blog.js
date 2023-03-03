@@ -5,19 +5,14 @@ import Layout from "./layout";
 import withView from "./withView";
 import { useEffect, useState } from "react";
 import "highlight.js/styles/github-dark.css";
-import config from "../lib/config.mjs";
 import Tag from "./tag";
 
 export default withView(props => {
   const { children, title, date, author, view, id, tags, pageURL } = props;
-  const [like, setLike] = useState(0);
-  const [likeFlag, setLikeFlag] = useState(false);
   const [replies, setReplies] = useState([]);
 
   useEffect(() => {
-    getLikes(id);
     getReplies(id);
-    setLikeFlag(!!localStorage.getItem(`like:${id}`));
   }, [id]);
 
   const getReplies = async id => {
@@ -25,25 +20,6 @@ export default withView(props => {
       await fetch(`/api/activitypub/reply?id=${id}`)
     ).json();
     setReplies(replies);
-  };
-
-  const getLikes = async id => {
-    const res = await (await fetch(`/api/like?page=${id}`)).json();
-    setLike(res.likeCount);
-  };
-
-  const addLike = async () => {
-    if (!likeFlag) {
-      const res = await (
-        await fetch(`/api/like?page=${id}`, {
-          method: "POST",
-        })
-      ).json();
-      setLike(res.likeCount);
-      setLikeFlag(true);
-      localStorage.setItem(`like:${id}`, true);
-      console.debug(`page: ${id} like: ${res.likeCount}`);
-    }
   };
 
   return (
@@ -90,18 +66,7 @@ export default withView(props => {
       {!props.noMeta && (
         <>
           <div className="mx-2 mt-10 mb-5 flex flex-nowrap">
-            <div className="flex-1" id="like">
-              {config.enableLike && (
-                <button
-                  className={`${
-                    likeFlag ? "bg-yellow-300 dark:bg-zinc-700" : ""
-                  } w-14 text-sm p-1 border-yellow-300 rounded-lg hover:bg-yellow-200 dark:hover:bg-gray-600 transition duration-300`}
-                  onClick={addLike}
-                >
-                  👍 {like > 0 && like}
-                </button>
-              )}
-            </div>
+            <div className="flex-1" id="like"></div>
             <div id="tags">
               {tags &&
                 tags.split(",").map(each => <Tag tag={each} key={each} />)}
