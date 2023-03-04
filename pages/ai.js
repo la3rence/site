@@ -94,12 +94,12 @@ const Chat = props => {
       noMeta
       noFooter
       title={`AI Search${q ? ": " + q : ""}`}
-      description="Get instant answers, explanations, and examples for all of your technical questions."
+      description="Get instant answers, explanations, and examples for all of your questions."
     >
       <div>
         <Message
           role="assistant"
-          content={"Now based on gpt-3.5-turbo"}
+          content={"Ask me anything."}
         ></Message>
         {chat.map((messageObj, index) => {
           return (
