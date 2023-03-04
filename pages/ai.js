@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import Blog from "../components/blog";
-import { fetchEventSource } from "@microsoft/fetch-event-source";
 import MarkdownIt from "markdown-it";
 import hljs from "highlight.js";
 import withView from "../components/withView";
@@ -79,44 +78,21 @@ const Chat = props => {
   };
 
   const answer = async question => {
-    let reply = "";
-    chat.push({ type: "ai", message: reply });
-    await fetchEventSource(process.env.NEXT_PUBLIC_CHAT_API, {
+    const messageObj = { role: "user", content: question };
+    const res = await fetch(process.env.NEXT_PUBLIC_CHAT_API, {
       method: "POST",
-      mode: "cors",
-      headers: {
-        accept: "*/*",
-      },
       body: JSON.stringify({
-        question: `用中文回复: ${question}`,
-        bingResults: {},
+        messages: [messageObj],
       }),
-      onmessage(event) {
-        chat.pop();
-        setChat([...chat]);
-        const data = JSON.parse(event.data);
-        console.debug("sse onmessage", data.token);
-        if (data.token) {
-          reply += data.token;
-        }
-        chat.push({
-          type: "ai",
-          message: reply,
-        });
-        setChat([...chat]);
-      },
-      onerror(error) {
-        throw error; // rethrow to stop the operation
-      },
-      async onclose() {
-        console.debug("sse closed");
-        const fly = await fetch(
-          `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
-        );
-        const res = await fly.json();
-        console.debug(res);
-      },
     });
+    const result = await res.text();
+    console.log(result);
+    chat.push({ type: "ai", message: result });
+    setChat([...chat]);
+    const fly = await fetch(
+      `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
+    );
+    await fly.json();
   };
 
   return (
