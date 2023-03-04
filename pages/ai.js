@@ -97,10 +97,7 @@ const Chat = props => {
       description="Get instant answers, explanations, and examples for all of your questions."
     >
       <div>
-        <Message
-          role="assistant"
-          content={"Ask me anything."}
-        ></Message>
+        <Message role="assistant" content={"Ask me anything."}></Message>
         {chat.map((messageObj, index) => {
           return (
             <Message
