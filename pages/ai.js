@@ -16,13 +16,13 @@ const md = new MarkdownIt({
   },
 });
 
-const Message = ({ type, text }) => {
-  if (type === "human") {
+const Message = ({ role, content }) => {
+  if (role === "user") {
     return (
       <div
         className="bg-zinc-200 dark:bg-zinc-900 p-2"
         dangerouslySetInnerHTML={{
-          __html: md.render(`🙋 ${text}`),
+          __html: md.render(`🙋 ${content}`),
         }}
       ></div>
     );
@@ -31,7 +31,7 @@ const Message = ({ type, text }) => {
     <div
       className="bg-zinc-300 dark:bg-zinc-800 py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
       dangerouslySetInnerHTML={{
-        __html: md.render(`🤖️ ${text}`),
+        __html: md.render(`🤖️ ${content}`),
       }}
     ></div>
   );
@@ -39,16 +39,10 @@ const Message = ({ type, text }) => {
 
 const Chat = props => {
   const { q } = props;
-
-  const [chat, setChat] = useState([
-    {
-      type: "ai",
-      message: `输入问题向 AI 提问`,
-    },
-  ]);
-
+  const [chat, setChat] = useState([]);
   const inputRef = useRef();
   const bottomRef = useRef(null);
+
   useEffect(() => {
     (async function sendQ() {
       await send();
@@ -67,7 +61,7 @@ const Chat = props => {
     if (question === "" || !question) {
       return;
     }
-    chat.push({ type: "human", message: question });
+    chat.push({ role: "user", content: question });
     setChat([...chat]);
     inputRef.current.value = "";
     try {
@@ -78,16 +72,16 @@ const Chat = props => {
   };
 
   const answer = async question => {
-    const messageObj = { role: "user", content: question };
+    setChat([...chat]);
     const res = await fetch(process.env.NEXT_PUBLIC_CHAT_API, {
       method: "POST",
       body: JSON.stringify({
-        messages: [messageObj],
+        messages: chat,
       }),
     });
     const result = await res.text();
     console.log(result);
-    chat.push({ type: "ai", message: result });
+    chat.push({ role: "assistant", content: result });
     setChat([...chat]);
     const fly = await fetch(
       `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
@@ -100,14 +94,15 @@ const Chat = props => {
       noMeta
       noFooter
       title={`AI Search${q ? ": " + q : ""}`}
-      description="Get instant answers, explanations, and examples for all of your technical questions."
+      description="Get instant answers, explanations, and examples for all of your questions."
     >
       <div>
+        <Message role="assistant" content={"Ask me anything."}></Message>
         {chat.map((messageObj, index) => {
           return (
             <Message
-              text={messageObj.message}
-              type={messageObj.type}
+              content={messageObj.content}
+              role={messageObj.role}
               key={index}
             />
           );
