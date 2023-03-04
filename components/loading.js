@@ -19,6 +19,16 @@ export default function Skeleton() {
   );
 }
 
+export function Lines() {
+  return (
+    <div className="inline-block relative w-9 h-9 mx-6">
+      <div className="absolute top-4 left-0 w-3 h-3 bg-zinc-500 rounded-full animate-pulse"></div>
+      <div className="absolute top-4 left-4 w-3 h-3 bg-zinc-500 rounded-full animate-pulse"></div>
+      <div className="absolute top-4 left-8 w-3 h-3 bg-zinc-500 rounded-full animate-pulse"></div>
+    </div>
+  );
+}
+
 export const swrConfig = {
   revalidateIfStale: false,
   revalidateOnFocus: false,

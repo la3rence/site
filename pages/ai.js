@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import Blog from "../components/blog";
 import MarkdownIt from "markdown-it";
 import hljs from "highlight.js";
-import withView from "../components/withView";
+import { Lines } from "../components/loading";
 
 const md = new MarkdownIt({
   highlight: function (str, lang) {
@@ -16,7 +16,7 @@ const md = new MarkdownIt({
   },
 });
 
-const Message = ({ role, content }) => {
+const Message = ({ role, content, isLoading }) => {
   if (role === "user") {
     return (
       <div
@@ -25,6 +25,13 @@ const Message = ({ role, content }) => {
           __html: md.render(`🙋 ${content}`),
         }}
       ></div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div className="bg-zinc-200 dark:bg-zinc-900">
+        <Lines />
+      </div>
     );
   }
   return (
@@ -42,6 +49,7 @@ const Chat = props => {
   const [chat, setChat] = useState([]);
   const inputRef = useRef();
   const bottomRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async function sendQ() {
@@ -65,6 +73,7 @@ const Chat = props => {
     setChat([...chat]);
     inputRef.current.value = "";
     try {
+      setIsLoading(true);
       await answer(question);
     } catch (error) {
       console.error(error);
@@ -80,7 +89,7 @@ const Chat = props => {
       }),
     });
     const result = await res.text();
-    console.log(result);
+    setIsLoading(false);
     chat.push({ role: "assistant", content: result });
     setChat([...chat]);
     const fly = await fetch(
@@ -97,7 +106,7 @@ const Chat = props => {
       description="Get instant answers, explanations, and examples for all of your questions."
     >
       <div>
-        <Message role="assistant" content={"Ask me anything."}></Message>
+        <Message role="assistant" content={"Ask me anything."} />
         {chat.map((messageObj, index) => {
           return (
             <Message
@@ -107,6 +116,7 @@ const Chat = props => {
             />
           );
         })}
+        {isLoading && <Message role={"assistant"} isLoading={true} />}
       </div>
       <div ref={bottomRef} id="input" className="mt-20">
         <div className="flex">
@@ -130,7 +140,7 @@ const Chat = props => {
   );
 };
 
-export default withView(Chat);
+export default Chat;
 
 export async function getServerSideProps(context) {
   const { q } = context.query;
