@@ -20,25 +20,25 @@ const Message = ({ role, content, isLoading }) => {
   if (role === "user") {
     return (
       <div
-        className="bg-zinc-200 dark:bg-zinc-900 p-2"
+        className="dark:bg-zinc-900 p-2"
         dangerouslySetInnerHTML={{
-          __html: md.render(`🙋 ${content}`),
+          __html: md.render(`○ ${content}`),
         }}
       ></div>
     );
   }
   if (isLoading) {
     return (
-      <div className="bg-zinc-200 dark:bg-zinc-900">
+      <div className="dark:bg-zinc-900">
         <Lines />
       </div>
     );
   }
   return (
     <div
-      className="bg-zinc-300 dark:bg-zinc-800 py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
+      className="dark:bg-zinc-800 py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
       dangerouslySetInnerHTML={{
-        __html: md.render(`🤖️ ${content}`),
+        __html: md.render(`● ${content}`),
       }}
     ></div>
   );
@@ -52,6 +52,7 @@ const Chat = props => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    inputRef.current.focus();
     (async function sendQ() {
       await send();
     })();
@@ -92,48 +93,58 @@ const Chat = props => {
     setIsLoading(false);
     chat.push({ role: "assistant", content: result });
     setChat([...chat]);
+    inputRef.current.focus();
     const fly = await fetch(
       `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
     );
     await fly.json();
   };
 
+  const clear = () => {
+    setChat([]);
+  };
+
   return (
     <Blog
       noMeta
       noFooter
-      title={`AI Search${q ? ": " + q : ""}`}
+      title={`GPT Turbo ${q ? ": " + q : ""}`}
       description="Get instant answers, explanations, and examples for all of your questions."
     >
-      <div>
-        <Message role="assistant" content={"Ask me anything."} />
-        {chat.map((messageObj, index) => {
-          return (
-            <Message
-              content={messageObj.content}
-              role={messageObj.role}
-              key={index}
-            />
-          );
-        })}
-        {isLoading && <Message role={"assistant"} isLoading={true} />}
-      </div>
+      {chat.map((messageObj, index) => {
+        return (
+          <Message
+            content={messageObj.content}
+            role={messageObj.role}
+            key={index}
+          />
+        );
+      })}
+      {isLoading && <Message role={"assistant"} isLoading={true} />}
       <div ref={bottomRef} id="input" className="mt-20">
         <div className="flex">
           <input
             ref={inputRef}
             type="text"
-            placeholder="Ask AI..."
+            placeholder=""
             defaultValue={q}
             onKeyDown={handleKeyDown}
-            className="h-12 px-4 py-3 bg-zinc-200 flex-1 dark:bg-zinc-800 rounded-none outline-none"
+            className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-none"
           />
           <button
-            className="w-12 h-12 bg-zinc-200 dark:bg-zinc-800 text-2xl"
+            className="w-12 h-12 bg-zinc-100 dark:bg-zinc-800 text-2xl"
             onClick={send}
           >
             ▲
           </button>
+          {chat.length > 0 && (
+            <button
+              className="w-12 bg-zinc-100 dark:bg-zinc-800 text-2xl"
+              onClick={clear}
+            >
+              ○
+            </button>
+          )}
         </div>
       </div>
     </Blog>
