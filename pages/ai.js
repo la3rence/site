@@ -89,7 +89,7 @@ const Chat = props => {
         messages: chat,
       }),
     });
-    const result = await res.text();
+    const result = await (await res.text()).trim();
     setIsLoading(false);
     chat.push({ role: "assistant", content: result });
     setChat([...chat]);
