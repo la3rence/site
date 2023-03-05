@@ -86,9 +86,30 @@ const Chat = props => {
         messages: chat,
       }),
     });
-    const result = await (await res.text()).trim();
+    const data = res.body;
+    const reader = data.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let done = false;
+    let currentData = "";
+    while (!done) {
+      const { value, done: readerDone } = await reader.read();
+      if (value) {
+        let char = decoder.decode(value);
+        if (char === "\n" && currentData.endsWith("\n")) {
+          continue;
+        }
+        if (char) {
+          currentData += char;
+          chat.push({ role: "assistant", content: currentData });
+          setChat([...chat]);
+          chat.pop();
+        }
+      }
+      done = readerDone;
+    }
+    // const result = await (await res.text()).trim();
     setIsLoading(false);
-    chat.push({ role: "assistant", content: result });
+    chat.push({ role: "assistant", content: currentData });
     setChat([...chat]);
     if (question) {
       const fly = await fetch(
