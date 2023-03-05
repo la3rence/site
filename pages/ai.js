@@ -41,7 +41,7 @@ const Message = ({ role, content, isLoading }) => {
 };
 
 const Chat = props => {
-  const { q } = props;
+  const { q, randomItem } = props;
   const [chat, setChat] = useState([]);
   const inputRef = useRef();
   const bottomRef = useRef(null);
@@ -112,7 +112,7 @@ const Chat = props => {
     <Blog
       noMeta
       noFooter
-      title={`GPT Turbo ${q ? ": " + q : ""}`}
+      title={`${randomItem} ${q ? q : ""}`}
       description="Get instant answers, explanations, and examples for all of your questions."
     >
       {chat.map((messageObj, index) => {
@@ -176,16 +176,22 @@ const Chat = props => {
 export default Chat;
 
 export async function getServerSideProps(context) {
+  const arr = ["ChatGPT", "▲", "○", "■"];
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  const randomItem = arr[randomIndex];
   const { q } = context.query;
   if (q) {
     return {
       props: {
         q,
+        randomItem,
       },
     };
   } else {
     return {
-      props: {},
+      props: {
+        randomItem,
+      },
     };
   }
 }
