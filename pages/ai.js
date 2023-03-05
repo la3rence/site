@@ -82,6 +82,7 @@ const Chat = props => {
     const res = await fetch(process.env.NEXT_PUBLIC_CHAT_API, {
       method: "POST",
       body: JSON.stringify({
+        customKey: "",
         messages: chat,
       }),
     });
