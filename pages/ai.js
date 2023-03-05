@@ -48,7 +48,6 @@ const Chat = props => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    inputRef.current.focus();
     (async function sendQ() {
       await send();
     })();
@@ -103,6 +102,7 @@ const Chat = props => {
           chat.push({ role: "assistant", content: currentData });
           setChat([...chat]);
           chat.pop();
+          bottomRef.current.scrollIntoView({ behavior: "smooth" });
         }
       }
       done = readerDone;
