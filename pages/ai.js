@@ -67,18 +67,18 @@ const Chat = props => {
       return;
     }
     chat.push({ role: "user", content: question });
-    setChat([...chat]);
     inputRef.current.value = "";
     try {
-      setIsLoading(true);
       await answer(question);
     } catch (error) {
       console.error(error);
     }
+    inputRef.current.focus();
   };
 
   const answer = async question => {
     setChat([...chat]);
+    setIsLoading(true);
     const res = await fetch(process.env.NEXT_PUBLIC_CHAT_API, {
       method: "POST",
       body: JSON.stringify({
@@ -89,7 +89,6 @@ const Chat = props => {
     setIsLoading(false);
     chat.push({ role: "assistant", content: result });
     setChat([...chat]);
-    inputRef.current.focus();
     if (question) {
       const fly = await fetch(
         `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
@@ -103,7 +102,6 @@ const Chat = props => {
   };
 
   const regenerate = async () => {
-    setIsLoading(true);
     chat.pop();
     await answer();
   };
@@ -176,7 +174,7 @@ const Chat = props => {
 export default Chat;
 
 export async function getServerSideProps(context) {
-  const arr = ["ChatGPT", "▲", "○", "■"];
+  const arr = ["ChatGPT", "●", "■"];
   const randomIndex = Math.floor(Math.random() * arr.length);
   const randomItem = arr[randomIndex];
   const { q } = context.query;
