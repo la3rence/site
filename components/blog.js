@@ -88,7 +88,7 @@ export default withView(props => {
                     return (
                       <a href={like.actor} target="_blank" key={like._id}>
                         <img
-                          className="rounded-full m-0 mr-1"
+                          className="rounded-full m-0 mr-1 shadow-md border border-zinc-800 dark:border-white border-opacity-90"
                           width={25}
                           height={25}
                           src={like.avatar}
@@ -113,7 +113,7 @@ export default withView(props => {
                       <div className="flex">
                         <span className="mr-2">
                           <img
-                            className="rounded-full m-0"
+                            className="rounded-full m-0 shadow-md border border-zinc-800 dark:border-white border-opacity-90"
                             width={25}
                             height={25}
                             src={reply.avatar}
