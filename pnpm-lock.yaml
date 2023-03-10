@@ -4,7 +4,7 @@ specifiers:
   "@microsoft/fetch-event-source": 2.0.1
   "@tailwindcss/typography": 0.5.9
   "@vercel/analytics": 0.1.11
-  autoprefixer: 10.4.13
+  autoprefixer: 10.4.14
   dotenv: 16.0.3
   eslint: 8.35.0
   eslint-config-next: 13.2.3
@@ -70,12 +70,12 @@ dependencies:
 
 devDependencies:
   "@tailwindcss/typography": 0.5.9_tailwindcss@3.2.7
-  autoprefixer: 10.4.13_postcss@8.4.21
+  autoprefixer: 10.4.14_postcss@8.4.21
   eslint: 8.35.0
   eslint-config-next: 13.2.3_ycpbpc6yetojsgtrx3mwntkhsu
   postcss: 8.4.21
   prettier: 2.8.4
-  tailwindcss: 3.2.7
+  tailwindcss: 3.2.7_postcss@8.4.21
   typescript: 4.9.5
 
 packages:
@@ -444,7 +444,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.7
+      tailwindcss: 3.2.7_postcss@8.4.21
     dev: true
 
   /@types/debug/4.1.7:
@@ -818,18 +818,18 @@ packages:
       }
     dev: false
 
-  /autoprefixer/10.4.13_postcss@8.4.21:
+  /autoprefixer/10.4.14_postcss@8.4.21:
     resolution:
       {
-        integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==,
+        integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==,
       }
     engines: { node: ^10 || ^12 || >=14 }
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      browserslist: 4.21.4
-      caniuse-lite: 1.0.30001436
+      browserslist: 4.21.5
+      caniuse-lite: 1.0.30001464
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -894,18 +894,18 @@ packages:
       fill-range: 7.0.1
     dev: true
 
-  /browserslist/4.21.4:
+  /browserslist/4.21.5:
     resolution:
       {
-        integrity: sha512-CBHJJdDmgjl3daYjN5Cp5kbTf1mUhZoS+beLklHIvkOWscs83YAhLlF3Wsh/lciQYAcbBJgTOD44VtG31ZM4Hw==,
+        integrity: sha512-tUkiguQGW7S3IhB7N+c2MV/HZPSCPAAiYBZXLsBhFB/PCy6ZKKsZrmBayHV9fdGV/ARIfJ14NkxKzRDjvp7L6w==,
       }
     engines: { node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7 }
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001436
+      caniuse-lite: 1.0.30001464
       electron-to-chromium: 1.4.284
-      node-releases: 2.0.6
-      update-browserslist-db: 1.0.10_browserslist@4.21.4
+      node-releases: 2.0.10
+      update-browserslist-db: 1.0.10_browserslist@4.21.5
     dev: true
 
   /bson/5.0.0:
@@ -992,6 +992,14 @@ packages:
       {
         integrity: sha512-ZmWkKsnC2ifEPoWUvSAIGyOYwT+keAaaWPHiQ9DfMqS1t6tfuyFYoWR78TeZtznkEQ64+vGXH9cZrElwR2Mrxg==,
       }
+    dev: false
+
+  /caniuse-lite/1.0.30001464:
+    resolution:
+      {
+        integrity: sha512-oww27MtUmusatpRpCGSOneQk2/l5czXANDSFvsc7VuOQ86s3ANhZetpwXNf1zY/zdfP63Xvjz325DAdAoES13g==,
+      }
+    dev: true
 
   /ccount/2.0.1:
     resolution:
@@ -3749,10 +3757,10 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /node-releases/2.0.6:
+  /node-releases/2.0.10:
     resolution:
       {
-        integrity: sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==,
+        integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==,
       }
     dev: true
 
@@ -4882,13 +4890,15 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /tailwindcss/3.2.7:
+  /tailwindcss/3.2.7_postcss@8.4.21:
     resolution:
       {
         integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==,
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -5180,7 +5190,7 @@ packages:
       unist-util-visit-parents: 5.1.1
     dev: false
 
-  /update-browserslist-db/1.0.10_browserslist@4.21.4:
+  /update-browserslist-db/1.0.10_browserslist@4.21.5:
     resolution:
       {
         integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==,
@@ -5189,7 +5199,7 @@ packages:
     peerDependencies:
       browserslist: ">= 4.21.0"
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: true
