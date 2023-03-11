@@ -48,7 +48,7 @@ export default function Header({ title, blog, image, description }) {
                 return (
                   <li
                     key={item.label}
-                    className={`px-3 py-1 cursor-pointer ${hoverTabStyle}`}
+                    className={`px-2 py-1 cursor-pointer ${hoverTabStyle}`}
                   >
                     <Link href={item.path}>{item.label}</Link>
                   </li>
