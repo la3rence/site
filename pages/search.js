@@ -36,9 +36,9 @@ export default function Search() {
           {results.map(post => {
             return (
               <div key={post.id}>
-                <h3>
-                  <Link href={`/blog/${post.id}`}>{post.title}</Link>
-                </h3>
+                <Link className="no-underline" href={`/blog/${post.id}`}>
+                  <h3 dangerouslySetInnerHTML={{ __html: post.title }}></h3>
+                </Link>
                 <p
                   className="break-words"
                   dangerouslySetInnerHTML={{ __html: post.contexts }}
