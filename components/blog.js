@@ -72,13 +72,13 @@ export default withView(props => {
       </div>
       {!props.noMeta && (
         <>
-          <div className="mx-2 mt-10 mb-5 flex flex-nowrap">
-            <div id="tags">
+          <div className="mx-2 mt-10">
+            <div>
               {tags &&
                 tags.split(",").map(each => <Tag tag={each} key={each} />)}
             </div>
           </div>
-          <hr className="no-prose"></hr>
+          <hr />
           <div>
             {likes.length > 0 && (
               <>
