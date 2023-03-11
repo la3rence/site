@@ -5,12 +5,20 @@ import Link from "next/link";
 export default function Search() {
   const [results, setResults] = useState([]);
   const inputRef = useRef();
+  const timeoutId = useRef();
 
   const search = async () => {
     const keyword = inputRef.current.value;
-    const res = await fetch(`/api/search?q=${keyword}`);
-    const data = await res.json();
-    setResults(data);
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
+    }
+    timeoutId.current = setTimeout(async () => {
+      if (keyword) {
+        const res = await fetch(`/api/search?q=${keyword}`);
+        const data = await res.json();
+        setResults(data);
+      }
+    }, 500); // 延迟时间为 500ms
   };
 
   return (
@@ -19,7 +27,6 @@ export default function Search() {
         <input
           ref={inputRef}
           type="text"
-          placeholder=""
           onInput={search}
           className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-none"
         />
