@@ -46,7 +46,10 @@ export default function Header({ title, blog, image, description }) {
             <ul className="flex">
               {navItems.map(item => {
                 return (
-                  <li key={item.label} className={`px-3 py-1 ${hoverTabStyle}`}>
+                  <li
+                    key={item.label}
+                    className={`px-3 py-1 cursor-pointer ${hoverTabStyle}`}
+                  >
                     <Link href={item.path}>{item.label}</Link>
                   </li>
                 );
