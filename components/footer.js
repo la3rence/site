@@ -1,6 +1,7 @@
-import A, { Icon } from "./a";
+import A from "./a";
 import config from "../lib/config.mjs";
 import { useEffect, useState } from "react";
+import { TwitterIcon, GitHubIcon, MailIcon } from "./svg";
 
 let { siteTitle, twitter, github, authorEmail } = config;
 
@@ -16,10 +17,28 @@ const Footer = () => {
   }
 
   return (
-    <div className="mx-4 mt-16 mb-24 text-sm text-gray-400 text-center">
-      <Icon network="twitter" url={`https://twitter.com/${twitter}`} />
-      <Icon network="email" url={`mailto:${authorEmail}`} />
-      <Icon network="github" url={`https://github.com/${github}`} />
+    <div className="mx-4 mt-16 mb-24 text-sm text-center">
+      {twitter && (
+        <div className="px-1 inline-block">
+          <A href={`https://twitter.com/${twitter}`}>
+            <TwitterIcon />
+          </A>
+        </div>
+      )}
+      {authorEmail && (
+        <div className="px-1 inline-block">
+          <A href={`mailto:${authorEmail}`}>
+            <MailIcon />
+          </A>
+        </div>
+      )}
+      {github && (
+        <div className="px-1 inline-block">
+          <A href={`https://github.com/${github}`}>
+            <GitHubIcon />
+          </A>
+        </div>
+      )}
       <div className="mt-2">
         <A href="/" self="true">
           {new Date().getFullYear()} ©️{" "}

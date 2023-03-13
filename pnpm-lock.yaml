@@ -22,7 +22,6 @@ specifiers:
   prettier: 2.8.4
   react: 18.2.0
   react-dom: 18.2.0
-  react-social-icons: 5.15.0
   react-star-ratings: ^2.3.0
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
@@ -55,7 +54,6 @@ dependencies:
   next-themes: 0.2.1_ld2jel3hspngo3u5lti2kgl2sq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-social-icons: 5.15.0_react@18.2.0
   react-star-ratings: 2.3.0
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
@@ -4350,18 +4348,6 @@ packages:
       {
         integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==,
       }
-
-  /react-social-icons/5.15.0_react@18.2.0:
-    resolution:
-      {
-        integrity: sha512-khfDgUiUwEBe34T6br2+mkXQg3hLVDdviVjexxZoVCsogMgxTy/m8+KlX/j6Wa7P2BPxgZ7yZ2jXw3X06pUUFQ==,
-      }
-    peerDependencies:
-      react: 15.x.x || 16.x.x || 17.x.x || 18.x.x
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
 
   /react-star-ratings/2.3.0:
     resolution:

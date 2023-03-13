@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { SocialIcon } from "react-social-icons";
 import Skeleton, { fetcher, swrConfig } from "./loading";
 import useSWR from "swr";
+import { GitHubIcon } from "./svg";
 
 const languageColorMapping = {
   Java: "bg-[#b07219]",
@@ -53,12 +53,7 @@ export default function GitHub({ user, repo }) {
         </p>
       </div>
       <div className="w-32 h-28">
-        <SocialIcon
-          network="github"
-          style={{ height: 112, width: 112 }}
-          fgColor="rgba(96, 96, 96)"
-          bgColor="transparent"
-        ></SocialIcon>
+        <GitHubIcon style={{ height: 112, width: 112 }} />
       </div>
     </div>
   );

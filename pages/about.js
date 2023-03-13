@@ -42,18 +42,20 @@ const About = props => {
           </p>
         </>
       )}
-      <>
-        <h2 id="ActivityPub">
-          <a href="#activitypub">ActivityPub</a>
-        </h2>
-        <p>
-          This blog is now in the <strong>Fediverse</strong>. Follow it with
-          ActivityPub:{" "}
-          <code>
-            @{config.activityPubUser}@{props.domain}
-          </code>
-        </p>
-      </>
+      {config.activityPubUser && (
+        <>
+          <h2 id="ActivityPub">
+            <a href="#activitypub">ActivityPub</a>
+          </h2>
+          <p>
+            This blog is now in the <strong>Fediverse</strong>. Follow it with
+            ActivityPub:{" "}
+            <code>
+              @{config.activityPubUser}@{props.domain}
+            </code>
+          </p>
+        </>
+      )}
     </Layout>
   );
 };
