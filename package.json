@@ -28,7 +28,6 @@
     "next-themes": "0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-social-icons": "5.15.0",
     "react-star-ratings": "^2.3.0",
     "rehype-autolink-headings": "6.1.1",
     "rehype-external-links": "2.0.1",
