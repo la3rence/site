@@ -10,6 +10,7 @@ specifiers:
   eslint: 8.36.0
   eslint-config-next: 13.2.4
   fanfou-sdk: 5.0.0
+  flexsearch: ^0.7.31
   gray-matter: 4.0.3
   hast-util-from-html: ^1.0.0
   highlight.js: 11.7.0
@@ -44,6 +45,7 @@ dependencies:
   cheerio: 1.0.0-rc.12
   dotenv: 16.0.3
   fanfou-sdk: 5.0.0
+  flexsearch: 0.7.31
   gray-matter: 4.0.3
   hast-util-from-html: 1.0.0
   highlight.js: 11.7.0
@@ -2061,6 +2063,13 @@ packages:
         integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==,
       }
     dev: true
+
+  /flexsearch/0.7.31:
+    resolution:
+      {
+        integrity: sha512-XGozTsMPYkm+6b5QL3Z9wQcJjNYxp0CYn3U1gO7dwD6PAqU1SVWZxI9CCg3z+ml3YfqdPnrBehaBrnH2AGKbNA==,
+      }
+    dev: false
 
   /form-data-encoder/2.1.4:
     resolution:

@@ -18,6 +18,7 @@
     "cheerio": "1.0.0-rc.12",
     "dotenv": "16.0.3",
     "fanfou-sdk": "5.0.0",
+    "flexsearch": "^0.7.31",
     "gray-matter": "4.0.3",
     "hast-util-from-html": "^1.0.0",
     "highlight.js": "11.7.0",
