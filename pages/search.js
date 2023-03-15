@@ -46,7 +46,7 @@ export default function Search({ posts }) {
 
   return (
     <Layout title={"Search"}>
-      <div className="flex mt-20">
+      <div className="flex my-20">
         <input
           ref={inputRef}
           type="text"
@@ -65,13 +65,15 @@ export default function Search({ posts }) {
                 <HighlightMatches match={keywords} value={searchResult.title} />
               </h3>
             </Link>
-            {searchResult.items.map(item => {
-              return (
-                <div className="break-words my-1" key={item.id}>
-                  <HighlightMatches match={keywords} value={item.content} />
-                </div>
-              );
-            })}
+            <div className="mx-4 break-words">
+              {searchResult.items.map(item => {
+                return (
+                  <div className="rounded-md" key={item.id}>
+                    <HighlightMatches match={keywords} value={item.content} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         );
       })}
@@ -145,7 +147,7 @@ const HighlightMatches = memo(function HighlightMatches({ value, match }) {
     }
   }
   return (
-    <span className="mx-4">
+    <span>
       {res}
       {splitText.join("")}
     </span>
