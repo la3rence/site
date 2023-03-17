@@ -31,6 +31,20 @@ export default function Search({ posts }) {
         });
       }
       // todo: add all indexes with tags, desciption...
+      index.add({
+        id: `${post.id}?description`,
+        title: post.title,
+        tags: post.tags,
+        path: post.path,
+        content: `Description: ${post.description}`,
+      });
+      index.add({
+        id: `${post.id}?tag`,
+        title: post.title,
+        tags: post.tags,
+        path: post.path,
+        content: `Tags: ${post.tags}`,
+      });
     });
     setIndex(index);
   }, [posts]);
@@ -62,11 +76,9 @@ export default function Search({ posts }) {
               href={searchResult.path}
               className="no-underline cursor-pointer"
             >
-              <h3>
-                <HighlightMatches match={keywords} value={searchResult.title} />
-              </h3>
+              <h3 className="mx-0">{searchResult.title}</h3>
             </Link>
-            <div className="mx-4 break-words">
+            <div className="break-words">
               {searchResult.items.map(item => {
                 return (
                   <div className="rounded-md" key={item.id}>
@@ -144,7 +156,6 @@ const HighlightMatches = ({ value, match }) => {
       res.push(
         <span
           key={id++}
-          className=""
           dangerouslySetInnerHTML={{
             __html: rendered,
           }}
