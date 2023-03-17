@@ -32,11 +32,11 @@ export default function Search({ posts }) {
       }
       // todo: add all indexes with tags, desciption...
       index.add({
-        id: `${post.id}?description`,
+        id: `${post.id}`,
         title: post.title,
         tags: post.tags,
         path: post.path,
-        content: `Description: ${post.description}`,
+        content: `${post.title}: ${post.description}`,
       });
       index.add({
         id: `${post.id}?tag`,
