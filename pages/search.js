@@ -73,7 +73,19 @@ export default function Search({ posts }) {
               href={searchResult.path}
               className="no-underline cursor-pointer"
             >
-              <h3 className="mx-0">{searchResult.title}</h3>
+              {searchResult.title.includes(keywords) ? (
+                <h3
+                  dangerouslySetInnerHTML={{
+                    __html: `${searchResult.title.replace(
+                      keywords,
+                      `<mark>${keywords}</mark>`,
+                      "gi"
+                    )}`,
+                  }}
+                />
+              ) : (
+                <h3>{searchResult.title}</h3>
+              )}
             </Link>
             <div className="break-words">
               {searchResult.items.map(item => {
