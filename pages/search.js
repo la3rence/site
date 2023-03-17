@@ -3,6 +3,7 @@ import FlexSearch from "flexsearch";
 import { useState, useRef, useEffect } from "react";
 import { getMdPostsData } from "../lib/ssg.mjs";
 import Link from "next/link";
+import MarkdownIt from "markdown-it";
 
 export default function Search({ posts }) {
   const [index, setIndex] = useState();
@@ -122,9 +123,8 @@ function buildArray(originalArray) {
   return groupByPath(temp);
 }
 
-import { Fragment, memo } from "react";
-
-const HighlightMatches = memo(function HighlightMatches({ value, match }) {
+const HighlightMatches = ({ value, match }) => {
+  const md = new MarkdownIt();
   const splitText = value ? value.split("") : [];
   const escapedSearch = match.trim().replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
   const regexp = RegExp("(" + escapedSearch.replaceAll(" ", "|") + ")", "ig");
@@ -135,21 +135,23 @@ const HighlightMatches = memo(function HighlightMatches({ value, match }) {
 
   if (value) {
     while ((result = regexp.exec(value)) !== null) {
+      const before = splitText.splice(0, result.index - index).join("");
+      const keyword = splitText
+        .splice(0, regexp.lastIndex - result.index)
+        .join("");
+      let rendered = md.render(`${before}${keyword}${splitText.join("")}`);
+      rendered = rendered.replace(keyword, `<mark>${keyword}</mark>`, "gi");
       res.push(
-        <Fragment key={id++}>
-          {splitText.splice(0, result.index - index).join("")}
-          <span className="bg-orange-500">
-            {splitText.splice(0, regexp.lastIndex - result.index).join("")}
-          </span>
-        </Fragment>
+        <span
+          key={id++}
+          className=""
+          dangerouslySetInnerHTML={{
+            __html: rendered,
+          }}
+        ></span>
       );
       index = regexp.lastIndex;
     }
   }
-  return (
-    <span>
-      {res}
-      {splitText.join("")}
-    </span>
-  );
-});
+  return <>{res}</>;
+};
