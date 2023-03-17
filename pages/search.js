@@ -30,7 +30,6 @@ export default function Search({ posts }) {
           content: paragraphs[i],
         });
       }
-      // todo: add all indexes with tags, desciption...
       index.add({
         id: `${post.id}`,
         title: post.title,
@@ -53,10 +52,8 @@ export default function Search({ posts }) {
     const keyword = inputRef.current.value;
     setKeywords(keyword);
     const searchResults = index.search(keyword, { enrich: true, bool: "or" });
-    console.debug("searchResults", searchResults);
     const results = buildArray(searchResults);
     setSearchResults(results);
-    console.debug("results", results);
   };
 
   return (
