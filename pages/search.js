@@ -46,6 +46,7 @@ export default function Search({ posts }) {
       });
     });
     setIndex(index);
+    inputRef.current.focus();
   }, [posts]);
 
   const search = async () => {
