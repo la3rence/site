@@ -128,10 +128,10 @@ iptables --flush
 iptables -tnat --flush
 
 iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
-# POD 无法访问外网络，但是可以互相 ping 或 ping 宿主。CIDR 为 POD CIDR
-# 有可能是 SNAT 时出了问题，使用动态 SNAT （即 MASQUERADE） 来配置 nat 表路由规则：
+// POD 无法访问外网络，但是可以互相 ping 或 ping 宿主。CIDR 为 POD CIDR
+// 有可能是 SNAT 时出了问题，使用动态 SNAT （即 MASQUERADE） 来配置 nat 表路由规则：
 iptables -t nat -I POSTROUTING -s 10.96.0.0/16 -j MASQUERADE
-# 再尝试重新运行 core dns 服务
+// 再尝试重新运行 core dns 服务
 ```
 
 [https://github.com/rancher/rancher/issues/6139](https://github.com/rancher/rancher/issues/6139)

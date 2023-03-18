@@ -75,7 +75,7 @@ export default function Search({ posts }) {
               className="no-underline cursor-pointer"
             >
               {searchResult.title.includes(keywords) ? (
-                <h3
+                <h2
                   dangerouslySetInnerHTML={{
                     __html: `${searchResult.title.replace(
                       keywords,
@@ -85,7 +85,7 @@ export default function Search({ posts }) {
                   }}
                 />
               ) : (
-                <h3>{searchResult.title}</h3>
+                <h2>{searchResult.title}</h2>
               )}
             </Link>
             <div className="break-words">
@@ -161,8 +161,11 @@ const HighlightMatches = ({ value, match }) => {
       const keyword = splitText
         .splice(0, regexp.lastIndex - result.index)
         .join("");
-      let rendered = md.render(`${before}${keyword}${splitText.join("")}`);
-      rendered = rendered.replace(keyword, `<mark>${keyword}</mark>`, "gi");
+      const markdown = `${before}${keyword}${splitText.join("")}`;
+      let rendered = md.render(markdown);
+      if (!rendered.includes("<img")) {
+        rendered = rendered.replace(keyword, `<mark>${keyword}</mark>`, "gi");
+      }
       res.push(
         <span
           key={id++}
