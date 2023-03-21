@@ -50,6 +50,11 @@ export default withView(Index);
 
 export const getStaticProps = async () => {
   const allPostsData = await getAllPostData();
+  allPostsData.forEach(post => {
+    delete post.content;
+    delete post.tags;
+    delete post.description;
+  });
   return {
     props: {
       allPostsData,
