@@ -92,7 +92,11 @@ export default function Search({ posts }) {
               {searchResult.items.map(item => {
                 return (
                   <div className="rounded-md" key={item.id}>
-                    <HighlightMatches match={keywords} value={item.content} />
+                    <HighlightMatches
+                      match={keywords}
+                      value={item.content}
+                      indexId={item.id}
+                    />
                   </div>
                 );
               })}
@@ -145,7 +149,7 @@ function buildArray(originalArray) {
   return groupByPath(temp);
 }
 
-const HighlightMatches = ({ value, match }) => {
+const HighlightMatches = ({ value, match, indexId }) => {
   const md = new MarkdownIt();
   const splitText = value ? value.split("") : [];
   const escapedSearch = match.trim().replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
@@ -164,11 +168,15 @@ const HighlightMatches = ({ value, match }) => {
       const markdown = `${before}${keyword}${splitText.join("")}`;
       let rendered = md.render(markdown);
       if (!rendered.includes("<img")) {
-        rendered = rendered.replace(keyword, `<mark>${keyword}</mark>`, "gi");
+        rendered = rendered.replaceAll(keyword, `<mark>${keyword}</mark>`);
+      }
+      if (res.find(dom => dom.props.indexid === indexId)) {
+        continue;
       }
       res.push(
         <span
           key={id++}
+          indexid={indexId}
           dangerouslySetInnerHTML={{
             __html: rendered,
           }}
