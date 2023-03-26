@@ -1,5 +1,6 @@
 import config from "../../../lib/config.mjs";
 import { getOrigin, respondActivityJSON } from "../../../lib/util.js";
+import env from "../../../lib/env.js";
 
 export const getFediAcctFromActor = (username, actor) => {
   const actorURL = new URL(actor);
@@ -26,7 +27,9 @@ export async function fetchActorInformation(actorUrl) {
 export const fetchAvatar = async actor => {
   const actorInfo = await fetchActorInformation(actor);
   if (actorInfo.icon.url) {
-    return actorInfo.icon.url;
+    // for domains that blocked in China
+    const originIcon = actorInfo.icon.url.replace(/^https?:\/\//, "");
+    return env.NEXT_PUBLIC_PROXY_URL + originIcon;
   } else {
     return "https://mastodon.social/avatars/original/missing.png";
   }
