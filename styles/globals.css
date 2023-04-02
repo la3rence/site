@@ -50,6 +50,11 @@
   h5 > a {
     @apply hover:after:content-["#"] hover:after:mx-2 hover:text-gray-400 cursor-pointer;
   }
+
+  nav,
+  details {
+    @apply text-sm mx-4;
+  }
 }
 
 @tailwind utilities;
