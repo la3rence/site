@@ -54,7 +54,9 @@ const Footer = () => {
             Built on {new Date(BUILDTIME * 1000).toLocaleString()}
           </span>
           <A href={`https://github.com/${github}/${repo}/commit/${GITSHA}`}>
-            <span className="">{GITSHA?.slice(0, 6)}</span>
+            <span className="font-mono text-zinc-500 dark:text-zinc-600">
+              {GITSHA?.slice(0, 6)}
+            </span>
           </A>
         </div>
       )}
