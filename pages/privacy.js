@@ -3,7 +3,7 @@ import { getMdContentById } from "../lib/ssg";
 
 export default function Privacy(props) {
   return (
-    <Blog author="lawrence" date="2023-04-04" title="Privacy Policy" noReply>
+    <Blog author="Lawrence" date="2023-04-04" title="Privacy Policy" noReply>
       <div
         dangerouslySetInnerHTML={{
           __html: props.htmlStringContent,
