@@ -42,24 +42,25 @@ const Footer = () => {
           </A>
         </div>
       )}
-      <div className="mt-2">
-        <A href="/" self="true">
-          {new Date().getFullYear()} ©️{" "}
-          <span className="underline hover:text-zinc-500">{siteTitle}</span>
-        </A>
-      </div>
       {enableBuildInfo && (
-        <div className="mt-2">
-          <span className="mx-1 text-zinc-500 dark:text-zinc-600">
+        <div className="mt-2 text-zinc-500">
+          <span className="mx-1 ">
             Built on {new Date(BUILDTIME * 1000).toLocaleString()}
           </span>
           <A href={`https://github.com/${github}/${repo}/commit/${GITSHA}`}>
-            <span className="font-mono text-zinc-500 dark:text-zinc-600">
-              {GITSHA?.slice(0, 6)}
-            </span>
+            <span className="font-mono">{GITSHA?.slice(0, 6)}</span>
           </A>
         </div>
       )}
+      <div className="mt-0 text-zinc-500">
+        <A href="/privacy" self="true">
+          <span className="mx-1">Privacy Policy</span>
+        </A>
+        <span>{new Date().getFullYear()} ©️ </span>
+        <A href="/" self="true">
+          <span>{siteTitle}</span>
+        </A>
+      </div>
     </div>
   );
 };
