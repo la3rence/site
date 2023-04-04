@@ -67,28 +67,26 @@ const Chat = props => {
     }
     chat.push({ role: "user", content: question });
     inputRef.current.value = "";
-    try {
-      await answer(question);
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-      chat.push({ role: "assistant", content: error.message });
-      setChat([...chat]);
-      return;
-    }
+    await answer(question);
     inputRef.current.focus();
   };
 
   const answer = async question => {
     setChat([...chat]);
     setIsLoading(true);
-    const res = await fetch(process.env.NEXT_PUBLIC_CHAT_API, {
-      method: "POST",
-      body: JSON.stringify({
-        customKey: "",
-        messages: chat,
-      }),
-    });
+    let res;
+    try {
+      res = await fetch(process.env.NEXT_PUBLIC_CHAT_API, {
+        method: "POST",
+        body: JSON.stringify({
+          customKey: "",
+          messages: chat,
+        }),
+      });
+    } catch (error) {
+      setAssistantChat(error);
+      return;
+    }
     const data = res.body;
     const reader = data.getReader();
     const decoder = new TextDecoder("utf-8");
@@ -111,16 +109,19 @@ const Chat = props => {
       }
       done = readerDone;
     }
-    // const result = await (await res.text()).trim();
-    setIsLoading(false);
-    chat.push({ role: "assistant", content: currentData });
-    setChat([...chat]);
+    setAssistantChat(currentData);
     if (question) {
       const fly = await fetch(
         `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
       );
       await fly.json();
     }
+  };
+
+  const setAssistantChat = content => {
+    setIsLoading(false);
+    chat.push({ role: "assistant", content });
+    setChat([...chat]);
   };
 
   const clear = () => {
