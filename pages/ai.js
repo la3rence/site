@@ -71,6 +71,10 @@ const Chat = props => {
       await answer(question);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
+      chat.push({ role: "assistant", content: error.message });
+      setChat([...chat]);
+      return;
     }
     inputRef.current.focus();
   };
