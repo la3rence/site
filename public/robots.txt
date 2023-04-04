@@ -1,4 +1,6 @@
 User-agent: *
 Disallow: /blog/[id]
+Disallow: /ai
 Allow: /
 Crawl-delay: 5
+Sitemap: https://lawrenceli.me/sitemap.xml

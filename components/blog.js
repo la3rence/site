@@ -100,48 +100,48 @@ export default withView(props => {
                 </div>
               </>
             )}
-            <h4 id="reply">
-              Replies {replies.length > 0 ? `(${replies.length})` : ""}
-            </h4>
-            <div className="mx-4 mt-4 text-sm">
-              <span>Search this URL on mastodon to reply:</span>
-              <div className="font-mono my-4 break-words">{pageURL}</div>
-              <div className="mt-6">
-                {replies.map(reply => {
-                  return (
-                    <div key={reply.url} className="mt-1">
-                      <div className="flex">
-                        <span className="mr-2">
-                          <img
-                            className="rounded-full m-0 shadow-md border border-zinc-800 dark:border-white border-opacity-90"
-                            width={25}
-                            height={25}
-                            src={reply.avatar}
-                            alt="avatar"
-                          />
-                        </span>
-                        <a
-                          href={reply.url}
-                          target="_blank"
-                          className="no-underline hover:underline"
-                        >
-                          <span className="h-6 leading-6">
-                            {reply.account} commented:
-                          </span>
-                          {/* <span>
-                            replied at{" "}
-                            {new Date(reply.published).toLocaleString()}:
-                          </span> */}
-                        </a>
-                      </div>
-                      <span
-                        dangerouslySetInnerHTML={{ __html: reply.content }}
-                      ></span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            {!props.noReply && (
+              <>
+                <h4 id="reply">
+                  Replies {replies.length > 0 ? `(${replies.length})` : ""}
+                </h4>
+                <div className="mx-4 mt-4 text-sm">
+                  <span>Search this URL on mastodon to reply:</span>
+                  <div className="font-mono my-4 break-words">{pageURL}</div>
+                  <div className="mt-6">
+                    {replies.map(reply => {
+                      return (
+                        <div key={reply.url} className="mt-1">
+                          <div className="flex">
+                            <span className="mr-2">
+                              <img
+                                className="rounded-full m-0 shadow-md border border-zinc-800 dark:border-white border-opacity-90"
+                                width={25}
+                                height={25}
+                                src={reply.avatar}
+                                alt="avatar"
+                              />
+                            </span>
+                            <a
+                              href={reply.url}
+                              target="_blank"
+                              className="no-underline hover:underline"
+                            >
+                              <span className="h-6 leading-6">
+                                {reply.account} commented:
+                              </span>
+                            </a>
+                          </div>
+                          <span
+                            dangerouslySetInnerHTML={{ __html: reply.content }}
+                          ></span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </>
       )}
