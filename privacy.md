@@ -28,6 +28,20 @@ Cookies are files with a small amount of data, which may include an anonymous un
 
 We use "cookies" to collect information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Website.
 
+## Third-Party Websites
+
+Our website uses APIs from github.com, douban.8610000.xyz, and bilibili.com to display information such as videos and details about open-source projects and films. We do not share or process any user data with these APIs.
+
+We may use third-party cookies from these APIs to improve the performance and functionality of our website. These cookies may include API-related cookies and other cookies.
+
+The APIs we use may require us to provide additional information about video content or films. If you have any questions about how we use this information, please contact us.
+
+Our website may also cache comments and likes data from Mastodon, a distributed social network, in order to display related content. Mastodon is composed of multiple independent social networks, each with its own domain and privacy policy.
+
+We do not share or process any user data with Mastodon. We only cache comments and likes data from Mastodon.
+
+Please note that our website may link to other websites that have different privacy policies. We recommend that you review the privacy policies of these websites to learn about their data processing practices. If you wish to access, correct, or delete your data, please visit the respective service's website to learn more.
+
 ## Security
 
 The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage, is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.
