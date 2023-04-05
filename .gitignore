@@ -116,6 +116,7 @@ dist
 # site
 public/atom*
 public/sitemap*
+public/robots.txt
 
 # editor
 .obsidian/

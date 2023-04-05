@@ -13,7 +13,9 @@ const languageColorMapping = {
 export default function GitHub({ user, repo }) {
   const [mounted, setMounted] = useState(false);
   const { data, error } = useSWR(
-    mounted ? `https://api.github.com/repos/${user}/${repo}` : null,
+    mounted
+      ? `${process.env.NEXT_PUBLIC_PROXY_URL}api.github.com/repos/${user}/${repo}`
+      : null,
     fetcher,
     swrConfig
   );

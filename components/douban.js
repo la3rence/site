@@ -8,7 +8,9 @@ export default function Douban({ id, reverse }) {
   const [mounted, setMounted] = useState(false);
 
   const { data: movie, error } = useSWR(
-    mounted ? `https://douban.8610000.xyz/data/${id}.json` : null,
+    mounted
+      ? `${process.env.NEXT_PUBLIC_PROXY_URL}douban.8610000.xyz/data/${id}.json`
+      : null,
     fetcher,
     swrConfig
   );
