@@ -11,7 +11,7 @@ export default function Header({ title, blog, image, description }) {
   const theDescription = description || siteDescription;
   const pageTitle = title || siteTitle;
   const hoverTabStyle =
-    "hover:bg-gray-200 text-gray-700 transition duration-500 dark:hover:bg-gray-700 dark:text-gray-300 hover:scale-105 hover:transition-transform";
+    "hover:bg-zinc-100 text-zinc-700 transition duration-500 dark:hover:bg-zinc-700 dark:text-zinc-300 hover:transition-transform";
   return (
     <>
       <Head>
@@ -33,10 +33,10 @@ export default function Header({ title, blog, image, description }) {
         {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
       </Head>
       {!blog && (
-        <header className="flex mt-12 text-gray-500">
-          <h1 className="w-36">
+        <header className="flex mt-12 text-zinc-500">
+          <h1 className="w-32 cursor-pointer">
             <Link href={"/"}>
-              <div className={`p-2 -mx-2 cursor-pointer ${hoverTabStyle}`}>
+              <div className={`py-1 -mx-2 ${hoverTabStyle}`}>
                 <Logo title={siteTitle} />
               </div>
             </Link>

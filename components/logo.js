@@ -1,24 +1,7 @@
-const Logo = ({ title, duration = "360s" }) => (
-  <span className="inline-flex mt-1 items-center">
-    <svg
-      className="mr-4 shadow-2xl rounded-sm hover:scale-150 hover:transition-transform"
-      viewBox="0 0 20 20"
-      width="20"
-      height="20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="0" y="0" width="20" height="20" fill="#888888" />
-      <rect x="10" y="0" width="10" height="10" fill="#CCCCCC" />
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="0"
-        to="360"
-        dur={duration}
-        repeatCount="indefinite"
-      />
-    </svg>
-    {title}
+const Logo = ({ title }) => (
+  <span className="inline-flex items-center pb-1 ml-2">
+    <span className="mt-0 text-3xl font-extrabold">◳</span>
+    <span className="pl-2 pt-1">{title}</span>
   </span>
 );
 
