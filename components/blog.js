@@ -50,7 +50,7 @@ export default withView(props => {
                 <div className="flex items-center justify-start flex-wrap not-prose">
                   <Image
                     className="rounded-full"
-                    src={`/images/author/${author}.png`}
+                    src={`/images/author/author.png`}
                     width={25}
                     height={25}
                     alt={author}
