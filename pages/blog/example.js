@@ -12,6 +12,7 @@ export const blogProps = {
   date: "2022-08-26",
   someKey: "someValeInJSXProps",
   tags: "Example, Test, Video, Douban",
+  visible: false,
 };
 
 export default function Example() {

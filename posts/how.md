@@ -3,9 +3,7 @@ title: 这个网站是如何构建的
 date: "2022-08-27"
 image: https://reflare.lawrenceli.me/file/1662688541295.png
 description: 此文用于端到端测试 Markdown 样式
-someKey: someValue # available in props of <Header />
-uuid: 86aa5d46-01c6-4d3f-bc7f-2ac56af5e9a4
-tags: MarkDown, Example, Guide, JAMstack
+tags: markdown, example, guide, jamstack
 ---
 
 ## 使用方式

@@ -2,7 +2,7 @@
 title: "The World As I See It"
 date: "2019-08-18"
 description: "爱因斯坦的美国观。效率。效率。效率。"
-tags: Kubernetes, Viewpoint
+tags: viewpoint, thought
 ---
 
 爱因斯坦的美国观。

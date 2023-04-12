@@ -2,7 +2,7 @@
 title: "Two Forms of Pre-rendering"
 date: "1970-01-01"
 description: "SSG & SSR"
-tags: SSG, SSR
+tags: ssg, ssr
 ---
 
 Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.

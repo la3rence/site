@@ -2,11 +2,7 @@
 title: "路径依赖与货物崇拜"
 date: "2019-03-12"
 description: "关于职业规划的思考——软件工程师如何避免陷入路径依赖与货物崇拜编程。"
-tags: Viewpoint, Career
----
-
-警惕、避免。
-
+tags: viewpoint, career
 ---
 
 路径依赖原本是经济学中的一个名词，我并不深知其具体领域的定义，但用通俗的话来解释起来非常简单：过去的决策将会限制、缩小未来的可选择性。
@@ -27,13 +23,12 @@ tags: Viewpoint, Career
 
 - 盲目模仿成功开发团队的表面现象
 - 机械套用软件开发过程却不知其由（即货物崇拜编程）
-- 把 996 当作福报
 
 货物崇拜和路径依赖存在交集。具体表现在开发者的机械式开发。最常见的是：
 
 - jQuery 一把梭
 
-我发现有前端开发者会在使用 Vue 的情况下竟然依旧使用 jQuery 操作 DOM。这是典型的货物崇拜编程实践，因为这样的开发人员完全不理解 Vue 是做什么的，因为 Ta 已经习惯了 $ 的 API，哪管 DOM Virtual 不 Virtual；姑且撇开 Virtual DOM 的性能不说，这样做的开发人员往往也没能够理解[声明式](/blog/declarative-programming) UI 框架的内涵。
+我发现有前端开发者会在使用 Vue/React 等基于 Virtual DOM 的声明式 UI Library 的情况下依旧使用 jQuery 操作 DOM。这是典型的货物崇拜编程实践，因为这样的开发人员完全不理解 Vue/React 是做什么的，因为已经习惯了 $ 的 API，哪管 DOM Virtual 不 Virtual；姑且撇开 Virtual DOM 的性能不说，这样做的开发人员往往也没能够理解[声明式](/blog/declarative-programming) UI 框架的内涵。
 
 上文提到的「模拟退火」是破解路径依赖困境的法则之一。除此之外，笔者认为最适合大多数人的做法是对事物保持强烈的好奇心。正如 Aaron Swartz 所云：
 

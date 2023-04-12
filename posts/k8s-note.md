@@ -2,7 +2,7 @@
 title: "Kubernetes Notes"
 date: "2019-10-01"
 description: "学习 K8s 时的一些琐碎笔记。"
-tags: Note, Kubernetes
+tags: note, kubernetes, k8s
 ---
 
 大部分内容皆来源于 [Kubernetes 官网](https://k8s.io)。
