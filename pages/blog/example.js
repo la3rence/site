@@ -5,6 +5,7 @@ import Bilibili from "../../components/bilibili";
 import Douban from "../../components/douban";
 import GitHub from "../../components/github";
 import demoPic from "../../public/images/the1975.jpg";
+import Pixi from "../../components/pixi";
 
 export const blogProps = {
   author: config.authorName,
@@ -12,12 +13,13 @@ export const blogProps = {
   date: "2022-08-26",
   someKey: "someValeInJSXProps",
   tags: "Example, Test, Video, Douban",
-  visible: false,
+  visible: true,
 };
 
 export default function Example() {
   return (
     <Blog {...blogProps}>
+      <Pixi></Pixi>
       <p>
         This page is fully rendered by <code>JSX</code>. You can update this
         page with JavaScript and React components.
