@@ -16,7 +16,7 @@
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@microsoft/fetch-event-source": "2.0.1",
     "@react-spring/web": "^9.7.2",
-    "@vercel/analytics": "1.0.0",
+    "@vercel/analytics": "1.0.1",
     "dotenv": "16.0.3",
     "fanfou-sdk": "5.0.0",
     "flexsearch": "^0.7.31",
