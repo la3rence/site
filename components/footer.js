@@ -10,9 +10,12 @@ const GITSHA = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA; // latest git comm
 
 const Footer = () => {
   const [mounted, setMounted] = useState(false);
+  const [pageRequestDuration, setPageRequestDuration] = useState(0);
 
   useEffect(() => {
     setMounted(true);
+    const pnt = performance.getEntriesByType("navigation")[0];
+    setPageRequestDuration(pnt.responseEnd - pnt.startTime);
   }, []);
 
   if (!mounted) {
@@ -45,7 +48,8 @@ const Footer = () => {
       {enableBuildInfo && (
         <div className="mt-2 text-zinc-500">
           <span className="mx-1 ">
-            Built on {new Date(BUILDTIME * 1000).toLocaleString()}
+            Built on {new Date(BUILDTIME * 1000).toLocaleString()} ·{" "}
+            {Math.floor(pageRequestDuration)} ms ·
           </span>
           <A href={`https://github.com/${github}/${repo}/commit/${GITSHA}`}>
             <span className="font-mono">{GITSHA?.slice(0, 6)}</span>
