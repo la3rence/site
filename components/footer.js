@@ -14,7 +14,7 @@ const Footer = () => {
 
   useEffect(() => {
     setMounted(true);
-    setPageLoadDuration(performance.getEntriesByType('navigation')[0].duration);
+    setPageLoadDuration(performance.getEntriesByType("navigation")[0].duration);
   }, []);
 
   if (!mounted) {
@@ -47,7 +47,8 @@ const Footer = () => {
       {enableBuildInfo && (
         <div className="mt-2 text-zinc-500">
           <span className="mx-1 ">
-            Built on {new Date(BUILDTIME * 1000).toLocaleString()} · { Math.floor(pageLoadDuration) } ms ·
+            Built on {new Date(BUILDTIME * 1000).toLocaleString()} ·{" "}
+            {Math.floor(pageLoadDuration)} ms ·
           </span>
           <A href={`https://github.com/${github}/${repo}/commit/${GITSHA}`}>
             <span className="font-mono">{GITSHA?.slice(0, 6)}</span>
