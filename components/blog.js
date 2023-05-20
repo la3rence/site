@@ -32,11 +32,14 @@ export default withView(props => {
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
       <div className="blog">
-        <h1 id="title" className="articleTitle cursor-pointer mt-28">
-          <a href={`#title`} className="no-underline">
-            {title}
-          </a>
-        </h1>
+        {!props.noTitle && (
+          <h1 id="title" className="articleTitle cursor-pointer mt-28">
+            <a href={`#title`} className="no-underline">
+              {title}
+            </a>
+          </h1>
+        )}
+
         {!props.noMeta && (
           <div
             className="articleTitle flex justify-start items-center flex-wrap mb-8"

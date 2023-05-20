@@ -25,24 +25,37 @@ const md = new MarkdownIt({
 const Message = ({ role, content, isLoading }) => {
   if (role === "user") {
     return (
-      <div
-        className="p-2"
-        dangerouslySetInnerHTML={{
-          __html: md.render(`○ ${content}`),
-        }}
-      ></div>
+      <div>
+        <span className="ml-6 mt-2">
+          <span className="text-lg text-pink-300 mr-1 dark:text-pink-400">
+            ●
+          </span>
+          YOU
+        </span>
+        <div
+          className="px-2"
+          dangerouslySetInnerHTML={{
+            __html: md.render(`${content}`),
+          }}
+        ></div>
+      </div>
     );
   }
   if (isLoading) {
     return <Lines />;
   }
   return (
-    <div
-      className="py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
-      dangerouslySetInnerHTML={{
-        __html: md.render(`● ${content}`),
-      }}
-    ></div>
+    <div>
+      <span className="ml-6 mt-2">
+        <span className="text-lg text-blue-500 mr-1">●</span>GPT
+      </span>
+      <div
+        className="py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
+        dangerouslySetInnerHTML={{
+          __html: md.render(`${content}`),
+        }}
+      ></div>
+    </div>
   );
 };
 
@@ -109,7 +122,6 @@ const Chat = props => {
         mode: "cors",
         headers: {
           "Content-Type": "text/event-stream",
-          "oai-client-type": "ios",
         },
         body: JSON.stringify(body),
         onmessage(event) {
@@ -145,6 +157,7 @@ const Chat = props => {
         },
       });
     } catch (error) {
+      chat.pop();
       setAssistantChat(error);
       return;
     }
@@ -168,11 +181,11 @@ const Chat = props => {
   return (
     <Blog
       noMeta
-      // noFooter
-      title={`${q ? q : ""}`}
+      noTitle
+      noFooter
       description="Get instant answers, explanations, and examples for all of your questions."
     >
-      <div className="ml-6">
+      <div className="ml-6 mt-20">
         <TypeAnimation
           sequence={["lawrenceli.me/ai", 1000, "ChatGPT ●"]}
           wrapper="span"
@@ -181,15 +194,17 @@ const Chat = props => {
           style={{ fontSize: "2em", display: "inline-block" }}
         />
       </div>
-      {chat.map((messageObj, index) => {
-        return (
-          <Message
-            content={messageObj.content}
-            role={messageObj.role}
-            key={index}
-          />
-        );
-      })}
+      <div className="mt-12">
+        {chat.map((messageObj, index) => {
+          return (
+            <Message
+              content={messageObj.content}
+              role={messageObj.role}
+              key={index}
+            />
+          );
+        })}
+      </div>
       {chat.length > 1 && !isLoading && (
         <div className="flex">
           <div className="flex-1"></div>
@@ -202,6 +217,7 @@ const Chat = props => {
       <div ref={bottomRef} id="input" className="mt-20">
         <div className="flex">
           <input
+            disabled={isLoading}
             ref={inputRef}
             type="text"
             placeholder=""
