@@ -27,10 +27,8 @@ const Message = ({ role, content, isLoading }) => {
     return (
       <div>
         <span className="ml-6 mt-2">
-          <span className="text-lg text-pink-300 mr-1 dark:text-pink-400">
-            ●
-          </span>
-          YOU
+          <span className="text-lg text-pink-400 mr-1">●</span>
+          <span>YOU</span>
         </span>
         <div
           className="px-2"
@@ -47,7 +45,8 @@ const Message = ({ role, content, isLoading }) => {
   return (
     <div>
       <span className="ml-6 mt-2">
-        <span className="text-lg text-blue-500 mr-1">●</span>GPT
+        <span className="text-lg text-blue-500 mr-1">●</span>
+        <span>GPT</span>
       </span>
       <div
         className="py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
@@ -128,18 +127,17 @@ const Chat = props => {
           if (event.data === "[DONE]") {
             return;
           }
-          chat.pop();
-          setChat([...chat]);
-          const data = JSON.parse(event.data);
+          let data;
+          try {
+            data = JSON.parse(event.data);
+          } catch (error) {
+            return;
+          }
           console.debug("sse onmessage", event.data);
           currentData = data.message?.content?.parts?.[0];
           conversationId = data.conversation_id;
           parentMessageId = data.message.id;
-          chat.push({
-            role: "assistant",
-            content: currentData + "●",
-          });
-          setChat([...chat]);
+          setAssistantChat(currentData + "●");
           bottomRef.current.scrollIntoView({ behavior: "smooth" });
         },
         onerror(error) {
@@ -147,8 +145,8 @@ const Chat = props => {
         },
         async onclose() {
           console.debug("sse closed");
-          chat.pop();
           setAssistantChat(currentData);
+          setIsLoading(false);
           const fly = await fetch(
             `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
           );
@@ -157,14 +155,14 @@ const Chat = props => {
         },
       });
     } catch (error) {
-      chat.pop();
       setAssistantChat(error);
+      setIsLoading(false);
       return;
     }
   };
 
   const setAssistantChat = content => {
-    setIsLoading(false);
+    chat.pop();
     chat.push({ role: "assistant", content });
     setChat([...chat]);
   };
@@ -208,7 +206,10 @@ const Chat = props => {
       {chat.length > 1 && !isLoading && (
         <div className="flex">
           <div className="flex-1"></div>
-          <div className="p-1 h-6 w-6 mr-4 cursor-pointer" onClick={regenerate}>
+          <div
+            className="p-1 h-6 w-6 mr-4 cursor-pointer text-lg"
+            onClick={regenerate}
+          >
             ↺
           </div>
         </div>
