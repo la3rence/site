@@ -5,6 +5,7 @@ import hljs from "highlight.js";
 import { Lines } from "../components/loading";
 import { v4 as uuidv4 } from "uuid";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
+import { TypeAnimation } from "react-type-animation";
 
 let parentMessageId = null;
 let conversationId = null;
@@ -171,6 +172,15 @@ const Chat = props => {
       title={`${q ? q : ""}`}
       description="Get instant answers, explanations, and examples for all of your questions."
     >
+      <div className="ml-6">
+        <TypeAnimation
+          sequence={["lawrenceli.me/ai", 1000, "ChatGPT ●"]}
+          wrapper="span"
+          cursor={false}
+          repeat={0}
+          style={{ fontSize: "2em", display: "inline-block" }}
+        />
+      </div>
       {chat.map((messageObj, index) => {
         return (
           <Message

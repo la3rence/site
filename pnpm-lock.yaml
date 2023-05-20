@@ -55,6 +55,9 @@ dependencies:
   react-star-ratings:
     specifier: ^2.3.0
     version: 2.3.0
+  react-type-animation:
+    specifier: ^3.0.1
+    version: 3.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   rehype-autolink-headings:
     specifier: 6.1.1
     version: 6.1.1
@@ -4644,6 +4647,21 @@ packages:
       classnames: 2.3.2
       prop-types: 15.8.1
       react: 16.14.0
+    dev: false
+
+  /react-type-animation@3.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-n6erVzng071lN8A0UbNT9Q7m5D6puaa9OE1lakwu5UKxMkEnUbjs2MLT3jN/SUjuxNtKmDP2GqJKb3uQ5wZNkQ==,
+      }
+    peerDependencies:
+      prop-types: ^15.5.4
+      react: ">= 15.0.0"
+      react-dom: ">= 15.0.0"
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react@16.14.0:
