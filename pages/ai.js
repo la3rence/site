@@ -29,16 +29,15 @@ const Message = ({ role, content, isLoading, session }) => {
     return (
       <div>
         <span className="ml-6 mt-2">
-          <span className="text-lg h-4  mr-1 not-prose">
+          <span className="h-4 mr-1 not-prose text-sm">
             <Image
-              className="rounded-full inline-block"
+              className="rounded-full inline-block pb-1"
               src={session.user.image}
-              width={16}
-              height={16}
+              width={15}
+              height={15}
               alt={session.user.email}
             />
           </span>
-
           <span>{session.user.name}</span>
         </span>
         <div
@@ -60,7 +59,7 @@ const Message = ({ role, content, isLoading, session }) => {
         <span>GPT</span>
       </span>
       <div
-        className="py-4 prose-p:p-2 prose-p:my-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
+        className="py-4 prose-p:p-2 prose-p:my-0 prose-li:ml-4 prose-li:p-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
         dangerouslySetInnerHTML={{
           __html: md.render(`${content}`),
         }}
