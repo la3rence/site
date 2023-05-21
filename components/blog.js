@@ -39,7 +39,6 @@ export default withView(props => {
             </a>
           </h1>
         )}
-
         {!props.noMeta && (
           <div
             className="articleTitle flex justify-start items-center flex-wrap mb-8"
