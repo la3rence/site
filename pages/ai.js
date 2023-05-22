@@ -69,7 +69,8 @@ const Message = ({ role, content, isLoading, session }) => {
 };
 
 const Chat = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const loadingSession = status === "loading";
   const [chat, setChat] = useState([]);
   const inputRef = useRef();
   const bottomRef = useRef(null);
@@ -195,7 +196,7 @@ const Chat = () => {
             style={{ fontSize: "2em" }}
           />
         </div>
-        {session && (
+        {session?.user && (
           <div className="w-12 relative">
             <button
               className="rounded-full not-prose pt-3"
@@ -220,7 +221,7 @@ const Chat = () => {
           </div>
         )}
       </div>
-      {session && (
+      {session?.user && (
         <>
           <div className="mt-4">
             {chat.map((messageObj, index) => {
@@ -248,7 +249,7 @@ const Chat = () => {
           {isLoading && <Message role={"assistant"} isLoading={true} />}
         </>
       )}
-      {!session && (
+      {!session && !loadingSession && (
         <div className="mt-6">
           <button
             onClick={() => signIn()}
@@ -259,7 +260,7 @@ const Chat = () => {
           </button>
         </div>
       )}
-      {session && (
+      {session?.user && (
         <div ref={bottomRef} id="input" className="mt-20">
           <div className="flex">
             <input
