@@ -28,13 +28,13 @@ const Message = ({ role, content, isLoading, session }) => {
   if (role === "user") {
     return (
       <div>
-        <span className="ml-6 mt-2">
-          <span className="h-4 mr-1 not-prose text-sm">
+        <span className="ml-6 mt-2 text-sm">
+          <span className="mr-1 not-prose">
             <Image
-              className="rounded-full inline-block pb-1"
+              className="rounded-full inline-block mb-1"
               src={session.user.image}
-              width={15}
-              height={15}
+              width={12}
+              height={12}
               alt={session.user.email}
             />
           </span>
@@ -54,9 +54,9 @@ const Message = ({ role, content, isLoading, session }) => {
   }
   return (
     <div>
-      <span className="ml-6 mt-2">
-        <span className="text-lg text-blue-500 mr-1">●</span>
-        <span>GPT</span>
+      <span className="ml-6 mt-2 text-sm">
+        <span className="rounded-full inline-block w-3 h-3 bg-blue-500"></span>
+        <span className="pl-1">GPT</span>
       </span>
       <div
         className="py-4 prose-p:p-2 prose-p:my-0 prose-li:ml-4 prose-li:p-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
