@@ -7,9 +7,7 @@ export default function Bilibili({ bv, page, danmaku }) {
       <iframe
         className="absolute w-full h-full top-0 left-0"
         src={src}
-        scrolling="no"
         border={0}
-        frameBorder={0}
         allowFullScreen={true}
       />
     </div>
