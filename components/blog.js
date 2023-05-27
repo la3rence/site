@@ -86,7 +86,12 @@ export default withView(props => {
                 <div className="mx-4 mt-2 mr-1 flex">
                   {likes.map(like => {
                     return (
-                      <a href={like.actor} target="_blank" key={like._id}>
+                      <a
+                        href={like.actor}
+                        target="_blank"
+                        key={like._id}
+                        className="not-prose mr-1"
+                      >
                         <Avatar src={like.avatar} size={25} alt={like.actor} />
                       </a>
                     );
@@ -107,13 +112,11 @@ export default withView(props => {
                       return (
                         <div key={reply.url} className="mt-1">
                           <div className="flex">
-                            <span className="mr-2">
-                              <img
-                                className="rounded-full m-0 shadow-md border border-zinc-800 dark:border-white border-opacity-90"
-                                width={25}
-                                height={25}
+                            <span className="mr-2 not-prose">
+                              <Avatar
                                 src={reply.avatar}
-                                alt="avatar"
+                                size={25}
+                                alt={reply.account}
                               />
                             </span>
                             <a
