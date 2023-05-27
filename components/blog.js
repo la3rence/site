@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
 import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
 import { useEffect, useState } from "react";
 import "highlight.js/styles/github-dark.css";
 import Tag from "./tag";
+import Avatar from "./avatar";
 
 export default withView(props => {
   const { children, title, date, author, view, id, tags, pageURL } = props;
@@ -50,11 +50,9 @@ export default withView(props => {
             >
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
-                  <Image
-                    className="rounded-full"
-                    src={`https://avatars.githubusercontent.com/u/24540598`}
-                    width={25}
-                    height={25}
+                  <Avatar
+                    src={"https://avatars.githubusercontent.com/u/24540598"}
+                    size={25}
                     alt={author}
                   />
                   <small className="ml-2">{author}</small>
@@ -89,13 +87,7 @@ export default withView(props => {
                   {likes.map(like => {
                     return (
                       <a href={like.actor} target="_blank" key={like._id}>
-                        <img
-                          className="rounded-full m-0 mr-1 shadow-md border border-zinc-800 dark:border-white border-opacity-90"
-                          width={25}
-                          height={25}
-                          src={like.avatar}
-                          alt={like.actor}
-                        />
+                        <Avatar src={like.avatar} size={25} alt={like.actor} />
                       </a>
                     );
                   })}

@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import Image from "next/image";
 import Blog from "../components/blog";
 import MarkdownIt from "markdown-it";
 import hljs from "highlight.js";
@@ -8,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { TypeAnimation } from "react-type-animation";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Avatar from "../components/avatar";
 
 let parentMessageId = null;
 let conversationId = null;
@@ -27,44 +27,36 @@ const md = new MarkdownIt({
 const Message = ({ role, content, isLoading, session }) => {
   if (role === "user") {
     return (
-      <div>
-        <span className="ml-6 mt-2 text-sm">
-          <span className="mr-1 not-prose">
-            <Image
-              className="rounded-full inline-block mb-1"
-              src={session.user.image}
-              width={12}
-              height={12}
-              alt={session.user.email}
-            />
-          </span>
-          <span>{session.user.name}</span>
-        </span>
+      <>
+        <div className="ml-6 not-prose h-4">
+          <span className="rounded-full inline-block w-4 h-4 bg-pink-400 align-middle"></span>
+          <span className="pl-1 text-sm">{session.user.name}</span>
+        </div>
         <div
           className="px-2"
           dangerouslySetInnerHTML={{
             __html: md.render(`${content}`),
           }}
         ></div>
-      </div>
+      </>
     );
   }
   if (isLoading) {
     return <Lines />;
   }
   return (
-    <div>
-      <span className="ml-6 mt-2 text-sm">
-        <span className="rounded-full inline-block w-3 h-3 bg-blue-500"></span>
-        <span className="pl-1">GPT</span>
-      </span>
+    <>
+      <div className="ml-6 mt-2 h-4 not-prose ">
+        <span className="rounded-full inline-block w-4 h-4 bg-blue-500 align-middle"></span>
+        <span className="pl-1 text-sm">GPT</span>
+      </div>
       <div
         className="py-4 prose-p:p-2 prose-p:my-0 prose-li:ml-4 prose-li:p-0 prose-pre:px-6 prose-pre:my-0 prose-pre:break-words"
         dangerouslySetInnerHTML={{
           __html: md.render(`${content}`),
         }}
       ></div>
-    </div>
+    </>
   );
 };
 
@@ -75,6 +67,7 @@ const Chat = () => {
   const inputRef = useRef();
   const bottomRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const send = async () => {
     const question = inputRef?.current?.value;
@@ -146,7 +139,7 @@ const Chat = () => {
           setAssistantChat(currentData);
           setIsLoading(false);
           const fly = await fetch(
-            `${process.env.NEXT_PUBLIC_LOG_API}?message=${question}`
+            `${process.env.NEXT_PUBLIC_LOG_API}?message=${session.user.name}:${question}`
           );
           const res = await fly.json();
           console.debug(res);
@@ -165,18 +158,9 @@ const Chat = () => {
     setChat([...chat]);
   };
 
-  const clear = () => {
-    setChat([]);
-  };
-
   const regenerate = async () => {
     chat.pop();
     await answer(chat.slice(-1)[0].content);
-  };
-
-  const [showMenu, setShowMenu] = useState(false);
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
   };
 
   return (
@@ -200,13 +184,11 @@ const Chat = () => {
           <div className="w-12 relative">
             <button
               className="rounded-full not-prose pt-3"
-              onClick={toggleMenu}
+              onClick={() => setShowMenu(!showMenu)}
             >
-              <Image
-                className="rounded-full inline-block"
+              <Avatar
                 src={session.user.image}
-                width={25}
-                height={25}
+                size={25}
                 alt={session.user.email}
               />
             </button>
@@ -273,7 +255,7 @@ const Chat = () => {
                   send();
                 }
               }}
-              className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-none"
+              className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-none disabled:bg-zinc-50 disabled:dark:bg-zinc-950"
             />
             <button
               className="w-12 h-12 bg-zinc-100 dark:bg-zinc-800 text-2xl"
@@ -284,7 +266,7 @@ const Chat = () => {
             {chat.length > 0 && (
               <button
                 className="w-12 bg-zinc-100 dark:bg-zinc-800 text-2xl"
-                onClick={clear}
+                onClick={() => setChat([])}
               >
                 ○
               </button>
