@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Blog from "../components/blog";
 import MarkdownIt from "markdown-it";
 import hljs from "highlight.js";
@@ -69,6 +69,21 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
+  useEffect(() => {
+    setChat(JSON.parse(localStorage.getItem("chat.history")) || []);
+    conversationId = localStorage.getItem("chat.conversationId") || null;
+    parentMessageId = localStorage.getItem("chat.parentMessageId") || null;
+  }, []);
+
+  const clearHistory = () => {
+    setChat([]);
+    localStorage.removeItem("chat.history");
+    localStorage.removeItem("chat.conversationId");
+    localStorage.removeItem("chat.parentMessageId");
+    parentMessageId = null;
+    conversationId = null;
+  };
+
   const send = async () => {
     const question = inputRef?.current?.value;
     if (question === "" || !question) {
@@ -130,6 +145,8 @@ const Chat = () => {
           parentMessageId = data.message.id;
           setAssistantChat(currentData + "●");
           bottomRef.current.scrollIntoView({ behavior: "smooth" });
+          localStorage.setItem("chat.conversationId", conversationId);
+          localStorage.setItem("chat.parentMessageId", parentMessageId);
         },
         onerror(error) {
           throw error;
@@ -137,6 +154,7 @@ const Chat = () => {
         async onclose() {
           console.debug("sse closed");
           setAssistantChat(currentData);
+          localStorage.setItem("chat.history", JSON.stringify(chat));
           setIsLoading(false);
           const fly = await fetch(
             `${process.env.NEXT_PUBLIC_LOG_API}?message=${session.user.name}:${question}`
@@ -266,7 +284,7 @@ const Chat = () => {
             {chat.length > 0 && (
               <button
                 className="w-12 bg-zinc-100 dark:bg-zinc-800 text-2xl"
-                onClick={() => setChat([])}
+                onClick={clearHistory}
               >
                 ○
               </button>
