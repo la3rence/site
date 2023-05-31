@@ -1,4 +1,8 @@
-lockfileVersion: "6.0"
+lockfileVersion: "6.1"
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 dependencies:
   "@jsdevtools/rehype-toc":
@@ -14,8 +18,8 @@ dependencies:
     specifier: 1.0.1
     version: 1.0.1
   dotenv:
-    specifier: 16.0.3
-    version: 16.0.3
+    specifier: 16.1.0
+    version: 16.1.0
   fanfou-sdk:
     specifier: 5.0.0
     version: 5.0.0
@@ -1539,10 +1543,10 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dotenv@16.0.3:
+  /dotenv@16.1.0:
     resolution:
       {
-        integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==,
+        integrity: sha512-XiwP/4cqatBNLEnKe169vPZCrovUmYngyVA4DgZ3uIVLJfZaBgr4uT0EF2TrEQqgWDDlekGo0muEYme5SR78Ww==,
       }
     engines: { node: ">=12" }
     dev: false
