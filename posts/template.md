@@ -9,3 +9,5 @@ visible: false
 ## Template
 
 Now you see me.
+
+You can set the `visible` to `true`, or just delete this field to make this page accessible.
