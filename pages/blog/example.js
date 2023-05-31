@@ -16,6 +16,10 @@ export const blogProps = {
   visible: true,
 };
 
+/**
+ * This is an example blog page written with React component.
+ * You can use any client side React component in it.
+ */
 export default function Example() {
   const springs = useSpring({
     from: { background: "#ff6d6d", y: 0, x: -100 },
