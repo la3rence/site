@@ -18,8 +18,8 @@ dependencies:
     specifier: 1.0.1
     version: 1.0.1
   dotenv:
-    specifier: 16.1.1
-    version: 16.1.1
+    specifier: 16.1.2
+    version: 16.1.2
   flexsearch:
     specifier: ^0.7.31
     version: 0.7.31
@@ -1453,10 +1453,10 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dotenv@16.1.1:
+  /dotenv@16.1.2:
     resolution:
       {
-        integrity: sha512-UGmzIqXU/4b6Vb3R1Vrfd/4vGgVlB+mO+vEixOdfRhLeppkyW2BMhuK7TL8d0el+q9c4lW9qK2wZYhNLFhXYLA==,
+        integrity: sha512-RiNjjDF5yr9NtjqJqmWYA/XZShmt3r8FtJgAaqTiYqb99SqT0+aw5xAwOIvjMyXsH/C9/fLNafFkkZDwRi1KHA==,
       }
     engines: { node: ">=12" }
     dev: false
