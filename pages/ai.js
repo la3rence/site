@@ -192,10 +192,10 @@ const Chat = () => {
         <div className="flex-1">
           <TypeAnimation
             sequence={["lawrenceli.me/ai", 1000, "ChatGPT ●"]}
-            wrapper="span"
+            wrapper="div"
             cursor={false}
             repeat={0}
-            style={{ fontSize: "2em" }}
+            style={{ fontSize: "2em", minHeight: "4rem" }}
           />
         </div>
         {session?.user && (
