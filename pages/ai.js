@@ -127,6 +127,7 @@ const Chat = () => {
         mode: "cors",
         headers: {
           "Content-Type": "text/event-stream",
+          Authorization: JSON.stringify(session.user),
         },
         body: JSON.stringify(body),
         onmessage(event) {
@@ -156,11 +157,6 @@ const Chat = () => {
           setAssistantChat(currentData);
           localStorage.setItem("chat.history", JSON.stringify(chat));
           setIsLoading(false);
-          const fly = await fetch(
-            `${process.env.NEXT_PUBLIC_LOG_API}?message=${session.user.name}:${question}`
-          );
-          const res = await fly.json();
-          console.debug(res);
         },
       });
     } catch (error) {
