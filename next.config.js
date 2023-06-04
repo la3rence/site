@@ -3,10 +3,10 @@ module.exports = {
   // experimental: {
   //   appDir: true,
   // },
-  i18n: {
-    locales: ["zh"],
-    defaultLocale: "zh",
-  },
+  // i18n: {
+  //   locales: ["zh"],
+  //   defaultLocale: "zh",
+  // },
   async rewrites() {
     return [
       {
