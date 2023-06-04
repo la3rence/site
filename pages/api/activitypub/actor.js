@@ -8,7 +8,7 @@ export const getFediAcctFromActor = (username, actor) => {
 };
 
 export async function fetchActorInformation(actorUrl) {
-  console.log("Fetching actor from: ", actorUrl);
+  // console.log("Fetching actor from: ", actorUrl);
   try {
     const response = await fetch(actorUrl, {
       headers: {
@@ -18,7 +18,7 @@ export async function fetchActorInformation(actorUrl) {
     });
     return await response.json();
   } catch (error) {
-    console.log("Unable to fetch action information", actorUrl);
+    console.error("Unable to fetch action information", actorUrl);
   }
   return null;
 }
