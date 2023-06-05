@@ -80,11 +80,11 @@ export default withView(props => {
           </div>
           <hr />
           <div>
-            {likes.length > 0 && (
+            {likes?.length > 0 && (
               <>
-                <h4 id="like">Likes ({likes.length})</h4>
+                <h4 id="like">Likes ({likes?.length})</h4>
                 <div className="mx-4 mt-2 mr-1 flex">
-                  {likes.map(like => {
+                  {likes?.map(like => {
                     return (
                       <a
                         href={like.actor}
@@ -102,13 +102,13 @@ export default withView(props => {
             {!props.noReply && (
               <>
                 <h4 id="reply">
-                  Replies {replies.length > 0 ? `(${replies.length})` : ""}
+                  Replies {replies?.length > 0 ? `(${replies?.length})` : ""}
                 </h4>
                 <div className="mx-4 mt-4 text-sm">
                   <span>Search this URL on mastodon to reply:</span>
                   <div className="font-mono my-4 break-words">{pageURL}</div>
                   <div className="mt-6">
-                    {replies.map(reply => {
+                    {replies?.map(reply => {
                       return (
                         <div key={reply.url} className="mt-1">
                           <div className="flex">
