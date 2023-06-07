@@ -24,12 +24,12 @@ const md = new MarkdownIt({
   },
 });
 
-const Message = ({ role, content, isLoading, session }) => {
+const Message = ({ role, content, isLoading, session, serverUP }) => {
   if (role === "user") {
     return (
       <>
         <div className="ml-6 not-prose h-4">
-          <span className="rounded-full inline-block w-4 h-4 bg-pink-400 align-middle"></span>
+          <span className="rounded-full inline-block w-4 h-4 bg-zinc-500 align-middle"></span>
           <span className="pl-1 text-sm">{session.user.name}</span>
         </div>
         <div
@@ -47,7 +47,12 @@ const Message = ({ role, content, isLoading, session }) => {
   return (
     <>
       <div className="ml-6 mt-2 h-4 not-prose ">
-        <span className="rounded-full inline-block w-4 h-4 bg-blue-500 align-middle"></span>
+        {!serverUP && (
+          <span className="rounded-full inline-block w-4 h-4 bg-red-500 align-middle"></span>
+        )}
+        {serverUP && (
+          <span className="rounded-full inline-block w-4 h-4 bg-blue-500 align-middle"></span>
+        )}
         <span className="pl-1 text-sm">GPT</span>
       </div>
       <div
@@ -68,12 +73,29 @@ const Chat = () => {
   const bottomRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [serverUP, setServerUP] = useState(true);
 
   useEffect(() => {
-    setChat(JSON.parse(localStorage.getItem("chat.history")) || []);
-    conversationId = localStorage.getItem("chat.conversationId") || null;
-    parentMessageId = localStorage.getItem("chat.parentMessageId") || null;
-  }, []);
+    if (status === "authenticated") {
+      setChat(JSON.parse(localStorage.getItem("chat.history")) || []);
+      conversationId = localStorage.getItem("chat.conversationId") || null;
+      parentMessageId = localStorage.getItem("chat.parentMessageId") || null;
+      const checkStatus = async () => {
+        try {
+          const response = await fetch(process.env.NEXT_PUBLIC_GPT_STATUS, {
+            headers: { authorization: JSON.stringify(session.user) },
+          });
+          const data = await response.json();
+          if (response.status === 200 && data) {
+            setServerUP(true);
+          }
+        } catch (error) {
+          setServerUP(false);
+        }
+      };
+      checkStatus();
+    }
+  }, [session.user, status]);
 
   const clearHistory = () => {
     setChat([]);
@@ -126,8 +148,8 @@ const Chat = () => {
         method: "POST",
         mode: "cors",
         headers: {
-          "Content-Type": "text/event-stream",
-          Authorization: JSON.stringify(session.user),
+          "content-type": "text/event-stream",
+          authorization: JSON.stringify(session.user),
         },
         body: JSON.stringify(body),
         onmessage(event) {
@@ -227,6 +249,7 @@ const Chat = () => {
                   role={messageObj.role}
                   key={index}
                   session={session}
+                  serverUP={serverUP}
                 />
               );
             })}
