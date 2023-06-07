@@ -95,7 +95,8 @@ const Chat = () => {
       };
       checkStatus();
     }
-  }, [session.user, status]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const clearHistory = () => {
     setChat([]);
