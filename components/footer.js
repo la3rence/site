@@ -58,7 +58,10 @@ const Footer = () => {
       )}
       <div className="mt-0 text-zinc-500">
         <A href="/privacy" self="true">
-          <span className="mx-1">Privacy Policy</span>
+          <span className="mr-1">Privacy Policy</span>
+        </A>
+        <A href="https://status.lawrenceli.me/">
+          <span className="mr-1">Status</span>
         </A>
         <span>{new Date().getFullYear()} ©️ </span>
         <A href="/" self="true">
