@@ -86,8 +86,8 @@ const Chat = () => {
             headers: { authorization: JSON.stringify(session.user) },
           });
           const data = await response.json();
-          if (response.status === 200 && data) {
-            setServerUP(true);
+          if (response.status !== 200 || !data) {
+            setServerUP(false);
           }
         } catch (error) {
           setServerUP(false);
@@ -96,7 +96,7 @@ const Chat = () => {
       checkStatus();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [status]);
 
   const clearHistory = () => {
     setChat([]);
