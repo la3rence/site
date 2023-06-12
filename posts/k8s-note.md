@@ -1,6 +1,7 @@
 ---
 title: "Kubernetes Notes"
 date: "2019-10-01"
+themeColor: "#306de6"
 description: "学习 K8s 时的一些琐碎笔记。"
 tags: note, kubernetes, k8s
 ---

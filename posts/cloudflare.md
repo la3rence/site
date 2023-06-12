@@ -2,12 +2,13 @@
 title: "CloudFlare"
 themeColor: "#f88100"
 date: "2023-06-01"
-description: "数次缓解大型 DDoS 攻击的 CDN 厂商"
-tags: cloudflare, network, cdn, company, ddos
-# visible: false
+description: "一家免费提供 DDoS 防护的 CDN 厂商。"
+tags: cloudflare, network, cdn, company, ddos, tls
 ---
 
 CloudFlare 是一家在业内比较知名的 CDN 服务商，提供包含 DNS 解析、WAF 防火墙、CDN 加速、DDoS 防护，后续推出了一系列比较方便开发人员的许多功能：CloudFlare Workers、KV、Zero Trust Tunnel、WARP... 一切都是为了提供一个安全、快速的互联网环境。如果说 Vercel 给前端开发人员提供了基础设施，那 CloudFlare 则为数千万网站后端流量提供了基础设施。
+
+今年年初，[Cloudflare 缓解了破纪录的 7100 万个请求/秒的 DDoS 攻击](https://blog.cloudflare.com/zh-cn/cloudflare-mitigates-record-breaking-71-million-request-per-second-ddos-attack-zh-cn/)。
 
 ## Vercel & CDN
 
