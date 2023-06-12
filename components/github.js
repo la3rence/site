@@ -4,10 +4,12 @@ import useSWR from "swr";
 import { GitHubIcon } from "./svg";
 
 const languageColorMapping = {
+  "C++": "bg-[#f34b7d]",
   Java: "bg-[#b07219]",
   Go: "bg-[#00ADD8]",
   JavaScript: "bg-[#f1e05a]",
   TypeScript: "bg-[#3178c6]",
+  Python: "bg-[#3572A5]",
 };
 
 export default function GitHub({ user, repo }) {

@@ -4,7 +4,13 @@ import { useRouter } from "next/router";
 import config from "../lib/config.mjs";
 import Logo from "./logo";
 
-export default function Header({ title, blog, image, description }) {
+export default function Header({
+  title,
+  blog,
+  image,
+  description,
+  themeColor,
+}) {
   const router = useRouter();
   let { siteTitle, navItems, authorName, baseURL, siteDescription, twitter } =
     config;
@@ -30,7 +36,7 @@ export default function Header({ title, blog, image, description }) {
         <meta name="twitter:site" content={twitter} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="referrer" content="never" />
-        {/* <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" /> */}
+        {themeColor && <meta name="theme-color" content={themeColor} />}
       </Head>
       {!blog && (
         <header className="flex mt-12 text-zinc-500">
