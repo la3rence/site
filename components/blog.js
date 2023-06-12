@@ -8,7 +8,8 @@ import Tag from "./tag";
 import Avatar from "./avatar";
 
 export default withView(props => {
-  const { children, title, date, author, view, id, tags, pageURL } = props;
+  const { children, title, date, author, view, id, tags, pageURL, themeColor } =
+    props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
 
@@ -34,7 +35,7 @@ export default withView(props => {
       <div className="blog">
         {!props.noTitle && (
           <h1 id="title" className="articleTitle cursor-pointer mt-28">
-            <a href={`#title`} className="no-underline">
+            <a href={`#title`} className={`text-[${themeColor}] no-underline`}>
               {title}
             </a>
           </h1>

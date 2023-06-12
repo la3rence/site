@@ -8,6 +8,7 @@ module.exports = {
     "./lib/**/*.js",
     "./posts/**/*.md",
   ],
+  safelist: ["text-[#f88100]"],
   theme: {
     // screens: {
     //   '2xl': { 'max': '1535px' },
