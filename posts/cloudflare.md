@@ -1,7 +1,7 @@
 ---
 title: "CloudFlare"
 themeColor: "#f88100"
-date: "2023-06-01"
+date: "2023-06-11"
 description: "一家免费提供 DDoS 防护的 CDN 厂商。"
 tags: cloudflare, network, cdn, company, ddos, tls
 ---
@@ -29,11 +29,17 @@ CloudFlare 是一家在业内比较知名的 CDN 服务商，提供包含 DNS �
 
 不可能没人像我这样做吧？事实上，[Vercel 并不推荐在其基础上使用另一层 CDN](https://vercel.com/guides/why-running-another-cdn-on-top-of-vercel-is-not-recommended)。后续我也依次找寻到了解决方案：对于 CNAME 来说，Vercel 会定时访问网站跟路径下的 `.well-known` 路径下的资源来识别包括 CNAME、HTTPS 证书这类配置验证网站控制权信息，因此我们可以直接在 CloudFlare 的 WAF 中，把这类路径作为白名单让 WAF 跳过其他安全规则直接放行。对于客户端 IP，可以参考 [Available Managed Transforms](https://developers.cloudflare.com/rules/transform/managed-transforms/reference/)，将一些客户端原始信息置于请求头中。缓存时间方面，还是要熟悉 MDN 上的一些标准 HTTP 协商协议，细粒度地对不同资源设置不同的 TTL，尽可能发挥 CloudFlare CDN 和浏览器自身缓存的优势 - 一个博客而已，是不是有点大炮打蚊子了？
 
+CloudFlare 的整体防御从 L3 到 L7，遍布了所有能覆盖的防御范围。一个请求进入 CloudFlare 所代理的网站流量会经历顺序如下：
+
+![CloudFlare Traffic Sequence](/images/cloudflare/traffic-sequence.png)
+
+这些流量经过内部的层层筛选，以及我们自己定义的一些 Rule，最终反代到源站。因此，在决定使用任何 CDN 产品的时候，有必要将服务端源站 IP 妥善隐藏，尽可能不暴露任何历史解析值，否则一切防御都是徒劳。如果源站 IP 已经暴露，只能及时更换新的地址。在新的规则录入好后，CloudFlare 的全球网络会立刻应用规则并实时生效，这里或多或少要归功于大佬 [agentzh 章亦春](https://mp.weixin.qq.com/s/xfphy67PTbtjeggo7LpjSA) 开源的高性能网关 [OpenResty](https://openresty.org/cn/)。
+
 ## CloudFlare Workers & Serverless
 
 我们可以将一个个「函数」部署在公有云的「边缘计算节点」之上，并暴露 Socket 给这些节点上的函数，来实现无需忽略底层服务器，直接部署可随意伸缩的 HTTP 服务的能力。当然，这要求这些函数尽可能无状态。在没有任何请求，闲置一定时间时，这些函数进程会直接消失以腾出计算资源，直到下次事件驱动它们迅速重新启动并继续提供服务。这便是老生常谈的 Serverless。
 
-初次了解 Serverless 也是非常惊讶。AWS Lambda 竟能将 function 如此商业化，Vercel 在此之上也做到了开箱即用。借助 CloudFlare 现有的数据中心，CloudFlare 也推出他们的 Serverless 解决方案 - [CloudFlare Workers](https://blog.cloudflare.com/introducing-cloudflare-workers/)。不同的是，CloudFlare Workers 相比原始的 Vercel Serverless Function 而言能够做 Server Sent Event、WebSocket 这类支持长连接的请求。尽管后续 Vercel Edge Function 也能实现，但是它能支持的 Node.js Module 实在太少了。
+初次了解 Serverless 也是非常惊讶。AWS Lambda 竟能将 function 如此商业化 (FaaS)，Vercel 在此之上也做到了开箱即用。借助 CloudFlare 现有的数据中心，CloudFlare 也推出他们的 Serverless 解决方案 - [CloudFlare Workers](https://blog.cloudflare.com/introducing-cloudflare-workers/)。不同的是，CloudFlare Workers 相比原始的 Vercel Serverless Function 而言能够做 Server Sent Event、WebSocket 这类支持长连接的请求。尽管后续 Vercel Edge Function 也能实现，但是它能支持的 Node.js Module 实在太少了。
 
 前不久，CloudFlare [开源了 Workers 运行时 workerd](https://blog.cloudflare.com/workerd-open-source-workers-runtime/)。
 
@@ -47,7 +53,7 @@ Node.js 作者 Ryan Dahl 这几年给 JavaScript 写的另一个全新运行时 
 
 为了实现 Serverless 的更多数据持久化功能，他们也各自推出了自家的 KV 存储实现服务，或者说是 Serverless 数据库。
 
-## CloudFlare 的盈利模式
+## 盈利模式
 
 和 Vercel，Netlify 如出一辙，Cloudflare 采用「免费试用，付费增值」的商业模式。CloudFlare CEO Matthew Prince 曾在 StackOverflow 上回答过这个问题：「[How can CloudFlare offer a free CDN with unlimited bandwidth?](https://webmasters.stackexchange.com/questions/88659/how-can-cloudflare-offer-a-free-cdn-with-unlimited-bandwidth)」：
 
