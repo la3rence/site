@@ -5,14 +5,14 @@ export default function RewardImages() {
     <div className="text-center">
       <div>
         <Image
-          className="inline-block dark:invert mx-5 my-2"
+          className="inline-block dark:invert mx-5 mt-0"
           src="/images/alipay.svg"
           width={120}
           height={120}
           alt="qrcode-alipay"
         ></Image>
         <Image
-          className="inline-block dark:invert mx-5 my-2"
+          className="inline-block dark:invert mx-5 mt-0"
           src="/images/wechat-reward.png"
           width={100}
           height={100}

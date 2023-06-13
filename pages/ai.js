@@ -99,12 +99,14 @@ const Chat = () => {
   }, [status]);
 
   const clearHistory = () => {
-    setChat([]);
-    localStorage.removeItem("chat.history");
-    localStorage.removeItem("chat.conversationId");
-    localStorage.removeItem("chat.parentMessageId");
-    parentMessageId = null;
-    conversationId = null;
+    if (window.confirm("确认清空当前记录?")) {
+      setChat([]);
+      localStorage.removeItem("chat.history");
+      localStorage.removeItem("chat.conversationId");
+      localStorage.removeItem("chat.parentMessageId");
+      parentMessageId = null;
+      conversationId = null;
+    }
   };
 
   const send = async () => {
@@ -122,29 +124,29 @@ const Chat = () => {
     setChat([...chat]);
     setIsLoading(true);
     let currentData = "";
-    try {
-      const body = {
-        messages: [
-          {
-            id: uuidv4(),
-            author: {
-              role: "user",
-            },
-            content: {
-              parts: [question],
-              content_type: "text",
-            },
-            create_time: (Date.now() / 1000).toFixed(7),
+    const body = {
+      messages: [
+        {
+          id: uuidv4(),
+          author: {
+            role: "user",
           },
-        ],
-        parent_message_id: parentMessageId ? parentMessageId : uuidv4(),
-        model: "text-davinci-002-render-sha-mobile",
-        action: "next",
-      };
-      if (conversationId) {
-        body.conversation_id = conversationId;
-      }
-      chat.push({ role: "assistant", content: "" });
+          content: {
+            parts: [question],
+            content_type: "text",
+          },
+          create_time: (Date.now() / 1000).toFixed(7),
+        },
+      ],
+      parent_message_id: parentMessageId ? parentMessageId : uuidv4(),
+      model: "text-davinci-002-render-sha-mobile",
+      action: "next",
+    };
+    if (conversationId) {
+      body.conversation_id = conversationId;
+    }
+    chat.push({ role: "assistant", content: "●" });
+    try {
       await fetchEventSource(process.env.NEXT_PUBLIC_CHAT_API, {
         method: "POST",
         mode: "cors",
@@ -153,6 +155,13 @@ const Chat = () => {
           authorization: JSON.stringify(session.user),
         },
         body: JSON.stringify(body),
+        async onopen(res) {
+          setServerUP(true);
+          if (res.status != 200) {
+            setServerUP(false);
+            throw new Error(`Error code ${res.status}: ${res.statusText}`);
+          }
+        },
         onmessage(event) {
           if (event.data === "[DONE]") {
             return;
@@ -179,12 +188,11 @@ const Chat = () => {
           console.debug("sse closed");
           setAssistantChat(currentData);
           localStorage.setItem("chat.history", JSON.stringify(chat));
-          setIsLoading(false);
         },
       });
     } catch (error) {
-      setAssistantChat(error);
-      setIsLoading(false);
+      setAssistantChat(error.message);
+      localStorage.setItem("chat.history", JSON.stringify(chat));
       return;
     }
   };
@@ -193,6 +201,7 @@ const Chat = () => {
     chat.pop();
     chat.push({ role: "assistant", content });
     setChat([...chat]);
+    setIsLoading(false);
   };
 
   const regenerate = async () => {

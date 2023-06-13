@@ -80,8 +80,8 @@ export default withView(props => {
                 tags.split(",").map(each => <Tag tag={each} key={each} />)}
             </div>
           </div>
-          <RewardImages />
           <hr />
+          <RewardImages />
           <div>
             {likes?.length > 0 && (
               <>
