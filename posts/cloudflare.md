@@ -29,9 +29,23 @@ CloudFlare 是一家在业内比较知名的 CDN 服务商，提供包含 DNS �
 
 不可能没人像我这样做吧？事实上，[Vercel 并不推荐在其基础上使用另一层 CDN](https://vercel.com/guides/why-running-another-cdn-on-top-of-vercel-is-not-recommended)。后续我也依次找寻到了解决方案：对于 CNAME 来说，Vercel 会定时访问网站跟路径下的 `.well-known` 路径下的资源来识别包括 CNAME、HTTPS 证书这类配置验证网站控制权信息，因此我们可以直接在 CloudFlare 的 WAF 中，把这类路径作为白名单让 WAF 跳过其他安全规则直接放行。对于客户端 IP，可以参考 [Available Managed Transforms](https://developers.cloudflare.com/rules/transform/managed-transforms/reference/)，将一些客户端原始信息置于请求头中。缓存时间方面，还是要熟悉 MDN 上的一些标准 HTTP 协商协议，细粒度地对不同资源设置不同的 TTL，尽可能发挥 CloudFlare CDN 和浏览器自身缓存的优势 - 一个博客而已，是不是有点大炮打蚊子了？
 
-CloudFlare 的整体防御从 L3 到 L7，遍布了所有能覆盖的防御范围。一个请求进入 CloudFlare 所代理的网站流量会经历顺序如下：
+CloudFlare 的整体防御从 L3 到 L7，遍布了所有能覆盖的防御范围。一个请求进入 CloudFlare 所代理的网站流量会经历顺序由上到下：
 
-![CloudFlare Traffic Sequence](/images/cloudflare/traffic-sequence.png)
+| Traffic Sequence in CloudFlare |
+| :----------------------------: |
+|              DDoS              |
+|          URL Rewrites          |
+|           Page Rules           |
+|          Origin Rules          |
+|          Cache Rules           |
+|      Configuration Rules       |
+|         Redirect Rules         |
+|        IP Access Rules         |
+|              Bots              |
+|              WAF               |
+|      Header Modification       |
+|             Access             |
+|            Workers             |
 
 这些流量经过内部的层层筛选，以及我们自己定义的一些 Rule，最终反代到源站。因此，在决定使用任何 CDN 产品的时候，有必要将服务端源站 IP 妥善隐藏，尽可能不暴露任何历史解析值，否则一切防御都是徒劳。如果源站 IP 已经暴露，只能及时更换新的地址。在新的规则录入好后，CloudFlare 的全球网络会立刻应用规则并实时生效，这里或多或少要归功于大佬 [agentzh 章亦春](https://mp.weixin.qq.com/s/xfphy67PTbtjeggo7LpjSA) 开源的高性能网关 [OpenResty](https://openresty.org/cn/)。
 
