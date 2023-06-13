@@ -8,6 +8,7 @@ import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { TypeAnimation } from "react-type-animation";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Avatar from "../components/avatar";
+import RewardImages from "../components/reward";
 
 let parentMessageId = null;
 let conversationId = null;
@@ -320,6 +321,13 @@ const Chat = () => {
             )}
           </div>
         </div>
+      )}
+      {chat?.length > 0 && serverUP && (
+        <RewardImages
+          text={
+            "该网站提供免费 GPT 访问。如果觉得对您有帮助，请扫码捐助以支持该项目。"
+          }
+        />
       )}
     </Blog>
   );

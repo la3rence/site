@@ -81,7 +81,9 @@ export default withView(props => {
             </div>
           </div>
           <hr />
-          <RewardImages />
+          <RewardImages
+            text={"如果您愿意通过打赏支持我的作品，我将不胜感激。"}
+          />
           <div>
             {likes?.length > 0 && (
               <>
