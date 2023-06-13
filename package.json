@@ -13,7 +13,7 @@
     "clean": "rm -rf .next; rm -rf node_modules"
   },
   "dependencies": {
-    "@auth/mongodb-adapter": "0.0.0-manual.a7c75c3f",
+    "@auth/mongodb-adapter": "1.0.0",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@microsoft/fetch-event-source": "2.0.1",
     "@react-spring/web": "^9.7.2",
