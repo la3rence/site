@@ -13,6 +13,7 @@
     "clean": "rm -rf .next; rm -rf node_modules"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "0.0.0-manual.a7c75c3f",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@microsoft/fetch-event-source": "2.0.1",
     "@react-spring/web": "^9.7.2",
@@ -28,6 +29,7 @@
     "next-auth": "^4.22.1",
     "next-sitemap": "^4.0.0",
     "next-themes": "0.2.1",
+    "nodemailer": "^6.9.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-star-ratings": "^2.3.0",

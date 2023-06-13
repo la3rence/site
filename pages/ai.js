@@ -31,7 +31,9 @@ const Message = ({ role, content, isLoading, session, serverUP }) => {
       <>
         <div className="ml-6 not-prose h-4">
           <span className="rounded-full inline-block w-4 h-4 bg-zinc-500 align-middle"></span>
-          <span className="pl-1 text-sm">{session.user.name}</span>
+          <span className="pl-1 text-sm">
+            {session.user?.email?.split("@")[0]?.toUpperCase()}
+          </span>
         </div>
         <div
           className="px-2"
@@ -228,7 +230,7 @@ const Chat = () => {
           />
         </div>
         {session?.user && (
-          <div className="w-12 relative">
+          <div className="w-12 relative mt-1">
             <button
               className="rounded-full not-prose pt-3"
               onClick={() => setShowMenu(!showMenu)}

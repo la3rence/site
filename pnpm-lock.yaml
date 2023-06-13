@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  "@auth/mongodb-adapter":
+    specifier: 0.0.0-manual.a7c75c3f
+    version: 0.0.0-manual.a7c75c3f(mongodb@5.0.0)(nodemailer@6.9.3)
   "@jsdevtools/rehype-toc":
     specifier: ^3.0.2
     version: 3.0.2
@@ -43,13 +46,16 @@ dependencies:
     version: 13.4.5(react-dom@18.2.0)(react@18.2.0)
   next-auth:
     specifier: ^4.22.1
-    version: 4.22.1(next@13.4.5)(react-dom@18.2.0)(react@18.2.0)
+    version: 4.22.1(next@13.4.5)(nodemailer@6.9.3)(react-dom@18.2.0)(react@18.2.0)
   next-sitemap:
     specifier: ^4.0.0
     version: 4.0.1(@next/env@13.4.5)(next@13.4.5)
   next-themes:
     specifier: 0.2.1
     version: 0.2.1(next@13.4.5)(react-dom@18.2.0)(react@18.2.0)
+  nodemailer:
+    specifier: ^6.9.3
+    version: 6.9.3
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -133,6 +139,40 @@ packages:
       }
     engines: { node: ">=10" }
     dev: true
+
+  /@auth/core@0.8.2(nodemailer@6.9.3):
+    resolution:
+      {
+        integrity: sha512-swqJ7tKFlqiYIl1znFGrrawUv1F6rwL+/f3DoeWDaZLnr2phiHFaZsvNvLK7WBJhnJbel78Vd3GznuR31AnFUw==,
+      }
+    peerDependencies:
+      nodemailer: ^6.8.0
+    peerDependenciesMeta:
+      nodemailer:
+        optional: true
+    dependencies:
+      "@panva/hkdf": 1.1.1
+      cookie: 0.5.0
+      jose: 4.14.4
+      nodemailer: 6.9.3
+      oauth4webapi: 2.3.0
+      preact: 10.11.3
+      preact-render-to-string: 5.2.3(preact@10.11.3)
+    dev: false
+
+  /@auth/mongodb-adapter@0.0.0-manual.a7c75c3f(mongodb@5.0.0)(nodemailer@6.9.3):
+    resolution:
+      {
+        integrity: sha512-4Qb9F9EEb5lLBp6oAizwonVzZ8qtUeidYWVJ2AiZQkiwD+oampLmhwYAwnm8ipAgyYf3TkyPza/glIl5qi0kvw==,
+      }
+    peerDependencies:
+      mongodb: ^5 || ^4
+    dependencies:
+      "@auth/core": 0.8.2(nodemailer@6.9.3)
+      mongodb: 5.0.0
+    transitivePeerDependencies:
+      - nodemailer
+    dev: false
 
   /@babel/runtime@7.22.3:
     resolution:
@@ -3924,7 +3964,7 @@ packages:
       }
     dev: true
 
-  /next-auth@4.22.1(next@13.4.5)(react-dom@18.2.0)(react@18.2.0):
+  /next-auth@4.22.1(next@13.4.5)(nodemailer@6.9.3)(react-dom@18.2.0)(react@18.2.0):
     resolution:
       {
         integrity: sha512-NTR3f6W7/AWXKw8GSsgSyQcDW6jkslZLH8AiZa5PQ09w1kR8uHtR9rez/E9gAq/o17+p0JYHE8QjF3RoniiObA==,
@@ -3943,6 +3983,7 @@ packages:
       cookie: 0.5.0
       jose: 4.14.4
       next: 13.4.5(react-dom@18.2.0)(react@18.2.0)
+      nodemailer: 6.9.3
       oauth: 0.9.15
       openid-client: 5.4.2
       preact: 10.15.1
@@ -4037,6 +4078,14 @@ packages:
       }
     dev: true
 
+  /nodemailer@6.9.3:
+    resolution:
+      {
+        integrity: sha512-fy9v3NgTzBngrMFkDsKEj0r02U7jm6XfC3b52eoNV+GCrGj+s8pt5OqhiJdWKuw51zCTdiNR/IUD1z33LIIGpg==,
+      }
+    engines: { node: ">=6.0.0" }
+    dev: false
+
   /normalize-path@3.0.0:
     resolution:
       {
@@ -4072,6 +4121,13 @@ packages:
     dependencies:
       path-key: 4.0.0
     dev: true
+
+  /oauth4webapi@2.3.0:
+    resolution:
+      {
+        integrity: sha512-JGkb5doGrwzVDuHwgrR4nHJayzN4h59VCed6EW8Tql6iHDfZIabCJvg6wtbn5q6pyB2hZruI3b77Nudvq7NmvA==,
+      }
+    dev: false
 
   /oauth@0.9.15:
     resolution:
@@ -4502,6 +4558,18 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /preact-render-to-string@5.2.3(preact@10.11.3):
+    resolution:
+      {
+        integrity: sha512-aPDxUn5o3GhWdtJtW0svRC2SS/l8D9MAgo2+AWml+BhDImb27ALf04Q2d+AHqUUOc6RdSXFIBVa2gxzgMKgtZA==,
+      }
+    peerDependencies:
+      preact: ">=10"
+    dependencies:
+      preact: 10.11.3
+      pretty-format: 3.8.0
+    dev: false
+
   /preact-render-to-string@5.2.6(preact@10.15.1):
     resolution:
       {
@@ -4512,6 +4580,13 @@ packages:
     dependencies:
       preact: 10.15.1
       pretty-format: 3.8.0
+    dev: false
+
+  /preact@10.11.3:
+    resolution:
+      {
+        integrity: sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==,
+      }
     dev: false
 
   /preact@10.15.1:
