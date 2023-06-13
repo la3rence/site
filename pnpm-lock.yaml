@@ -1,4 +1,4 @@
-lockfileVersion: "6.1"
+lockfileVersion: "6.0"
 
 settings:
   autoInstallPeers: true
@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   "@auth/mongodb-adapter":
-    specifier: 0.0.0-manual.a7c75c3f
-    version: 0.0.0-manual.a7c75c3f(mongodb@5.0.0)(nodemailer@6.9.3)
+    specifier: 1.0.0
+    version: 1.0.0(mongodb@5.0.0)(nodemailer@6.9.3)
   "@jsdevtools/rehype-toc":
     specifier: ^3.0.2
     version: 3.0.2
@@ -160,10 +160,10 @@ packages:
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
 
-  /@auth/mongodb-adapter@0.0.0-manual.a7c75c3f(mongodb@5.0.0)(nodemailer@6.9.3):
+  /@auth/mongodb-adapter@1.0.0(mongodb@5.0.0)(nodemailer@6.9.3):
     resolution:
       {
-        integrity: sha512-4Qb9F9EEb5lLBp6oAizwonVzZ8qtUeidYWVJ2AiZQkiwD+oampLmhwYAwnm8ipAgyYf3TkyPza/glIl5qi0kvw==,
+        integrity: sha512-p0RSMsSqDIH/qbucfQO6asTAvNjWOLOlQ8e71ft7sCfyxw4uaHR1jgHhLl+ysLsK7G9gThJilOeOnDIePDS98g==,
       }
     peerDependencies:
       mongodb: ^5 || ^4
