@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import "highlight.js/styles/github-dark.css";
 import Tag from "./tag";
 import Avatar from "./avatar";
+import RewardImages from "./reward";
 
 export default withView(props => {
   const { children, title, date, author, view, id, tags, pageURL, themeColor } =
@@ -79,6 +80,7 @@ export default withView(props => {
                 tags.split(",").map(each => <Tag tag={each} key={each} />)}
             </div>
           </div>
+          <RewardImages />
           <hr />
           <div>
             {likes?.length > 0 && (
