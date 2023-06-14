@@ -11,9 +11,11 @@ export const authOptions = {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
+    // https://next-auth.js.org/providers/email
     EmailProvider({
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
+      maxAge: 86400 * 7,
     }),
   ],
   callbacks: {

@@ -162,7 +162,7 @@ const Chat = () => {
           setServerUP(true);
           if (res.status != 200) {
             setServerUP(false);
-            throw new Error(`Error code ${res.status}: ${res.statusText}`);
+            throw new Error(`Error code ${res.status} ${res.statusText}`);
           }
         },
         onmessage(event) {
