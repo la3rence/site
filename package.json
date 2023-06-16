@@ -18,7 +18,7 @@
     "@microsoft/fetch-event-source": "2.0.1",
     "@react-spring/web": "^9.7.2",
     "@vercel/analytics": "1.0.1",
-    "dotenv": "16.1.4",
+    "dotenv": "16.2.0",
     "flexsearch": "^0.7.31",
     "gray-matter": "4.0.3",
     "hast-util-from-html": "^1.0.0",
