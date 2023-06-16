@@ -53,7 +53,7 @@ CloudFlare 的整体防御从 L3 到 L7，遍布了所有能覆盖的防御范�
 
 我们可以将一个个「函数」部署在公有云的「边缘计算节点」之上，并暴露 Socket 给这些节点上的函数，来实现无需忽略底层服务器，直接部署可随意伸缩的 HTTP 服务的能力。当然，这要求这些函数尽可能无状态。在没有任何请求，闲置一定时间时，这些函数进程会直接消失以腾出计算资源，直到下次事件驱动它们迅速重新启动并继续提供服务。这便是老生常谈的 Serverless。
 
-初次了解 Serverless 也是非常惊讶。AWS Lambda 竟能将 function 如此商业化 (FaaS)，Vercel 在此之上也做到了开箱即用。借助 CloudFlare 现有的数据中心，CloudFlare 也推出他们的 Serverless 解决方案 - [CloudFlare Workers](https://blog.cloudflare.com/introducing-cloudflare-workers/)。不同的是，CloudFlare Workers 相比原始的 Vercel Serverless Function 而言能够做 Server Sent Event、WebSocket 这类支持长连接的请求。尽管后续 Vercel Edge Function 也能实现，但是它能支持的 Node.js Module 实在太少了。
+初次了解 Serverless 也是非常惊讶。AWS Lambda 竟能将 function 如此商业化 (FaaS)，Vercel 在此之上也做到了开箱即用。借助 CloudFlare 现有的数据中心，CloudFlare 也推出他们的 Serverless 解决方案 - [CloudFlare Workers](https://blog.cloudflare.com/introducing-cloudflare-workers/)。不同的是，CloudFlare Workers 相比原始的 Vercel Serverless Function 而言能够做 Server Sent Event、WebSocket 这类支持长连接的请求。尽管后续 Vercel Edge Function 也能实现，但是它能支持的 Node.js Module 实在太少了。（作者注：后来我才了解到 Vercel Edge Function 其实构建于 CloudFlare Workers 之上）
 
 前不久，CloudFlare [开源了 Workers 运行时 workerd](https://blog.cloudflare.com/workerd-open-source-workers-runtime/)。
 
@@ -119,7 +119,7 @@ openssl s_client -connect lawrenceli.me:443 -servername lawrenceli.me -state -de
   <github user="salesforce" repo="ja3"></github>
 </div>
 
-简而言之，TLS 握手过程中客户端发送的字节数组，也就是 Client Hello 阶段的一些字段和扩展名，通过固定方式拼接，基于摘要 MD5 来生成一个唯一的字符串，称为 JA3 指纹。不同的浏览器或 TLS 客户端有不同指纹。在大量的数据采样中，CloudFlare 就能够基于此数据 (JA3 & JA3S，后者包含了 Server Hello 阶段的服务端指纹) 统计出哪些请求来自于僵尸网络、机器人爬虫、Python 库还是正常用户的浏览器、或者手机访问。这也就解释了很多同学写爬虫时，利用 HTTP 协议更换 `User-Agent` 这一请求头无效的情况，因为 CloudFlare 的防御处在更底层的 L4 TLS 阶段。ChatGPT 的 Web 端也部署了 CloudFlare 的 TLS 指纹鉴定 WAF，GitHub 上我也找到了相关的代码实现，通过更换 TLS Client 的方式来绕过这一防御。对于多数人来说，这已经有很大的防爬门槛了；而且 CloudFlare 可以随时更换 WAF 策略让旧的指纹失效。
+简而言之，TLS 握手过程中客户端发送的字节数组，也就是 Client Hello 阶段的一些字段和扩展名，通过固定方式拼接，基于摘要 MD5 来生成一个唯一的字符串，称为 JA3 指纹。不同的浏览器或 TLS 客户端有不同指纹。在大量的数据采样中，CloudFlare 就能够基于此数据 (JA3 & JA3S，后者包含了 Server Hello 阶段的服务端指纹) 统计出哪些请求来自于僵尸网络、机器人爬虫、Python 库还是正常用户的浏览器、或者手机访问。这也就解释了很多同学写爬虫时，利用 HTTP 协议更换 `User-Agent` 这一请求头无效的情况，因为 CloudFlare 的防御处在更底层的 L4 TLS 阶段。ChatGPT 的 Web 端也部署了 [CloudFlare 的 TLS JA3 指纹鉴定 WAF (仅限 Enterprise 账户)](https://developers.cloudflare.com/bots/concepts/ja3-fingerprint/)；GitHub 上我也找到了相关的代码实现通过更换 TLS Client 的方式来绕过这一防御。对于多数人来说，这已经有很大的防爬门槛了；而且 CloudFlare 可以随时更换 WAF 策略让旧的指纹失效。
 
 ## 尾声
 
