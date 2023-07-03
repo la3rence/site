@@ -67,26 +67,6 @@ Node.js 作者 Ryan Dahl 这几年给 JavaScript 写的另一个全新运行时 
 
 为了实现 Serverless 的更多数据持久化功能，他们也各自推出了自家的 KV 存储实现服务，或者说是 Serverless 数据库。
 
-## 盈利模式
-
-和 Vercel，Netlify 如出一辙，Cloudflare 采用「免费试用，付费增值」的商业模式。CloudFlare CEO Matthew Prince 曾在 StackOverflow 上回答过这个问题：「[How can CloudFlare offer a free CDN with unlimited bandwidth?](https://webmasters.stackexchange.com/questions/88659/how-can-cloudflare-offer-a-free-cdn-with-unlimited-bandwidth)」：
-
-- 更多的免费用户意味着更多的数据，这些数据能更好地帮助保护付费用户
-- 很多大客户的来源正是由于这些公司的员工是 CloudFlare 的免费用户，他们在工作中向公司推荐了 CloudFlare
-- 免费这一举措就是在做宣传，可以减少招聘成本，能雇到全球最厉害的工程师
-- 免费用户体验新功能的同时也能就帮助了这个新功能的测试，缩短了迭代周期
-- 带宽成本的鸡生蛋、蛋生鸡问题：用户数量庞大才能在面对全球各地的电信营运商时有议价权
-
-2019 年，CloudFlare 在纽交所上市，股票代码：NET。发行价 US $15，目前 US $63，上涨了 320%。画外音：现在买它还来得及吗？
-
-在中国目前和京东云合作，仅限企业用户。500 强企业中目前有三分之一使用 CloudFlare，还有很多上升空间。OpenAI 的 [ChatGPT](https://chat.openai.com) 上线后，CloudFlare 获得了大量曝光，防御了大量滥用用户和潜在威胁请求。
-
-## 价值观
-
-CloudFlare 因坚持网络中立原则受到了一些批评。
-
-比较典型的一件事是 CloudFlare 因舆论和法律的压力[终止对 8chan 的服务](https://blog.cloudflare.com/zh-cn/terminating-service-for-8chan-zh-cn)。CloudFlare 声称自己是一家私营公司，并且 CloudFlare 半数营收来自于美国之外的地区，可以不受美国宪法第一修正案的约束，其服务的客户对象是整个互联网市场。由于业务量大，有些包含恐怖主义、仇恨言论的网站也免不了会使用其服务。这也是大多数大型互联网公司所面临的问题。和快播王欣事件类似，他们都不愿扮演内容仲裁者。互联网诞生至今，法律的步伐总是跟不上技术的发展。
-
 ## CloudFlare 在 TLS 协议上的努力
 
 ### Client Hello - SNI
@@ -113,13 +93,35 @@ openssl s_client -connect lawrenceli.me:443 -servername lawrenceli.me -state -de
 
 利用 Client Hello 来做安全保护的另一个实践是 TLS 客户端指纹: JA3 & JA3S。这一设计灵感来源于信息安全专家 Lee Brotherston 的研究 [TLS fingerprinting](https://blog.squarelemon.com/tls-fingerprinting/)。
 
-具体实现细节可以参考 [Salesforce 开源的 JA3](https://github.com/salesforce/ja3).
+具体的工程实践可以参考 [Salesforce 开源的 JA3](https://github.com/salesforce/ja3).
 
 <div>
   <github user="salesforce" repo="ja3"></github>
 </div>
 
 简而言之，TLS 握手过程中客户端发送的字节数组，也就是 Client Hello 阶段的一些字段和扩展名，通过固定方式拼接，基于摘要 MD5 来生成一个唯一的字符串，称为 JA3 指纹。不同的浏览器或 TLS 客户端有不同指纹。在大量的数据采样中，CloudFlare 就能够基于此数据 (JA3 & JA3S，后者包含了 Server Hello 阶段的服务端指纹) 统计出哪些请求来自于僵尸网络、机器人爬虫、Python 库还是正常用户的浏览器、或者手机访问。这也就解释了很多同学写爬虫时，利用 HTTP 协议更换 `User-Agent` 这一请求头无效的情况，因为 CloudFlare 的防御处在更底层的 L4 TLS 阶段。ChatGPT 的 Web 端也部署了 [CloudFlare 的 TLS JA3 指纹鉴定 WAF (仅限 Enterprise 账户)](https://developers.cloudflare.com/bots/concepts/ja3-fingerprint/)；GitHub 上我也找到了相关的代码实现通过更换 TLS Client 的方式来绕过这一防御。对于多数人来说，这已经有很大的防爬门槛了；而且 CloudFlare 可以随时更换 WAF 策略让旧的指纹失效。
+
+JA3 由来自 salesforce 的三位工程师共同实现：John Althouse, Jeff Atkinson & Josh Atkins。看到这里，想必你也知道为什么 JA3 叫 `JA3` 了。
+
+## 盈利模式
+
+和 Vercel，Netlify 如出一辙，Cloudflare 采用「免费试用，付费增值」的商业模式。CloudFlare CEO Matthew Prince 曾在 StackOverflow 上回答过这个问题：「[How can CloudFlare offer a free CDN with unlimited bandwidth?](https://webmasters.stackexchange.com/questions/88659/how-can-cloudflare-offer-a-free-cdn-with-unlimited-bandwidth)」：
+
+- 更多的免费用户意味着更多的数据，这些数据能更好地帮助保护付费用户
+- 很多大客户的来源正是由于这些公司的员工是 CloudFlare 的免费用户，他们在工作中向公司推荐了 CloudFlare
+- 免费这一举措就是在做宣传，可以减少招聘成本，能雇到全球最厉害的工程师
+- 免费用户体验新功能的同时也能就帮助了这个新功能的测试，缩短了迭代周期
+- 带宽成本的鸡生蛋、蛋生鸡问题：用户数量庞大才能在面对全球各地的电信营运商时有议价权
+
+2019 年，CloudFlare 在纽交所上市，股票代码：NET。发行价 US $15，目前 US $63，上涨了 320%。画外音：现在买它还来得及吗？
+
+在中国目前和京东云合作，仅限企业用户。500 强企业中目前有三分之一使用 CloudFlare，还有很多上升空间。OpenAI 的 [ChatGPT](https://chat.openai.com) 上线后，CloudFlare 获得了大量曝光，防御了大量滥用用户和潜在威胁请求。
+
+## 价值观
+
+CloudFlare 因坚持网络中立原则受到了一些批评。
+
+比较典型的一件事是 CloudFlare 因舆论和法律的压力[终止对 8chan 的服务](https://blog.cloudflare.com/zh-cn/terminating-service-for-8chan-zh-cn)。CloudFlare 声称自己是一家私营公司，并且 CloudFlare 半数营收来自于美国之外的地区，可以不受美国宪法第一修正案的约束，其服务的客户对象是整个互联网市场。由于业务量大，有些包含恐怖主义、仇恨言论的网站也免不了会使用其服务。这也是大多数大型互联网公司所面临的问题。和快播王欣事件类似，他们都不愿扮演内容仲裁者。互联网诞生至今，法律的步伐总是跟不上技术的发展。
 
 ## 尾声
 
