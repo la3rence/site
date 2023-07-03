@@ -95,9 +95,9 @@ CloudFlare 因坚持网络中立原则受到了一些批评。
 
 > SNI 有点像邮寄包裹到公寓楼而不是独栋房子。将邮件邮寄到某人的独栋房子时，仅街道地址就足以将包裹发送给收件人。但是，当包裹进入公寓楼时，除了街道地址外，还需要公寓号码。否则，包裹可能无法送达收件人或根本无法交付。许多 Web 服务器更像是公寓大楼而不是独栋房子：它们承载多个域名，因此仅 IP 地址不足以指示用户尝试访问哪个域名.....当多个网站托管在一台服务器上并共享一个 IP 地址，并且每个网站都有自己的 SSL 证书，在客户端设备尝试安全地连接到其中一个网站时，服务器可能不知道显示哪个 SSL 证书。这是因为 SSL/TLS 握手发生在客户端设备通过 HTTP 指示连接到某个网站之前。
 
-有点类似于 HTTP 协议中的 `Host` 请求头（如果在同一台服务器上用 Nginx 配置过多个虚拟主机应该都熟悉），但是 SNI 是作用在 L4，而且在 TCP 握手前完成。起初它并不是 TLS 协议的一部分，最早在 2003 年作为扩展字段增加到 TLS 协议中 ([RFC 6066](https://datatracker.ietf.org/doc/html/rfc6066#section-3))。现代浏览器等客户端都早已支持这个字段。
+有点类似于 HTTP 协议中的 `Host` 请求头（如果在同一台服务器上用 Nginx 配置过多个虚拟主机应该都熟悉），但是 SNI 是作用在 L4，而且在 TCP 握手前完成。起初它并不是 TLS 协议的一部分，最早在 2003 年作为扩展字段增加到 TLS 协议中 ([RFC 6066](https://datatracker.ietf.org/doc/html/rfc6066#section-3))。现代浏览器等客户端都早已支持这个字段。我们会发现一个细节问题，对基于同一 CDN 的网站的 HTTPS 请求，我们传入的 TLS `SNI` 和 HTTP Header `Host` 会有不一致的情况，在不严格校验 SNI 的情况下，这类请求有可能被路由到 `Host` 所定义的主机上，本质也就无视了 `SNI`，因此对于某些防火墙来说，由于它们能通过 SNI 来侦测到用户所请求的 HTTPS 站点，它们无法得到后续 TLS 握手后的 HTTP 报文内容，在客户端更换了 Header `Host` 后，实际返回的 HTTP 报文内容其实已被调包 —— 这种攻击方式，或者说叫伪装方式被称为[域前置(Domain Fronting)](https://zh.wikipedia.org/zh-cn/%E5%9F%9F%E5%89%8D%E7%BD%AE)技术。CloudFlare、CloudFront 都会校验二者的一致性返回 403，但依然有部分 CDN 对这一做法采取保留，比如 Fastly。
 
-我们可以用 WireShack 抓包获取到这一字段。应用这个过滤条件 `ssl.handshake.extensions_server_name`，尝试抓包发送一次 TLS 请求
+我们可以用 WireShack 抓包获取到 `SNI` 字段。应用这个过滤条件 `ssl.handshake.extensions_server_name`，尝试抓包发送一次 TLS 请求
 
 ```sh
 openssl s_client -connect lawrenceli.me:443 -servername lawrenceli.me -state -debug < /dev/null
@@ -105,9 +105,9 @@ openssl s_client -connect lawrenceli.me:443 -servername lawrenceli.me -state -de
 
 ![SNI](/images/cloudflare/sni-field.png)
 
-可以从结果看出，SNI 使用了明文进行传输，这就导致一个问题 - 就算经过 TLS/HTTPS 加密的流量，仍然明文地暴露了我们在访问的域名。「这又如何？DNS 不也暴露了嘛？」好问题 - DoH 解决了 DNS 请求的明文风险 ([RFC 8484](https://datatracker.ietf.org/doc/html/rfc8484))。因此，实际上 TLS 目前唯一在数据上有泄密风险的就只有这个字段了。CloudFlare 先后搬出了两个解决方案：[ESNI](https://www.cloudflare-cn.com/learning/ssl/what-is-encrypted-sni/) 以及 [ECH](https://blog.cloudflare.com/encrypted-client-hello/)。
+可以从结果看出，SNI 确实使用了明文进行传输，这就导致了前文提到的一个问题 - 就算经过 TLS/HTTPS 加密的流量，仍然明文地暴露了我们在访问的域名。「这又如何？DNS 不也暴露了嘛？」好问题 - DoH 解决了 DNS 请求的明文风险 ([RFC 8484](https://datatracker.ietf.org/doc/html/rfc8484))。因此，实际上 TLS 目前唯一在数据上有泄密风险的就只有这个字段了。CloudFlare 先后搬出了两个解决方案：[ESNI](https://www.cloudflare-cn.com/learning/ssl/what-is-encrypted-sni/) 以及 [ECH](https://blog.cloudflare.com/encrypted-client-hello/)。
 
-我们可以使用 Chrome 的开关 `chrome://flags/#encrypted-client-hello` 来开启浏览器 ECH 的客户端支持。通过 Chrome DevTool 的 Security Tab 能够查看 HTTPS 流量的安全性信息。我们可以通过[这个链接](https://crypto.cloudflare.com/cdn-cgi/trace)来测试客户端对这个方案的支持情况，当然，这些需要服务端做相应的配置才能完全启用。话题就此结束。
+我们可以使用 Chrome 的开关 `chrome://flags/#encrypted-client-hello` 来开启浏览器 ECH 的客户端支持。通过 Chrome DevTool 的 Security Tab 能够查看 HTTPS 流量的安全性信息。我们可以通过[这个链接](https://crypto.cloudflare.com/cdn-cgi/trace)来测试客户端对这个方案的支持情况，当然，这些需要服务端做相应的配置才能完全启用。话题就此结束，我不能再细说了。
 
 ### Client Hello - JA3
 
