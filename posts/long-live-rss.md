@@ -29,7 +29,9 @@ Here are some good feed I subscribed for reading:
 
 Some apps for RSS were removed from the Chinese App Store in the autumn of 2020.
 
-[https://twitter.com/reederapp/status/1310963891539709952](https://twitter.com/reederapp/status/1310963891539709952)
+<div>
+  <tweet id="1310963891539709952" />
+</div>
 
 [https://twitter.com/FieryFeeds/status/1310553289545658369](https://twitter.com/FieryFeeds/status/1310553289545658369)
 

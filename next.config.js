@@ -7,6 +7,7 @@ module.exports = {
   //   locales: ["zh"],
   //   defaultLocale: "zh",
   // },
+  transpilePackages: ["react-tweet"],
   async rewrites() {
     return [
       {
@@ -45,6 +46,9 @@ module.exports = {
       },
       {
         hostname: "**.lawrenceli.me",
+      },
+      {
+        hostname: "**.twimg.com",
       },
     ],
   },
