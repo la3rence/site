@@ -31,9 +31,11 @@ and the out put looks like:
 9   6 3   1
 ```
 
-This problem was inspired by this tweet:
+This problem was inspired by this [tweet](https://twitter.com/mxcl/status/608682016205344768).
 
-[https://twitter.com/mxcl/status/608682016205344768](https://twitter.com/mxcl/status/608682016205344768)
+<div>
+    <tweet id="608682016205344768" />
+</div>
 
 Here's the solution implemented in Java.
 

@@ -33,7 +33,7 @@ export default function GitHub({ user, repo }) {
   return (
     <div className="border border-zinc-500 my-6 flex items-center shadow-lg">
       <div className="flex-1">
-        <p className="my-2">
+        <p className="my-2 pl-4">
           <span className="mr-1">📔</span>
           <a href={data.html_url} target="_blank">
             {data.name}
@@ -43,7 +43,7 @@ export default function GitHub({ user, repo }) {
           </span>
         </p>
         <p className="my-3 text-sm">{data.description}</p>
-        <p className="my-3 text-sm">
+        <p className="my-3 text-sm pl-4">
           {data && (
             <span
               className={`w-3 h-3 inline-block rounded-full mr-1 ${
