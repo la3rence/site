@@ -6,10 +6,16 @@ import rehypeReact from "rehype-react";
 import Douban from "../../components/douban";
 import Bilibili from "../../components/bilibili";
 import GitHub from "../../components/github";
+import Tweet from "../../components/twitter";
 
 const renderAst = new rehypeReact({
   createElement,
-  components: { douban: Douban, bilibili: Bilibili, github: GitHub },
+  components: {
+    douban: Douban,
+    bilibili: Bilibili,
+    github: GitHub,
+    tweet: Tweet,
+  },
 }).Compiler;
 
 const PathId = props => {

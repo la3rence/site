@@ -1,4 +1,4 @@
-lockfileVersion: "6.0"
+lockfileVersion: "6.1"
 
 settings:
   autoInstallPeers: true
@@ -49,7 +49,7 @@ dependencies:
     version: 4.22.1(next@13.4.8)(nodemailer@6.9.3)(react-dom@18.2.0)(react@18.2.0)
   next-sitemap:
     specifier: ^4.0.0
-    version: 4.0.1(@next/env@13.4.7)(next@13.4.8)
+    version: 4.0.1(@next/env@13.4.8)(next@13.4.8)
   next-themes:
     specifier: 0.2.1
     version: 0.2.1(next@13.4.8)(react-dom@18.2.0)(react@18.2.0)
@@ -65,6 +65,9 @@ dependencies:
   react-star-ratings:
     specifier: ^2.3.0
     version: 2.3.0
+  react-tweet:
+    specifier: ^3.0.1
+    version: 3.0.1(react-dom@18.2.0)(react@18.2.0)
   react-type-animation:
     specifier: ^3.0.1
     version: 3.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -342,13 +345,6 @@ packages:
     resolution:
       {
         integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==,
-      }
-    dev: false
-
-  /@next/env@13.4.7:
-    resolution:
-      {
-        integrity: sha512-ZlbiFulnwiFsW9UV1ku1OvX/oyIPLtMk9p/nnvDSwI0s7vSoZdRtxXNsaO+ZXrLv/pMbXVGq4lL8TbY9iuGmVw==,
       }
     dev: false
 
@@ -1245,6 +1241,14 @@ packages:
       }
     dev: false
 
+  /clsx@1.2.1:
+    resolution:
+      {
+        integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==,
+      }
+    engines: { node: ">=6" }
+    dev: false
+
   /color-convert@2.0.1:
     resolution:
       {
@@ -1326,6 +1330,16 @@ packages:
         integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==,
       }
     dev: true
+
+  /date-fns@2.30.0:
+    resolution:
+      {
+        integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==,
+      }
+    engines: { node: ">=0.11" }
+    dependencies:
+      "@babel/runtime": 7.22.3
+    dev: false
 
   /debug@3.2.7:
     resolution:
@@ -4000,7 +4014,7 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /next-sitemap@4.0.1(@next/env@13.4.7)(next@13.4.8):
+  /next-sitemap@4.0.1(@next/env@13.4.8)(next@13.4.8):
     resolution:
       {
         integrity: sha512-dY6vKE/uayNYSfhXA64U9NZYSJtFzK01oBouY+XqgQieksKBG9BWNmq8yGSJUermyux4wCnNa9gLHwSk38emhA==,
@@ -4012,7 +4026,7 @@ packages:
       next: "*"
     dependencies:
       "@corex/deepmerge": 4.0.43
-      "@next/env": 13.4.7
+      "@next/env": 13.4.8
       minimist: 1.2.8
       next: 13.4.8(react-dom@18.2.0)(react@18.2.0)
     dev: false
@@ -4686,6 +4700,23 @@ packages:
       classnames: 2.3.2
       prop-types: 15.8.1
       react: 16.14.0
+    dev: false
+
+  /react-tweet@3.0.1(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-CXi9Lc5HajpnOWr8lxg1lmd3N1LNxVk9hC9Gb+Vb9JmAAqYL7ChBClyKITkrmJNuKvt2MwH8Y2q0PLvDWYjYxw==,
+      }
+    peerDependencies:
+      react: ">= 18.0.0"
+      react-dom: ">= 18.0.0"
+    dependencies:
+      "@swc/helpers": 0.5.1
+      clsx: 1.2.1
+      date-fns: 2.30.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      swr: 2.2.0(react@18.2.0)
     dev: false
 
   /react-type-animation@3.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
@@ -5370,6 +5401,18 @@ packages:
         integrity: sha512-IhUx5yPkX+Fut3h0SqZycnaNLXLXsb2ECFq0Y29cxnK7d8r7auY2JWNbCW3IX+EqXUg3rwNJFlhrw5Ye/b6k7w==,
       }
     engines: { pnpm: "7" }
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /swr@2.2.0(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-AjqHOv2lAhkuUdIiBu9xbuettzAzWXmCEcLONNKJRba87WAefz8Ca9d6ds/SzrPc235n1IxWYdhJ2zF3MNUaoQ==,
+      }
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
