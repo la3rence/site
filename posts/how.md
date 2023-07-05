@@ -108,7 +108,7 @@ Same as the movie component:
 ### Tweet
 
 <div>
-  <tweet id="1565736023362916352" />
+  <tweet id="20" />
 </div>
 
 ## Tables

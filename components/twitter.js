@@ -8,7 +8,7 @@ const components = {
 };
 export default function Twitter({ id }) {
   return (
-    <div className="not-prose flex justify-center ">
+    <div className="not-prose flex justify-center">
       <Tweet id={id} apiUrl={`/api/tweet?id=${id}`} components={components} />
     </div>
   );
