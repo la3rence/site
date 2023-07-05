@@ -42,7 +42,7 @@ export default async function reply(req, res) {
   await Promise.all(
     replies.map(async reply => {
       reply.avatar = await fetchAvatar(reply.actor);
-    })
+    }),
   );
   res.json(replies);
 }

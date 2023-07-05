@@ -80,7 +80,7 @@ export default function Search({ posts }) {
                     __html: `${searchResult.title.replace(
                       keywords,
                       `<mark>${keywords}</mark>`,
-                      "gi"
+                      "gi",
                     )}`,
                   }}
                 />
@@ -130,7 +130,7 @@ function groupByPath(arr) {
       };
       result[item.path].items.push(item);
       return result;
-    }, {})
+    }, {}),
   );
 }
 
@@ -180,7 +180,7 @@ const HighlightMatches = ({ value, match, indexId }) => {
           dangerouslySetInnerHTML={{
             __html: rendered,
           }}
-        ></span>
+        ></span>,
       );
       index = regexp.lastIndex;
     }

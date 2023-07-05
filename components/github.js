@@ -19,7 +19,7 @@ export default function GitHub({ user, repo }) {
       ? `${process.env.NEXT_PUBLIC_PROXY_URL}api.github.com/repos/${user}/${repo}`
       : null,
     fetcher,
-    swrConfig
+    swrConfig,
   );
 
   useEffect(() => {
