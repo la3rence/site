@@ -29,7 +29,13 @@ export default function Header({
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={siteTitle} />
         <meta property="og:description" content={theDescription} />
-        <meta property="og:image" content={image} />
+        <meta
+          property="og:image"
+          content={`${baseURL}/api/og?meta=${title},${themeColor?.replace(
+            "#",
+            ""
+          )}`}
+        />
         <meta name="twitter:title" content={`${pageTitle} (${twitter})`} />
         <meta name="twitter:image" content={image} />
         <meta name="twitter:creator" content={twitter} />
