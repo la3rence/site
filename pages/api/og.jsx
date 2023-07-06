@@ -3,7 +3,7 @@ import siteConfig from "../../lib/config.mjs";
 
 async function fetchFont(text, font) {
   const API = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
-    text + "●▲■"
+    text + "●▲■",
   )}`;
   const css = await (
     await fetch(API, {
@@ -15,7 +15,7 @@ async function fetchFont(text, font) {
     })
   ).text();
   const resource = css.match(
-    /src: url\((.+)\) format\('(opentype|truetype)'\)/
+    /src: url\((.+)\) format\('(opentype|truetype)'\)/,
   );
   if (!resource) return null;
   const res = await fetch(resource[1]);
@@ -64,6 +64,6 @@ export default async function opengraph(request) {
           style: "normal",
         },
       ],
-    }
+    },
   );
 }

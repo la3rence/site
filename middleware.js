@@ -17,7 +17,7 @@ export function middleware(req) {
   if (path.startsWith("/blog") && accept && accept.includes("activity")) {
     const blogId = path.split("/")[2];
     return NextResponse.rewrite(
-      new URL(`/api/activitypub/blog/${blogId}`, req.url)
+      new URL(`/api/activitypub/blog/${blogId}`, req.url),
     );
   }
 }
