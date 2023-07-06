@@ -1,6 +1,7 @@
 ---
 title: "在 Kubernetes 中部署 Prow"
 date: "2020-11-29"
+themeColor: "#306de6"
 description: "Kubernetes 原生 CI/CD 系统。@k8s-ci-bot"
 tags: Kubernetes, CI, Robot, DevOps
 ---

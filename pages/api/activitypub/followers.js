@@ -32,12 +32,12 @@ export async function saveFollower(follower) {
   const result = await followers.replaceOne(
     {},
     { orderedItems },
-    { upsert: true }
+    { upsert: true },
   );
   console.log(
     result.upsertedCount > 0
       ? "Inserted new follower"
-      : "Updated existing follower"
+      : "Updated existing follower",
   );
 }
 
