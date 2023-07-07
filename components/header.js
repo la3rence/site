@@ -16,6 +16,7 @@ export default function Header({
     config;
   const theDescription = description || siteDescription;
   const pageTitle = title || siteTitle;
+  const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "",)}`;
   const hoverTabStyle =
     "hover:bg-zinc-100 text-zinc-700 transition duration-500 dark:hover:bg-zinc-700 dark:text-zinc-300 hover:transition-transform";
   return (
@@ -29,15 +30,9 @@ export default function Header({
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={siteTitle} />
         <meta property="og:description" content={theDescription} />
-        <meta
-          property="og:image"
-          content={`${baseURL}/api/og?meta=${title},${themeColor?.replace(
-            "#",
-            "",
-          )}`}
-        />
+        <meta property="og:image" content={og} />
         <meta name="twitter:title" content={`${pageTitle} (${twitter})`} />
-        <meta name="twitter:image" content={image} />
+        <meta name="twitter:image" content={og} />
         <meta name="twitter:creator" content={twitter} />
         <meta name="twitter:site" content={twitter} />
         <meta name="twitter:card" content="summary_large_image" />
