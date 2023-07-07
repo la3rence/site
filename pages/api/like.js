@@ -9,7 +9,7 @@ export default async function like(req, res) {
   await Promise.all(
     likes.map(async like => {
       like.avatar = await fetchAvatar(like.actor);
-    })
+    }),
   );
   res.json(likes);
 }

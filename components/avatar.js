@@ -7,7 +7,7 @@ export default function Avatar({ src, size, alt }) {
         className="rounded-full not-prose inline-block border border-zinc-300"
         src={`${process.env.NEXT_PUBLIC_PROXY_URL}${src.replace(
           "https://",
-          ""
+          "",
         )}`}
         width={size}
         height={size}

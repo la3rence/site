@@ -33,7 +33,7 @@ export default function Header({
           property="og:image"
           content={`${baseURL}/api/og?meta=${title},${themeColor?.replace(
             "#",
-            ""
+            "",
           )}`}
         />
         <meta name="twitter:title" content={`${pageTitle} (${twitter})`} />
