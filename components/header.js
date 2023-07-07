@@ -4,18 +4,13 @@ import { useRouter } from "next/router";
 import config from "../lib/config.mjs";
 import Logo from "./logo";
 
-export default function Header({
-  title,
-  blog,
-  description,
-  themeColor,
-}) {
+export default function Header({ title, blog, description, themeColor }) {
   const router = useRouter();
   let { siteTitle, navItems, authorName, baseURL, siteDescription, twitter } =
     config;
   const theDescription = description || siteDescription;
   const pageTitle = title || siteTitle;
-  const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "",)}`;
+  const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
   const hoverTabStyle =
     "hover:bg-zinc-100 text-zinc-700 transition duration-500 dark:hover:bg-zinc-700 dark:text-zinc-300 hover:transition-transform";
   return (
