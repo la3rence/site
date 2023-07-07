@@ -64,6 +64,6 @@ async function sendAcceptMessage(body, originDomain) {
   await sendSignedRequest(
     `${originDomain}/api/activitypub/actor#main-key`,
     new URL(body.actor + "/inbox"),
-    message,
+    message
   );
 }

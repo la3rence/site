@@ -3,7 +3,7 @@ import siteConfig from "../../lib/config.mjs";
 
 async function fetchFont(text, font) {
   const API = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
-    text + "●▲■",
+    text + "●▲■"
   )}`;
   const css = await (
     await fetch(API, {
@@ -15,7 +15,7 @@ async function fetchFont(text, font) {
     })
   ).text();
   const resource = css.match(
-    /src: url\((.+)\) format\('(opentype|truetype)'\)/,
+    /src: url\((.+)\) format\('(opentype|truetype)'\)/
   );
   if (!resource) return null;
   const res = await fetch(resource[1]);
@@ -39,16 +39,17 @@ export default async function opengraph(request) {
           height: "100%",
           width: "100%",
           display: "flex",
-          background: `linear-gradient(0deg, ${
-            color && color !== "undefined" ? `#${color}` : "#ffffff"
-          } 1%, #000000 100%)`,
+          backgroundColor: `${
+            color && color !== "undefined" ? `#${color}` : "#121212"
+          }`,
         }}
       >
-        <div tw="mt-72 ml-12 flex">
-          <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-between p-6">
-            <h1 tw="flex flex-col text-3xl sm:text-4xl font-bold tracking-tight text-left">
-              <span>● {title}</span>
-              <span>by {siteConfig.siteTitle}</span>
+        <div tw="ml-12 flex text-zinc-200">
+          <div tw="flex flex-col w-full py-12 px-4 justify-between p-6">
+            <span tw="mt-16 text-7xl">■</span>
+            <h1 tw="mb-18 flex flex-col text-left ">
+              <span tw="text-7xl font-bold">● {title}</span>
+              <span tw="text-3xl">by {siteConfig.siteTitle}</span>
             </h1>
           </div>
         </div>
@@ -64,6 +65,6 @@ export default async function opengraph(request) {
           style: "normal",
         },
       ],
-    },
+    }
   );
 }

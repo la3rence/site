@@ -22,7 +22,7 @@ export default async function publish(req, res) {
   const response = await sendSignedRequest(
     `${origin}/api/activitypub/actor#main-key`,
     new URL("https://mstdn.social/inbox"),
-    createMessage,
+    createMessage
   );
   const text = await response.text();
   console.log("Following result", response.status, response.statusText, text);

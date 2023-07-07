@@ -12,7 +12,7 @@ export default function Douban({ id, reverse }) {
       ? `${process.env.NEXT_PUBLIC_PROXY_URL}douban.8610000.xyz/data/${id}.json`
       : null,
     fetcher,
-    swrConfig,
+    swrConfig
   );
   useEffect(() => {
     setMounted(true);
