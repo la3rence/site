@@ -7,7 +7,6 @@ import Logo from "./logo";
 export default function Header({
   title,
   blog,
-  image,
   description,
   themeColor,
 }) {
