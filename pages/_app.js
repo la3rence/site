@@ -1,5 +1,6 @@
 import App from "next/app";
 import { Analytics } from "@vercel/analytics/react";
+import Umami from "../components/analytics";
 import { ThemeProvider } from "next-themes";
 import "./../styles/globals.css";
 import { SessionProvider } from "next-auth/react";
@@ -12,6 +13,7 @@ class Site extends App {
         <ThemeProvider storageKey="theme" attribute="class">
           <Component {...pageProps} />
         </ThemeProvider>
+        <Umami />
         <Analytics />
       </SessionProvider>
     );

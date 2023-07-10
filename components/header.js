@@ -32,12 +32,6 @@ export default function Header({ title, blog, description, themeColor }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="referrer" content="never" />
         {themeColor && <meta name="theme-color" content={themeColor} />}
-        {/* umami analytics (self-hosted) */}
-        <script
-          async
-          src="https://analytics.lawrenceli.me/script.js"
-          data-website-id="3ac93385-5b59-43e3-9b02-01fe09804587"
-        ></script>
       </Head>
       {!blog && (
         <header className="flex mt-12 text-zinc-500">
