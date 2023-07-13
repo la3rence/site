@@ -66,7 +66,9 @@ export default function Douban({ id, reverse }) {
         <div className="w-1/3 not-prose">
           <img
             className="object-cover w-full h-full"
-            src={movie.pic.large}
+            src={`${
+              process.env.NEXT_PUBLIC_PROXY_URL
+            }${movie.pic.large?.replace("https://", "")}`}
             alt={`${movie.title} 评分: ${movie.rating.value}`}
             title={`《${movie.title}》 评分: ${movie.rating.value}`}
           />
