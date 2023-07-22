@@ -111,6 +111,10 @@ Same as the movie component:
   <tweet id="20" />
 </div>
 
+### Open Graph
+
+![Open Graph](/api/og?meta=This%20is%20Open%20Graph)
+
 ## Tables
 
 JAMstack.

@@ -30,7 +30,7 @@ We use "cookies" to collect information. You can instruct your browser to refuse
 
 ## Third-Party Websites
 
-Our website uses APIs from github.com, douban.8610000.xyz, and bilibili.com to display information such as videos and details about open-source projects and films. We do not share or process any user data with these APIs.
+Our website uses APIs from github.com, douban.8610000.xyz, twitter.com and bilibili.com to display information such as videos and details about open-source projects and films, tweets. We do not share or process any user data with these APIs.
 
 We may use third-party cookies from these APIs to improve the performance and functionality of our website. These cookies may include API-related cookies and other cookies.
 

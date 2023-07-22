@@ -24,27 +24,6 @@ const Footer = () => {
 
   return (
     <div className="mx-4 mt-16 mb-24 text-xs text-center">
-      {twitter && (
-        <div className="px-1 inline-block">
-          <A href={`https://twitter.com/${twitter}`}>
-            <TwitterIcon />
-          </A>
-        </div>
-      )}
-      {authorEmail && (
-        <div className="px-1 inline-block">
-          <A href={`mailto:${authorEmail}`}>
-            <MailIcon />
-          </A>
-        </div>
-      )}
-      {github && (
-        <div className="px-1 inline-block">
-          <A href={`https://github.com/${github}`}>
-            <GitHubIcon />
-          </A>
-        </div>
-      )}
       {enableBuildInfo && (
         <div className="mt-2 text-zinc-500">
           <span className="mx-1 ">
@@ -58,15 +37,39 @@ const Footer = () => {
       )}
       <div className="mt-0 text-zinc-500">
         <A href="/privacy" self="true">
-          <span className="mr-1">Privacy Policy</span>
+          <span className="mr-1">Privacy</span>
         </A>
+        ·{" "}
         <A href="https://status.lawrenceli.me/">
           <span className="mr-1">Status</span>
         </A>
-        <span>{new Date().getFullYear()} ©️ </span>
+        · <span>{new Date().getFullYear()} ©️ </span>
         <A href="/" self="true">
           <span>{siteTitle}</span>
         </A>
+      </div>
+      <div className="mt-2">
+        {twitter && (
+          <div className="px-1 inline-block">
+            <A href={`https://twitter.com/${twitter}`}>
+              <TwitterIcon />
+            </A>
+          </div>
+        )}
+        {authorEmail && (
+          <div className="px-1 inline-block">
+            <A href={`mailto:${authorEmail}`}>
+              <MailIcon />
+            </A>
+          </div>
+        )}
+        {github && (
+          <div className="px-1 inline-block">
+            <A href={`https://github.com/${github}`}>
+              <GitHubIcon />
+            </A>
+          </div>
+        )}
       </div>
     </div>
   );

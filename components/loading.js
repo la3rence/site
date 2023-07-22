@@ -1,6 +1,6 @@
 export default function Skeleton() {
   return (
-    <div className="border border-zinc-500 p-4 w-full mx-auto shadow-lg my-4">
+    <div className="border-zinc-500 p-4 w-full mx-auto shadow-lg my-4">
       <div className="animate-pulse flex space-x-4">
         <div className="flex-1 space-y-5">
           <div className="grid grid-cols-3 gap-4">

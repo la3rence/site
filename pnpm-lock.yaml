@@ -1,4 +1,4 @@
-lockfileVersion: "6.0"
+lockfileVersion: "6.1"
 
 settings:
   autoInstallPeers: true
@@ -52,7 +52,7 @@ dependencies:
     version: 4.22.1(next@13.4.11)(nodemailer@6.9.3)(react-dom@18.2.0)(react@18.2.0)
   next-sitemap:
     specifier: ^4.0.0
-    version: 4.0.1(@next/env@13.4.10)(next@13.4.11)
+    version: 4.0.1(@next/env@13.4.11)(next@13.4.11)
   next-themes:
     specifier: 0.2.1
     version: 0.2.1(next@13.4.11)(react-dom@18.2.0)(react@18.2.0)
@@ -348,13 +348,6 @@ packages:
     resolution:
       {
         integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==,
-      }
-    dev: false
-
-  /@next/env@13.4.10:
-    resolution:
-      {
-        integrity: sha512-3G1yD/XKTSLdihyDSa8JEsaWOELY+OWe08o0LUYzfuHp1zHDA8SObQlzKt+v+wrkkPcnPweoLH1ImZeUa0A1NQ==,
       }
     dev: false
 
@@ -4142,7 +4135,7 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /next-sitemap@4.0.1(@next/env@13.4.10)(next@13.4.11):
+  /next-sitemap@4.0.1(@next/env@13.4.11)(next@13.4.11):
     resolution:
       {
         integrity: sha512-dY6vKE/uayNYSfhXA64U9NZYSJtFzK01oBouY+XqgQieksKBG9BWNmq8yGSJUermyux4wCnNa9gLHwSk38emhA==,
@@ -4154,7 +4147,7 @@ packages:
       next: "*"
     dependencies:
       "@corex/deepmerge": 4.0.43
-      "@next/env": 13.4.10
+      "@next/env": 13.4.11
       minimist: 1.2.8
       next: 13.4.11(react-dom@18.2.0)(react@18.2.0)
     dev: false

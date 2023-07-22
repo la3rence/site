@@ -31,7 +31,7 @@ export default function GitHub({ user, repo }) {
   }
 
   return (
-    <div className="border border-zinc-500 my-6 flex items-center shadow-lg">
+    <div className="my-6 flex items-center shadow-md dark:border">
       <div className="flex-1">
         <p className="my-2 pl-4">
           <span className="mr-1">📔</span>
