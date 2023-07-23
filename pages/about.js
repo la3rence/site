@@ -34,7 +34,7 @@ const About = props => {
             <a
               href={config.mailchimp}
               target="_blank"
-              className=" text-yellow-500"
+              className=" text-yellow-500 cursor-pointer"
             >
               MailChimp
             </a>

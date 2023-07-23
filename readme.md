@@ -3,3 +3,64 @@
 **Lawrence Li** (aka Lonor elsewhere) is an fundamentalist for Open World Wide Web. He was born in 1994. He's interested in DevOps, especially Kubernetes. He is always concerned about the open source community and new technologies - recently very into the serverless, cloud native and JAMstack. He learned several programming languages driven by interest and created stuff for fun. He is a fan of minimalist design, science fiction movies and electronic music. He worked for an online education (start-up) company as a backend developer and now he works for an investment bank in Shanghai.
 
 INTJ / Software Engineer / Blogger
+
+Email: <hi@lawrenceli.me>
+
+<details>
+  <summary> PGP Public Key </summary>
+
+```txt
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+=wWRN
+-----END PGP PUBLIC KEY BLOCK-----
+```
+
+</details>

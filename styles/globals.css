@@ -55,6 +55,10 @@
     @apply mx-0;
   }
 
+  details:has(pre) pre {
+    @apply -mx-4;
+  }
+
   h2 > a,
   h3 > a,
   h4 > a,
