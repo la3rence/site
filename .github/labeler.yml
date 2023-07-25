@@ -1,0 +1,8 @@
+feature:
+  - "(feature|implement|need)"
+
+bug:
+  - "(bug)"
+
+dependencies:
+  - "(dependency|dependencies|deps|upgrade|bump)"
