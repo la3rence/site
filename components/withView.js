@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import config from "../lib/config.mjs";
-import useSWR from "swr";
-import { fetcher, swrConfig } from "./loading";
 
 // eslint-disable-next-line react/display-name
 const withView = Component => props => {
   // skip this HOC by: return <Component {...props} />;
   const id = useRouter().asPath.split("?")[0].split("#")[0];
   const [pageURL, setPageURL] = useState(config.baseURL + id);
-  const { data } = useSWR(`/api/view?page=${id}`, fetcher, swrConfig);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     setPageURL(window.location.href.split("?")[0].split("#")[0]);
+    const postView = async () => {
+      const res = await fetch(`/api/view?page=${id}`);
+      const data = await res.json();
+      setData(data);
+    };
+    postView();
   }, [id]);
 
   const withViewProps = {

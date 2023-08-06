@@ -1,24 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import StarRating from "react-star-ratings";
-import useSWR from "swr";
-import Skeleton, { fetcher, swrConfig } from "./loading";
+import Skeleton from "./loading";
 
 export default function Douban({ id, reverse }) {
-  const [mounted, setMounted] = useState(false);
+  const [movie, setMovie] = useState(null);
 
-  const { data: movie, error } = useSWR(
-    mounted
-      ? `${process.env.NEXT_PUBLIC_PROXY_URL}douban.8610000.xyz/data/${id}.json`
-      : null,
-    fetcher,
-    swrConfig,
-  );
   useEffect(() => {
-    setMounted(true);
+    const fetchMovie = async id => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PROXY_URL}douban.8610000.xyz/data/${id}.json`,
+      );
+      const json = await res.json();
+      setMovie(json);
+    };
+    fetchMovie(id).catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!movie || error) {
+  if (!movie) {
     return <Skeleton />;
   }
 

@@ -15,7 +15,7 @@
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@microsoft/fetch-event-source": "2.0.1",
-    "@vercel/og": "^0.5.8",
+    "@vercel/og": "0.5.8",
     "dotenv": "16.3.1",
     "flexsearch": "^0.7.31",
     "gray-matter": "4.0.3",
@@ -29,7 +29,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-star-ratings": "^2.3.0",
-    "react-tweet": "^3.0.1",
+    "react-tweet": "3.0.1",
     "react-type-animation": "^3.0.1",
     "rehype-autolink-headings": "6.1.1",
     "rehype-external-links": "2.1.0",
@@ -41,7 +41,6 @@
     "remark": "14.0.3",
     "remark-gfm": "3.0.1",
     "remark-rehype": "10.1.0",
-    "swr": "^2.0.0",
     "uuid": "9.0.0"
   },
   "devDependencies": {

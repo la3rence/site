@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Skeleton, { fetcher, swrConfig } from "./loading";
-import useSWR from "swr";
+import Skeleton from "./loading";
 import { GitHubIcon } from "./svg";
 
 const languageColorMapping = {
@@ -13,20 +12,21 @@ const languageColorMapping = {
 };
 
 export default function GitHub({ user, repo }) {
-  const [mounted, setMounted] = useState(false);
-  const { data, error } = useSWR(
-    mounted
-      ? `${process.env.NEXT_PUBLIC_PROXY_URL}api.github.com/repos/${user}/${repo}`
-      : null,
-    fetcher,
-    swrConfig,
-  );
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    setMounted(true);
+    const getGitHubRepo = async (user, repo) => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_PROXY_URL}api.github.com/repos/${user}/${repo}`,
+      );
+      const data = await res.json();
+      setData(data);
+    };
+    getGitHubRepo(user, repo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (error || !data) {
+  if (!data) {
     return <Skeleton />;
   }
 

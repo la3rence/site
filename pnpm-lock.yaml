@@ -12,7 +12,7 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1
   "@vercel/og":
-    specifier: ^0.5.8
+    specifier: 0.5.8
     version: 0.5.8
   dotenv:
     specifier: 16.3.1
@@ -54,7 +54,7 @@ dependencies:
     specifier: ^2.3.0
     version: 2.3.0
   react-tweet:
-    specifier: ^3.0.1
+    specifier: 3.0.1
     version: 3.0.1(react-dom@18.2.0)(react@18.2.0)
   react-type-animation:
     specifier: ^3.0.1
@@ -89,9 +89,6 @@ dependencies:
   remark-rehype:
     specifier: 10.1.0
     version: 10.1.0
-  swr:
-    specifier: ^2.0.0
-    version: 2.0.0(react@18.2.0)
   uuid:
     specifier: 9.0.0
     version: 9.0.0
@@ -5284,19 +5281,6 @@ packages:
       }
     engines: { node: ">= 0.4" }
     dev: true
-
-  /swr@2.0.0(react@18.2.0):
-    resolution:
-      {
-        integrity: sha512-IhUx5yPkX+Fut3h0SqZycnaNLXLXsb2ECFq0Y29cxnK7d8r7auY2JWNbCW3IX+EqXUg3rwNJFlhrw5Ye/b6k7w==,
-      }
-    engines: { pnpm: "7" }
-    peerDependencies:
-      react: ^16.11.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
-    dev: false
 
   /swr@2.2.0(react@18.2.0):
     resolution:
