@@ -1,5 +1,9 @@
 import Blog from "../../components/blog";
-import { getMdContentById, getMdPostsData } from "../../lib/ssg";
+import {
+  getMdContentById,
+  getMdPostsData,
+  defaultMarkdownDirectory,
+} from "../../lib/ssg";
 import path from "path";
 import { createElement } from "react";
 import rehypeReact from "rehype-react";
@@ -31,7 +35,7 @@ export default PathId;
 
 export const getStaticProps = async context => {
   const { id } = context.params;
-  const mdData = await getMdContentById(id);
+  const mdData = await getMdContentById(id, defaultMarkdownDirectory, false);
   return {
     props: mdData,
   };

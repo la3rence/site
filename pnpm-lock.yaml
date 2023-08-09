@@ -1,4 +1,4 @@
-lockfileVersion: "6.0"
+lockfileVersion: "6.1"
 
 settings:
   autoInstallPeers: true
@@ -24,8 +24,8 @@ dependencies:
     specifier: 4.0.3
     version: 4.0.3
   hast-util-from-html:
-    specifier: ^1.0.0
-    version: 1.0.0
+    specifier: ^2.0.0
+    version: 2.0.0
   highlight.js:
     specifier: 11.8.0
     version: 11.8.0
@@ -56,9 +56,6 @@ dependencies:
   react-tweet:
     specifier: 3.0.4
     version: 3.0.4(react-dom@18.2.0)(react@18.2.0)
-  react-type-animation:
-    specifier: ^3.0.1
-    version: 3.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
   rehype-autolink-headings:
     specifier: 6.1.1
     version: 6.1.1
@@ -537,6 +534,15 @@ packages:
       "@types/unist": 2.0.6
     dev: false
 
+  /@types/hast@3.0.0:
+    resolution:
+      {
+        integrity: sha512-SoytUJRuf68HXYqcXicQIhCrLQjqeYU2anikr4G3p3Iz+OZO5QDQpDj++gv+RenHsnUBwNZ2dumBArF8VLSk2Q==,
+      }
+    dependencies:
+      "@types/unist": 2.0.6
+    dev: false
+
   /@types/json5@0.0.29:
     resolution:
       {
@@ -603,6 +609,13 @@ packages:
     resolution:
       {
         integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==,
+      }
+    dev: false
+
+  /@types/unist@3.0.0:
+    resolution:
+      {
+        integrity: sha512-MFETx3tbTjE7Uk6vvnWINA/1iJ7LuMdO4fcq8UfF0pRbj01aGLduVvQcRyswuACJdpnHgg8E3rQLhaRdNEJS0w==,
       }
     dev: false
 
@@ -1396,6 +1409,15 @@ packages:
         integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==,
       }
     engines: { node: ">=6" }
+    dev: false
+
+  /devlop@1.1.0:
+    resolution:
+      {
+        integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==,
+      }
+    dependencies:
+      dequal: 2.0.3
     dev: false
 
   /didyoumean@1.2.2:
@@ -2473,16 +2495,18 @@ packages:
       web-namespaces: 2.0.1
     dev: false
 
-  /hast-util-from-html@1.0.0:
+  /hast-util-from-html@2.0.0:
     resolution:
       {
-        integrity: sha512-tXYPhk28aMtDjGb4xNDaxtGKqlyZAEPGjN12jPCjczWppdLSrG/0r604a3FMvrd+9nV1HclILQiVqMnuPxN0WQ==,
+        integrity: sha512-0GS4m392jGrInfwJNT94HD/LV55mKvwn3yvEUaoSKyhkJV8WwRpowJaRXNw0WQTfdtHA90wWjX0B+h7bC4JilA==,
       }
     dependencies:
-      "@types/hast": 2.3.4
-      hast-util-from-parse5: 7.1.2
+      "@types/hast": 3.0.0
+      devlop: 1.1.0
+      hast-util-from-parse5: 8.0.1
       parse5: 7.1.2
-      vfile: 5.3.7
+      vfile: 6.0.1
+      vfile-message: 4.0.2
     dev: false
 
   /hast-util-from-parse5@7.1.2:
@@ -2497,6 +2521,22 @@ packages:
       property-information: 6.2.0
       vfile: 5.3.7
       vfile-location: 4.1.0
+      web-namespaces: 2.0.1
+    dev: false
+
+  /hast-util-from-parse5@8.0.1:
+    resolution:
+      {
+        integrity: sha512-Er/Iixbc7IEa7r/XLtuG52zoqn/b3Xng/w6aZQ0xGVxzhw5xUFxcRqdPzP6yFi/4HBYRaifaI5fQ1RH8n0ZeOQ==,
+      }
+    dependencies:
+      "@types/hast": 3.0.0
+      "@types/unist": 3.0.0
+      devlop: 1.1.0
+      hastscript: 8.0.0
+      property-information: 6.2.0
+      vfile: 6.0.1
+      vfile-location: 5.0.1
       web-namespaces: 2.0.1
     dev: false
 
@@ -2533,6 +2573,15 @@ packages:
       }
     dependencies:
       "@types/hast": 2.3.4
+    dev: false
+
+  /hast-util-parse-selector@4.0.0:
+    resolution:
+      {
+        integrity: sha512-wkQCkSYoOGCRKERFWcxMVMOcYE2K1AaNLU8DXS9arxnLOUEWbOXKXiJUNzEpqZ3JOKpnha3jkFrumEjVliDe7A==,
+      }
+    dependencies:
+      "@types/hast": 3.0.0
     dev: false
 
   /hast-util-raw@7.2.3:
@@ -2624,6 +2673,19 @@ packages:
       "@types/hast": 2.3.4
       comma-separated-tokens: 2.0.3
       hast-util-parse-selector: 3.1.1
+      property-information: 6.2.0
+      space-separated-tokens: 2.0.2
+    dev: false
+
+  /hastscript@8.0.0:
+    resolution:
+      {
+        integrity: sha512-dMOtzCEd3ABUeSIISmrETiKuyydk1w0pa+gE/uormcTpSYuaNJPbX1NU3JLyscSLjwAQM8bWMhhIlnCqnRvDTw==,
+      }
+    dependencies:
+      "@types/hast": 3.0.0
+      comma-separated-tokens: 2.0.3
+      hast-util-parse-selector: 4.0.0
       property-information: 6.2.0
       space-separated-tokens: 2.0.2
     dev: false
@@ -4581,21 +4643,6 @@ packages:
       swr: 2.2.0(react@18.2.0)
     dev: false
 
-  /react-type-animation@3.0.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution:
-      {
-        integrity: sha512-n6erVzng071lN8A0UbNT9Q7m5D6puaa9OE1lakwu5UKxMkEnUbjs2MLT3jN/SUjuxNtKmDP2GqJKb3uQ5wZNkQ==,
-      }
-    peerDependencies:
-      prop-types: ^15.5.4
-      react: ">= 15.0.0"
-      react-dom: ">= 15.0.0"
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /react@16.14.0:
     resolution:
       {
@@ -5602,6 +5649,15 @@ packages:
       "@types/unist": 2.0.6
     dev: false
 
+  /unist-util-stringify-position@4.0.0:
+    resolution:
+      {
+        integrity: sha512-0ASV06AAoKCDkS2+xw5RXJywruurpbC4JZSm7nr7MOt1ojAzvyyaO+UxZf18j8FCF6kmzCZKcAgN/yu2gm2XgQ==,
+      }
+    dependencies:
+      "@types/unist": 3.0.0
+    dev: false
+
   /unist-util-visit-parents@2.1.2:
     resolution:
       {
@@ -5722,6 +5778,16 @@ packages:
       vfile: 5.3.7
     dev: false
 
+  /vfile-location@5.0.1:
+    resolution:
+      {
+        integrity: sha512-tyc/iDsjoW+UB42/+JavfeXU/ThfN6WTFkRy/XNfGgdOiVw9qGJjZYG/H7dHUGMdc5Y6iwkPA/iUMe629h6nHQ==,
+      }
+    dependencies:
+      "@types/unist": 2.0.6
+      vfile: 6.0.1
+    dev: false
+
   /vfile-message@3.1.4:
     resolution:
       {
@@ -5730,6 +5796,16 @@ packages:
     dependencies:
       "@types/unist": 2.0.6
       unist-util-stringify-position: 3.0.3
+    dev: false
+
+  /vfile-message@4.0.2:
+    resolution:
+      {
+        integrity: sha512-jRDZ1IMLttGj41KcZvlrYAaI3CfqpLpfpf+Mfig13viT6NKvRzWZ+lXz0Y5D60w6uJIBAOGq9mSHf0gktF0duw==,
+      }
+    dependencies:
+      "@types/unist": 3.0.0
+      unist-util-stringify-position: 4.0.0
     dev: false
 
   /vfile@5.3.7:
@@ -5742,6 +5818,17 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
+    dev: false
+
+  /vfile@6.0.1:
+    resolution:
+      {
+        integrity: sha512-1bYqc7pt6NIADBJ98UiG0Bn/CHIVOoZ/IyEkqIruLg0mE1BKzkOXY2D6CSqQIcKqgadppE5lrxgWXJmXd7zZJw==,
+      }
+    dependencies:
+      "@types/unist": 3.0.0
+      unist-util-stringify-position: 4.0.0
+      vfile-message: 4.0.2
     dev: false
 
   /watchpack@2.4.0:
