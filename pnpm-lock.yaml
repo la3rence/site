@@ -1,4 +1,4 @@
-lockfileVersion: "6.1"
+lockfileVersion: "6.0"
 
 settings:
   autoInstallPeers: true
@@ -40,7 +40,7 @@ dependencies:
     version: 13.4.13(react-dom@18.2.0)(react@18.2.0)
   next-sitemap:
     specifier: ^4.0.0
-    version: 4.0.1(@next/env@13.4.12)(next@13.4.13)
+    version: 4.0.1(@next/env@13.4.13)(next@13.4.13)
   next-themes:
     specifier: 0.2.1
     version: 0.2.1(next@13.4.13)(react-dom@18.2.0)(react@18.2.0)
@@ -54,8 +54,8 @@ dependencies:
     specifier: ^2.3.0
     version: 2.3.0
   react-tweet:
-    specifier: 3.0.4
-    version: 3.0.4(react-dom@18.2.0)(react@18.2.0)
+    specifier: 3.1.0
+    version: 3.1.0(react-dom@18.2.0)(react@18.2.0)
   rehype-autolink-headings:
     specifier: 6.1.1
     version: 6.1.1
@@ -293,13 +293,6 @@ packages:
     resolution:
       {
         integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==,
-      }
-    dev: false
-
-  /@next/env@13.4.12:
-    resolution:
-      {
-        integrity: sha512-RmHanbV21saP/6OEPBJ7yJMuys68cIf8OBBWd7+uj40LdpmswVAwe1uzeuFyUsd6SfeITWT3XnQfn6wULeKwDQ==,
       }
     dev: false
 
@@ -4024,7 +4017,7 @@ packages:
       }
     dev: true
 
-  /next-sitemap@4.0.1(@next/env@13.4.12)(next@13.4.13):
+  /next-sitemap@4.0.1(@next/env@13.4.13)(next@13.4.13):
     resolution:
       {
         integrity: sha512-dY6vKE/uayNYSfhXA64U9NZYSJtFzK01oBouY+XqgQieksKBG9BWNmq8yGSJUermyux4wCnNa9gLHwSk38emhA==,
@@ -4036,7 +4029,7 @@ packages:
       next: "*"
     dependencies:
       "@corex/deepmerge": 4.0.43
-      "@next/env": 13.4.12
+      "@next/env": 13.4.13
       minimist: 1.2.8
       next: 13.4.13(react-dom@18.2.0)(react@18.2.0)
     dev: false
@@ -4630,10 +4623,10 @@ packages:
       react: 16.14.0
     dev: false
 
-  /react-tweet@3.0.4(react-dom@18.2.0)(react@18.2.0):
+  /react-tweet@3.1.0(react-dom@18.2.0)(react@18.2.0):
     resolution:
       {
-        integrity: sha512-cp2O8OnW3O5unYU4Txv2AW8g8HnqMx2kpFokTB4XnGbTt65zY2pzklWVM6pAg1lIO5n1Uikreh2cKszUKdAB/g==,
+        integrity: sha512-TZrCzqJIM3mUPZZQgChenrPxEEnswbPkyqMjXgLy3fJSOgcSEaslQqWMeNdcuCjSgLkYfITRBFjX4jQ1EGBPAw==,
       }
     peerDependencies:
       react: ">= 18.0.0"
