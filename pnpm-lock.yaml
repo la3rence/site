@@ -12,8 +12,8 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1
   "@vercel/og":
-    specifier: 0.5.10
-    version: 0.5.10
+    specifier: 0.5.11
+    version: 0.5.11
   dotenv:
     specifier: 16.3.1
     version: 16.3.1
@@ -713,15 +713,15 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@vercel/og@0.5.10:
+  /@vercel/og@0.5.11:
     resolution:
       {
-        integrity: sha512-Iwo02EZm/MgEMI9MQjuvfdfsTt/IrhH6xGi0EWBnro72LcPKoEDEn/S/fEh8ut3LNMOmrRAjceXEhTfFqQW7sw==,
+        integrity: sha512-07SDyClsPXod1dReV9wuwk5uEHvJH42V12Ovy005Zp+Hwq3CZEyWa2gRi12HlXCqoIupOG0//LAFBp1Tt2EwjQ==,
       }
     engines: { node: ">=16" }
     dependencies:
       "@resvg/resvg-wasm": 2.4.1
-      satori: 0.10.2
+      satori: 0.10.3
       yoga-wasm-web: 0.3.3
     dev: false
 
@@ -4968,10 +4968,10 @@ packages:
     dev: false
     optional: true
 
-  /satori@0.10.2:
+  /satori@0.10.3:
     resolution:
       {
-        integrity: sha512-38povLat5QMuKiKBudM/oIk+a0Z5tEfHh8oD/bsh58L0jlOXxfuhAVpDtlG3M0g5FGLajIV0LaKQftXtaYoSUQ==,
+        integrity: sha512-8tZPu7AGiRWimbOyja1s2HK0hEC4DacZ8cAKDITxlVI5tKQZbOuMiVgSB50CABwc0I4Imgtkq7o9Egj1WOJTKg==,
       }
     engines: { node: ">=16" }
     dependencies:
