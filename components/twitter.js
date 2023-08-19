@@ -9,7 +9,11 @@ const components = {
 export default function Twitter({ id }) {
   return (
     <div className="not-prose flex justify-center">
-      <Tweet id={id} apiUrl={`/api/tweet?id=${id}`} components={components} />
+      <Tweet
+        id={id}
+        apiUrl={`${process.env.NEXT_PUBLIC_PROXY_URL}react-tweet-next.vercel.app/api/tweet/${id}`}
+        components={components}
+      />
     </div>
   );
 }
