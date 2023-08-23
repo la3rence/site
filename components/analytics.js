@@ -12,6 +12,6 @@ export const Adsense = () => (
   <script
     async
     src={process.env.NEXT_PUBLIC_ADS_URL}
-    crossorigin="anonymous"
+    crossOrigin="anonymous"
   ></script>
 );

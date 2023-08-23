@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import config from "../lib/config.mjs";
 import Logo from "./logo";
+import { Adsense } from "./analytics";
 
 export default function Header({ title, blog, description, themeColor }) {
   const router = useRouter();
@@ -32,6 +33,7 @@ export default function Header({ title, blog, description, themeColor }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="referrer" content="never" />
         {themeColor && <meta name="theme-color" content={themeColor} />}
+        <Adsense />
       </Head>
       {!blog && (
         <header className="flex mt-12 text-zinc-500">
