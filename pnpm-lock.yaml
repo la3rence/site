@@ -107,8 +107,8 @@ devDependencies:
     specifier: 8.4.26
     version: 8.4.26
   prettier:
-    specifier: 3.0.0
-    version: 3.0.0
+    specifier: 3.0.2
+    version: 3.0.2
   tailwindcss:
     specifier: 3.3.3
     version: 3.3.3
@@ -4553,10 +4553,10 @@ packages:
     engines: { node: ">= 0.8.0" }
     dev: true
 
-  /prettier@3.0.0:
+  /prettier@3.0.2:
     resolution:
       {
-        integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==,
+        integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==,
       }
     engines: { node: ">=14" }
     hasBin: true
