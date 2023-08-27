@@ -1,8 +1,8 @@
 export function TwitterIcon(props) {
   return (
     <svg
-      className="inline-block fill-current"
       {...props}
+      className="inline-block fill-black dark:fill-white"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
@@ -18,8 +18,8 @@ export function TwitterIcon(props) {
 export function GitHubIcon(props) {
   return (
     <svg
-      className="inline-block fill-current"
       {...props}
+      className="inline-block fill-black dark:fill-white"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
@@ -35,12 +35,12 @@ export function GitHubIcon(props) {
 export function MailIcon(props) {
   return (
     <svg
-      className="inline-block fill-current"
       {...props}
+      className="inline-block fill-black dark:fill-white"
       xmlns="http://www.w3.org/2000/svg"
       width="22"
       height="14"
-      viewBox="0 0 125 100"
+      viewBox="0 0 125 90"
     >
       <path d="M60,0 l50,0 a10,10 0 0,1 7,17 l-50,50 a10,10 0 0,1 -13,0 l-50,-50 a10,10 0 0,1 7,-17z" />
       <path d="M60,90 l54,0 a10,10 0 0,0 7,-7 l0,-60 -50,50 a15,15 0 0,1 -21,0 l-50,-50 0,60 a10,10 0 0,0 7,7z" />

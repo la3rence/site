@@ -81,9 +81,6 @@ export default withView(props => {
             </div>
           </div>
           <hr />
-          <RewardImages
-            text={"如果您愿意通过打赏支持我的作品，我将不胜感激。"}
-          />
           <div>
             {likes?.length > 0 && (
               <>
@@ -145,6 +142,9 @@ export default withView(props => {
               </>
             )}
           </div>
+          {!props.noReward && (
+            <RewardImages text={"Scan the QR Code to leave a tip :)"} />
+          )}
         </>
       )}
     </Layout>

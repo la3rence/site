@@ -56,8 +56,8 @@ export default function GitHub({ user, repo }) {
           <span>🛠 {data.forks}</span>
         </p>
       </div>
-      <div className="w-32 h-28">
-        <GitHubIcon style={{ height: 112, width: 112 }} />
+      <div className="w-28 h-24">
+        <GitHubIcon style={{ height: 84, width: 84 }} />
       </div>
     </div>
   );

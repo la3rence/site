@@ -13,19 +13,21 @@ const Footer = () => {
   const [pageRequestDuration, setPageRequestDuration] = useState(0);
 
   useEffect(() => {
-    setMounted(true);
-    const pnt = performance.getEntriesByType("navigation")[0];
-    setPageRequestDuration(pnt.responseEnd - pnt.startTime);
+    if (enableBuildInfo) {
+      setMounted(true);
+      const pnt = performance.getEntriesByType("navigation")[0];
+      setPageRequestDuration(pnt.responseEnd - pnt.startTime);
+    }
   }, []);
 
-  if (!mounted) {
+  if (enableBuildInfo && !mounted) {
     return null;
   }
 
   return (
-    <div className="mx-4 mt-16 mb-24 text-xs text-center">
+    <div className="text-sm mx-4 mt-16 mb-24 text-center">
       {enableBuildInfo && (
-        <div className="mt-2 text-zinc-500">
+        <div className="mt-2">
           <span className="mx-1 ">
             Built on {new Date(BUILDTIME * 1000).toLocaleString()} ·{" "}
             {Math.floor(pageRequestDuration)} ms ·
@@ -35,7 +37,30 @@ const Footer = () => {
           </A>
         </div>
       )}
-      <div className="mt-0 text-zinc-500">
+      <ul className="mt-2 ">
+        {twitter && (
+          <li className="px-2 inline-block">
+            <A href={`https://twitter.com/${twitter}`}>
+              <TwitterIcon />
+            </A>
+          </li>
+        )}
+        {authorEmail && (
+          <li className="px-2 inline-block">
+            <A href={`mailto:${authorEmail}`}>
+              <MailIcon />
+            </A>
+          </li>
+        )}
+        {github && (
+          <li className="px-2 inline-block">
+            <A href={`https://github.com/${github}`}>
+              <GitHubIcon />
+            </A>
+          </li>
+        )}
+      </ul>
+      <div className="mt-0">
         <A href="/privacy" self="true">
           <span className="mr-1">Privacy</span>
         </A>
@@ -47,29 +72,6 @@ const Footer = () => {
         <A href="/" self="true">
           <span>{siteTitle}</span>
         </A>
-      </div>
-      <div className="mt-2">
-        {twitter && (
-          <div className="px-1 inline-block">
-            <A href={`https://twitter.com/${twitter}`}>
-              <TwitterIcon />
-            </A>
-          </div>
-        )}
-        {authorEmail && (
-          <div className="px-1 inline-block">
-            <A href={`mailto:${authorEmail}`}>
-              <MailIcon />
-            </A>
-          </div>
-        )}
-        {github && (
-          <div className="px-1 inline-block">
-            <A href={`https://github.com/${github}`}>
-              <GitHubIcon />
-            </A>
-          </div>
-        )}
       </div>
     </div>
   );

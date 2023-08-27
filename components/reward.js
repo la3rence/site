@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function RewardImages({ text }) {
   return (
-    <div className="text-center">
+    <div className="text-center filter grayscale-[50%] contrast-200">
       <div>
         <Image
           className="inline-block dark:invert mx-5 my-0"
