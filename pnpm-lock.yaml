@@ -1,4 +1,4 @@
-lockfileVersion: "6.0"
+lockfileVersion: "6.1"
 
 settings:
   autoInstallPeers: true
@@ -33,8 +33,8 @@ dependencies:
     specifier: 13.0.1
     version: 13.0.1
   mongodb:
-    specifier: ^5.0.0
-    version: 5.0.0
+    specifier: ^6.0.0
+    version: 6.0.0
   next:
     specifier: 13.4.19
     version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
@@ -294,6 +294,15 @@ packages:
       {
         integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==,
       }
+    dev: false
+
+  /@mongodb-js/saslprep@1.1.0:
+    resolution:
+      {
+        integrity: sha512-Xfijy7HvfzzqiOAhAepF4SGN5e9leLkMvg/OPOF97XemjfVCYN/oWa75wnkc6mltMSTwY+XlbhWgUOJmkFspSw==,
+      }
+    dependencies:
+      sparse-bitfield: 3.0.3
     dev: false
 
   /@next/env@13.4.19:
@@ -1028,12 +1037,12 @@ packages:
       update-browserslist-db: 1.0.11(browserslist@4.21.10)
     dev: true
 
-  /bson@5.3.0:
+  /bson@6.0.0:
     resolution:
       {
-        integrity: sha512-ukmCZMneMlaC5ebPHXIkP8YJzNl5DC41N5MAIvKDqLggdao342t4McltoJBQfQya/nHBWAcSsYRqlXPoQkTJag==,
+        integrity: sha512-FoWvdELfF2wQaUo8S/a1Rh2BDwJEUancDDnzdTpYymJTZjmvRpLWoqRPelKn+XSeh5D4YddWDG66cLtEhGGvcg==,
       }
-    engines: { node: ">=14.20.1" }
+    engines: { node: ">=16.20.1" }
     dev: false
 
   /bundle-name@3.0.0:
@@ -2792,13 +2801,6 @@ packages:
       side-channel: 1.0.4
     dev: true
 
-  /ip@2.0.0:
-    resolution:
-      {
-        integrity: sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==,
-      }
-    dev: false
-
   /is-absolute-url@4.0.1:
     resolution:
       {
@@ -3545,7 +3547,6 @@ packages:
       }
     requiresBuild: true
     dev: false
-    optional: true
 
   /merge-stream@2.0.0:
     resolution:
@@ -3945,29 +3946,39 @@ packages:
       whatwg-url: 11.0.0
     dev: false
 
-  /mongodb@5.0.0:
+  /mongodb@6.0.0:
     resolution:
       {
-        integrity: sha512-WHmlbefKp/iAX2LlSZ56iKt4pRftib/dD3mDaji8R7IJcRoKPc5+/kSn3mIBxKPLVxcl73KdDKBLkQTxj1OjaA==,
+        integrity: sha512-wUIYesF4DTyDccm0noE5TwGi9ISdXUAi9T2cQ4xPc+EUBZG44bfMVt2ecOG5Ypca7eCz3oRpJm6YI6c7jAnuNw==,
       }
-    engines: { node: ">=14.20.1" }
+    engines: { node: ">=16.20.1" }
     peerDependencies:
-      "@aws-sdk/credential-providers": ^3.201.0
-      mongodb-client-encryption: ^2.3.0
+      "@aws-sdk/credential-providers": ^3.188.0
+      "@mongodb-js/zstd": ^1.1.0
+      gcp-metadata: ^5.2.0
+      kerberos: ^2.0.1
+      mongodb-client-encryption: ">=6.0.0 <7"
       snappy: ^7.2.2
+      socks: ^2.7.1
     peerDependenciesMeta:
       "@aws-sdk/credential-providers":
+        optional: true
+      "@mongodb-js/zstd":
+        optional: true
+      gcp-metadata:
+        optional: true
+      kerberos:
         optional: true
       mongodb-client-encryption:
         optional: true
       snappy:
         optional: true
+      socks:
+        optional: true
     dependencies:
-      bson: 5.3.0
+      "@mongodb-js/saslprep": 1.1.0
+      bson: 6.0.0
       mongodb-connection-string-url: 2.6.0
-      socks: 2.7.1
-    optionalDependencies:
-      saslprep: 1.0.3
     dev: false
 
   /mri@1.2.0:
@@ -4956,18 +4967,6 @@ packages:
       is-regex: 1.1.4
     dev: true
 
-  /saslprep@1.0.3:
-    resolution:
-      {
-        integrity: sha512-/MY/PEMbk2SuY5sScONwhUDsV2p77Znkb/q3nSVstq/yQzYJOH/Azh29p9oJLsl3LnQwSvZDKagDGBsBwSooag==,
-      }
-    engines: { node: ">=6" }
-    requiresBuild: true
-    dependencies:
-      sparse-bitfield: 3.0.3
-    dev: false
-    optional: true
-
   /satori@0.10.3:
     resolution:
       {
@@ -5078,25 +5077,6 @@ packages:
     engines: { node: ">=12" }
     dev: true
 
-  /smart-buffer@4.2.0:
-    resolution:
-      {
-        integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==,
-      }
-    engines: { node: ">= 6.0.0", npm: ">= 3.0.0" }
-    dev: false
-
-  /socks@2.7.1:
-    resolution:
-      {
-        integrity: sha512-7maUZy1N7uo6+WVEX6psASxtNlKaNVMlGQKkG/63nEDdLOWNbiUMoLK7X4uYoLhQstau72mLgfEWcXcwsaHbYQ==,
-      }
-    engines: { node: ">= 10.13.0", npm: ">= 3.0.0" }
-    dependencies:
-      ip: 2.0.0
-      smart-buffer: 4.2.0
-    dev: false
-
   /source-map-js@1.0.2:
     resolution:
       {
@@ -5120,7 +5100,6 @@ packages:
     dependencies:
       memory-pager: 1.5.0
     dev: false
-    optional: true
 
   /sprintf-js@1.0.3:
     resolution:
