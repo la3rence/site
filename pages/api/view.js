@@ -17,6 +17,6 @@ export async function recordPageView(path) {
   const update = { $inc: { count: 1 } };
   const options = { upsert: true, returnOriginal: false };
   const result = await pageViews.findOneAndUpdate(filter, update, options);
-  console.log(`Page view ${path}, Result: ${JSON.stringify(result.value)}`);
-  return result.value; // {id, path, value}
+  console.log(`Mongo Page View ${JSON.stringify(result)}`);
+  return result; // {id, path, count}
 }
