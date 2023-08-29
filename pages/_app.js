@@ -1,7 +1,8 @@
 import App from "next/app";
-import Umami from "../components/analytics";
 import { ThemeProvider } from "next-themes";
 import "./../styles/globals.css";
+import config from "../lib/config.mjs";
+import Umami from "../components/analytics";
 
 class Site extends App {
   render() {
@@ -11,7 +12,7 @@ class Site extends App {
         <ThemeProvider storageKey="theme" attribute="class">
           <Component {...pageProps} />
         </ThemeProvider>
-        <Umami />
+        {config.enableAnalytics && <Umami />}
       </>
     );
   }

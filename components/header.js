@@ -7,8 +7,15 @@ import { Adsense } from "./analytics";
 
 export default function Header({ title, blog, description, themeColor }) {
   const router = useRouter();
-  let { siteTitle, navItems, authorName, baseURL, siteDescription, twitter } =
-    config;
+  let {
+    siteTitle,
+    navItems,
+    authorName,
+    baseURL,
+    siteDescription,
+    twitter,
+    enableAdsense,
+  } = config;
   const theDescription = description || siteDescription;
   const pageTitle = title || siteTitle;
   const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
@@ -32,8 +39,14 @@ export default function Header({ title, blog, description, themeColor }) {
         <meta name="twitter:site" content={twitter} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="referrer" content="never" />
-        {themeColor && <meta name="theme-color" content={themeColor} />}
-        <Adsense />
+        {themeColor && (
+          <meta
+            name="theme-color"
+            content={themeColor}
+            media="(prefers-color-scheme: light)"
+          />
+        )}
+        {enableAdsense && <Adsense />}
       </Head>
       {!blog && (
         <header className="flex mt-12 text-zinc-500">
