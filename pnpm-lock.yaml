@@ -12,8 +12,8 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1
   "@vercel/og":
-    specifier: 0.5.11
-    version: 0.5.11
+    specifier: 0.5.12
+    version: 0.5.12
   dotenv:
     specifier: 16.3.1
     version: 16.3.1
@@ -722,10 +722,10 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@vercel/og@0.5.11:
+  /@vercel/og@0.5.12:
     resolution:
       {
-        integrity: sha512-07SDyClsPXod1dReV9wuwk5uEHvJH42V12Ovy005Zp+Hwq3CZEyWa2gRi12HlXCqoIupOG0//LAFBp1Tt2EwjQ==,
+        integrity: sha512-NDtxHeX1ka0uSh6tSuIuOh2rz6+++BC7RSoqQd/NmKHK9kJ9mdhgRiMv8uBSgcdgBucRfyKHUzora+qaXhyB5Q==,
       }
     engines: { node: ">=16" }
     dependencies:
