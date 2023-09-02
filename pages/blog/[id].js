@@ -5,28 +5,32 @@ import {
   defaultMarkdownDirectory,
 } from "../../lib/ssg";
 import path from "path";
-import { createElement } from "react";
-import rehypeReact from "rehype-react";
+import { Fragment, jsx, jsxs } from "react/jsx-runtime";
+import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import Douban from "../../components/douban";
 import Bilibili from "../../components/bilibili";
 import GitHub from "../../components/github";
 import Tweet from "../../components/twitter";
 
-const renderAst = new rehypeReact({
-  createElement,
-  components: {
-    douban: Douban,
-    bilibili: Bilibili,
-    github: GitHub,
-    tweet: Tweet,
-  },
-}).Compiler;
+const render = ast => {
+  return toJsxRuntime(ast, {
+    Fragment,
+    jsx,
+    jsxs,
+    components: {
+      douban: Douban,
+      bilibili: Bilibili,
+      github: GitHub,
+      tweet: Tweet,
+    },
+  });
+};
 
 const PathId = props => {
   return (
     <Blog {...props}>
       {/* <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} /> */}
-      <main>{renderAst(props.htmlAst)}</main>
+      <main>{render(props.htmlAst)}</main>
     </Blog>
   );
 };
