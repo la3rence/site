@@ -25,16 +25,17 @@ tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 
 ```shell
 pnpm install
-pnpm run dev
+pnpm dev
 ```
 
 本地访问 <http://localhost:3000> 即可。
 
-通过 `npm run build` 来打包，`npm run start` 则用于生产环境的启动。
+通过 `pnpm build` 来打包，`pnpm start` 则用于生产环境的启动。
+通过 `pnpm fmt` 来将所有代码和文本进行格式化。
 
 ## 技术细节
 
-此站点由 `Next.js` 框架和 `TailWindCSS` 样式构成。前者是一项基于 React 的 SSG/SSR 开源项目，后者是一个目前流行的原子化 CSS 库，让不太会写 CSS、基础薄弱的我也能快速的写出灵活的样式。
+此站点由 `Next.js` 框架和 `TailwindCSS` 样式构成。前者是一项基于 React 的 SSG/SSR 开源项目，后者是一个目前流行的原子化 CSS 库，让不太会写 CSS、基础薄弱的我也能快速的写出灵活的样式。
 
 Next.js 会主动调用我们写好的一些函数 (`getStaticProps()`)，让组件得到数据的输入，从而**在构建阶段**将 React 组件提前渲染完成。`remark` 库可以将原生的 markdown 语法编译成 html 对应的 dom - 在此项目中，我们让它固定遍历 `posts` 文件夹下的 markdown 文件，依次编译，让其作为 `[id].js` 的动态路由页面的 `props`，从而渲染出博客文章:
 

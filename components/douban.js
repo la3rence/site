@@ -24,7 +24,7 @@ export default function Douban({ id, reverse }) {
 
   return (
     <div
-      className={`flex h-36 cursor-pointer border my-4 dark:border-gray-500 shadow-lg 
+      className={`flex h-36 cursor-pointer my-4 shadow-lg dark:bg-black
       ${reverse ? "flex-row-reverse" : ""}`}
     >
       <div className="w-2/3 flex flex-col px-4">

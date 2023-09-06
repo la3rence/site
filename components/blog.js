@@ -3,7 +3,7 @@ import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
 import { useEffect, useState } from "react";
-import "highlight.js/styles/github-dark.css";
+import "highlight.js/styles/sunburst.css";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import RewardImages from "./reward";
