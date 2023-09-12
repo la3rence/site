@@ -87,8 +87,8 @@ dependencies:
     specifier: 10.1.0
     version: 10.1.0
   uuid:
-    specifier: 9.0.0
-    version: 9.0.0
+    specifier: 9.0.1
+    version: 9.0.1
 
 devDependencies:
   "@tailwindcss/typography":
@@ -5689,10 +5689,10 @@ packages:
       }
     dev: true
 
-  /uuid@9.0.0:
+  /uuid@9.0.1:
     resolution:
       {
-        integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==,
+        integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==,
       }
     hasBin: true
     dev: false
