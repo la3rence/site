@@ -15,7 +15,7 @@
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@microsoft/fetch-event-source": "2.0.1",
-    "@vercel/og": "0.5.14",
+    "@vercel/og": "0.5.15",
     "dotenv": "16.3.1",
     "flexsearch": "^0.7.31",
     "gray-matter": "4.0.3",
