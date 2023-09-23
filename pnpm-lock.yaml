@@ -12,8 +12,8 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1
   "@vercel/og":
-    specifier: 0.5.15
-    version: 0.5.15
+    specifier: 0.5.17
+    version: 0.5.17
   dotenv:
     specifier: 16.3.1
     version: 16.3.1
@@ -720,15 +720,15 @@ packages:
       }
     dev: false
 
-  /@vercel/og@0.5.15:
+  /@vercel/og@0.5.17:
     resolution:
       {
-        integrity: sha512-8LrEb/3C7R2TqRA9qTde+eoeOCCQZfElqCNiSi3qqnKSczv2V91Wa1Nt3Gy6qqLDeny8aFQxcB/OCZEWNubaqw==,
+        integrity: sha512-/GOyUBq3MhB3ygbhTJoZ0cHvwlyKdt0g8f4npuj4mwFlp57S7j4XWwgtqILK3XdFf25esN9i77fInrDkeRJfgA==,
       }
     engines: { node: ">=16" }
     dependencies:
       "@resvg/resvg-wasm": 2.4.1
-      satori: 0.10.6
+      satori: 0.10.8
       yoga-wasm-web: 0.3.3
     dev: false
 
@@ -5225,10 +5225,10 @@ packages:
       is-regex: 1.1.4
     dev: true
 
-  /satori@0.10.6:
+  /satori@0.10.8:
     resolution:
       {
-        integrity: sha512-bhAAnh+ZZgulFpxoDi5AB1VA3MsN6AnhB0Elfdj5bQitn4N9GHAB3MC5eFauOnXHF7a9TT1jIPHhUY4JQsP6Xg==,
+        integrity: sha512-WlPLxgpx5kIyMuOO6qi98DhZGIbRk5XJRqENkt6D6gyDBWGyo3M5kcSl0X/oSFHUH+n4unlzwMejoPM47s4zug==,
       }
     engines: { node: ">=16" }
     dependencies:
