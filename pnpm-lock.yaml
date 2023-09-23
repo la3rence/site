@@ -12,8 +12,8 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1
   "@vercel/og":
-    specifier: 0.5.14
-    version: 0.5.14
+    specifier: 0.5.15
+    version: 0.5.15
   dotenv:
     specifier: 16.3.1
     version: 16.3.1
@@ -720,10 +720,10 @@ packages:
       }
     dev: false
 
-  /@vercel/og@0.5.14:
+  /@vercel/og@0.5.15:
     resolution:
       {
-        integrity: sha512-2UOkXYgzorv4g2EZdRdy3b343DQC7WJyBq0T0MMf63UH8YUmbOCir7ULB0kgonrUoiL9qIq+E8eeSmHDLYHAdQ==,
+        integrity: sha512-8LrEb/3C7R2TqRA9qTde+eoeOCCQZfElqCNiSi3qqnKSczv2V91Wa1Nt3Gy6qqLDeny8aFQxcB/OCZEWNubaqw==,
       }
     engines: { node: ">=16" }
     dependencies:
