@@ -89,6 +89,8 @@ openssl s_client -connect lawrenceli.me:443 -servername lawrenceli.me -state -de
 
 我们可以使用 Chrome 的开关 `chrome://flags/#encrypted-client-hello` 来开启浏览器 ECH 的客户端支持。通过 Chrome DevTool 的 Security Tab 能够查看 HTTPS 流量的安全性信息。我们可以通过[这个链接](https://crypto.cloudflare.com/cdn-cgi/trace)来测试客户端对这个方案的支持情况，当然，这些需要服务端做相应的配置才能完全启用。话题就此结束，我不能再细说了。
 
+Updated：[2023 年 9 月底，Cloudflare 宣布向所有基于 TLS 1.3 的代理站点启用 ECH](https://blog.cloudflare.com/announcing-encrypted-client-hello/)，目前默认全部启用且改选项不可关闭。
+
 ### Client Hello - JA3
 
 利用 Client Hello 来做安全保护的另一个实践是 TLS 客户端指纹: JA3 & JA3S。这一设计灵感来源于信息安全专家 Lee Brotherston 的研究 [TLS fingerprinting](https://blog.squarelemon.com/tls-fingerprinting/)。
