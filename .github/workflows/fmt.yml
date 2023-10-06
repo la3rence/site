@@ -31,7 +31,7 @@ jobs:
           printenv
           pnpm add -g prettier
           pnpm run fmt
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-format code style [ci skip]"
           file_pattern: ":/*.*"
