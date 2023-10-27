@@ -5,7 +5,7 @@ import config from "../lib/config.mjs";
 import Logo from "./logo";
 import { Adsense } from "./analytics";
 
-export default function Header({ title, blog, description, themeColor }) {
+export default function Header({ title, blog, description, date, themeColor }) {
   const router = useRouter();
   let {
     siteTitle,
@@ -19,6 +19,22 @@ export default function Header({ title, blog, description, themeColor }) {
   const theDescription = description || siteDescription;
   const pageTitle = title || siteTitle;
   const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
+  const isoDate = date ? new Date(date).toISOString() : new Date("2020-01-01");
+  const structuredData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    image: [og],
+    datePublished: isoDate,
+    dateModified: isoDate,
+    author: [
+      {
+        "@type": "Person",
+        name: authorName,
+        url: baseURL,
+      },
+    ],
+  });
   const hoverTabStyle =
     "hover:bg-zinc-100 text-zinc-700 transition duration-500 dark:hover:bg-zinc-700 dark:text-zinc-300 hover:transition-transform";
   return (
@@ -48,6 +64,10 @@ export default function Header({ title, blog, description, themeColor }) {
           />
         )}
         {enableAdsense && <Adsense />}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: structuredData }}
+        />
       </Head>
       {!blog && (
         <header className="flex mt-12 text-zinc-500">
