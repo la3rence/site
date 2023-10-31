@@ -6,6 +6,7 @@ export default function Privacy(props) {
     <Blog
       author="Lawrence"
       date="2023-04-04"
+      modified="2023-04-05"
       title="Privacy Policy"
       noReply
       noReward
