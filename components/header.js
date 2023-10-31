@@ -5,7 +5,14 @@ import config from "../lib/config.mjs";
 import Logo from "./logo";
 import { Adsense } from "./analytics";
 
-export default function Header({ title, blog, description, date, themeColor }) {
+export default function Header({
+  title,
+  blog,
+  description,
+  date,
+  modified,
+  themeColor,
+}) {
   const router = useRouter();
   let {
     siteTitle,
@@ -20,13 +27,14 @@ export default function Header({ title, blog, description, date, themeColor }) {
   const pageTitle = title || siteTitle;
   const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
   const isoDate = date ? new Date(date).toISOString() : new Date("2020-01-01");
+  const isoModifiedDate = modified ? new Date(modified).toISOString() : isoDate;
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: title,
     image: [og],
     datePublished: isoDate,
-    dateModified: isoDate,
+    dateModified: isoModifiedDate,
     author: [
       {
         "@type": "Person",

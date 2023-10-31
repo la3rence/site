@@ -1,7 +1,7 @@
 ---
 title: 这个网站是如何构建的
 date: "2022-08-27"
-image: https://reflare.lawrenceli.me/file/1662688541295.png
+modified: "2023-10-31"
 description: 此文用于端到端测试 Markdown 样式
 tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 ---
@@ -69,6 +69,7 @@ export const getStaticProps = async context => {
 
 ### Movie
 
+你可以编写特定的 React 组件来让 Markdown 支持更丰富的页面内容，这种实现方式和 `MDX` 类似。
 The source of this component is coded via react component in markdown!
 
 Code:
@@ -88,7 +89,7 @@ Result:
 
 ### Images
 
-![Random Image](https://reflare.lawrenceli.me/file/1662549316419.jpg)
+![Random Image](https://picsum.photos/400/600?grayscale)
 
 ~~我被横线划过。~~
 
@@ -114,6 +115,7 @@ Same as the movie component:
 
 ### Open Graph
 
+Open Graph (OG, 开放图谱协议) 用于社交网络分享网页时展示特定的富媒体信息。
 ![Open Graph](/api/og?meta=This%20is%20Open%20Graph)
 
 ## Tables
@@ -125,6 +127,15 @@ JAMstack.
 |  J   |                   Client-side JS injected via React Hooks (state, event listeners, effects)                    |
 |  A   |                                   API pages inside the pages/api directory.                                    |
 |  M   | Pages with no data dependencies or pages with static data deps that trigger build-time static site generation. |
+
+## And more
+
+Markdown 目前采用 GitHub Flavored Markdown ([GFM](https://github.github.com/gfm/)) ，并尝试添加新的语法元素支持。
+
+例如：<https://github.com/orgs/community/discussions/16925>
+
+> [!NOTE]  
+> Critical content demanding immediate user attention due to potential risks.
 
 ## Ref 参考链接
 
