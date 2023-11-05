@@ -2331,8 +2331,8 @@
     Consolas,
     Liberation Mono,
     monospace;
-  border: 1px solid #666;
-  border-radius: 1px;
+  /* border: 1px solid #666; */
+  /* border-radius: 1px; */
 }
 
 .gist .gist-file article {
