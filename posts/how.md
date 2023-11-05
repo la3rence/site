@@ -1,7 +1,7 @@
 ---
 title: 这个网站是如何构建的
 date: "2022-08-27"
-modified: "2023-10-31"
+modified: "2023-11-05"
 description: 此文用于端到端测试 Markdown 样式
 tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 ---
@@ -127,6 +127,10 @@ JAMstack.
 |  J   |                   Client-side JS injected via React Hooks (state, event listeners, effects)                    |
 |  A   |                                   API pages inside the pages/api directory.                                    |
 |  M   | Pages with no data dependencies or pages with static data deps that trigger build-time static site generation. |
+
+## GitHub Gist
+
+`gist:darylwright/75332f27a6e9bff70bc0406114570829?file=gist-test.ts&highlights=1,3-5`
 
 ## And more
 

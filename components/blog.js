@@ -4,6 +4,7 @@ import Layout from "./layout";
 import withView from "./withView";
 import { useEffect, useState } from "react";
 import "highlight.js/styles/sunburst.css";
+import "gist-syntax-themes/stylesheets/one-dark.css";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import RewardImages from "./reward";
