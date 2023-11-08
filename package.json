@@ -32,7 +32,7 @@
     "react-dom": "18.2.0",
     "react-star-ratings": "^2.3.0",
     "react-tweet": "3.1.1",
-    "rehype-autolink-headings": "7.0.0",
+    "rehype-autolink-headings": "7.1.0",
     "rehype-external-links": "3.0.0",
     "rehype-gist": "^1.0.0",
     "rehype-highlight": "7.0.0",
