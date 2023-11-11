@@ -10,8 +10,9 @@ export default function Header({
   blog,
   description,
   date,
-  modified,
   themeColor,
+  birthTime,
+  modifiedTime,
 }) {
   const router = useRouter();
   let {
@@ -26,15 +27,13 @@ export default function Header({
   const theDescription = description || siteDescription;
   const pageTitle = title || siteTitle;
   const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
-  const isoDate = date ? new Date(date).toISOString() : new Date("2020-01-01");
-  const isoModifiedDate = modified ? new Date(modified).toISOString() : isoDate;
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: title,
     image: [og],
-    datePublished: isoDate,
-    dateModified: isoModifiedDate,
+    datePublished: date ? new Date(date).toISOString() : new Date(birthTime),
+    dateModified: modifiedTime,
     author: [
       {
         "@type": "Person",
