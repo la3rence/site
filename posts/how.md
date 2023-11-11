@@ -1,7 +1,6 @@
 ---
 title: 这个网站是如何构建的
 date: "2022-08-27"
-modified: "2023-11-05"
 description: 此文用于端到端测试 Markdown 样式
 tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 ---
@@ -116,7 +115,8 @@ Same as the movie component:
 ### Open Graph
 
 Open Graph (OG, 开放图谱协议) 用于社交网络分享网页时展示特定的富媒体信息。
-![Open Graph](/api/og?meta=This%20is%20Open%20Graph)
+
+![Open Graph](https://lawrenceli.me/api/og?meta=This%20is%20Open%20Graph)
 
 ## Tables
 
