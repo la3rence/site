@@ -12,7 +12,7 @@ const Index = function index({ allPostsData }) {
     return result;
   }, {});
   return (
-    <Layout blogIndex title={"Blog"}>
+    <Layout blogIndex title={"Blog"} tags={"Blog"}>
       <div className="blogIndex mt-8">
         {Object.keys(aggregatedPosts)
           .sort((a, b) => b - a)

@@ -25,7 +25,7 @@ const Footer = () => {
   }
 
   return (
-    <div className="text-sm mx-4 mt-16 mb-24 text-center">
+    <footer className="text-sm mx-4 mt-16 mb-24 text-center">
       {enableBuildInfo && (
         <div className="mt-2">
           <span className="mx-1 ">
@@ -37,29 +37,31 @@ const Footer = () => {
           </A>
         </div>
       )}
-      <ul className="mt-2 ">
-        {twitter && (
-          <li className="px-2 inline-block">
-            <A href={`https://twitter.com/${twitter}`}>
-              <TwitterIcon />
-            </A>
-          </li>
-        )}
-        {authorEmail && (
-          <li className="px-2 inline-block">
-            <A href={`mailto:${authorEmail}`}>
-              <MailIcon />
-            </A>
-          </li>
-        )}
-        {github && (
-          <li className="px-2 inline-block">
-            <A href={`https://github.com/${github}`}>
-              <GitHubIcon />
-            </A>
-          </li>
-        )}
-      </ul>
+      <address>
+        <ul className="mt-2 ">
+          {twitter && (
+            <li className="px-2 inline-block">
+              <A href={`https://twitter.com/${twitter}`}>
+                <TwitterIcon />
+              </A>
+            </li>
+          )}
+          {authorEmail && (
+            <li className="px-2 inline-block">
+              <A href={`mailto:${authorEmail}`}>
+                <MailIcon />
+              </A>
+            </li>
+          )}
+          {github && (
+            <li className="px-2 inline-block">
+              <A href={`https://github.com/${github}`}>
+                <GitHubIcon />
+              </A>
+            </li>
+          )}
+        </ul>
+      </address>
       <div className="mt-0">
         <A href="/privacy" self="true">
           <span className="mr-1">Privacy</span>
@@ -73,7 +75,7 @@ const Footer = () => {
           <span>{siteTitle}</span>
         </A>
       </div>
-    </div>
+    </footer>
   );
 };
 

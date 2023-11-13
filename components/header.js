@@ -13,6 +13,7 @@ export default function Header({
   themeColor,
   birthTime,
   modifiedTime,
+  tags,
 }) {
   const router = useRouter();
   let {
@@ -48,7 +49,10 @@ export default function Header({
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="keywords" content={`${siteTitle}, ${authorName}, Blog`} />
+        <meta
+          name="keywords"
+          content={`${tags}, ${siteTitle}, ${authorName}, Blog, Article`}
+        />
         <meta name="Description" content={theDescription} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:url" content={`${baseURL}${router.asPath}`} />
@@ -86,7 +90,7 @@ export default function Header({
             </Link>
           </h1>
           <div className="flex-1" />
-          <div className="flex-4 flex items-center">
+          <nav className="flex-4 flex items-center">
             <ul className="flex">
               {navItems.map(item => {
                 return (
@@ -98,7 +102,7 @@ export default function Header({
                 );
               })}
             </ul>
-          </div>
+          </nav>
         </header>
       )}
     </>
