@@ -8,6 +8,7 @@ export default function Privacy(props) {
       date="2023-04-04"
       modified="2023-04-05"
       title="Privacy Policy"
+      tags="Privacy Policy"
       noReply
       noReward
     >

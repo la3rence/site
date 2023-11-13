@@ -34,7 +34,7 @@ export default withView(props => {
 
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
-      <div className="blog">
+      <article className="blog">
         {!props.noTitle && (
           <h1 id="title" className="articleTitle cursor-pointer mt-28">
             <a href={`#title`} className={`text-[${themeColor}] no-underline`}>
@@ -60,19 +60,19 @@ export default withView(props => {
                   />
                   <small className="ml-2">{author}</small>
                   <small className="before:content-['/'] before:p-0 before:m-2">
-                    {date}
+                    <time dateTime={date}>{date}</time>
                   </small>
                 </div>
               </Link>
             </div>
             <div className="flex-1" />
-            <div className="justify-end">
+            <div className="justify-end" id="views">
               {view > 0 && <small>{view} views</small>}
             </div>
           </div>
         )}
         <div className="article">{children}</div>
-      </div>
+      </article>
       {!props.noMeta && (
         <>
           <div className="mx-2 mt-10">

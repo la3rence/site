@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function TagPage(props) {
   const { query } = useRouter();
   return (
-    <Layout title={`Tags - ${query.tag}`}>
+    <Layout title={`Tags - ${query.tag}`} tags={`${query.tag}, Tags`}>
       <h2>
         Tagged with <code>{query.tag}</code>
       </h2>

@@ -6,7 +6,7 @@ import config from "../lib/config.mjs";
 
 const About = props => {
   return (
-    <Layout title={"About"}>
+    <Layout title={"About"} tags={"About"}>
       <div
         dangerouslySetInnerHTML={{
           __html: props.htmlStringContent,
