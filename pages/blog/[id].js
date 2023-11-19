@@ -5,12 +5,13 @@ import {
   defaultMarkdownDirectory,
 } from "../../lib/ssg";
 import path from "path";
+import { lazy } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import Douban from "../../components/douban";
-import Bilibili from "../../components/bilibili";
-import GitHub from "../../components/github";
-import Tweet from "../../components/twitter";
+const Douban = lazy(() => import("../../components/douban"));
+const Bilibili = lazy(() => import("../../components/bilibili"));
+const Tweet = lazy(() => import("../../components/twitter"));
+const GitHub = lazy(() => import("../../components/github"));
 
 const render = ast => {
   return toJsxRuntime(ast, {
