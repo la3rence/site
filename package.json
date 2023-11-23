@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "lawrenceli.me",
   "version": "1.0.0",
   "markdown": "github",
   "scripts": {
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
-    "@microsoft/fetch-event-source": "2.0.1",
     "@vercel/og": "0.5.20",
     "dotenv": "16.3.1",
     "flexsearch": "^0.7.31",
@@ -59,6 +58,6 @@
     "printWidth": 80
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   }
 }

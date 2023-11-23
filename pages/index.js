@@ -49,12 +49,11 @@ const Index = function index({ allPostsData }) {
 export default withView(Index);
 
 export const getStaticProps = async () => {
-  const allPostsData = await getAllPostData();
-  allPostsData.forEach(post => {
-    delete post.content;
-    delete post.tags;
-    delete post.description;
-  });
+  const allPostsData = (await getAllPostData()).map(post => ({
+    id: post.id,
+    title: post.title,
+    date: post.date,
+  }));
   return {
     props: {
       allPostsData,

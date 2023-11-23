@@ -26,7 +26,7 @@ export default function Header({
     enableAdsense,
   } = config;
   const theDescription = description || siteDescription;
-  const pageTitle = title || siteTitle;
+  const pageTitle = `${title} - ${siteTitle}`;
   const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",

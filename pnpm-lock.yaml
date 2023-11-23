@@ -8,9 +8,6 @@ dependencies:
   "@jsdevtools/rehype-toc":
     specifier: ^3.0.2
     version: 3.0.2
-  "@microsoft/fetch-event-source":
-    specifier: 2.0.1
-    version: 2.0.1
   "@vercel/og":
     specifier: 0.5.20
     version: 0.5.20
@@ -291,13 +288,6 @@ packages:
         integrity: sha512-n5JEf16Wr4mdkRMZ8wMP/wN9/sHmTjRPbouXjJH371mZ2LEGDl72t8tEsMRNFerQN/QJtivOxqK1frdGa4QK5Q==,
       }
     engines: { node: ">=10" }
-    dev: false
-
-  /@microsoft/fetch-event-source@2.0.1:
-    resolution:
-      {
-        integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==,
-      }
     dev: false
 
   /@mongodb-js/saslprep@1.1.0:
