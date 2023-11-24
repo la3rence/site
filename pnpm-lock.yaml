@@ -9,10 +9,10 @@ dependencies:
     specifier: ^3.0.2
     version: 3.0.2
   "@vercel/og":
-    specifier: 0.5.20
+    specifier: ^0.5.20
     version: 0.5.20
   dotenv:
-    specifier: 16.3.1
+    specifier: ^16.3.1
     version: 16.3.1
   flexsearch:
     specifier: ^0.7.31
@@ -33,7 +33,7 @@ dependencies:
     specifier: 11.9.0
     version: 11.9.0
   markdown-it:
-    specifier: 13.0.2
+    specifier: ^13.0.2
     version: 13.0.2
   mongodb:
     specifier: ^6.0.0
@@ -45,7 +45,7 @@ dependencies:
     specifier: ^4.0.0
     version: 4.0.1(@next/env@14.0.3)(next@14.0.3)
   next-themes:
-    specifier: 0.2.1
+    specifier: ^0.2.1
     version: 0.2.1(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
   react:
     specifier: 18.2.0
@@ -53,9 +53,6 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
-  react-star-ratings:
-    specifier: ^2.3.0
-    version: 2.3.0
   react-tweet:
     specifier: 3.1.1
     version: 3.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -90,7 +87,7 @@ dependencies:
     specifier: 11.0.0
     version: 11.0.0
   uuid:
-    specifier: 9.0.1
+    specifier: ^9.0.1
     version: 9.0.1
 
 devDependencies:
@@ -1195,13 +1192,6 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
-
-  /classnames@2.3.2:
-    resolution:
-      {
-        integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==,
-      }
-    dev: false
 
   /client-only@0.0.1:
     resolution:
@@ -4325,6 +4315,7 @@ packages:
         integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==,
       }
     engines: { node: ">=0.10.0" }
+    dev: true
 
   /object-hash@3.0.0:
     resolution:
@@ -4753,6 +4744,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+    dev: true
 
   /property-information@6.2.0:
     resolution:
@@ -4810,17 +4802,7 @@ packages:
       {
         integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==,
       }
-
-  /react-star-ratings@2.3.0:
-    resolution:
-      {
-        integrity: sha512-34Z/oFNDRRn4ZcX7F3t9ccnpo7SQ32gD/vsusQOBc6B6vlqaGR6tke1/Yx3jTDjemKRSmXqhKgpPTR7/JAXq6A==,
-      }
-    dependencies:
-      classnames: 2.3.2
-      prop-types: 15.8.1
-      react: 16.14.0
-    dev: false
+    dev: true
 
   /react-tweet@3.1.1(react-dom@18.2.0)(react@18.2.0):
     resolution:
@@ -4837,18 +4819,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       swr: 2.2.0(react@18.2.0)
-    dev: false
-
-  /react@16.14.0:
-    resolution:
-      {
-        integrity: sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==,
-      }
-    engines: { node: ">=0.10.0" }
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      prop-types: 15.8.1
     dev: false
 
   /react@18.2.0:

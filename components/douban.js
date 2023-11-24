@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
-import StarRating from "react-star-ratings";
 import Skeleton from "./loading";
 
 export default function Douban({ id, reverse }) {
@@ -24,30 +23,16 @@ export default function Douban({ id, reverse }) {
 
   return (
     <div
-      className={`flex h-36 cursor-pointer my-4 shadow-lg dark:bg-black
-      ${reverse ? "flex-row-reverse" : ""}`}
+      className={`flex h-36 my-4 shadow-lg dark:bg-black ${
+        reverse ? "flex-row-reverse" : ""
+      }`}
     >
       <div className="w-2/3 flex flex-col px-4">
         <div className="truncate py-2 flex">
           {movie.title} {movie.original_title}
-          {movie.rating && (
-            <>
-              <span className="flex-1"></span>
-              <span>
-                <StarRating
-                  rating={movie.rating.value / 2}
-                  starRatedColor="orange"
-                  numberOfStars={5}
-                  starDimension="18px"
-                  starSpacing="0px"
-                  name={movie.title}
-                ></StarRating>
-              </span>
-            </>
-          )}
         </div>
         <div className="text-sm flex-1 text-gray-500 overflow-hidden text-ellipsis">
-          {movie.intro}
+          {movie.intro?.substring(0, 100) + "..."}
         </div>
         <div className="text-sm truncate py-2">
           <a

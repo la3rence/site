@@ -106,10 +106,10 @@ Same as the movie component:
   ></iframe>
 </div> -->
 
-### Tweet
+### Tweet / 𝕏
 
 <div>
-  <tweet id="20" />
+  <tweet id="1138070453942009856" />
 </div>
 
 ### Open Graph
