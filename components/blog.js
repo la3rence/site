@@ -53,7 +53,7 @@ export default withView(props => {
           >
             <div
               className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
-           hover:bg-zinc-300 dark:hover:bg-zinc-800 pr-2"
+           hover:bg-zinc-300 hover:bg-opacity-20 pr-2"
             >
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
@@ -77,7 +77,10 @@ export default withView(props => {
             </div>
           </div>
         )}
-        <div className="article mt-12">{children}</div>
+        <div className="article mt-6">
+          {image && <div className="h-4"></div>}
+          {children}
+        </div>
       </article>
       {!props.noMeta && (
         <>
