@@ -3,12 +3,8 @@ title: "在 Kubernetes 中部署 Prow"
 date: "2020-11-29"
 themeColor: "#306de6"
 image: "prow/k8s.jpg"
-description: "Kubernetes 原生 CI/CD 系统 `Prow`。@k8s-ci-bot"
+description: "Kubernetes 原生 CI/CD 系统 `Prow`。GitHub CI 🤖️ by Kubernetes. @k8s-ci-bot"
 tags: Kubernetes, CI, Robot, DevOps, GitHub
----
-
-GitHub CI 🤖️ by Kubernetes
-
 ---
 
 ### **Prow** | praʊ |

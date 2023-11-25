@@ -86,9 +86,9 @@ export default function Header({
       {image && (
         <div
           style={{ "--image-url": `url('/images/${image}')` }}
-          className={`h-56 bg-cover bg-center w-full -z-50 top-0 opacity-85 bg-[image:var(--image-url)]`}
+          className={`h-64 bg-cover bg-center w-full -z-50 top-0 opacity-85 bg-[image:var(--image-url)]`}
         >
-          <div className="bg-gradient-to-b from-transparent to-zinc-700 w-full h-56"></div>
+          <div className="bg-gradient-to-b from-transparent to-zinc-900 w-full h-64"></div>
         </div>
       )}
       {!blog && (

@@ -32,7 +32,7 @@ export default withView(props => {
     setLikes(likes);
   };
 
-  const withImageMargin = image ? "-mt-24" : "mt-24";
+  const withImageMargin = image ? "sm:-mt-28 -mt-32" : "mt-28";
   const withImageColor = image ? "text-zinc-50" : "";
 
   return (
@@ -53,7 +53,7 @@ export default withView(props => {
           >
             <div
               className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
-           hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2"
+           hover:bg-zinc-300 dark:hover:bg-zinc-800 pr-2"
             >
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
@@ -77,7 +77,7 @@ export default withView(props => {
             </div>
           </div>
         )}
-        <div className="article mt-10">{children}</div>
+        <div className="article mt-12">{children}</div>
       </article>
       {!props.noMeta && (
         <>
