@@ -1,4 +1,5 @@
 import { getCollection } from "../../lib/mongo";
+import { IS_PROD } from "../../lib/env";
 
 // edge functions enable:
 // export const config = {
@@ -6,9 +7,13 @@ import { getCollection } from "../../lib/mongo";
 // };
 
 export default async function view(req, res) {
-  const page = req.query.page ? req.query.page : "/";
-  const currentPageView = await recordPageView(page);
-  res.json(currentPageView); // pageKey, view
+  if (IS_PROD) {
+    const page = req.query.page ? req.query.page : "/";
+    const currentPageView = await recordPageView(page);
+    res.json(currentPageView); // pageKey, view
+    return;
+  }
+  res.json({});
 }
 
 export async function recordPageView(path) {
