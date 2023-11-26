@@ -10,7 +10,7 @@ import Avatar from "./avatar";
 import RewardImages from "./reward";
 
 export default withView(props => {
-  const { children, title, date, author, view, id, tags, pageURL, themeColor } =
+  const { children, title, date, author, view, id, tags, pageURL, image } =
     props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -32,24 +32,28 @@ export default withView(props => {
     setLikes(likes);
   };
 
+  const withImageMargin = image ? "sm:-mt-28 -mt-32" : "mt-28";
+  const withImageColor = image ? "text-zinc-50" : "";
+
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
       <article className="blog">
         {!props.noTitle && (
-          <h1 id="title" className="articleTitle cursor-pointer mt-28">
-            <a href={`#title`} className={`text-[${themeColor}] no-underline`}>
-              {title}
-            </a>
+          <h1
+            id="title"
+            className={`articleTitle font-medium mb-0 ${withImageMargin} ${withImageColor}`}
+          >
+            {title}
           </h1>
         )}
         {!props.noMeta && (
           <div
-            className="articleTitle flex justify-start items-center flex-wrap mb-8"
+            className="articleTitle flex justify-start items-center flex-wrap mt-1"
             id="meta"
           >
             <div
               className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
-           hover:bg-gray-300 dark:hover:bg-gray-700 dark:text-gray-300 pr-2"
+           hover:bg-zinc-300 hover:bg-opacity-20 pr-2"
             >
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
@@ -58,20 +62,25 @@ export default withView(props => {
                     size={25}
                     alt={author}
                   />
-                  <small className="ml-2">{author}</small>
-                  <small className="before:content-['/'] before:p-0 before:m-2">
+                  <small className={`ml-2 ${withImageColor}`}>{author}</small>
+                  <small
+                    className={`before:content-['/'] before:p-0 before:m-2 ${withImageColor}`}
+                  >
                     <time dateTime={date}>{date}</time>
                   </small>
                 </div>
               </Link>
             </div>
             <div className="flex-1" />
-            <div className="justify-end" id="views">
+            <div className={`justify-end ${withImageColor}`} id="views">
               {view > 0 && <small>{view} views</small>}
             </div>
           </div>
         )}
-        <div className="article">{children}</div>
+        <div className="article mt-6">
+          {image && <div className="h-4"></div>}
+          {children}
+        </div>
       </article>
       {!props.noMeta && (
         <>

@@ -3,11 +3,8 @@ title: "Kubernetes Notes"
 date: "2019-10-01"
 themeColor: "#306de6"
 description: "学习 K8s 时的一些琐碎笔记。"
+image: prow/k8s.jpg
 tags: note, kubernetes, k8s
----
-
-大部分内容皆来源于 [Kubernetes 官网](https://k8s.io)。
-
 ---
 
 Kubernetes [中文概述](https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-kubernetes-%E5%AE%83%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88)（是什么以及不是什么）。

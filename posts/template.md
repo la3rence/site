@@ -3,6 +3,7 @@ title: "Article Template"
 date: "2023-01-01"
 description: "the markdown template for my site."
 tags: template, blog
+image: "the1975.jpg"
 visible: false
 ---
 

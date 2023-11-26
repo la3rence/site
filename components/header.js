@@ -14,6 +14,7 @@ export default function Header({
   birthTime,
   modifiedTime,
   tags,
+  image,
 }) {
   const router = useRouter();
   let {
@@ -27,7 +28,9 @@ export default function Header({
   } = config;
   const theDescription = description || siteDescription;
   const pageTitle = `${title} - ${siteTitle}`;
-  const og = `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
+  const og = image
+    ? `${baseURL}/images/${image}`
+    : `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -80,8 +83,16 @@ export default function Header({
           dangerouslySetInnerHTML={{ __html: structuredData }}
         />
       </Head>
+      {image && (
+        <div
+          style={{ "--image-url": `url('/images/${image}')` }}
+          className={`h-60 sm:h-48 bg-cover bg-center w-full -z-50 top-0 opacity-85 bg-[image:var(--image-url)]`}
+        >
+          <div className="h-60 sm:h-48 bg-gradient-to-b from-transparent to-zinc-900 w-full"></div>
+        </div>
+      )}
       {!blog && (
-        <header className="flex mt-12 text-zinc-500">
+        <header className="mx-auto max-w-3xl flex mt-12 text-zinc-500">
           <h1 className="w-32 cursor-pointer">
             <Link href={"/"}>
               <div className={`py-1 -mx-2 ${hoverTabStyle}`}>
