@@ -31,15 +31,18 @@ export default function Header({
   const og = image
     ? `${baseURL}/images/${image}`
     : `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
+  const createdDateString = date
+    ? new Date(date).toISOString()
+    : new Date(birthTime);
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: title,
     image: [og],
-    datePublished: date ? new Date(date).toISOString() : new Date(birthTime),
+    datePublished: createdDateString,
     dateModified: modified
       ? new Date(modified).toISOString()
-      : new Date(date).toISOString(),
+      : createdDateString,
     author: [
       {
         "@type": "Person",
