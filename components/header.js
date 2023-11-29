@@ -12,7 +12,7 @@ export default function Header({
   date,
   themeColor,
   birthTime,
-  modifiedTime,
+  modified,
   tags,
   image,
 }) {
@@ -37,7 +37,9 @@ export default function Header({
     headline: title,
     image: [og],
     datePublished: date ? new Date(date).toISOString() : new Date(birthTime),
-    dateModified: modifiedTime,
+    dateModified: modified
+      ? new Date(modified).toISOString()
+      : new Date(date).toISOString(),
     author: [
       {
         "@type": "Person",
