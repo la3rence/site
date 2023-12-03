@@ -2,7 +2,7 @@
 title: "写在 2022 年末"
 date: "2022-12-17"
 description: "2022 回顾"
-tags: review
+tags: review, 2022
 ---
 
 ## Tech
