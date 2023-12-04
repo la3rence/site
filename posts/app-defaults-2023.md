@@ -11,10 +11,10 @@ I just saw many bloggers share their defalut apps in [App Defaults](https://defa
   - Apple Mail
   - [Skiff Mail](https://skiff.com/mail) for `hi@lawrenceli.me`.
 - 📮 Mail Server
-  - Outlook (avaiable in China Mainland)
+  - Outlook (available in China Mainland)
   - [Skiff Mail](https://skiff.com/mail). Unfortunately, POP3/IMAP is not supported yet.
 - 📝 Notes
-  - Apple Notes (with montaigne.io you can make the Notes be a SSG website)
+  - Apple Notes (with [montaigne.io](https://montaigne.io) you can make your Apple Notes be a website)
 - ✅ To-Do
   - Apple Reminders
 - 📷 iPhone Photo Shooting
@@ -22,8 +22,8 @@ I just saw many bloggers share their defalut apps in [App Defaults](https://defa
 - 🟦 Photo Management
   - Apple Photos with iCloud Sync
 - 📆 Calendar
-  - iCloud Calendar
-  - Apple Calendar
+  - Service: iCloud Calendar
+  - Client: Apple Calendar
 - 📁 Cloud File Storage
   - iCloud Drive (iCloud+)
   - [Aliyun Drive](https://www.aliyundrive.com/) (for Apple TV)
@@ -54,19 +54,19 @@ I just saw many bloggers share their defalut apps in [App Defaults](https://defa
 - 🍴 Meal Planning
   - N/A
 - 💰 Budgeting and Personal Finance
-  - Previously [Finances 2 on iOS](https://hochgatterer.me/finances/ios/), now trying [BeanWise](https://apps.apple.com/us/app/beanwise/id6446314789?ref=https://lawrenceli.me)
+  - Previously [Finances 2 on iOS](https://hochgatterer.me/finances/ios/), currently trying [BeanWise](https://apps.apple.com/us/app/beanwise/id6446314789?ref=https://lawrenceli.me)
 - 📰 News
   - [Solidot](https://solidot.org) (Chinese version of [slashdot](https://slashdot.org) )
   - [Reuters](https://www.reuters.com/)
   - [Hacker News](https://news.ycombinator.com/)
 - 🎵 Music
-  - [Music](https://music.apple.com/) (Student subscription only 5 RMB per Month)
+  - [Music](https://music.apple.com/) (Student subscription only cost 5 RMB per month)
   - [NetEase Music](https://music.163.com/) (As a complement to Apple Music)
 - 🎤 Podcasts
   - [Apple Podcast](https://www.apple.com/apple-podcasts/) Universal Podcast Client, no censorship
 - 🔐 Password Management
   - iCloud Keychain
-  - Google Authenticator for 2FA
+  - [Google Authenticator](https://apps.apple.com/us/app/google-authenticator/id388497605) for 2FA
 
 ## My extra defaults
 
