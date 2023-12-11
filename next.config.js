@@ -14,6 +14,10 @@ module.exports = {
         source: "/.well-known/:param",
         destination: "/api/.well-known/:param",
       },
+      {
+        source: "/feed",
+        destination: "/atom.xml",
+      },
       // {
       //   source: "/blog/:path",
       //   has: [
