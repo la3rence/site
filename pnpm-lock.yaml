@@ -9,8 +9,8 @@ dependencies:
     specifier: ^3.0.2
     version: 3.0.2
   "@vercel/og":
-    specifier: ^0.5.20
-    version: 0.5.20
+    specifier: ^0.6.0
+    version: 0.6.0
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -696,10 +696,10 @@ packages:
         integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==,
       }
 
-  /@vercel/og@0.5.20:
+  /@vercel/og@0.6.0:
     resolution:
       {
-        integrity: sha512-zi+ZXSx/peXA+1lq7s/5Vzmm/TTfTSf/5P1qNYnh42+7X+pZmahWoXt0i7SWiq3WagfsNUNA4hUDapDiHRoXqA==,
+        integrity: sha512-dLHUWTZnMAWJtXZPb6wQHoFwcxd/OaxYPW1HOxL5alT1AphF3ODC4clUoQsofrKdNGRkKfNlYZQh6AvHD6hryA==,
       }
     engines: { node: ">=16" }
     dependencies:

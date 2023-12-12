@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
-    "@vercel/og": "^0.5.20",
+    "@vercel/og": "^0.6.0",
     "dotenv": "^16.3.1",
     "flexsearch": "^0.7.31",
     "gist-syntax-themes": "^1.1.0",
