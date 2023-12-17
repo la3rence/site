@@ -8,6 +8,8 @@ import "gist-syntax-themes/stylesheets/one-dark.css";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import RewardImages from "./reward";
+import cfg from "../lib/config.mjs";
+import Disqus from "./disqus";
 
 export default withView(props => {
   const { children, title, date, author, view, id, tags, pageURL, image } =
@@ -154,6 +156,9 @@ export default withView(props => {
           </div>
           {!props.noReward && (
             <RewardImages text={"Scan the QR Code to leave a tip :)"} />
+          )}
+          {cfg.enableDisqus && !props.noReply && (
+            <Disqus url={pageURL} identifier={id} title={title} />
           )}
         </>
       )}
