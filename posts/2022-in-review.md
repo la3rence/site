@@ -12,13 +12,13 @@ tags: review, 2022
 首先从 0 到 1 使用 Next.js 重构了此 lawrenceli.me 的整个站点。由原先基于 Notion 私有 REST API 的 hacking 方式换成基于纯 Markdown 文本的 SSG（静态页面生成）和 ISR （增量静态再生成）并完成了几乎没有太多压力的 [Next.js 13 升级](https://nextjs.org/docs/upgrading#upgrading-from-12-to-13)。所有文章内容均和代码共存，这样能在所有页面上自由发挥，甚至可以在纯 Markdown 文件中直接使用 React/JSX 组件（基于 HTML 抽象语法树 - AST）。依赖的版本也基于 GitHub 自动的 PR 保持了最新。 React/JSX 写的也比去年熟练多了。
 另外简单研究了一下 TailWind CSS，上手很快，也在此站点上用上了。
 
-[Node.js 模版项目](https://github.com/Lonor/node-express-example) 完工，一个快速使用 JavaScript 开发 REST API 的脚手架项目，各种测试、CI/CD、Code Coverage、日志、Open API (Swagger)、JWT 等基础设施都加上了。摒弃了古老的 CommonJS 而基于纯 ES Module。
+[Node.js 模版项目](https://github.com/la3rence/node-express-example) 完工，一个快速使用 JavaScript 开发 REST API 的脚手架项目，各种测试、CI/CD、Code Coverage、日志、Open API (Swagger)、JWT 等基础设施都加上了。摒弃了古老的 CommonJS 而基于纯 ES Module。
 
 <div>
-  <github user="Lonor" repo="node-express-example"></github>
+  <github user="la3rence" repo="node-express-example"></github>
 </div>
 
-[WebSocket Cluster](https://github.com/Lonor/websocket-cluster) 项目在 GitHub 上也快到达 100 stars 了，每周都会看到一两个国人参考我那很久没维护但精妙绝伦的代码。
+[WebSocket Cluster](https://github.com/la3rence/websocket-cluster) 项目在 GitHub 上也快到达 100 stars 了，每周都会看到一两个国人参考我那很久没维护但精妙绝伦的代码。
 
 年底 Spring 6 和 [Spring Boot 3 的 GA](https://spring.io/blog/2022/11/24/spring-boot-3-0-goes-ga) 同样令人欣喜。我们终于可以基于 GraalVM 的 AOT 去做 Spring Native on Cloud Native 了。JDK 8 仍有接近 7 年的寿命。JDK 17 的 ZGC 是最值得研究学习的，另外下个 JDK LTS (JDK 21?) 应该会让协程 (虚拟线程) GA，目前仍在孵化阶段。学 JavaScript / TypeScript 就是玩玩，真正企业级大型项目还得看 Java。为什么这么说，你去看看 [Nest.js](https://docs.nestjs.com/controllers) 就知道了。
 

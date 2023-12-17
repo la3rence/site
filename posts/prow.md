@@ -41,14 +41,14 @@ kubectl create secret generic hmac-token --from-file=hmac=/etc/webhook/hmac
 kubectl create secret generic oauth-token --from-file=oauth=/etc/github/oauth
 ```
 
-将[以下 Prow 的 manifest](https://gist.github.com/Lonor/79ba7d87cb8a3a44916162d4dece0c66) 做简单修改，注意 Ingress 的域名，namespace 为 `default`：
+将[以下 Prow 的 manifest](https://gist.github.com/la3rence/79ba7d87cb8a3a44916162d4dece0c66) 做简单修改，注意 Ingress 的域名，namespace 为 `default`：
 
-`gist:Lonor/79ba7d87cb8a3a44916162d4dece0c66`
+`gist:la3rence/79ba7d87cb8a3a44916162d4dece0c66`
 
 apply 上述 manifest。过程可能持续几分钟。上面用到的镜像都来自 DockerHub，国内可以直接访问。出现问题尝试打印 Pod 日志或者 describe，用好 Google 和 GitHub 能解决几乎 99% 的技术问题。
 
 ```bash
-curl -L https://git.io/JIJ4c -o prow.yaml
+curl -L https://bit.ly/prow -o prow.yaml
 vi prow.yaml
 kubectl apply -f prow.yaml
 ```
@@ -156,7 +156,7 @@ kubectl create configmap config \
 ```
 
 可能需要两分钟生效。等一切就绪后，就可以创建 Pull Request 来测试了。效果可以参考 [Kubernetes 的官方仓库](http://github.com/kubernetes/kubernetes)或[我的这个 node
-命令行翻译项目](https://github.com/Lonor/Tranclite/pull/5)。
+命令行翻译项目](https://github.com/la3rence/Tranclite/pull/5)。
 
 ### 使用 Prow
 
@@ -176,7 +176,7 @@ presubmits，同样在 config.yaml 中添加：
 
 ```yaml
 presubmits:
-  Lonor/kubernetes-springboot-demo:
+  la3rence/kubernetes-springboot-demo:
     - name: spring
       decorate: false
       always_run: false
@@ -200,7 +200,7 @@ presubmits:
 ```
 
 重新配置 config 后并应用更改，在 Pull Request 下评论 `/test all` 或者 `/test spring`
-来触发测试。[参考此 PR](https://github.com/Lonor/kubernetes-springboot-demo/pull/4)。
+来触发测试。[参考此 PR](https://github.com/la3rence/kubernetes-springboot-demo/pull/4)。
 
 `/test` 后面加 presubmits 的 name 名可触发指定的测试 Pod，all 则测试全部。测试若失败，可使用 `/retest` 来重新测试。
 
@@ -211,8 +211,8 @@ presubmits:
 ### 自研 Issue/PR Bot
 
 GitHub 大规模使用 WebSocket 来动态修改 Issue 或 PR 页面的 DOM，在视觉上非常令人享受。笔者后来也参考 Prow 用 Go
-写了一个简单了 [OpsBot](https://github.com/Lonor/OpsBot) 帮助自己的仓库做一些简单的 PR、Issue 的管理，现已开源，欢迎任何 Issue / PR！
+写了一个简单了 [OpsBot](https://github.com/la3rence/OpsBot) 帮助自己的仓库做一些简单的 PR、Issue 的管理，现已开源，欢迎任何 Issue / PR！
 
 <div>
-  <github user="Lonor" repo="OpsBot"></github>
+  <github user="la3rence" repo="OpsBot"></github>
 </div>

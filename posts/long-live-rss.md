@@ -52,6 +52,6 @@ As a contributor for RSSHub, I'm also glad to share my self-hosted RSSHub for yo
 
 [https://feed.lawrenceli.me](https://feed.lawrenceli.me/) .
 
-I'll try to keep [my repository](https://github.com/Lonor/RSSHub) in sync with [the official RSSHub git repository](https://github.com/DIYgod/RSSHub) every week.
+I'll try to keep [my repository](https://github.com/la3rence/RSSHub) in sync with [the official RSSHub git repository](https://github.com/DIYgod/RSSHub) every week.
 
 Enjoy reading.

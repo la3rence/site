@@ -7,10 +7,10 @@ tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 
 ## 使用方式
 
-本站源码完全公开：[GitHub - Lonor/site](https://github.com/Lonor/site).
+本站源码完全公开：[GitHub - la3rence/site](https://github.com/la3rence/site).
 
 <div>
-  <github user="Lonor" repo="site"></github>
+  <github user="la3rence" repo="site"></github>
 </div>
 
 直接将 Markdown 文件 (.md) 存放在 `posts` 文件夹下即可渲染当前文件，使之成为静态页面([SSG](/blog/ssg-ssr))。

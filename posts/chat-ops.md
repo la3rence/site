@@ -69,7 +69,7 @@ func StringIndexOf(originalArray []string, wordToFind interface{}) []int {
 
 `/merge 233`
 
-即合并第 #233 个 Pull Request。要通过代码来合并，那操作 Git 就需要 SDK 或接口了。考虑到之前写 [Issue Ops Bot](https://github.com/Lonor/OpsBot) 的经验，Google 开源的 GitHub 的 [Go-GitHub](https://github.com/google/go-github) 写起来很方便，Gitee 应该也有人搞吧？果然搜到了华为的 OpenEuler 团队的仓库：[Go-Gitee](http://gitee.com/openeuler/go-gitee)。看来只有大厂才会给这些基础设施写 SDK 啊！果断加依赖:
+即合并第 #233 个 Pull Request。要通过代码来合并，那操作 Git 就需要 SDK 或接口了。考虑到之前写 [Issue Ops Bot](https://github.com/la3rence/OpsBot) 的经验，Google 开源的 GitHub 的 [Go-GitHub](https://github.com/google/go-github) 写起来很方便，Gitee 应该也有人搞吧？果然搜到了华为的 OpenEuler 团队的仓库：[Go-Gitee](http://gitee.com/openeuler/go-gitee)。看来只有大厂才会给这些基础设施写 SDK 啊！果断加依赖:
 
 ```sh
 go get -u gitee.com/openeuler/go-gitee
@@ -157,10 +157,10 @@ Robot 回复: 当前支持指令列表, 带 * 需要特定人员发起
 
 代码写的很丑陋，没脸往外放了，而且也是企业内部使用，就不开源了（所有变量，十个左右，都配置在环境变量中，尽量没有 Hard Code）。
 
-社区也有不少钉钉机器人的 SDK，阿里没有提供 Go 版本的，但写起来也不复杂，顺手提供自己写的[钉钉群机器人 Go 语言的 SDK](https://github.com/Lonor/dingtalkbot-sdk)，目前就只用来发文本消息。
+社区也有不少钉钉机器人的 SDK，阿里没有提供 Go 版本的，但写起来也不复杂，顺手提供自己写的[钉钉群机器人 Go 语言的 SDK](https://github.com/la3rence/dingtalkbot-sdk)，目前就只用来发文本消息。
 
 <div>
-  <github user="Lonor" repo="dingtalkbot-sdk"></github>
+  <github user="la3rence" repo="dingtalkbot-sdk"></github>
 </div>
 
 最近一次更新，让机器人支持了多个仓库，直接在 `/tag` 最后加一个可选参数 `[repo]`，然后 SDK 的参数做出相应的变动就实现了。

@@ -31,13 +31,13 @@ OAuth2 Token 存放到 Redis 的逻辑。此方案的核心前提是可序列化
 取舍、实例的区分依据是什么（IP ? 实例
 ID？）、可能与注册中心构成强依赖、以及部署环境的变更带来运维上的挑战等难题。这个方案实施有一定的成本和技术限制，可以参考[这篇文章](https://segmentfault.com/a/1190000017307713)的大体思路，理解了核心的哈希环的概念(如下图)，再配合注册中心、服务上下线消息，就能完成基本的实现。我利用
 Nacos、Redis、RabbitMQ 基于 Spring Cloud 写了一个通过一致性哈希来实现的全栈项目，前端和后端都已开源 ——
-[WebSocket 集群的一致性哈希实践(Spring Cloud 后端) - GitHub](https://github.com/Lonor/websocket-cluster)
-, [WebSocket 客户端模拟与服务列表(React 前端) - GitHub](https://github.com/Lonor/websocket-cluster-front),
+[WebSocket 集群的一致性哈希实践(Spring Cloud 后端) - GitHub](https://github.com/la3rence/websocket-cluster)
+, [WebSocket 客户端模拟与服务列表(React 前端) - GitHub](https://github.com/la3rence/websocket-cluster-front),
 最近刚刚写好基本的功能，参考 [@ufiredong](https://github.com/ufiredong)
 的方式利用 [Java 语言的 Docker SDK](https://github.com/docker-java/docker-java) 实现模拟 WebSocket 实例的上下线。未来还会稍微做细微的优化。
 
 <div>
-    <github user="Lonor" repo="websocket-cluster"></github>
+    <github user="la3rence" repo="websocket-cluster"></github>
 </div>
 
 ![HashRing:虚拟节点上线后部分客户端需要迁移节点](/images/websocket-cluster/hashring.png)

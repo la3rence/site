@@ -42,7 +42,7 @@ minikube start --vm-driver=none --image-repository=registry.cn-hangzhou.aliyuncs
 
 ### Demo
 
-[用 Spring Boot 创建了一个 HTTP 服务端](https://github.com/Lonor/kubernetes-springboot-demo)，可以尝试用 Kubernetes 部署它。
+[用 Spring Boot 创建了一个 HTTP 服务端](https://github.com/la3rence/kubernetes-springboot-demo)，可以尝试用 Kubernetes 部署它。
 
 ### 公网服务器集群初始化常用脚本
 
