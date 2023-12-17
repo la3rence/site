@@ -9,10 +9,10 @@ I just saw many bloggers share their defalut apps in [App Defaults](https://defa
 
 - 📨 Mail Client
   - Apple Mail
-  - [Skiff Mail](https://skiff.com/mail) for `hi@lawrenceli.me`.
+  - [Skiff Mail](https://go.lawrenceli.me/skiff) for `hi@lawrenceli.me`.
 - 📮 Mail Server
   - Outlook (available in China Mainland)
-  - [Skiff Mail](https://skiff.com/mail). Unfortunately, POP3/IMAP is not supported yet.
+  - [Skiff Mail](https://go.lawrenceli.me/skiff). Unfortunately, POP3/IMAP is not supported yet.
 - 📝 Notes
   - Apple Notes (with [montaigne.io](https://montaigne.io) you can make your Apple Notes be a website)
 - ✅ To-Do
