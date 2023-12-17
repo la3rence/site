@@ -26,10 +26,6 @@
   .embed {
     @apply relative w-full overflow-hidden pt-[56%];
   }
-
-  iframe {
-    @apply absolute w-full h-full top-0 border-none;
-  }
 }
 
 @tailwind components;

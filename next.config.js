@@ -8,6 +8,19 @@ module.exports = {
   //   defaultLocale: "zh",
   // },
   transpilePackages: ["react-tweet"],
+  async headers() {
+    return [
+      {
+        source: "/ads.txt",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "text/plain",
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
@@ -18,6 +31,7 @@ module.exports = {
         source: "/feed",
         destination: "/atom.xml",
       },
+
       // {
       //   source: "/blog/:path",
       //   has: [

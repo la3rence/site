@@ -15,6 +15,7 @@
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@vercel/og": "^0.6.0",
+    "disqus-react": "^1.1.5",
     "dotenv": "^16.3.1",
     "flexsearch": "^0.7.31",
     "gist-syntax-themes": "^1.1.0",
