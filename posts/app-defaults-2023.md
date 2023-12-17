@@ -2,6 +2,7 @@
 title: "My App Defaults"
 date: "2023-12-03"
 description: "My default apps in 2023. https://defaults.rknight.me/"
+modified: "2023-12-17"
 tags: app, life, 2023
 ---
 
