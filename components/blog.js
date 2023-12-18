@@ -10,6 +10,7 @@ import Avatar from "./avatar";
 import RewardImages from "./reward";
 import cfg from "../lib/config.mjs";
 import Disqus from "./disqus";
+import Comments from "./comments";
 
 export default withView(props => {
   const { children, title, date, author, view, id, tags, pageURL, image } =
@@ -116,7 +117,8 @@ export default withView(props => {
             {!props.noReply && (
               <>
                 <h4 id="reply">
-                  Replies {replies?.length > 0 ? `(${replies?.length})` : ""}
+                  Replies from Fediverse{" "}
+                  {replies?.length > 0 ? `(${replies?.length})` : ""}
                 </h4>
                 <div className="mx-4 mt-4 text-sm">
                   <span>Search this URL on mastodon to reply:</span>
@@ -154,11 +156,12 @@ export default withView(props => {
               </>
             )}
           </div>
-          {!props.noReward && (
-            <RewardImages text={"Scan the QR Code to leave a tip :)"} />
-          )}
           {cfg.enableDisqus && !props.noReply && (
             <Disqus url={pageURL} identifier={id} title={title} />
+          )}
+          {cfg.enableGitHubComment && !props.noReply && <Comments />}
+          {!props.noReward && (
+            <RewardImages text={"Scan the QR Code to leave a tip :)"} />
           )}
         </>
       )}
