@@ -1,0 +1,24 @@
+name: WebSub
+# example: https://vercel.com/guides/how-can-i-run-end-to-end-tests-after-my-vercel-preview-deployment
+on:
+  deployment_status:
+
+jobs:
+  websub:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'production'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v2.4.0
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+      - name: Post WebSub
+        run: pnpm websub

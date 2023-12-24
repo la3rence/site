@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "markdown": "github",
   "scripts": {
-    "feed": "node ./lib/feed.mjs > ./public/atom.xml",
     "dev": "pnpm feed && next dev -H 0.0.0.0",
+    "feed": "node ./lib/feed.mjs > ./public/atom.xml",
+    "websub": "node ./lib/websub.mjs",
     "start": "next start",
     "build": "NEXT_PUBLIC_BUILDTIME=$(date '+%s') next build && pnpm feed && next-sitemap",
     "lint": "next lint",
