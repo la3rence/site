@@ -3,6 +3,7 @@ export function TwitterIcon(props) {
     <svg
       {...props}
       className="inline-block fill-black dark:fill-white"
+      aria-label="Twitter/X"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
@@ -20,6 +21,7 @@ export function GitHubIcon(props) {
     <svg
       {...props}
       className="inline-block fill-black dark:fill-white"
+      aria-label="GitHub"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
@@ -37,6 +39,7 @@ export function MailIcon(props) {
     <svg
       {...props}
       className="inline-block fill-black dark:fill-white"
+      aria-label="email"
       xmlns="http://www.w3.org/2000/svg"
       width="22"
       height="14"

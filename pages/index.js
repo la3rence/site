@@ -19,10 +19,7 @@ const Index = function index({ allPostsData }) {
           .map(year => {
             return (
               <div key={year}>
-                <div
-                  className="text-zinc-400 dark:text-zinc-600 text-2xl mt-12 mb-6"
-                  id={year}
-                >
+                <div className="text-zinc-500 text-2xl mt-12 mb-6" id={year}>
                   {year}
                 </div>
                 {aggregatedPosts[year].map(post => (
