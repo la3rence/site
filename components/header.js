@@ -82,11 +82,17 @@ export default function Header({
             media="(prefers-color-scheme: light)"
           />
         )}
-        {enableAdsense && <Adsense />}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: structuredData }}
         />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          title="RSS"
+          href={config.feedPath}
+        />
+        {enableAdsense && <Adsense />}
       </Head>
       {image && (
         <div
