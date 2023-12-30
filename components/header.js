@@ -89,7 +89,7 @@ export default function Header({
         <link
           rel="alternate"
           type="application/atom+xml"
-          title="RSS"
+          title={siteTitle}
           href={config.feedPath}
         />
         {enableAdsense && <Adsense />}

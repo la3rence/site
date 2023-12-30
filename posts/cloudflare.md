@@ -64,7 +64,7 @@ CloudFlare 的整体防御从 L3 到 L7，遍布了所有能覆盖的防御范�
 
 CloudFlare Workers 有许多应用场景。比如实现一个简单的[短 URL 重定向服务](https://lucjan.medium.com/free-url-shortener-with-cloudflare-workers-125eaf87b1ec)、[GitHub Proxy](https://github.com/hunshcn/gh-proxy)、以及一大堆各自实现的 ChatGPT API Proxy...方便了太多国内用户。
 
-Node.js 作者 Ryan Dahl 这几年给 JavaScript 写的另一个全新运行时 [Deno 也有类似的 Serverless 服务](https://dash.deno.com)，体验也很友好，同样[支持 Web Standard API](https://twitter.com/lawrenceli75/status/1642798082294251520)。
+Node.js 作者 Ryan Dahl 这几年给 JavaScript 写的另一个全新运行时 [Deno 也有类似的 Serverless 服务](https://dash.deno.com)，体验也很友好，同样[支持 Web Standard API](https://twitter.com/la3rence/status/1642798082294251520)。
 
 为了实现 Serverless 的更多数据持久化功能，他们也各自推出了自家的 KV 存储实现服务，或者说是 Serverless 数据库。
 
