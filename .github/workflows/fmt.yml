@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [main]
 
-permissions:  
+permissions:
   actions: write
   contents: write
   pull-requests: write
