@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [main]
 
-permissions:
+permissions: 
   contents: write
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
         run: |
           printenv
           pnpm add -g prettier
-          pnpm run fmt
+          pnpm fmt
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-format code style [ci skip]"
