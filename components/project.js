@@ -7,6 +7,7 @@ export default function Project({ name, desc, url }) {
        hover:bg-zinc-200 sm:w-[49%] w-full dark:bg-zinc-800 dark:hover:bg-zinc-600 shadow"
           href={url}
           target="_blank"
+          rel="noopener noreferrer"
         >
           <h5 className="pt-2">{name}</h5>
           <p className="text-sm font-normal">{desc}</p>

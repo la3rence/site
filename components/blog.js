@@ -106,6 +106,7 @@ export default withView(props => {
                         target="_blank"
                         key={like._id}
                         className="not-prose mr-1"
+                        rel="noopener noreferrer"
                       >
                         <Avatar src={like.avatar} size={25} alt={like.actor} />
                       </a>

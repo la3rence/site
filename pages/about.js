@@ -27,7 +27,9 @@ const About = props => {
       {config.mailchimp && (
         <>
           <h2 id="mailchimp">
-            <a href="#mailchimp">Mail Subscription</a>
+            <a href="#mailchimp" rel="noopener noreferrer">
+              Mail Subscription
+            </a>
           </h2>
           <p>
             Subscribe this blog via{" "}

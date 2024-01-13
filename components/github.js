@@ -35,7 +35,7 @@ export default function GitHub({ user, repo }) {
       <div className="flex-1">
         <p className="my-2 pl-4">
           <span className="mr-1">📔</span>
-          <a href={data.html_url} target="_blank">
+          <a href={data.html_url} target="_blank" rel="noopener noreferrer">
             {data.name}
           </a>
           <span className="ml-2 rounded-full border border-zinc-500 text-xs px-1">

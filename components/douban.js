@@ -38,6 +38,7 @@ export default function Douban({ id, reverse }) {
           <a
             href={movie.url}
             className="no-underline text-gray-500"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <span className="bg-[#072] text-white p-[1px] rounded-sm mr-2">
