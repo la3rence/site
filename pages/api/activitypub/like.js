@@ -1,9 +1,9 @@
 import { getCollection } from "../../../lib/mongo";
 
 const LIKES_COLLECTION = "likes";
+const likesCollection = await getCollection(LIKES_COLLECTION);
 
 export const saveLike = async message => {
-  const likesCollection = await getCollection(LIKES_COLLECTION);
   const like = {
     actor: message.actor,
     object: message.object,
@@ -15,7 +15,6 @@ export const saveLike = async message => {
 
 // object: actually the blog url
 export const getLikeForObjectId = async objectId => {
-  const likesCollection = await getCollection(LIKES_COLLECTION);
   const queryObject = { object: objectId };
   const projectionObject = { actor: 1 };
   const result = await likesCollection

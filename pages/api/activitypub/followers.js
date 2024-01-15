@@ -3,6 +3,7 @@ import { getCollection } from "../../../lib/mongo";
 import { IS_PROD } from "../../../lib/env";
 
 const FOLLOWERS_COLLECTION = "followers";
+const followersCollection = await getCollection(FOLLOWERS_COLLECTION);
 
 export default async function followers(req, res) {
   const origin = getOrigin(req);
@@ -18,8 +19,7 @@ export default async function followers(req, res) {
 }
 
 export async function saveFollower(follower) {
-  const followers = await getCollection(FOLLOWERS_COLLECTION);
-  const data = await followers.findOne();
+  const data = await followersCollection.findOne();
   let orderedItems = [];
   if (data) {
     orderedItems = data.orderedItems;
@@ -29,7 +29,7 @@ export async function saveFollower(follower) {
     }
   }
   orderedItems.push(follower);
-  const result = await followers.replaceOne(
+  const result = await followersCollection.replaceOne(
     {},
     { orderedItems },
     { upsert: true },
@@ -42,15 +42,14 @@ export async function saveFollower(follower) {
 }
 
 export async function removeFollower(follower) {
-  const followers = await getCollection(FOLLOWERS_COLLECTION);
-  const data = await followers.findOne();
+  const data = await followersCollection.findOne();
   let orderedItems = [];
   if (data) {
     orderedItems = data.orderedItems;
     const index = orderedItems.indexOf(follower);
     if (index !== -1) {
       orderedItems.splice(index, 1);
-      await followers.updateOne({}, { $set: { orderedItems } });
+      await followersCollection.updateOne({}, { $set: { orderedItems } });
       console.log(`follower ${follower} removed successfully`);
       return;
     }
@@ -59,8 +58,7 @@ export async function removeFollower(follower) {
 }
 
 export async function getAllFollowers() {
-  const followers = await getCollection(FOLLOWERS_COLLECTION);
-  const data = await followers.findOne();
+  const data = await followersCollection.findOne();
   if (data) {
     return data.orderedItems;
   }

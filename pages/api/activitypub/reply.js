@@ -1,4 +1,4 @@
-import { insertOne, findByField } from "../../../lib/mongo";
+import { getCollection } from "../../../lib/mongo";
 import {
   fetchActorInformation,
   getFediAcctFromActor,
@@ -7,6 +7,7 @@ import {
 import { getOrigin } from "../../../lib/util";
 
 const REPLY_COLLECTION = "reply";
+const replyCollection = await getCollection(REPLY_COLLECTION);
 
 // msg example: https://toot.io/users/lawrence/statuses/109679255155820013/activity
 export const saveReply = async msg => {
@@ -21,7 +22,7 @@ export const saveReply = async msg => {
     const username = actorInfo.preferredUsername;
     const account = getFediAcctFromActor(username, actor);
     // save to db
-    const inserted = await insertOne(REPLY_COLLECTION, {
+    const inserted = await replyCollection.insertOne({
       inReplyTo,
       actor,
       published,
@@ -38,7 +39,7 @@ export default async function reply(req, res) {
   const query = {
     inReplyTo: `${origin}${req.query.id}`,
   };
-  const replies = await findByField(REPLY_COLLECTION, query);
+  const replies = await replyCollection.find(query).toArray();
   await Promise.all(
     replies.map(async reply => {
       reply.avatar = await fetchAvatar(reply.actor);

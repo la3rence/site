@@ -139,6 +139,7 @@ export default withView(props => {
                             <a
                               href={reply.url}
                               target="_blank"
+                              rel="noopener noreferrer"
                               className="no-underline hover:underline"
                             >
                               <span className="h-6 leading-6">
