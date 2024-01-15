@@ -7,9 +7,7 @@ export default function Douban({ id, reverse }) {
 
   useEffect(() => {
     const fetchMovie = async id => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PROXY_URL}douban.8610000.xyz/data/${id}.json`,
-      );
+      const res = await fetch(`https://moviedb.lawrenceli.me/data/${id}.json`);
       const json = await res.json();
       setMovie(json);
     };
