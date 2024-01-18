@@ -1,5 +1,5 @@
 # Github Actions
-name: Auto Format
+name: Format & Lint
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           version: 8
           run_install: true
 
-      - name: Format Code
+      - name: Format & Lint
         run: |
           pnpm fmt
           pnpm lint
