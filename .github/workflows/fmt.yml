@@ -29,13 +29,12 @@ jobs:
         id: pnpm-install
         with:
           version: 8
-          run_install: false
+          run_install: true
 
       - name: Format Code
         run: |
-          printenv
-          pnpm add -g prettier
           pnpm fmt
+          pnpm lint
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-format code style [ci skip]"
