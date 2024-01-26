@@ -59,10 +59,10 @@ export const getStaticPaths = async () => {
     };
   });
   // const paths = [
-  //   { params: { id: "hi" } },
+  //   { params: { id: "hi" }, locale: "zh" },
   // ];
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
