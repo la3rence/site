@@ -26,7 +26,8 @@ export default function TagPage(props) {
             <span className="text-lg">
               <Link
                 href={`/blog/${post.id}`}
-                className={`p-0 no-underline font-normal `}
+                className={`p-0 no-underline font-normal`}
+                locale={post.locale}
               >
                 {post.title}
               </Link>
