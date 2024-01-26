@@ -40,7 +40,11 @@ export default PathId;
 
 export const getStaticProps = async context => {
   const { id } = context.params;
-  const mdData = await getMdContentById(id, defaultMarkdownDirectory, false);
+  const mdData = await getMdContentById(
+    `${id}.${context.locale}`,
+    defaultMarkdownDirectory,
+    false,
+  );
   return {
     props: mdData,
   };
@@ -50,7 +54,8 @@ export const getStaticPaths = async () => {
   const mdPostsData = getMdPostsData(path.join(process.cwd(), "posts"));
   const paths = mdPostsData.map(data => {
     return {
-      params: data,
+      params: { id: data.id },
+      locale: data.locale,
     };
   });
   // const paths = [
@@ -58,6 +63,6 @@ export const getStaticPaths = async () => {
   // ];
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };

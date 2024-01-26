@@ -1,13 +1,13 @@
 ---
-title: "Two Forms of Pre-rendering"
+title: "两种预渲染形式"
 date: "1970-01-01"
 description: "SSG & SSR"
 tags: ssg, ssr
 ---
 
-Next.js has two forms of pre-rendering: **Static Generation** and **Server-side Rendering**. The difference is in **when** it generates the HTML for a page.
+Next.js 有两种形式的预渲染：**静态生成**和**服务器端渲染**。 区别在于**何时**生成页面的 HTML。
 
-- **Static Generation** is the pre-rendering method that generates the HTML at **build time**. The pre-rendered HTML is then _reused_ on each request.
-- **Server-side Rendering** is the pre-rendering method that generates the HTML on **each request**.
+- **静态生成**是在**构建时**生成 HTML 的预渲染方法。 然后，每个请求都会*重用*预渲染的 HTML。
+- **服务器端渲染**是在**每个请求**上生成 HTML 的预渲染方法。
 
-Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
+重要的是，Next.js 允许您**选择**每个页面使用哪种预渲染表单。 您可以通过对大多数页面使用静态生成并对其他页面使用服务器端渲染来创建“混合”Next.js 应用程序。

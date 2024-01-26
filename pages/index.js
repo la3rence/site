@@ -26,6 +26,7 @@ const Index = function index({ allPostsData }) {
                   <div className="my-4" key={post.id}>
                     <Link
                       href={`/blog/${post.id}`}
+                      locale={post.locale}
                       className={`text-lg font-normal no-underline hover:text-zinc-500`}
                     >
                       <span>{post.title}</span>
@@ -50,6 +51,7 @@ export const getStaticProps = async () => {
     id: post.id,
     title: post.title,
     date: post.date,
+    locale: post.locale,
   }));
   return {
     props: {
