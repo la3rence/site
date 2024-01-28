@@ -13,8 +13,19 @@ import Disqus from "./disqus";
 import Comments from "./comments";
 
 export default withView(props => {
-  const { children, title, date, author, view, id, tags, pageURL, image } =
-    props;
+  const {
+    children,
+    title,
+    date,
+    author,
+    view,
+    id,
+    tags,
+    pageURL,
+    image,
+    i18n,
+    postLocale,
+  } = props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
 
@@ -75,6 +86,21 @@ export default withView(props => {
               </Link>
             </div>
             <div className="flex-1" />
+            {i18n?.length > 1 &&
+              i18n
+                .filter(language => language !== postLocale)
+                .map(language => {
+                  return (
+                    <Link
+                      className="px-2 no-underline"
+                      key={language}
+                      href={id}
+                      locale={language}
+                    >
+                      <small>🌐 {language.toUpperCase()}</small>
+                    </Link>
+                  );
+                })}
             <div className={`justify-end ${withImageColor}`} id="views">
               {view > 0 && <small>{view} views</small>}
             </div>
