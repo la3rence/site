@@ -11,6 +11,10 @@ export function middleware(req) {
       new URL(`/api/activitypub/blog/${blogId}`, req.url),
     );
   }
+  if (path.endsWith("atom.xml")) {
+    const locale = req.nextUrl.locale;
+    return NextResponse.rewrite(new URL(`/atom.${locale}.xml`, req.url));
+  }
 }
 
 // export const config = {

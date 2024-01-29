@@ -29,11 +29,11 @@ module.exports = {
         source: "/.well-known/:param",
         destination: "/api/.well-known/:param",
       },
-      {
-        source: "/:locale/atom.xml",
-        destination: "/atom.:locale.xml",
-        locale: false,
-      },
+      // {
+      //   source: "/:locale/atom.xml",
+      //   destination: "/atom.:locale.xml",
+      //   locale: false,
+      // },
       // {
       //   source: "/blog/:path",
       //   has: [
