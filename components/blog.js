@@ -24,7 +24,7 @@ export default withView(props => {
     pageURL,
     image,
     i18n,
-    postLocale,
+    locale,
   } = props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -89,7 +89,7 @@ export default withView(props => {
             {i18n?.length > 1 && (
               <>
                 {i18n
-                  .filter(language => language !== postLocale)
+                  .filter(language => language !== locale)
                   .map(language => {
                     return (
                       <Link
