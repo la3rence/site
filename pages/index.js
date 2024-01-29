@@ -12,7 +12,6 @@ const Index = function index({ allPostsData }) {
       result[getYear(currentPost.date)] || []).push(currentPost);
     return result;
   }, {});
-  console.log(aggregatedPosts);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   return (

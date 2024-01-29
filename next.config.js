@@ -1,11 +1,12 @@
 // next.config.js
+
 module.exports = {
   // experimental: {
   //   appDir: true,
   // },
   i18n: {
-    locales: ["zh", "en", "ja"],
-    defaultLocale: "zh",
+    locales: ["zh", "en", "ja"], // post.en.md, post.ja.md
+    defaultLocale: "zh", // post.zh.md or post.md
     localeDetection: false,
   },
   transpilePackages: ["react-tweet"],
@@ -29,10 +30,10 @@ module.exports = {
         destination: "/api/.well-known/:param",
       },
       {
-        source: "/feed",
-        destination: "/atom.xml",
+        source: "/:locale/atom.xml",
+        destination: "/atom.:locale.xml",
+        locale: false,
       },
-
       // {
       //   source: "/blog/:path",
       //   has: [
