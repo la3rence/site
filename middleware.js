@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import cfg from "./lib/config.mjs";
 
 // This function can be marked `async` if using `await` inside
 export function middleware(req) {
@@ -11,7 +12,8 @@ export function middleware(req) {
       new URL(`/api/activitypub/blog/${blogId}`, req.url),
     );
   }
-  if (path.endsWith("atom.xml")) {
+  // RSS Feed i18n
+  if (path.endsWith(cfg.feedFile)) {
     const locale = req.nextUrl.locale;
     return NextResponse.rewrite(new URL(`/atom.${locale}.xml`, req.url));
   }
