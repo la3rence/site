@@ -8,6 +8,7 @@ import path from "path";
 import { lazy } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
+import config from "../../lib/config.mjs";
 const Douban = lazy(() => import("../../components/douban"));
 const Bilibili = lazy(() => import("../../components/bilibili"));
 const Tweet = lazy(() => import("../../components/twitter"));
@@ -55,7 +56,9 @@ export const getStaticPaths = async () => {
   const paths = mdPostsData.map(data => {
     return {
       params: { id: data.id },
-      locale: data.locale,
+      locale: config.locales.includes(data.locale)
+        ? data.locale
+        : config.defaultLocale,
     };
   });
   // const paths = [
