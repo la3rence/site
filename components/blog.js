@@ -86,23 +86,26 @@ export default withView(props => {
               </Link>
             </div>
             <div className="flex-1" />
-            {i18n?.length > 1 &&
-              i18n
-                .filter(language => language !== postLocale)
-                .map(language => {
-                  return (
-                    <Link
-                      className="px-2 no-underline"
-                      key={language}
-                      href={id}
-                      locale={language}
-                    >
-                      <small>🌐 {language.toUpperCase()}</small>
-                    </Link>
-                  );
-                })}
+            {i18n?.length > 1 && (
+              <>
+                {i18n
+                  .filter(language => language !== postLocale)
+                  .map(language => {
+                    return (
+                      <Link
+                        className="mr-2 no-underline"
+                        key={language}
+                        href={id}
+                        locale={language}
+                      >
+                        <small>🌐 {language.toUpperCase()}</small>
+                      </Link>
+                    );
+                  })}
+              </>
+            )}
             <div className={`justify-end ${withImageColor}`} id="views">
-              {view > 0 && <small>{view} views</small>}
+              {view > 10 && <small>{view} views</small>}
             </div>
           </div>
         )}
