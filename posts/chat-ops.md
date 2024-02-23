@@ -46,7 +46,7 @@ tags: devops, golang, chatops, ci
 
 我们按照 [Kubernetes Prow 的设计语言](/blog/prow)，用一个 `/` 来作为 Tag，形式如同 `/test xxx` .
 
-因此这里必然需要做字符串处理了。除了判断 Tag 的存在之外，要取 Tag 后面的参数。项目用 Go 实现，很简单。贴其中一工具函数的代码，各位猜猜这是做什么的：
+因此这里必然需要做字符串处理了。除了判断 Tag 的存在之外，要取 Tag 后面的参数。项目用 Go 实现，很简单，贴其中一工具函数的代码：
 
 ```go
 func StringIndexOf(originalArray []string, wordToFind interface{}) []int {
@@ -56,11 +56,11 @@ func StringIndexOf(originalArray []string, wordToFind interface{}) []int {
         interfaceArray[i] = v
     }
     var indexArray []int
-	for i:=0 ; i < length; i++ {
-		if strings.Compare(wordToFind.(string), originalArray[i]) == 0 {
-			indexArray = append(indexArray, i)
-		}
-	}
+    for i:=0 ; i < length; i++ {
+      if strings.Compare(wordToFind.(string), originalArray[i]) == 0 {
+        indexArray = append(indexArray, i)
+      }
+    }
 	return indexArray
 }
 ```
@@ -165,6 +165,6 @@ Robot 回复: 当前支持指令列表, 带 * 需要特定人员发起
 
 最近一次更新，让机器人支持了多个仓库，直接在 `/tag` 最后加一个可选参数 `[repo]`，然后 SDK 的参数做出相应的变动就实现了。
 
-相关链接：
+此项实践已作为 ThoughtWorks 员工构建的知识体系 Ledge DevOps 对 ChatOps 这一模式的展示案例：
 
 - [Pattern#ChatOps from Ledge —— DevOps knowledge learning platform](https://devops.phodal.com/pattern#chatops)

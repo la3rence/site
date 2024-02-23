@@ -150,7 +150,7 @@ curl https://lawrenceli.me/blog/ssg-ssr -H "Accept: application/activity+json"
 
 ## 社区实现
 
-很巧合地发现 CloudFlare 也在同一时间段开发了兼容 Mastodon 的 ActivityPub 实现：[WildeBeest](https://github.com/cloudflare/wildebeest)，有兴趣可以直接用他们的商业化技术栈来部署一个小型实例，或者直接参考他们的代码，用自己擅长的服务端语言实现自己的 ActivityPub。
+很巧合地发现 Cloudflare 也在同一时间段开发了兼容 Mastodon 的 ActivityPub 实现：[WildeBeest](https://github.com/cloudflare/wildebeest)，有兴趣可以直接用他们的商业化技术栈来部署一个小型实例，或者直接参考他们的代码，用自己擅长的服务端语言实现自己的 ActivityPub。
 
 <div>
   <github user="cloudflare" repo="wildebeest"></github>

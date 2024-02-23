@@ -22,13 +22,11 @@ tags: review, 2022
 
 年底 Spring 6 和 [Spring Boot 3 的 GA](https://spring.io/blog/2022/11/24/spring-boot-3-0-goes-ga) 同样令人欣喜。我们终于可以基于 GraalVM 的 AOT 去做 Spring Native on Cloud Native 了。JDK 8 仍有接近 7 年的寿命。JDK 17 的 ZGC 是最值得研究学习的，另外下个 JDK LTS (JDK 21?) 应该会让协程 (虚拟线程) GA，目前仍在孵化阶段。学 JavaScript / TypeScript 就是玩玩，真正企业级大型项目还得看 Java。为什么这么说，你去看看 [Nest.js](https://docs.nestjs.com/controllers) 就知道了。
 
-另外又用上了一个比较简单可靠的托管服务（关键是免费）：[fly.io](https://fly.io/)，除常规项目外，它可以部署 Docker 容器，并提供大概 3 GB 额度的免费磁盘挂载。大多静态页面和轻量 Serverless 都依赖 Vercel 或 CloudFlare Workers，一旦遇到需要更加复杂的场景（比如 WebSocket 或 SSE），我会选择使用 fly.io 来部署。
+另外又用上了一个比较简单可靠的托管服务（关键是免费）：[fly.io](https://fly.io/)，除常规项目外，它可以部署 Docker 容器，并提供大概 3 GB 额度的免费磁盘挂载。大多静态页面和轻量 Serverless 都依赖 Vercel 或 Cloudflare Workers，一旦遇到需要更加复杂的场景（比如 WebSocket 或 SSE），我会选择使用 fly.io 来部署。
 
 Solidot Robot 已稳定运行将近一千天了，目前依旧基于 Vercel Serverless Function。异常稳定。[Solidot](https://www.solidot.org/) 依旧是我每天都会逛的科技新闻源。
 
 ## Work
-
-COVID-19 导致今年我在上海 WFH 了将近一整年。去办公室的次数寥寥可数 - 这曾导致 10 月份某天回公司时忘了工位在第几层楼。
 
 公司内的 OpenShift 今年并没有花太多时间研究，权限、开发环境问题无法在本地快速调试容器。当然我依旧对 Kubernetes 保持高昂的学习热情，并用半个工作日的时间完成公司对所有开发人员提供的 immersive training。
 
@@ -74,9 +72,9 @@ CVA Trading Desk 其实是一家内部保险公司。负责保障 Business Line 
 
 文本编辑器方面，我开始尝试使用 [Obsidian](https://obsidian.md/)。目前桌面端和移动端都有一些 bug，作为 Markdown 编辑器，它的使用门槛对小白来说很低 —— 单纯的码字工具而已，而它的上限对习惯折腾的玩家来说也很高 —— 丰富多元的社区第三方插件。
 
-最后不得不提的便是 CloudFlare 的优秀网络工具 [WARP+](https://1.1.1.1/)。他们开会期间我完全依赖它才能正常上网。使用期间发现 WARP 有流量限制，利用 API 刷到了几十 TB 的额度后发现其下「零信任网络[^2]」是完全免费且不限流量的 —— 我果断切换成此模式，同时仍然续费另外一项网络协议工具互为备选方案来帮我维持突破网络封锁的高可用。
+最后不得不提的便是 Cloudflare 的优秀网络工具 [WARP+](https://1.1.1.1/)。他们开会期间我完全依赖它才能正常上网。使用期间发现 WARP 有流量限制，利用 API 刷到了几十 TB 的额度后发现其下「零信任网络[^2]」是完全免费且不限流量的 —— 我果断切换成此模式，同时仍然续费另外一项网络协议工具互为备选方案来帮我维持突破网络封锁的高可用。
 
-## Happy Hours
+## Have fun, secretly
 
 今年 10 月中下旬，我的网易云账号因在某天评论了一首歌被禁言 366 天。微博帐号也只因**点赞**评论某事件[^3]的微博而被永久封禁。对此我的态度只有：
 

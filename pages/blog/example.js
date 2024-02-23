@@ -12,7 +12,8 @@ export const blogProps = {
   date: "2022-08-26",
   someKey: "someValeInJSXProps",
   tags: "example, test, jsx",
-  visible: true,
+  locale: "en",
+  visible: false,
 };
 
 /**

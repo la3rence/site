@@ -1,12 +1,14 @@
 // next.config.js
+
 module.exports = {
   // experimental: {
   //   appDir: true,
   // },
-  // i18n: {
-  //   locales: ["zh"],
-  //   defaultLocale: "zh",
-  // },
+  i18n: {
+    locales: ["zh"], // post.en.md, post.ja.md
+    defaultLocale: "zh", // post.zh.md or post.md
+    localeDetection: false,
+  },
   transpilePackages: ["react-tweet"],
   async headers() {
     return [
@@ -27,11 +29,11 @@ module.exports = {
         source: "/.well-known/:param",
         destination: "/api/.well-known/:param",
       },
-      {
-        source: "/feed",
-        destination: "/atom.xml",
-      },
-
+      // {
+      //   source: "/:locale/atom.xml",
+      //   destination: "/atom.:locale.xml",
+      //   locale: false,
+      // },
       // {
       //   source: "/blog/:path",
       //   has: [

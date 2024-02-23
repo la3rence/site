@@ -86,12 +86,15 @@ export default function Header({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: structuredData }}
         />
-        <link
-          rel="alternate"
-          type="application/atom+xml"
-          title={siteTitle}
-          href={config.feedPath}
-        />
+        {config.locales.map(locale => (
+          <link
+            key={locale}
+            rel="alternate"
+            type="application/atom+xml"
+            title={`${siteTitle} - ${siteDescription} (${locale})`}
+            href={`/${locale}/${config.feedFile}`}
+          />
+        ))}
         {enableAdsense && <Adsense />}
       </Head>
       {image && (

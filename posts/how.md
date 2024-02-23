@@ -20,7 +20,7 @@ tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 
 博客相关的信息配置，如标题、作者等可在 `lib/config.mjs` 文件中配置。
 
-推荐使用 [pnpm](https://pnpm.io/zh/) 来作为 node.js 的依赖管理工具。
+推荐使用 [pnpm](https://pnpm.io/zh/) 来作为 node.js 的依赖管理工具（相比官方 npm，pnpm 拥有非常大的优势: 速度更快，且节省空间）。
 
 ```shell
 pnpm install
@@ -32,9 +32,11 @@ pnpm dev
 通过 `pnpm build` 来打包，`pnpm start` 则用于生产环境的启动。
 通过 `pnpm fmt` 来将所有代码和文本进行格式化。
 
+这篇文章展示了此博客项目所能展示的一切媒体信息，比如代码引用、表格展示、图片、视频、豆瓣卡片等等。
+
 ## 技术细节
 
-此站点由 `Next.js` 框架和 `TailwindCSS` 样式构成。前者是一项基于 React 的 SSG/SSR 开源项目，后者是一个目前流行的原子化 CSS 库，让不太会写 CSS、基础薄弱的我也能快速的写出灵活的样式。
+此站点由 Vercel 公司开源的 `Next.js` 框架和 `TailwindCSS` 样式构成。前者是一项基于 React 的 SSG/SSR 开源项目，后者是一个目前流行的原子化 CSS 库，让不太会写 CSS、基础薄弱的我也能快速的写出灵活的样式。
 
 Next.js 会主动调用我们写好的一些函数 (`getStaticProps()`)，让组件得到数据的输入，从而**在构建阶段**将 React 组件提前渲染完成。`remark` 库可以将原生的 markdown 语法编译成 html 对应的 dom - 在此项目中，我们让它固定遍历 `posts` 文件夹下的 markdown 文件，依次编译，让其作为 `[id].js` 的动态路由页面的 `props`，从而渲染出博客文章:
 
@@ -88,16 +90,14 @@ Result:
 
 ### Images
 
-![Random Image](https://picsum.photos/400/600?grayscale)
-
-~~我被横线划过。~~
+![Random Image](https://proxy.lawrenceli.me/picsum.photos/400/600?grayscale)
 
 ### Video
 
-Same as the movie component:
+可以直接通过 `<bilibili />` 组件展示来自于 B 站视频，基于 iframe.
 
 <div>
-  <bilibili bv="BV1ys411a7Wu"></bilibili>
+  <bilibili bv="BV1gR4y1u76v"></bilibili>
 </div>
 
 <!-- or:
@@ -107,6 +107,8 @@ Same as the movie component:
 </div> -->
 
 ### Tweet / 𝕏
+
+`<tweet />` 组件展示推文：
 
 <div>
   <tweet id="1138070453942009856" />
@@ -132,7 +134,7 @@ JAMstack.
 
 `gist:darylwright/75332f27a6e9bff70bc0406114570829?file=gist-test.ts&highlights=1,3-5`
 
-## And more
+## And more to do
 
 Markdown 目前采用 GitHub Flavored Markdown ([GFM](https://github.github.com/gfm/)) ，并尝试添加新的语法元素支持。
 
