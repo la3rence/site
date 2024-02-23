@@ -9,8 +9,6 @@ RSS: A family of Web feed formats used to publish frequently updated works (blog
 
 Aaron Swartz is a pioneer of open web fundamentalism. His deeds once affected the way I looked at the world. He used an extreme attitude to tell the world how to fight against the world. I recommend you to watch the documentary "The Internet's Own Boy: The Story of Aaron Swartz". This is the best way to understand the authors of RSS.
 
-<div><douban id="25785114" /></div>
-
 Here are some feed examples I subscribed for reading:
 
 <https://blog.yitianshijie.net/feed/>
