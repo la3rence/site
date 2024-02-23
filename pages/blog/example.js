@@ -13,7 +13,7 @@ export const blogProps = {
   someKey: "someValeInJSXProps",
   tags: "example, test, jsx",
   locale: "en",
-  visible: true,
+  visible: false,
 };
 
 /**

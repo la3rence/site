@@ -1,19 +1,15 @@
 ---
-title: Invert binary tree
+title: 翻转二叉树
 date: "2017-12-22"
-description: "the author of Homebrew can't do."
+description: "Homebrew 作者也无法办到的事。"
 tags: programming
 ---
 
-A problem that Homebrew's author complained.
+来自 LeetCode 的经典算法题：翻转二叉树
 
----
+> 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
 
-Invert a binary tree. Problem from leetcode.
-
-> Given the root of a binary tree, invert the tree, and return its root.
-
-Here's the input:
+有如下输入:
 
 ```txt
      4
@@ -23,7 +19,7 @@ Here's the input:
 1   3 6   9
 ```
 
-and the out put looks like:
+期望输出结果是这样:
 
 ```txt
      4
@@ -33,13 +29,13 @@ and the out put looks like:
 9   6 3   1
 ```
 
-This problem was inspired by this [tweet](https://twitter.com/mxcl/status/608682016205344768).
+该问题由此[推文/X](https://twitter.com/mxcl/status/608682016205344768)所启发.
 
 <div>
     <tweet id="608682016205344768" />
 </div>
 
-Here's the solution implemented in Java.
+以下为 Java 的实现。
 
 ```java
 /**
@@ -65,4 +61,4 @@ class Solution {
 }
 ```
 
-There's much different logic behind software engineering with computer science. [Max replied this question about it on quora.com after 2 years.](https://bit.ly/2HqaTe5)
+软件工程和计算机科学有很大的区别。[后来 Max 在 Quara 上回应了这个问题。](https://bit.ly/2HqaTe5)

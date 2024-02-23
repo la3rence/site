@@ -24,7 +24,7 @@ tags: network, http, dns
 
 一个常见的现象：效率和安全（功能）往往不可兼得。七层负载均衡效率不高，其优势却在于可以植入一些应用上的逻辑，做流量压缩、鉴权、服务迁移、降级、熔断等处理，其可塑性会更好一点，且相对四层可以做一些安全上的设计，因为四层的负载均衡相当于直接间接地暴露了后端服务却难有应用层的调度。四层负载均衡器可以通过硬件实现，比如 F5，常见的软件实现是 lvs、nginx 中的 stream block，[Kubernetes 中的 Service 对象](https://kubernetes.io/zh/docs/concepts/services-networking/service/)。七层负载均衡器一般是一些高性能网关，比如 [OpenResty](https://openresty.org/cn/)，[Kubernetes 中的 Ingress 对象](https://kubernetes.io/zh/docs/concepts/services-networking/ingress/)。
 
-最后我有个小问题，倘若我们使用 DoH (DNS over HTTPS) 技术进行某个 FQDN 的解析，比如 CloudFlare 的 DNS HTTPS API：
+最后我有个小问题，倘若我们使用 DoH (DNS over HTTPS) 技术进行某个 FQDN 的解析，比如 Cloudflare 的 DNS HTTPS API：
 
 ```bash
 curl -H "accept: application/dns-json" "https://1.1.1.1/dns-query?name=lawrenceli.me"
@@ -32,7 +32,3 @@ curl -H "accept: application/dns-json" "https://1.1.1.1/dns-query?name=lawrencel
 
 假设此 HTTPS API 的结果会以 Round Robin 的形式返回多个不同的 IP 地址，那么仅基于此 DoH 做 DNS 解析的 Load Balancer 工作在第几层呢？
 我的答案仍然是第三层——事实上 DNS 工作在第七层，但是负载均衡器发挥的作用仍然是改变了处在第三层的 IP 地址。
-
-参考链接：
-
-- [四层、七层负载均衡的区别 - Jamin Zhang](https://jaminzhang.github.io/lb/L4-L7-Load-Balancer-Difference/)

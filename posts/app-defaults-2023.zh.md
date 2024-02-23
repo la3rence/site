@@ -6,7 +6,7 @@ modified: "2023-12-17"
 tags: app, life, 2023
 ---
 
-最近看到很多博主在[App Defaults](https://defaults.rknight.me/)中分享了他们的默认应用程序。以下是我自己的：
+最近看到很多博主在 [App Defaults](https://defaults.rknight.me/) 中分享了他们的默认应用程序。以下是我自己的：
 
 - 📨 邮件客户端
   - Apple 邮件
@@ -52,20 +52,20 @@ tags: app, life, 2023
   - [Slidev](https://sli.dev/)（通过 Markdown 生成幻灯片）
 - 🛒 购物清单
   - 在 Apple 提醒共享提醒列表
-- 🍴膳食计划
+- 🍴 膳食计划
   - 无
 - 💰 预算和个人理财
   - 以前用过 [iOS 的 Finances 2](https://hochgatterer.me/finances/ios/)，目前正在尝试 [BeanWise](https://apps.apple.com/us/app/beanwise/id6446314789?ref=https://lawrenceli.me)
 - 📰 新闻
-  - [Solidot](https://solidot.org) (中文版 [slashdot](https://slashdot.org) )
+  - [Solidot](https://solidot.org) (中文版的 [slashdot](https://slashdot.org))
   - [路透社](https://www.reuters.com/)
   - [Hacker News](https://news.ycombinator.com/)
 - 🎵 音乐
   - [Apple Music](https://music.apple.com/)（学生订阅只需每月 6 元）
   - [网易云音乐](https://music.163.com/)（作为 Apple Music 的补充）
 - 🎤 播客
-  - [Apple Podcast](https://www.apple.com/apple-podcasts/) 泛用型播客客户端，无审查
-- 🔐密码管理
+  - [Apple Podcast](https://www.apple.com/apple-podcasts/) 推荐泛用型播客客户端，无内容审查
+- 🔐 密码管理
   - iCloud KeyChain
   - [Google 身份验证器](https://apps.apple.com/us/app/google-authenticator/id388497605) 多因素身份验证
 
