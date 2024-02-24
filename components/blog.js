@@ -7,7 +7,6 @@ import "highlight.js/styles/sunburst.css";
 import "gist-syntax-themes/stylesheets/one-dark.css";
 import Tag from "./tag";
 import Avatar from "./avatar";
-import RewardImages from "./reward";
 import cfg from "../lib/config.mjs";
 import Disqus from "./disqus";
 import Comments from "./comments";
