@@ -5,7 +5,7 @@ module.exports = {
   //   appDir: true,
   // },
   i18n: {
-    locales: ["zh"], // post.en.md, post.ja.md
+    locales: ["zh", "en"], // post.en.md, post.ja.md
     defaultLocale: "zh", // post.zh.md or post.md
     localeDetection: false,
   },
