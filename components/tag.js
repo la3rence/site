@@ -1,5 +1,4 @@
 import Link from "next/link";
-import config from "../lib/config.mjs";
 
 export default function Tag(props) {
   const highlight = props.highlight
@@ -9,7 +8,7 @@ export default function Tag(props) {
     <Link
       href={`/tag/${props.tag.toLowerCase().trim()}`}
       className="no-underline"
-      locale={config.defaultLocale}
+      locale={props.locale}
     >
       <span
         className={`before:content-['#'] duration-100 transition rounded inline-block p-1 mx-1 text-sm font-mono ${highlight}`}

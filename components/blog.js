@@ -7,7 +7,6 @@ import "highlight.js/styles/sunburst.css";
 import "gist-syntax-themes/stylesheets/one-dark.css";
 import Tag from "./tag";
 import Avatar from "./avatar";
-import RewardImages from "./reward";
 import cfg from "../lib/config.mjs";
 import Disqus from "./disqus";
 import Comments from "./comments";
@@ -119,7 +118,9 @@ export default withView(props => {
           <div className="mx-2 mt-10">
             <div>
               {tags &&
-                tags.split(",").map(each => <Tag tag={each} key={each} />)}
+                tags
+                  .split(",")
+                  .map(each => <Tag tag={each} key={each} locale={locale} />)}
             </div>
           </div>
           <hr />
@@ -191,9 +192,9 @@ export default withView(props => {
             <Disqus url={pageURL} identifier={id} title={title} />
           )}
           {cfg.enableGitHubComment && !props.noReply && <Comments />}
-          {!props.noReward && (
+          {/* {!props.noReward && (
             <RewardImages text={"Scan the QR Code to leave a tip :)"} />
-          )}
+          )} */}
         </>
       )}
     </Layout>

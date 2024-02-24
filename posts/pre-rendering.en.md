@@ -1,6 +1,6 @@
 ---
-title: "Two Forms of Pre-rendering"
-date: "1970-01-01"
+title: "Next.js: Two Forms of Pre-rendering"
+date: "2018-01-01"
 description: "SSG & SSR"
 tags: ssg, ssr
 ---
