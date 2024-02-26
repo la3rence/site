@@ -10,7 +10,7 @@ dependencies:
     version: 3.0.2
   "@vercel/og":
     specifier: ^0.6.0
-    version: 0.6.0
+    version: 0.6.2
   disqus-react:
     specifier: ^1.1.5
     version: 1.1.5(react-dom@18.2.0)(react@18.2.0)
@@ -493,10 +493,10 @@ packages:
       tslib: 2.5.2
     dev: true
 
-  /@resvg/resvg-wasm@2.6.0:
+  /@resvg/resvg-wasm@2.4.0:
     resolution:
       {
-        integrity: sha512-iDkBM6Ivex8nULtBu8cX670/lfsGxq8U1cuqE+qS9xFpPQP1enPdVm/33Kq3+B+bAldA+AHNZnCgpmlHo/fZrQ==,
+        integrity: sha512-C7c51Nn4yTxXFKvgh2txJFNweaVcfUPQxwEUFw4aWsCmfiBDJsTSwviIF8EcwjQ6k8bPyMWCl1vw4BdxE569Cg==,
       }
     engines: { node: ">= 10" }
     dev: false
@@ -724,14 +724,14 @@ packages:
         integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==,
       }
 
-  /@vercel/og@0.6.0:
+  /@vercel/og@0.6.2:
     resolution:
       {
-        integrity: sha512-dLHUWTZnMAWJtXZPb6wQHoFwcxd/OaxYPW1HOxL5alT1AphF3ODC4clUoQsofrKdNGRkKfNlYZQh6AvHD6hryA==,
+        integrity: sha512-OTe0KE37F5Y2eTys6eMnfopC+P4qr2ooXUTFyFPTplYSPwowmFk/HLD1FXtbKLjqsIH0SgekcJWad+C5uX4nkg==,
       }
     engines: { node: ">=16" }
     dependencies:
-      "@resvg/resvg-wasm": 2.6.0
+      "@resvg/resvg-wasm": 2.4.0
       satori: 0.10.9
       yoga-wasm-web: 0.3.3
     dev: false
@@ -1251,7 +1251,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /client-only@0.0.1:
@@ -1618,10 +1618,10 @@ packages:
       }
     dev: true
 
-  /emoji-regex@10.2.1:
+  /emoji-regex@10.3.0:
     resolution:
       {
-        integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==,
+        integrity: sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==,
       }
     dev: false
 
@@ -2361,10 +2361,10 @@ packages:
       }
     dev: true
 
-  /fsevents@2.3.2:
+  /fsevents@2.3.3:
     resolution:
       {
-        integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==,
+        integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==,
       }
     engines: { node: ^8.16.0 || ^10.6.0 || >=11.0.0 }
     os: [darwin]
@@ -5319,7 +5319,7 @@ packages:
       css-background-parser: 0.1.0
       css-box-shadow: 1.0.0-3
       css-to-react-native: 3.2.0
-      emoji-regex: 10.2.1
+      emoji-regex: 10.3.0
       escape-html: 1.0.3
       linebreak: 1.1.0
       parse-css-color: 0.2.1
