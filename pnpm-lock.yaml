@@ -19,7 +19,7 @@ dependencies:
     version: 16.3.1
   flexsearch:
     specifier: ^0.7.31
-    version: 0.7.31
+    version: 0.7.43
   gist-syntax-themes:
     specifier: ^1.1.0
     version: 1.1.0
@@ -2295,10 +2295,10 @@ packages:
       }
     dev: true
 
-  /flexsearch@0.7.31:
+  /flexsearch@0.7.43:
     resolution:
       {
-        integrity: sha512-XGozTsMPYkm+6b5QL3Z9wQcJjNYxp0CYn3U1gO7dwD6PAqU1SVWZxI9CCg3z+ml3YfqdPnrBehaBrnH2AGKbNA==,
+        integrity: sha512-c5o/+Um8aqCSOXGcZoqZOm+NqtVwNsvVpWv6lfmSclU954O3wvQKxxK8zj74fPaSJbXpSLTs4PRhh+wnoCXnKg==,
       }
     dev: false
 
