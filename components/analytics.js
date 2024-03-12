@@ -3,7 +3,7 @@ export default function Umami() {
     <script
       async
       src={process.env.NEXT_PUBLIC_ANALYTICS_URL}
-      data-website-id="3ac93385-5b59-43e3-9b02-01fe09804587"
+      data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}
     ></script>
   );
 }
