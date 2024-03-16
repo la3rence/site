@@ -1,6 +1,6 @@
 ## About
 
-**Lawrence Li** (aka Lonor elsewhere) is an fundamentalist for Open World Wide Web. He was born in 1994. He's interested in DevOps, especially Kubernetes. He is always concerned about the open source community and new technologies - recently very into the serverless, cloud native and JAMstack. He learned several programming languages driven by interest and created stuff for fun. He is a fan of minimalist design, science fiction movies and electronic music. He has worked in an online education (startup) company, an investment bank, and now works in a SaaS startup company as a softerware engineer.
+**Lawrence Li** (aka Lonor elsewhere) is an fundamentalist for Open World Wide Web. He was born in 1994. He's interested in DevOps, especially Kubernetes. He is always concerned about the open source community and new technologies - recently very into the serverless, cloud native and JAMstack. He learned several programming languages driven by interest and created stuff for fun. He is a fan of minimalist design, science fiction movies and electronic music. He has worked in an online education (startup) company, an investment bank, and now works in a SaaS startup company as a software engineer.
 
 INTJ / Software Engineer / Blogger
 
