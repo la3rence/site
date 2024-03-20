@@ -10,6 +10,7 @@ module.exports = {
     localeDetection: false,
   },
   transpilePackages: ["react-tweet"],
+  poweredByHeader: false,
   async headers() {
     return [
       {

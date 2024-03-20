@@ -28,6 +28,10 @@ module.exports = {
               },
               "text-decoration": "none",
               "word-break": "break-word",
+              "@media (prefers-color-scheme: dark)": {
+                color: "#eeeeee",
+                "text-decoration": "underline",
+              },
             },
             "h2 a, h3 a, h4 a, h5 a, h6 a": {
               "text-decoration": "none",

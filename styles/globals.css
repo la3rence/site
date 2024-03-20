@@ -4,10 +4,10 @@
   body {
     @apply mb-8 overflow-y-scroll;
     font-family:
-      ui-sans-serif,
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
+      ui-sans-serif,
       "Segoe UI",
       Roboto,
       "Helvetica Neue",
@@ -25,6 +25,16 @@
   /* iframe  */
   .embed {
     @apply relative w-full overflow-hidden pt-[56%];
+  }
+
+  ::selection {
+    @apply bg-yellow-300 bg-opacity-75;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    ::selection {
+      @apply bg-pink-300 bg-opacity-75;
+    }
   }
 }
 

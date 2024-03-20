@@ -7,9 +7,9 @@ image: prow/k8s.jpg
 tags: note, kubernetes, k8s
 ---
 
-Kubernetes [中文概述](https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-kubernetes-%E5%AE%83%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88)（是什么以及不是什么）。
+Kubernetes [中文概述](https://kubernetes.io/zh-cn/docs/concepts/overview/)（是什么以及不是什么）。
 
-实践时建议使用 [kubectl 自动补全](https://kubernetes.io/zh/docs/reference/kubectl/cheatsheet/#kubectl-%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8)，极大提升交互效率。
+实践时建议使用 [kubectl 自动补全](https://kubernetes.io/docs/reference/kubectl/quick-reference/)，极大提升交互效率。
 
 ### Pod
 
