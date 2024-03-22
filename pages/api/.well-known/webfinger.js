@@ -28,6 +28,10 @@ export default async function webfinger(req, res) {
         "rel": "self",
         "type": "application/activity+json",
         "href": "${origin}/api/activitypub/actor"
+      },
+      {
+        "rel": "http://openid.net/specs/connect/1.0/issuer",
+        "href": "${config.oidcIssuer}"
       }
     ]
   }`);
