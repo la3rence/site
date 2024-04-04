@@ -133,7 +133,7 @@ public class MyApplication {
 }
 ```
 
-最后，定义一个 Component Bean 去实现 BaseJavaMigration:
+最后，定义一个 Component Bean 去实现 `BaseJavaMigration`:
 
 ```java
 package me.lawrenceli.balabala.migration;

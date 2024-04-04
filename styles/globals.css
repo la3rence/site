@@ -61,6 +61,10 @@
     @apply mx-0;
   }
 
+  code {
+    @apply break-words;
+  }
+
   details:has(pre) pre {
     @apply -mx-4;
   }
