@@ -1,4 +1,4 @@
-import { getPostsByTag, getAllTags } from "../../lib/ssg";
+import { getPostsByTag, getAllTags, getAllTagsLocale } from "../../lib/ssg";
 import Layout from "../../components/layout";
 import Tag from "../../components/tag";
 import { useRouter } from "next/router";
@@ -12,14 +12,16 @@ export default function TagPage(props) {
         Tagged with <code>{query.tag}</code>
       </h2>
       <div className="mt-8">
-        {props.tags?.map(tag => (
-          <Tag
-            tag={tag}
-            key={tag}
-            highlight={query.tag.toLowerCase().trim() === tag}
-            locale={locale}
-          />
-        ))}
+        {props.tags
+          ?.filter(item => item.locale === locale)
+          ?.map(item => (
+            <Tag
+              tag={item.label}
+              key={`${item.label}_${item.locale}`}
+              highlight={query.tag.toLowerCase().trim() === item.label}
+              locale={item.locale}
+            />
+          ))}
       </div>
       <div className="mt-8 mx-4">
         {props.data
@@ -51,7 +53,7 @@ export default function TagPage(props) {
 export const getStaticProps = async context => {
   const { tag } = context.params;
   const postData = await getPostsByTag(tag);
-  const tags = await getAllTags();
+  const tags = await getAllTagsLocale();
   return {
     props: {
       data: postData,
@@ -63,8 +65,6 @@ export const getStaticProps = async context => {
 export const getStaticPaths = async context => {
   const tags = await getAllTags();
   const paths = [];
-  // todo: filter out tags by locale matching
-  // currenly show all tags even if no posts
   context.locales.forEach(locale => {
     const pathsWithLocale = tags.map(tag => {
       return {
