@@ -3,16 +3,17 @@ import Layout from "../../components/layout";
 import Tag from "../../components/tag";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import withLocalization from "../../components/withI18n";
 
-export default function TagPage(props) {
+function TagPage({ tags, postData, translations }) {
   const { query, locale } = useRouter();
   return (
     <Layout title={`Tag: ${query.tag}`} tags={`${query.tag}, Tags`}>
       <h2>
-        Tagged with <code>{query.tag}</code>
+        {translations["Tagged with"]} <code>{query.tag}</code>
       </h2>
       <div className="mt-8">
-        {props.tags
+        {tags
           ?.filter(item => item.locale === locale)
           ?.map(item => (
             <Tag
@@ -24,9 +25,9 @@ export default function TagPage(props) {
           ))}
       </div>
       <div className="mt-8 mx-4">
-        {props.data
+        {postData
           ?.filter(post => post.locale === locale)
-          .map(post => (
+          ?.map(post => (
             <div className="mt-6" key={post.id}>
               <span className="text-lg">
                 <Link
@@ -49,6 +50,7 @@ export default function TagPage(props) {
     </Layout>
   );
 }
+export default withLocalization(TagPage);
 
 export const getStaticProps = async context => {
   const { tag } = context.params;
@@ -56,7 +58,7 @@ export const getStaticProps = async context => {
   const tags = await getAllTagsLocale();
   return {
     props: {
-      data: postData,
+      postData: postData,
       tags: tags,
     },
   };

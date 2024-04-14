@@ -1,4 +1,4 @@
-export default function Project({ name, desc, url }) {
+export default function Project({ name, desc, desc_zh, url, locale }) {
   return (
     <>
       {name && (
@@ -10,7 +10,8 @@ export default function Project({ name, desc, url }) {
           rel="noopener noreferrer"
         >
           <h5 className="pt-2">{name}</h5>
-          <p className="text-sm font-normal">{desc}</p>
+          {locale === "zh" && <p className="text-sm font-normal">{desc_zh}</p>}
+          {locale != "zh" && <p className="text-sm font-normal">{desc}</p>}
         </a>
       )}
     </>

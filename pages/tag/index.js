@@ -2,14 +2,15 @@ import { getAllTagsLocale } from "../../lib/ssg";
 import Layout from "../../components/layout";
 import Tag from "../../components/tag";
 import { useRouter } from "next/router";
+import withLocalization from "../../components/withI18n";
 
-export default function TagIndex(props) {
+function TagIndex({ tags, translations }) {
   const { locale } = useRouter();
   return (
-    <Layout title={`Tags`} tags={`Tags`}>
-      <h2>Tags</h2>
+    <Layout title={translations["Tags"]} tags={`Tags`}>
+      <h2>{translations["Tags"]}</h2>
       <div className="mt-8">
-        {props.tags
+        {tags
           ?.filter(item => item.locale === locale)
           ?.map(item => (
             <Tag tag={item.label} key={item.label} locale={item.locale} />
@@ -18,6 +19,8 @@ export default function TagIndex(props) {
     </Layout>
   );
 }
+
+export default withLocalization(TagIndex);
 
 export const getStaticProps = async () => {
   const tags = await getAllTagsLocale();

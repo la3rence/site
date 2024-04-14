@@ -2,13 +2,14 @@ import A from "./a";
 import config from "../lib/config.mjs";
 import { useEffect, useState } from "react";
 import { TwitterIcon, GitHubIcon, MailIcon } from "./svg";
+import withLocalization from "./withI18n";
 
 const { siteTitle, twitter, github, repo, authorEmail, enableBuildInfo } =
   config;
 const BUILDTIME = process.env.NEXT_PUBLIC_BUILDTIME;
 const GITSHA = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA; // latest git commit sha provided from vercel
 
-const Footer = () => {
+const Footer = ({ translations }) => {
   const [mounted, setMounted] = useState(false);
   const [pageRequestDuration, setPageRequestDuration] = useState(0);
 
@@ -64,11 +65,11 @@ const Footer = () => {
       </address>
       <div className="mt-0">
         <A href="/privacy" self="true">
-          <span className="mr-1">Privacy</span>
+          <span className="mr-1">{translations["Privacy"]}</span>
         </A>
         ·{" "}
         <A href="https://status.lawrenceli.me/">
-          <span className="mr-1">Status</span>
+          <span className="mr-1">{translations["Status"]}</span>
         </A>
         · <span>{new Date().getFullYear()} ©️ </span>
         <A href="/" self="true">
@@ -80,4 +81,4 @@ const Footer = () => {
 };
 
 // footer component
-export default Footer;
+export default withLocalization(Footer);
