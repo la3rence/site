@@ -3,10 +3,14 @@ import { getMdContentById } from "../lib/ssg";
 import withView from "../components/withView";
 import Project from "../components/project";
 import config from "../lib/config.mjs";
+import withLocalization from "../components/withI18n";
+import { useRouter } from "next/router";
 
 const About = props => {
+  const translations = props.translations;
+  const locale = useRouter().locale;
   return (
-    <Layout title={"About"} tags={"About"}>
+    <Layout title={translations["About"]} tags={"About"}>
       <div
         dangerouslySetInnerHTML={{
           __html: props.htmlStringContent,
@@ -14,60 +18,27 @@ const About = props => {
       />
       {config.projects && (
         <>
-          <h2 id="projects">
-            <a href="#projects">Projects</a>
-          </h2>
+          <h3 id="projects">
+            <a href="#projects">{translations["Open-Source Projects"]}</a>
+          </h3>
           <div className="flex flex-wrap gap-3">
             {config.projects.map(project => (
-              <Project {...project} key={project.name} />
+              <Project {...project} key={project.name} locale={locale} />
             ))}
           </div>
-        </>
-      )}
-      {config.mailchimp && (
-        <>
-          <h2 id="mailchimp">
-            <a href="#mailchimp" rel="noopener noreferrer">
-              Mail Subscription
-            </a>
-          </h2>
-          <p>
-            Subscribe this blog via{" "}
-            <a
-              href={config.mailchimp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className=" text-yellow-500 cursor-pointer"
-            >
-              MailChimp
-            </a>
-            . You will receive the mail about my new post when it published.
-          </p>
-        </>
-      )}
-      {config.activityPubUser && (
-        <>
-          <h2 id="ActivityPub">
-            <a href="#activitypub">ActivityPub</a>
-          </h2>
-          <p>
-            This blog is now in the <strong>Fediverse</strong>. Follow it with
-            ActivityPub:{" "}
-            <code>
-              @{config.activityPubUser}@{props.domain}
-            </code>
-          </p>
         </>
       )}
     </Layout>
   );
 };
 
-export default withView(About);
+export default withView(withLocalization(About));
 
-// render `./readme.md`
-export const getStaticProps = async () => {
-  const mdData = await getMdContentById("readme", process.cwd());
+// render `./readme.md` or `./reademe.en.md`
+export const getStaticProps = async context => {
+  const locale = context.locale;
+  const mdData = await getMdContentById(`readme.${locale}`, process.cwd());
+  mdData.locale = locale;
   return {
     props: mdData,
   };

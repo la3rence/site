@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 import config from "../lib/config.mjs";
 import Logo from "./logo";
 import { Adsense } from "./analytics";
+import withLocalization from "./withI18n";
+import LocalizationSwitch from "./switcher";
 
-export default function Header({
+function Header({
   title,
   blog,
   description,
@@ -15,6 +17,7 @@ export default function Header({
   modified,
   tags,
   image,
+  translations,
 }) {
   const router = useRouter();
   let {
@@ -124,11 +127,17 @@ export default function Header({
                       href={item.path}
                       className={`px-2 py-1 cursor-pointer ${hoverTabStyle}`}
                     >
-                      {item.label}
+                      {translations[item.label]}
                     </Link>
                   </li>
                 );
               })}
+              <LocalizationSwitch
+                className="px-2 py-1 hover:scale-110 transition-all"
+                locales={config.locales}
+                targetURL={router.asPath}
+                currentLocale={router.locale}
+              />
             </ul>
           </nav>
         </header>
@@ -136,3 +145,5 @@ export default function Header({
     </>
   );
 }
+
+export default withLocalization(Header);

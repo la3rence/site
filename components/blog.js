@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
+import withLocalization from "./withI18n";
 import { useEffect, useState } from "react";
 import "highlight.js/styles/sunburst.css";
 import "gist-syntax-themes/stylesheets/one-dark.css";
@@ -11,7 +12,7 @@ import cfg from "../lib/config.mjs";
 import Disqus from "./disqus";
 import Comments from "./comments";
 
-export default withView(props => {
+const Blog = props => {
   const {
     children,
     title,
@@ -24,6 +25,7 @@ export default withView(props => {
     image,
     i18n,
     locale,
+    translations,
   } = props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -104,7 +106,11 @@ export default withView(props => {
               </>
             )}
             <div className={`justify-end ${withImageColor}`} id="views">
-              {view > 10 && <small>{view} views</small>}
+              {view > 10 && (
+                <small>
+                  {view} {translations["views"]}
+                </small>
+              )}
             </div>
           </div>
         )}
@@ -127,7 +133,9 @@ export default withView(props => {
           <div>
             {likes?.length > 0 && (
               <>
-                <h4 id="like">Likes ({likes?.length})</h4>
+                <h4 id="like">
+                  {translations["Likes"]} ({likes?.length})
+                </h4>
                 <div className="mx-4 mt-2 mr-1 flex">
                   {likes?.map(like => {
                     return (
@@ -148,11 +156,13 @@ export default withView(props => {
             {!props.noReply && (
               <>
                 <h4 id="reply">
-                  Replies from Fediverse{" "}
+                  {translations["Replies from Fediverse"]}
                   {replies?.length > 0 ? `(${replies?.length})` : ""}
                 </h4>
                 <div className="mx-4 mt-4 text-sm">
-                  <span>Search this URL on mastodon to reply:</span>
+                  <span>
+                    {translations["Search this URL on Mastodon to reply"]}:
+                  </span>
                   <div className="font-mono my-4 break-words">{pageURL}</div>
                   <div className="mt-6">
                     {replies?.map(reply => {
@@ -173,7 +183,7 @@ export default withView(props => {
                               className="no-underline hover:underline"
                             >
                               <span className="h-6 leading-6">
-                                {reply.account} commented:
+                                {reply.account} {translations["commented"]}:
                               </span>
                             </a>
                           </div>
@@ -199,4 +209,6 @@ export default withView(props => {
       )}
     </Layout>
   );
-});
+};
+
+export default withView(withLocalization(Blog));
