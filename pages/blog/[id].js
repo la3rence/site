@@ -41,8 +41,9 @@ export default PathId;
 
 export const getStaticProps = async context => {
   const { id } = context.params;
+  const locale = context.locale;
   const mdData = await getMdContentById(
-    `${id}.${context.locale}`,
+    locale ? `${id}.${locale}` : id,
     defaultMarkdownDirectory,
     false,
   );
@@ -56,7 +57,7 @@ export const getStaticPaths = async () => {
   const paths = mdPostsData.map(data => {
     return {
       params: { id: data.id },
-      locale: config.locales.includes(data.locale)
+      locale: config.locales?.includes(data.locale)
         ? data.locale
         : config.defaultLocale,
     };

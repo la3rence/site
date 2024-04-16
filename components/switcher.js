@@ -5,13 +5,13 @@ const LocalizationSwitch = props => {
   return (
     <span {...props}>
       {props.locales
-        ?.filter(language => language !== props.currentLocale)
+        ?.filter(language => language !== props.currentlocale)
         ?.map(language => {
           return (
             <Link
               className="no-underline"
               key={language}
-              href={props.targetURL}
+              href={props.targeturl}
               locale={language}
             >
               <Translation />

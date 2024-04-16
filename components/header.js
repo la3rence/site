@@ -89,7 +89,7 @@ function Header({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: structuredData }}
         />
-        {config.locales.map(locale => (
+        {config.locales?.map(locale => (
           <link
             key={locale}
             rel="alternate"
@@ -120,7 +120,7 @@ function Header({
           <div className="flex-1" />
           <nav className="flex-4 flex items-center">
             <ul className="flex">
-              {navItems.map(item => {
+              {navItems?.map(item => {
                 return (
                   <li key={item.label}>
                     <Link
@@ -132,12 +132,14 @@ function Header({
                   </li>
                 );
               })}
-              <LocalizationSwitch
-                className="px-2 py-1 hover:scale-110 transition-all"
-                locales={config.locales}
-                targetURL={router.asPath}
-                currentLocale={router.locale}
-              />
+              {config.locales?.length > 1 && (
+                <LocalizationSwitch
+                  className="px-2 py-1 hover:scale-110 transition-all"
+                  locales={config.locales}
+                  targeturl={router.asPath}
+                  currentlocale={router.locale}
+                />
+              )}
             </ul>
           </nav>
         </header>

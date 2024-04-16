@@ -60,7 +60,7 @@ export const getStaticProps = async () => {
     id: post.id,
     title: post.title,
     date: post.date,
-    locale: post.locale,
+    locale: post.locale ? post.locale : null,
   }));
   return {
     props: {

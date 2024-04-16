@@ -38,7 +38,7 @@ export default withView(withLocalization(About));
 export const getStaticProps = async context => {
   const locale = context.locale;
   const mdData = await getMdContentById(`readme.${locale}`, process.cwd());
-  mdData.locale = locale;
+  mdData.locale = locale ? locale : null;
   return {
     props: mdData,
   };
