@@ -1,24 +1,11 @@
 import { useRouter } from "next/router";
-import en from "../lib/locales/en.json";
-import zh from "../lib/locales/zh.json";
+import { getTranslations } from "../lib/locales/index.mjs";
 
 // HoC for i18n of site menus, headers, footers...
 function withLocalization(Component) {
   return function WithLocalization(props) {
     const router = useRouter();
-    const { locale } = router;
-    let translations;
-
-    switch (locale) {
-      case "en":
-        translations = en;
-        break;
-      case "zh":
-        translations = zh;
-        break;
-      default:
-        translations = en;
-    }
+    const translations = getTranslations(router.locale);
     return <Component {...props} translations={translations} />;
   };
 }
