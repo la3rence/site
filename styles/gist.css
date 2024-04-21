@@ -167,10 +167,9 @@
   --color-mktg-btn-bg: #1b1f23;
   --color-mktg-btn-shadow-outline: rgb(0 0 0 / 15%) 0 0 0 1px inset;
   --color-mktg-btn-shadow-focus: rgb(0 0 0 / 15%) 0 0 0 4px;
-  --color-mktg-btn-shadow-hover: 0 3px 2px rgba(0, 0, 0, 0.07),
-    0 7px 5px rgba(0, 0, 0, 0.04), 0 12px 10px rgba(0, 0, 0, 0.03),
-    0 22px 18px rgba(0, 0, 0, 0.03), 0 42px 33px rgba(0, 0, 0, 0.02),
-    0 100px 80px rgba(0, 0, 0, 0.02);
+  --color-mktg-btn-shadow-hover: 0 3px 2px rgba(0, 0, 0, 0.07), 0 7px 5px rgba(0, 0, 0, 0.04),
+    0 12px 10px rgba(0, 0, 0, 0.03), 0 22px 18px rgba(0, 0, 0, 0.03),
+    0 42px 33px rgba(0, 0, 0, 0.02), 0 100px 80px rgba(0, 0, 0, 0.02);
   --color-mktg-btn-shadow-hover-muted: rgb(0 0 0 / 70%) 0 0 0 2px inset;
   --color-control-border-color-emphasis: #858f99;
   --color-avatar-bg: #ffffff;
@@ -183,8 +182,7 @@
   --color-select-menu-backdrop-border: rgba(0, 0, 0, 0);
   --color-select-menu-tap-highlight: rgba(175, 184, 193, 0.5);
   --color-select-menu-tap-focus-bg: #b6e3ff;
-  --color-overlay-shadow: 0 1px 3px rgba(31, 35, 40, 0.12),
-    0 8px 24px rgba(66, 74, 83, 0.12);
+  --color-overlay-shadow: 0 1px 3px rgba(31, 35, 40, 0.12), 0 8px 24px rgba(66, 74, 83, 0.12);
   --color-overlay-backdrop: rgba(140, 149, 159, 0.2);
   --color-header-text: rgba(255, 255, 255, 0.7);
   --color-header-bg: #24292f;
@@ -243,8 +241,7 @@
   --color-btn-outline-hover-bg: #0969da;
   --color-btn-outline-hover-border: rgba(31, 35, 40, 0.15);
   --color-btn-outline-hover-shadow: 0 1px 0 rgba(31, 35, 40, 0.1);
-  --color-btn-outline-hover-inset-shadow: inset 0 1px 0
-    rgba(255, 255, 255, 0.03);
+  --color-btn-outline-hover-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   --color-btn-outline-hover-counter-bg: rgba(255, 255, 255, 0.2);
   --color-btn-outline-selected-text: #ffffff;
   --color-btn-outline-selected-bg: hsla(212, 92%, 42%, 1);
@@ -512,8 +509,8 @@
 }
 
 .gist .markdown-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
@@ -581,8 +578,7 @@
 .gist .markdown-body blockquote {
   padding: 0 1em;
   color: var(--fgColor-muted, var(--color-fg-muted));
-  border-left: 0.25em solid
-    var(--borderColor-default, var(--color-border-default));
+  border-left: 0.25em solid var(--borderColor-default, var(--color-border-default));
 }
 
 .gist .markdown-body blockquote > :first-child {
@@ -1050,8 +1046,7 @@
   left: -24px;
   pointer-events: none;
   content: "";
-  border: 2px solid
-    var(--borderColor-accent-emphasis, var(--color-accent-emphasis));
+  border: 2px solid var(--borderColor-accent-emphasis, var(--color-accent-emphasis));
   border-radius: 6px;
 }
 
@@ -1208,8 +1203,7 @@
 .gist .blob-interaction-bar {
   position: relative;
   background-color: var(--bgColor-muted, var(--color-canvas-subtle));
-  border-bottom: 1px solid
-    var(--borderColor-default, var(--color-border-default));
+  border-bottom: 1px solid var(--borderColor-default, var(--color-border-default));
 }
 
 .gist .blob-interaction-bar::before {
@@ -1257,10 +1251,7 @@
   background-color: var(--bgColor-muted, var(--color-canvas-subtle));
 }
 
-.gist
-  .TagsearchPopover-list
-  .TagsearchPopover-list-item
-  .TagsearchPopover-item:hover {
+.gist .TagsearchPopover-list .TagsearchPopover-list-item .TagsearchPopover-item:hover {
   text-decoration: none;
 }
 
@@ -1402,8 +1393,7 @@
 
 .gist .diff-table tr:not(:last-child) .line-comments {
   border-top: 1px solid var(--borderColor-default, var(--color-border-default));
-  border-bottom: 1px solid
-    var(--borderColor-default, var(--color-border-default));
+  border-bottom: 1px solid var(--borderColor-default, var(--color-border-default));
 }
 
 .gist .diff-view .blob-code-marker-context::before,
@@ -1506,12 +1496,8 @@
 
 .gist .blob-code-inner.highlighted,
 .gist .blob-code-inner .highlighted {
-  background-color: var(
-    --bgColor-attention-muted,
-    var(--color-attention-subtle)
-  );
-  box-shadow: inset 2px 0 0
-    var(--borderColor-attention-muted, var(--color-attention-muted));
+  background-color: var(--bgColor-attention-muted, var(--color-attention-subtle));
+  box-shadow: inset 2px 0 0 var(--borderColor-attention-muted, var(--color-attention-muted));
 }
 
 .gist .blob-code-inner::selection,
@@ -1609,10 +1595,7 @@
 
 .gist .blob-num-hunk,
 .gist .blob-num-expandable {
-  background-color: var(
-    --diffBlob-hunk-bgColor-num,
-    var(--color-diff-blob-hunk-num-bg)
-  );
+  background-color: var(--diffBlob-hunk-bgColor-num, var(--color-diff-blob-hunk-num-bg));
 }
 
 .gist .blob-code-hunk {
@@ -1654,10 +1637,7 @@
   width: auto;
   height: auto;
   margin-right: -1px;
-  color: var(
-    --diffBlob-expander-iconColor,
-    var(--color-diff-blob-expander-icon)
-  );
+  color: var(--diffBlob-expander-iconColor, var(--color-diff-blob-expander-icon));
   cursor: pointer;
 }
 
@@ -1669,48 +1649,24 @@
 .gist .blob-num-expandable .directional-expander:hover {
   color: var(--fgColor-onEmphasis, var(--color-fg-on-emphasis));
   text-shadow: none;
-  background-color: var(
-    --bgColor-accent-emphasis,
-    var(--color-accent-emphasis)
-  );
-  border-color: var(
-    --borderColor-accent-emphasis,
-    var(--color-accent-emphasis)
-  );
+  background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));
+  border-color: var(--borderColor-accent-emphasis, var(--color-accent-emphasis));
 }
 
 .gist .blob-code-addition {
-  background-color: var(
-    --diffBlob-addition-bgColor-line,
-    var(--color-diff-blob-addition-line-bg)
-  );
+  background-color: var(--diffBlob-addition-bgColor-line, var(--color-diff-blob-addition-line-bg));
   outline: 1px dotted transparent;
 }
 
 .gist .blob-code-addition .x {
-  color: var(
-    --diffBlob-addition-fgColor-text,
-    var(--color-diff-blob-addition-fg)
-  );
-  background-color: var(
-    --diffBlob-addition-bgColor-word,
-    var(--color-diff-blob-addition-word-bg)
-  );
+  color: var(--diffBlob-addition-fgColor-text, var(--color-diff-blob-addition-fg));
+  background-color: var(--diffBlob-addition-bgColor-word, var(--color-diff-blob-addition-word-bg));
 }
 
 .gist .blob-num-addition {
-  color: var(
-    --diffBlob-addition-fgColor-num,
-    var(--color-diff-blob-addition-num-text)
-  );
-  background-color: var(
-    --diffBlob-addition-bgColor-num,
-    var(--color-diff-blob-addition-num-bg)
-  );
-  border-color: var(
-    --borderColor-success-emphasis,
-    var(--color-success-emphasis)
-  );
+  color: var(--diffBlob-addition-fgColor-num, var(--color-diff-blob-addition-num-text));
+  background-color: var(--diffBlob-addition-bgColor-num, var(--color-diff-blob-addition-num-bg));
+  border-color: var(--borderColor-success-emphasis, var(--color-success-emphasis));
 }
 
 .gist .blob-num-addition:hover {
@@ -1718,37 +1674,19 @@
 }
 
 .gist .blob-code-deletion {
-  background-color: var(
-    --diffBlob-deletion-bgColor-line,
-    var(--color-diff-blob-deletion-line-bg)
-  );
+  background-color: var(--diffBlob-deletion-bgColor-line, var(--color-diff-blob-deletion-line-bg));
   outline: 1px dashed transparent;
 }
 
 .gist .blob-code-deletion .x {
-  color: var(
-    --diffBlob-deletion-fgColor-text,
-    var(--color-diff-blob-deletion-fg)
-  );
-  background-color: var(
-    --diffBlob-deletion-bgColor-word,
-    var(--color-diff-blob-deletion-word-bg)
-  );
+  color: var(--diffBlob-deletion-fgColor-text, var(--color-diff-blob-deletion-fg));
+  background-color: var(--diffBlob-deletion-bgColor-word, var(--color-diff-blob-deletion-word-bg));
 }
 
 .gist .blob-num-deletion {
-  color: var(
-    --diffBlob-deletion-fgColor-num,
-    var(--color-diff-blob-deletion-num-text)
-  );
-  background-color: var(
-    --diffBlob-deletion-bgColor-num,
-    var(--color-diff-blob-deletion-num-bg)
-  );
-  border-color: var(
-    --borderColor-danger-emphasis,
-    var(--color-danger-emphasis)
-  );
+  color: var(--diffBlob-deletion-fgColor-num, var(--color-diff-blob-deletion-num-text));
+  background-color: var(--diffBlob-deletion-bgColor-num, var(--color-diff-blob-deletion-num-bg));
+  border-color: var(--borderColor-danger-emphasis, var(--color-danger-emphasis));
 }
 
 .gist .blob-num-deletion:hover {
@@ -1807,25 +1745,21 @@
 }
 
 .gist .selected-line.selected-line-top::after {
-  border-top: 1px solid
-    var(--borderColor-attention-muted, var(--color-attention-muted));
+  border-top: 1px solid var(--borderColor-attention-muted, var(--color-attention-muted));
 }
 
 .gist .selected-line.selected-line-bottom::after {
-  border-bottom: 1px solid
-    var(--borderColor-attention-muted, var(--color-attention-muted));
+  border-bottom: 1px solid var(--borderColor-attention-muted, var(--color-attention-muted));
 }
 
 .gist .selected-line:first-child::after,
 .gist .selected-line.selected-line-left::after {
-  border-left: 1px solid
-    var(--borderColor-attention-muted, var(--color-attention-muted));
+  border-left: 1px solid var(--borderColor-attention-muted, var(--color-attention-muted));
 }
 
 .gist .selected-line:last-child::after,
 .gist .selected-line.selected-line-right::after {
-  border-right: 1px solid
-    var(--borderColor-attention-muted, var(--color-attention-muted));
+  border-right: 1px solid var(--borderColor-attention-muted, var(--color-attention-muted));
 }
 
 .gist .is-commenting .selected-line.blob-code::before {
@@ -1851,10 +1785,7 @@
   text-align: center;
   text-indent: 0;
   cursor: pointer;
-  background-color: var(
-    --bgColor-accent-emphasis,
-    var(--color-accent-emphasis)
-  );
+  background-color: var(--bgColor-accent-emphasis, var(--color-accent-emphasis));
   border-radius: 6px;
   box-shadow: var(--shadow-resting-medium, var(--color-shadow-medium));
   opacity: 0;
@@ -1972,10 +1903,7 @@
 }
 
 @media (max-width: 1280px) {
-  .gist
-    .file-diff-split
-    .write-selected
-    .comment-form-head.tabnav:not(.CommentBox-header) {
+  .gist .file-diff-split .write-selected .comment-form-head.tabnav:not(.CommentBox-header) {
     margin-bottom: 80px !important;
   }
 
@@ -2123,11 +2051,7 @@
   opacity: 0;
 }
 
-.gist
-  .reorderable-task-lists
-  .markdown-body
-  .contains-task-list:dir(rtl)
-  .task-list-item {
+.gist .reorderable-task-lists .markdown-body .contains-task-list:dir(rtl) .task-list-item {
   margin-right: 0;
 }
 
@@ -2175,14 +2099,8 @@
   opacity: 0;
 }
 
-.gist
-  .convert-to-issue-enabled
-  .task-list-item.hovered
-  > .convert-to-issue-button,
-.gist
-  .convert-to-issue-enabled
-  .task-list-item
-  > .convert-to-issue-button:focus {
+.gist .convert-to-issue-enabled .task-list-item.hovered > .convert-to-issue-button,
+.gist .convert-to-issue-enabled .task-list-item > .convert-to-issue-button:focus {
   z-index: 20;
   opacity: 1;
 }
@@ -2190,8 +2108,7 @@
 .gist .convert-to-issue-enabled .task-list-item.is-loading {
   color: var(--fgColor-muted, var(--color-fg-muted));
   background-color: var(--bgColor-accent-muted, var(--color-accent-subtle));
-  border-top: 1px solid
-    var(--borderColor-accent-muted, var(--color-accent-subtle));
+  border-top: 1px solid var(--borderColor-accent-muted, var(--color-accent-subtle));
   border-bottom: 1px solid var(--bgColor-default, var(--color-canvas-default));
   border-left: 1px solid var(--bgColor-default, var(--color-canvas-default));
 }

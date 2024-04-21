@@ -20,32 +20,21 @@ function Header({
   translations,
 }) {
   const router = useRouter();
-  let {
-    siteTitle,
-    navItems,
-    authorName,
-    baseURL,
-    siteDescription,
-    twitter,
-    enableAdsense,
-  } = config;
+  let { siteTitle, navItems, authorName, baseURL, siteDescription, twitter, enableAdsense } =
+    config;
   const theDescription = description || siteDescription;
   const pageTitle = `${title} - ${siteTitle}`;
   const og = image
     ? `${baseURL}/images/${image}`
     : `${baseURL}/api/og?meta=${title},${themeColor?.replace("#", "")}`;
-  const createdDateString = date
-    ? new Date(date).toISOString()
-    : new Date(birthTime);
+  const createdDateString = date ? new Date(date).toISOString() : new Date(birthTime);
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: title,
     image: [og],
     datePublished: createdDateString,
-    dateModified: modified
-      ? new Date(modified).toISOString()
-      : createdDateString,
+    dateModified: modified ? new Date(modified).toISOString() : createdDateString,
     author: [
       {
         "@type": "Person",
@@ -60,10 +49,7 @@ function Header({
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta
-          name="keywords"
-          content={`${tags}, ${siteTitle}, ${authorName}, Blog, Article`}
-        />
+        <meta name="keywords" content={`${tags}, ${siteTitle}, ${authorName}, Blog, Article`} />
         <meta name="Description" content={theDescription} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:url" content={`${baseURL}${router.asPath}`} />
@@ -79,16 +65,9 @@ function Header({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="referrer" content="never" />
         {themeColor && (
-          <meta
-            name="theme-color"
-            content={themeColor}
-            media="(prefers-color-scheme: light)"
-          />
+          <meta name="theme-color" content={themeColor} media="(prefers-color-scheme: light)" />
         )}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: structuredData }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
         {config.locales?.map(locale => (
           <link
             key={locale}
@@ -123,10 +102,7 @@ function Header({
               {navItems?.map(item => {
                 return (
                   <li key={item.label}>
-                    <Link
-                      href={item.path}
-                      className={`px-2 py-1 cursor-pointer ${hoverTabStyle}`}
-                    >
+                    <Link href={item.path} className={`px-2 py-1 cursor-pointer ${hoverTabStyle}`}>
                       {translations[item.label]}
                     </Link>
                   </li>

@@ -24,8 +24,8 @@ export default function Example() {
   return (
     <Blog {...blogProps}>
       <p>
-        This page is fully rendered by <code>JSX</code>. You can update this
-        page with JavaScript and React components.
+        This page is fully rendered by <code>JSX</code>. You can update this page with JavaScript
+        and React components.
       </p>
       <p>
         Image example: <code>{"<Image />"}</code>

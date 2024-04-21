@@ -20,11 +20,7 @@ export default function Douban({ id, reverse }) {
   }
 
   return (
-    <div
-      className={`flex h-36 my-4 shadow-lg dark:bg-black ${
-        reverse ? "flex-row-reverse" : ""
-      }`}
-    >
+    <div className={`flex h-36 my-4 shadow-lg dark:bg-black ${reverse ? "flex-row-reverse" : ""}`}>
       <div className="w-2/3 flex flex-col px-4">
         <div className="truncate py-2 flex">
           {movie.title} {movie.original_title}
@@ -39,9 +35,7 @@ export default function Douban({ id, reverse }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <span className="bg-[#072] text-white p-[1px] rounded-sm mr-2">
-              豆
-            </span>
+            <span className="bg-[#072] text-white p-[1px] rounded-sm mr-2">豆</span>
             <span>{movie.url}</span>
           </a>
         </div>
@@ -50,9 +44,7 @@ export default function Douban({ id, reverse }) {
         <div className="w-1/3 not-prose">
           <img
             className="object-cover w-full h-full"
-            src={`${
-              process.env.NEXT_PUBLIC_PROXY_URL
-            }${movie.pic.large?.replace("https://", "")}`}
+            src={`${process.env.NEXT_PUBLIC_PROXY_URL}${movie.pic.large?.replace("https://", "")}`}
             alt={`${movie.title} 评分: ${movie.rating.value}`}
             title={`《${movie.title}》 评分: ${movie.rating.value}`}
           />

@@ -9,9 +9,5 @@ export default function Umami() {
 }
 
 export const Adsense = () => (
-  <script
-    async
-    src={process.env.NEXT_PUBLIC_ADS_URL}
-    crossOrigin="anonymous"
-  ></script>
+  <script async src={process.env.NEXT_PUBLIC_ADS_URL} crossOrigin="anonymous"></script>
 );

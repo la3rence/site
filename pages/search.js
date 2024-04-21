@@ -70,10 +70,7 @@ export default function Search({ posts }) {
       {searchResults.map(searchResult => {
         return (
           <div key={searchResult.path}>
-            <Link
-              href={searchResult.path}
-              className="no-underline cursor-pointer"
-            >
+            <Link href={searchResult.path} className="no-underline cursor-pointer">
               {searchResult.title.includes(keywords) ? (
                 <h2
                   dangerouslySetInnerHTML={{
@@ -92,11 +89,7 @@ export default function Search({ posts }) {
               {searchResult.items.map(item => {
                 return (
                   <div className="rounded-md" key={item.id}>
-                    <HighlightMatches
-                      match={keywords}
-                      value={item.content}
-                      indexId={item.id}
-                    />
+                    <HighlightMatches match={keywords} value={item.content} indexId={item.id} />
                   </div>
                 );
               })}
@@ -162,9 +155,7 @@ const HighlightMatches = ({ value, match, indexId }) => {
   if (value) {
     while ((result = regexp.exec(value)) !== null) {
       const before = splitText.splice(0, result.index - index).join("");
-      const keyword = splitText
-        .splice(0, regexp.lastIndex - result.index)
-        .join("");
+      const keyword = splitText.splice(0, regexp.lastIndex - result.index).join("");
       const markdown = `${before}${keyword}${splitText.join("")}`;
       let rendered = md.render(markdown);
       if (!rendered.includes("<img")) {

@@ -2,7 +2,7 @@
 title: "Next.js 的两种预渲染形式"
 date: "2018-01-01"
 description: "SSG & SSR"
-tags: ssg, ssr
+tags: ssg, ssr, vercel
 ---
 
 Next.js 有两种形式的预渲染：**静态生成**和**服务器端渲染**。 区别在于**何时**生成页面的 HTML。

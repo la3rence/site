@@ -57,10 +57,7 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 
 ```json
 {
-  "@context": [
-    "https://www.w3.org/ns/activitystreams",
-    "https://w3id.org/security/v1"
-  ],
+  "@context": ["https://www.w3.org/ns/activitystreams", "https://w3id.org/security/v1"],
   "id": "https://lawrenceli.me/api/activitypub/actor",
   "type": "Person",
   "name": "Lawrence Li",

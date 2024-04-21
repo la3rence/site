@@ -8,9 +8,7 @@ export function middleware(req) {
   const accept = req.headers.get("Accept");
   if (path.startsWith("/blog") && accept && accept.includes("activity")) {
     const blogId = path.split("/")[2];
-    return NextResponse.rewrite(
-      new URL(`/api/activitypub/blog/${blogId}`, req.url),
-    );
+    return NextResponse.rewrite(new URL(`/api/activitypub/blog/${blogId}`, req.url));
   }
   // RSS Feed i18n
   if (path.endsWith(cfg.feedFile)) {

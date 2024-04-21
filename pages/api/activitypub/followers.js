@@ -29,16 +29,8 @@ export async function saveFollower(follower) {
     }
   }
   orderedItems.push(follower);
-  const result = await followersCollection.replaceOne(
-    {},
-    { orderedItems },
-    { upsert: true },
-  );
-  console.log(
-    result.upsertedCount > 0
-      ? "Inserted new follower"
-      : "Updated existing follower",
-  );
+  const result = await followersCollection.replaceOne({}, { orderedItems }, { upsert: true });
+  console.log(result.upsertedCount > 0 ? "Inserted new follower" : "Updated existing follower");
 }
 
 export async function removeFollower(follower) {

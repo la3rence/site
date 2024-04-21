@@ -36,9 +36,7 @@ const Blog = props => {
   }, [id]);
 
   const getReplies = async id => {
-    const replies = await (
-      await fetch(`/api/activitypub/reply?id=${id}`)
-    ).json();
+    const replies = await (await fetch(`/api/activitypub/reply?id=${id}`)).json();
     setReplies(replies);
   };
 
@@ -62,10 +60,7 @@ const Blog = props => {
           </h1>
         )}
         {!props.noMeta && (
-          <div
-            className="articleTitle flex justify-start items-center flex-wrap mt-1"
-            id="meta"
-          >
+          <div className="articleTitle flex justify-start items-center flex-wrap mt-1" id="meta">
             <div
               className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
            hover:bg-zinc-300 hover:bg-opacity-20 pr-2"
@@ -78,17 +73,22 @@ const Blog = props => {
                     alt={author}
                   />
                   <small className={`ml-2 ${withImageColor}`}>{author}</small>
-                  <small
-                    className={`before:content-['/'] before:p-0 before:m-2 ${withImageColor}`}
-                  >
+                  <small className={`before:content-['/'] before:p-0 before:m-2 ${withImageColor}`}>
                     <time dateTime={date}>{date}</time>
                   </small>
                 </div>
               </Link>
             </div>
             <div className="flex-1" />
+            <div className={`${withImageColor}`} id="views">
+              {view > 10 && (
+                <small>
+                  {view} {translations["views"]}
+                </small>
+              )}
+            </div>
             {i18n?.length > 1 && (
-              <>
+              <div className="justify-end ml-2" id="i18n">
                 {i18n
                   .filter(language => language !== locale)
                   .map(language => {
@@ -99,19 +99,16 @@ const Blog = props => {
                         href={id}
                         locale={language}
                       >
-                        <small>🌐 {language.toUpperCase()}</small>
+                        <span>
+                          <span className="text-sm hover:font-semibold">
+                            {language?.toUpperCase()}
+                          </span>
+                        </span>
                       </Link>
                     );
                   })}
-              </>
+              </div>
             )}
-            <div className={`justify-end ${withImageColor}`} id="views">
-              {view > 10 && (
-                <small>
-                  {view} {translations["views"]}
-                </small>
-              )}
-            </div>
           </div>
         )}
         <div className="article mt-6">
@@ -123,10 +120,7 @@ const Blog = props => {
         <>
           <div className="mx-2 mt-10">
             <div>
-              {tags &&
-                tags
-                  .split(",")
-                  .map(each => <Tag tag={each} key={each} locale={locale} />)}
+              {tags && tags.split(",").map(each => <Tag tag={each} key={each} locale={locale} />)}
             </div>
           </div>
           <hr />
@@ -160,9 +154,7 @@ const Blog = props => {
                   {replies?.length > 0 ? `(${replies?.length})` : ""}
                 </h4>
                 <div className="mx-4 mt-4 text-sm">
-                  <span>
-                    {translations["Search this URL on Mastodon to reply"]}:
-                  </span>
+                  <span>{translations["Search this URL on Mastodon to reply"]}:</span>
                   <div className="font-mono my-4 break-words">{pageURL}</div>
                   <div className="mt-6">
                     {replies?.map(reply => {
@@ -170,11 +162,7 @@ const Blog = props => {
                         <div key={reply.url} className="mt-1">
                           <div className="flex">
                             <span className="mr-2 not-prose">
-                              <Avatar
-                                src={reply.avatar}
-                                size={25}
-                                alt={reply.account}
-                              />
+                              <Avatar src={reply.avatar} size={25} alt={reply.account} />
                             </span>
                             <a
                               href={reply.url}
@@ -187,9 +175,7 @@ const Blog = props => {
                               </span>
                             </a>
                           </div>
-                          <span
-                            dangerouslySetInnerHTML={{ __html: reply.content }}
-                          ></span>
+                          <span dangerouslySetInnerHTML={{ __html: reply.content }}></span>
                         </div>
                       );
                     })}

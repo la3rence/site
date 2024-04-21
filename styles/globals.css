@@ -2,7 +2,7 @@
 
 @layer base {
   body {
-    @apply mb-8 overflow-y-scroll;
+    @apply mb-8 overflow-y-scroll tracking-normal;
     font-family:
       system-ui,
       -apple-system,

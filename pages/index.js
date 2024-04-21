@@ -8,8 +8,7 @@ const getYear = date => new Date(date).getFullYear();
 
 const Index = function index({ allPostsData }) {
   const aggregatedPosts = allPostsData.reduce((result, currentPost) => {
-    (result[getYear(currentPost.date)] =
-      result[getYear(currentPost.date)] || []).push(currentPost);
+    (result[getYear(currentPost.date)] = result[getYear(currentPost.date)] || []).push(currentPost);
     return result;
   }, {});
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -22,9 +21,7 @@ const Index = function index({ allPostsData }) {
           .map(year => {
             return (
               <div key={year}>
-                {aggregatedPosts[year].some(
-                  post => post.locale === router.locale,
-                ) && (
+                {aggregatedPosts[year].some(post => post.locale === router.locale) && (
                   <div className="text-zinc-500 text-2xl mt-12 mb-6" id={year}>
                     {year}
                   </div>

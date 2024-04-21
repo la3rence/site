@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { TwitterIcon, GitHubIcon, MailIcon } from "./svg";
 import withLocalization from "./withI18n";
 
-const { siteTitle, twitter, github, repo, authorEmail, enableBuildInfo } =
-  config;
+const { siteTitle, twitter, github, repo, authorEmail, enableBuildInfo } = config;
 const BUILDTIME = process.env.NEXT_PUBLIC_BUILDTIME;
 const GITSHA = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA; // latest git commit sha provided from vercel
 

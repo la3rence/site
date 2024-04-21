@@ -6,10 +6,7 @@ export default async function webfinger(req, res) {
   res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=60");
   const origin = getOrigin(req);
   const resource = req.query.resource;
-  if (
-    !resource ||
-    resource != `acct:${config.activityPubUser}@${req.headers.host}`
-  ) {
+  if (!resource || resource != `acct:${config.activityPubUser}@${req.headers.host}`) {
     res.statusCode = 404;
     res.end(`{"error": "unknown resource"}`);
     return;

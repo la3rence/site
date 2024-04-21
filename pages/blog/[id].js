@@ -1,9 +1,5 @@
 import Blog from "../../components/blog";
-import {
-  getMdContentById,
-  getMdPostsData,
-  defaultMarkdownDirectory,
-} from "../../lib/ssg";
+import { getMdContentById, getMdPostsData, defaultMarkdownDirectory } from "../../lib/ssg";
 import path from "path";
 import { lazy } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
@@ -57,9 +53,7 @@ export const getStaticPaths = async () => {
   const paths = mdPostsData.map(data => {
     return {
       params: { id: data.id },
-      locale: config.locales?.includes(data.locale)
-        ? data.locale
-        : config.defaultLocale,
+      locale: config.locales?.includes(data.locale) ? data.locale : config.defaultLocale,
     };
   });
   // const paths = [

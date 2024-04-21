@@ -18,19 +18,23 @@ module.exports = {
     //   'sm': { 'max': '639px' },
     // },
     extend: {
-      typography: theme => ({
+      typography: () => ({
         DEFAULT: {
           css: {
             "p>a, .blog li>a": {
-              color: "#1d9bf0",
-              "&:hover": {
-                "text-decoration": "underline",
-              },
+              "border-bottom-width": "1px",
               "text-decoration": "none",
+              "border-color": "#bbb",
               "word-break": "break-word",
+              transition: "border-color 0.25s cubic-bezier(.4,0,.2,1)",
+              "&:hover": {
+                "border-color": "#000",
+              },
               "@media (prefers-color-scheme: dark)": {
-                color: "#eeeeee",
-                "text-decoration": "underline",
+                "border-color": "#999",
+                "&:hover": {
+                  "border-color": "#fff",
+                },
               },
             },
             "h2 a, h3 a, h4 a, h5 a, h6 a": {

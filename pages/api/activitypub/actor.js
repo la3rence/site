@@ -35,10 +35,7 @@ export const fetchAvatar = async actor => {
 export default async function actor(req, res) {
   const origin = getOrigin(req);
   respondActivityJSON(res, {
-    "@context": [
-      "https://www.w3.org/ns/activitystreams",
-      "https://w3id.org/security/v1",
-    ],
+    "@context": ["https://www.w3.org/ns/activitystreams", "https://w3id.org/security/v1"],
     id: `${origin}/api/activitypub/actor`,
     type: "Person",
     name: config.siteTitle,

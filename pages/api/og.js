@@ -14,9 +14,7 @@ async function fetchFont(text, font) {
       },
     })
   ).text();
-  const resource = css.match(
-    /src: url\((.+)\) format\('(opentype|truetype)'\)/,
-  );
+  const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
   if (!resource) return null;
   const res = await fetch(resource[1]);
   return res.arrayBuffer();
@@ -39,9 +37,7 @@ export default async function opengraph(request) {
           height: "100%",
           width: "100%",
           display: "flex",
-          backgroundColor: `${
-            color && color !== "undefined" ? `#${color}` : "#121212"
-          }`,
+          backgroundColor: `${color && color !== "undefined" ? `#${color}` : "#121212"}`,
         }}
       >
         <div tw="ml-12 flex text-zinc-200">

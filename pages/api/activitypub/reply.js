@@ -1,9 +1,5 @@
 import { getCollection } from "../../../lib/mongo";
-import {
-  fetchActorInformation,
-  getFediAcctFromActor,
-  fetchAvatar,
-} from "./actor";
+import { fetchActorInformation, getFediAcctFromActor, fetchAvatar } from "./actor";
 import { getOrigin } from "../../../lib/util";
 
 const REPLY_COLLECTION = "reply";

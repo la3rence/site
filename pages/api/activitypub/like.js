@@ -17,8 +17,6 @@ export const saveLike = async message => {
 export const getLikeForObjectId = async objectId => {
   const queryObject = { object: objectId };
   const projectionObject = { actor: 1 };
-  const result = await likesCollection
-    .find(queryObject, projectionObject)
-    .toArray();
+  const result = await likesCollection.find(queryObject, projectionObject).toArray();
   return result;
 };

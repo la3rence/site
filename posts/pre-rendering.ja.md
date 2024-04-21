@@ -2,7 +2,7 @@
 title: "Next.js 2 つの形式のプリレンダリング"
 date: "2018-01-01"
 description: "SSG & SSR"
-tags: ssg, ssr
+tags: ssg, ssr, vercel
 visible: false
 ---
 
