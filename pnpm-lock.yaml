@@ -40,7 +40,7 @@ dependencies:
     version: 14.1.0
   mongodb:
     specifier: ^6.0.0
-    version: 6.5.0
+    version: 6.6.0
   next:
     specifier: 14.2.3
     version: 14.2.3(react-dom@18.3.1)(react@18.3.1)
@@ -299,10 +299,10 @@ packages:
     engines: { node: ">=10" }
     dev: false
 
-  /@mongodb-js/saslprep@1.1.5:
+  /@mongodb-js/saslprep@1.1.6:
     resolution:
       {
-        integrity: sha512-XLNOMH66KhJzUJNwT/qlMnS4WsNDWD5ASdyaSH3EtK+F4r/CFGa3jT4GNi4mfOitGvWXtdLgQJkQjxSVrio+jA==,
+        integrity: sha512-jqTTXQ46H8cAxmXBu8wm1HTSIMBMrIcoVrsjdQkKdMBj3il/fSCgWyya4P2I1xjPBl69mw+nRphrPlcIqBd20Q==,
       }
     dependencies:
       sparse-bitfield: 3.0.3
@@ -1129,10 +1129,10 @@ packages:
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
     dev: true
 
-  /bson@6.6.0:
+  /bson@6.7.0:
     resolution:
       {
-        integrity: sha512-BVINv2SgcMjL4oYbBuCQTpE3/VKOSxrOA8Cj/wQP7izSzlBGVomdm+TcUd0Pzy0ytLSSDweCKQ6X3f5veM5LQA==,
+        integrity: sha512-w2IquM5mYzYZv6rs3uN2DZTOBe2a0zXLj53TGDqwF4l6Sz/XsISrisXOJihArF9+BZ6Cq/GjVht7Sjfmri7ytQ==,
       }
     engines: { node: ">=16.20.1" }
     dev: false
@@ -4209,10 +4209,10 @@ packages:
       whatwg-url: 13.0.0
     dev: false
 
-  /mongodb@6.5.0:
+  /mongodb@6.6.0:
     resolution:
       {
-        integrity: sha512-Fozq68InT+JKABGLqctgtb8P56pRrJFkbhW0ux+x1mdHeyinor8oNzJqwLjV/t5X5nJGfTlluxfyMnOXNggIUA==,
+        integrity: sha512-LoR0hel6y1i7pubPOzbflccdc89RDOapIGqwce4aenOfhhLKOqiQ2F4yQHP+Hqa7TuPhpVqDVjixbvUSx7R0rQ==,
       }
     engines: { node: ">=16.20.1" }
     peerDependencies:
@@ -4239,8 +4239,8 @@ packages:
       socks:
         optional: true
     dependencies:
-      "@mongodb-js/saslprep": 1.1.5
-      bson: 6.6.0
+      "@mongodb-js/saslprep": 1.1.6
+      bson: 6.7.0
       mongodb-connection-string-url: 3.0.0
     dev: false
 
