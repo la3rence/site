@@ -1,6 +1,7 @@
 ---
 title: 这个网站是如何构建的
 date: "2022-08-27"
+modified: "2024-05-04"
 description: 此文用于端到端测试 Markdown 样式
 tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 ---
@@ -25,6 +26,11 @@ tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
 ```shell
 pnpm install
 pnpm dev
+
+# [Optional] install turbo via `pnpm i -g turbo`
+# and you can try `turbo` for run any script in package.json like:
+turbo dev
+turbo build
 ```
 
 本地访问 <http://localhost:3000> 即可。
