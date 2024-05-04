@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "markdown": "github",
   "scripts": {
-    "dev": "pnpm feed && next dev -H 0.0.0.0",
+    "dev": "pnpm feed && next dev -H 0.0.0.0 --turbo",
     "feed": "node ./lib/feed.mjs",
     "websub": "node ./lib/websub.mjs",
     "start": "next start",
@@ -59,6 +59,6 @@
     "printWidth": 100
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }
