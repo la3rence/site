@@ -36,6 +36,10 @@
       @apply bg-pink-300 bg-opacity-75;
     }
   }
+
+  figcaption {
+    @apply text-center font-mono text-balance;
+  }
 }
 
 @tailwind components;
