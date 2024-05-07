@@ -54,7 +54,7 @@ const Blog = props => {
         {!props.noTitle && (
           <h1
             id="title"
-            className={`articleTitle font-medium mb-0 ${withImageMargin} ${withImageColor}`}
+            className={`articleTitle text-balance font-medium mb-0 ${withImageMargin} ${withImageColor}`}
           >
             {title}
           </h1>

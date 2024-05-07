@@ -40,7 +40,7 @@ Nacos、Redis、RabbitMQ 基于 Spring Cloud 写了一个通过一致性哈希�
     <github user="la3rence" repo="websocket-cluster"></github>
 </div>
 
-![HashRing:虚拟节点上线后部分客户端需要迁移节点](/images/websocket-cluster/hashring.png)
+![HashRing: 虚拟节点上线后部分客户端需要迁移节点](/images/websocket-cluster/hashring.png)
 
 另外，Nacos 作为微服务的注册中心是国内比较流行的选择。但有人早就向 Nacos 社区提出了[维护哈希环的议题](https://github.com/alibaba/nacos/issues/2114)；姑且不说此议题是否合理，但
 Nacos 的维护人员竟然没有能够理解这样的需求，还是有点令人诧异。

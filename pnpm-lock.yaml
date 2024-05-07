@@ -8,6 +8,9 @@ dependencies:
   "@jsdevtools/rehype-toc":
     specifier: ^3.0.2
     version: 3.0.2
+  "@microflash/rehype-figure":
+    specifier: ^2.1.0
+    version: 2.1.0
   "@vercel/og":
     specifier: ^0.6.0
     version: 0.6.2
@@ -299,6 +302,18 @@ packages:
     engines: { node: ">=10" }
     dev: false
 
+  /@microflash/rehype-figure@2.1.0:
+    resolution:
+      {
+        integrity: sha512-Ff1rrqjRYcmV9/7Qk8HM/mBpz9k5yzO8pgKfbI2hnN09sBQXoeOP4d9J419Mwk+LoMZlSfd4kgI92dFRtYBvUg==,
+      }
+    dependencies:
+      hast-util-whitespace: 3.0.0
+      hastscript: 9.0.0
+      unist-util-remove: 4.0.0
+      unist-util-visit: 5.0.0
+    dev: false
+
   /@mongodb-js/saslprep@1.1.6:
     resolution:
       {
@@ -363,6 +378,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: false
     optional: true
@@ -375,6 +391,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: false
     optional: true
@@ -387,6 +404,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: false
     optional: true
@@ -399,6 +417,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: false
     optional: true
@@ -2828,6 +2847,19 @@ packages:
     resolution:
       {
         integrity: sha512-dMOtzCEd3ABUeSIISmrETiKuyydk1w0pa+gE/uormcTpSYuaNJPbX1NU3JLyscSLjwAQM8bWMhhIlnCqnRvDTw==,
+      }
+    dependencies:
+      "@types/hast": 3.0.4
+      comma-separated-tokens: 2.0.3
+      hast-util-parse-selector: 4.0.0
+      property-information: 6.5.0
+      space-separated-tokens: 2.0.2
+    dev: false
+
+  /hastscript@9.0.0:
+    resolution:
+      {
+        integrity: sha512-jzaLBGavEDKHrc5EfFImKN7nZKKBdSLIdGvCwDZ9TfzbF2ffXiov8CKE445L2Z1Ek2t/m4SKQ2j6Ipv7NyUolw==,
       }
     dependencies:
       "@types/hast": 3.0.4
@@ -5918,6 +5950,17 @@ packages:
     dependencies:
       "@types/unist": 3.0.2
       unist-util-visit: 5.0.0
+    dev: false
+
+  /unist-util-remove@4.0.0:
+    resolution:
+      {
+        integrity: sha512-b4gokeGId57UVRX/eVKej5gXqGlc9+trkORhFJpu9raqZkZhU0zm8Doi05+HaiBsMEIJowL+2WtQ5ItjsngPXg==,
+      }
+    dependencies:
+      "@types/unist": 3.0.2
+      unist-util-is: 6.0.0
+      unist-util-visit-parents: 6.0.1
     dev: false
 
   /unist-util-stringify-position@3.0.3:
