@@ -21,7 +21,7 @@ module.exports = {
       typography: () => ({
         DEFAULT: {
           css: {
-            "p>a, .blog li>a": {
+            "p>a:not(.data-footnote-backref), .blog li>a": {
               "border-bottom-width": "1px",
               "text-decoration": "none",
               "border-color": "#bbb",
@@ -45,6 +45,9 @@ module.exports = {
               "@media (prefers-color-scheme: dark)": {
                 color: "#ccc",
               },
+            },
+            ".data-footnote-backref": {
+              "text-decoration": "none",
             },
           },
         },
