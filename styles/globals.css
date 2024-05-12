@@ -3,19 +3,7 @@
 @layer base {
   body {
     @apply mb-8 overflow-y-scroll tracking-normal;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      ui-sans-serif,
-      "Segoe UI",
-      Roboto,
-      "Helvetica Neue",
-      "Noto Sans",
-      sans-serif,
-      "Segoe UI Emoji",
-      "Segoe UI Symbol",
-      "Noto Color Emoji";
+    font-family: -apple-system, system-ui, sans-serif, Roboto, "Noto Sans", "Segoe UI";
   }
 
   img {
