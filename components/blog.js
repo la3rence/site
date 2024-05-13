@@ -68,7 +68,7 @@ const Blog = props => {
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
                   <Avatar
-                    src={"https://avatars.githubusercontent.com/u/24540598"}
+                    src={`https://github.com/${cfg.github}.png`}
                     size={25}
                     alt={author}
                   />
