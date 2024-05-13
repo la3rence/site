@@ -67,11 +67,7 @@ const Blog = props => {
             >
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
-                  <Avatar
-                    src={`https://github.com/${cfg.github}.png`}
-                    size={25}
-                    alt={author}
-                  />
+                  <Avatar src={`https://github.com/${cfg.github}.png`} size={25} alt={author} />
                   <small className={`ml-2 ${withImageColor}`}>{author}</small>
                   <small className={`before:content-['/'] before:p-0 before:m-2 ${withImageColor}`}>
                     <time dateTime={date}>{date}</time>
