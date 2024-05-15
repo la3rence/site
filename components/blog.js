@@ -11,6 +11,7 @@ import Avatar from "./avatar";
 import cfg from "../lib/config.mjs";
 import Disqus from "./disqus";
 import Comments from "./comments";
+import mediumZoom from "medium-zoom";
 
 const Blog = props => {
   const {
@@ -31,6 +32,7 @@ const Blog = props => {
   const [likes, setLikes] = useState([]);
 
   useEffect(() => {
+    mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
     getReplies(id);
     getLikes(id);
   }, [id]);
