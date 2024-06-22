@@ -1,9 +1,9 @@
 ---
 title: "My App Defaults"
 date: "2023-12-03"
-description: "My default apps in 2023. https://defaults.rknight.me/"
-modified: "2023-12-17"
-tags: app, life, 2023
+description: "My default apps in 2024. Inspired by https://defaults.rknight.me/"
+modified: "2024-06-23"
+tags: app, life, 2024
 ---
 
 I just saw many bloggers share their defalut apps in [App Defaults](https://defaults.rknight.me/). Here's my list:
@@ -29,16 +29,16 @@ I just saw many bloggers share their defalut apps in [App Defaults](https://defa
   - iCloud Drive (iCloud+)
   - [Aliyun Drive](https://www.aliyundrive.com/) (for Apple TV)
 - 📖 RSS
-  - Client: [Reeder](https://reederapp.com/) on iOS/Mac
-  - Service: Self-hosted [FreshRSS](https://freshrss.org/index.html), great PWA and web notification support.
+  - [Reeder](https://reederapp.com/) on iOS
+  - [ReadKit](https://readkit.app/) on macOS
+  - Self-hosted [FreshRSS](https://freshrss.org/index.html), great PWA and web notification support.
 - 🙍🏻‍♂️ Contacts
   - N/A, No contacts.
 - 🌐 Browser
-  - Chrome on Mac
+  - Firefox on macOS
   - Safari on iOS
 - 💬 Chat
   - [WeChat](https://www.wechat.com/) (a must app in China)
-  - [Microsoft Teams](https://apps.apple.com/ph/app/microsoft-teams/id1113153706) (for Work on iOS)
 - 🔖 Bookmarks
   - [Instapaper](https://www.instapaper.com/)
 - 📑 Read It Later
@@ -67,13 +67,22 @@ I just saw many bloggers share their defalut apps in [App Defaults](https://defa
   - [Apple Podcast](https://www.apple.com/apple-podcasts/) Universal Podcast Client, no censorship
 - 🔐 Password Management
   - iCloud Keychain
-  - [Google Authenticator](https://apps.apple.com/us/app/google-authenticator/id388497605) for 2FA
+  - [2FAS](https://2fas.com) for 2FA
 
 ## My extra defaults
 
 - 🚀 Self Hosting
-  - [Cloudflare](https://lawrenceli.me/blog/cloudflare) (for CDN & DNS), [Vercel](https://vercel.com), [Cloudflare Workers](https://developers.cloudflare.com/workers/), [fly.io](https://fly.io)
+  - [Cloudflare](https://lawrenceli.me/blog/cloudflare) (for CDN & DNS)
+  - [Vercel](https://vercel.com) Best experience with Next.js
+  - [Cloudflare Workers](https://developers.cloudflare.com/workers/) Serverless plarform by Cloudflare
+  - [fly.io](https://fly.io) Hosting you Docker container for free. Credit card required
 - 🤖 Automation
-  - [IFTTT](https://ifttt.com), Apple Shortcuts (previously Workflow)
+  - [IFTTT](https://ifttt.com) IF This Then That
+  - [Apple Shortcuts](http://workflow.is/) (previously Workflow)
+  - [ActivePieces](https://www.activepieces.com/) open source automation tool
 - 🛜 Network Tools
-  - [Tailscale](https://tailscale.com/), [Cloudflare WARP](https://1.1.1.1), [MerlinClash](https://mcreadme.gitbook.io/mc/)
+  - [Tailscale](https://tailscale.com/) zero config VPN
+  - [Cloudflare WARP](https://1.1.1.1) zero trust network with DoH
+  - [MerlinClash](https://mcreadme.gitbook.io/mc/) network tools for merlin router
+  - [WireGuard](https://github.com/WireGuard) the next generation vpn
+  - [ShadowRocket](https://apps.apple.com/us/app/shadowrocket/id932747118?l=zh-Hans-CN) popular network tool

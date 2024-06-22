@@ -1,9 +1,9 @@
 ---
 title: "我的默认应用"
 date: "2023-12-03"
-description: "My default apps in 2023. https://defaults.rknight.me/"
-modified: "2023-12-17"
-tags: app, life, 2023
+description: "My default apps in 2024. Inspired by https://defaults.rknight.me/"
+modified: "2024-06-23"
+tags: app, life, 2024
 ---
 
 最近看到很多博主在 [App Defaults](https://defaults.rknight.me/) 中分享了他们的默认应用程序。以下是我自己的：
@@ -29,12 +29,13 @@ tags: app, life, 2023
   - iCloud 云盘 (iCloud+)
   - [阿里云盘](https://www.aliyundrive.com/)（适用于 Apple TV）
 - 📖 RSS
-  - 客户端：iOS/macOS 上的 [Reeder](https://reederapp.com/)
-  - 服务端：自托管 [FreshRSS](https://freshrss.org/index.html)，出色的 PWA 和 Web 推送。
+  - iOS 上的 [Reeder](https://reederapp.com/)
+  - macOS 上的 [ReadKit](https://readkit.app/)
+  - 自托管 [FreshRSS](https://freshrss.org/index.html)，出色的 PWA 和 Web 推送。
 - 🙍🏻‍♂️ 通讯录
   - N/A，没有联系人。
 - 🌐 浏览器
-  - Mac 上的 Chrome
+  - Mac 上的 Firefox
   - iOS 上的 Safari
 - 💬 聊天
   - [微信](https://www.wechat.com/)（中国必备应用）
@@ -67,13 +68,22 @@ tags: app, life, 2023
   - [Apple Podcast](https://www.apple.com/apple-podcasts/) 推荐泛用型播客客户端，无内容审查
 - 🔐 密码管理
   - iCloud KeyChain
-  - [Google 身份验证器](https://apps.apple.com/us/app/google-authenticator/id388497605) 多因素身份验证
+  - [2FAS](https://2fas.com) 多因素身份验证
 
 ## 额外默认设置
 
 - 🚀 自托管
-  - [Cloudflare](https://lawrenceli.me/blog/cloudflare)（用于 CDN 和 DNS）、[Vercel](https://vercel.com)、[Cloudflare Workers](https://developers.cloudflare.com/workers/), [fly.io](https://fly.io)
+  - [Cloudflare](https://lawrenceli.me/blog/cloudflare)（用于 CDN 和 DNS）
+  - [Vercel](https://vercel.com) Next.js 的最佳部署体验
+  - [Cloudflare Workers](https://developers.cloudflare.com/workers/) 基于 Cloudflare 节点的 Serverless
+  - [fly.io](https://fly.io) 可免费运行 Docker 实例，需提供信用卡
 - 🤖 自动化
-  - [IFTTT](https://ifttt.com)，Apple 快捷指令（前 Workflow）
+  - [IFTTT](https://ifttt.com) IF This Then That
+  - [Apple 快捷指令](http://workflow.is/)（前 Workflow）
+  - [ActivePieces](https://www.activepieces.com/) 开源的自动化工具
 - 🛜 网络工具
-  - [Tailscale](https://tailscale.com/)、[Cloudflare WARP](https://1.1.1.1)、[MerlinClash](https://mcreadme.gitbook.io/mc/)
+  - [Tailscale](https://tailscale.com/) 零配置组网工具
+  - [Cloudflare WARP](https://1.1.1.1) 基于 DoH 的零信任网络
+  - [MerlinClash](https://mcreadme.gitbook.io/mc/) 梅林固件的网络工具
+  - [WireGuard](https://github.com/WireGuard) 下一代 VPN 协议
+  - [ShadowRocket](https://apps.apple.com/us/app/shadowrocket/id932747118?l=zh-Hans-CN) 最流行的网络工具
