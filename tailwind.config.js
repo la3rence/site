@@ -21,7 +21,7 @@ module.exports = {
       typography: () => ({
         DEFAULT: {
           css: {
-            "p>a:not(.data-footnote-backref), .blog li>a:not(.toc-link)": {
+            "p>a:not(.data-footnote-backref), .blog li>a": {
               "border-bottom-width": "1px",
               "text-decoration": "none",
               "border-color": "#bbb",
@@ -37,8 +37,26 @@ module.exports = {
                 },
               },
             },
-            "h2 a, h3 a, h4 a, h5 a, h6 a, .data-footnote-backref, .toc-link": {
+            "h1, h2, h3, h4, h5, h6": {
+              "margin-top": "1em",
+            },
+            "h2 a, h3 a, h4 a, h5 a, h6 a, .data-footnote-backref": {
               "text-decoration": "none",
+            },
+            ".toc-link": {
+              color: "#777",
+              "&:hover": {
+                color: "#000",
+              },
+              "@media (prefers-color-scheme: dark)": {
+                color: "#bbb",
+                "&:hover": {
+                  color: "#fff",
+                },
+              },
+            },
+            ".toc-item": {
+              "list-style-type": "none",
             },
           },
         },

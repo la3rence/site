@@ -65,11 +65,11 @@
   h3 > a,
   h4 > a,
   h5 > a {
-    @apply hover:after:content-["#"] hover:after:mx-2 hover:text-gray-400 cursor-pointer;
+    @apply hover:after:content-["#"] hover:after:mx-1 hover:text-gray-400;
   }
 
   #toc {
-    @apply h-0 sticky -ml-40 w-36 top-0 text-sm;
+    @apply h-0 sticky -ml-44 w-40 top-0 text-sm pt-4;
   }
 }
 
