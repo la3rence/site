@@ -84,14 +84,14 @@ function Header({
         backdrop-saturate-150 backdrop-blur-lg bg-opacity-70 bg-zinc-50 dark:bg-zinc-900 dark:bg-opacity-0"
       >
         <div className="w-[48rem] flex justify-between mx-auto">
-          <h1 className="w-32 cursor-pointe ">
+          <h1 className="w-32 cursor-pointer">
             <Link href={"/"}>
               <div className={`py-1 -mx-2 ${hoverTabStyle}`}>
                 <Logo title={siteTitle} />
               </div>
             </Link>
           </h1>
-          <nav className="flex-4 flex items-center ">
+          <nav className="flex-4 flex items-center">
             <ul className="flex">
               {navItems?.map(item => {
                 return (
