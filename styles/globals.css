@@ -2,12 +2,12 @@
 
 @layer base {
   body {
-    @apply mb-8 overflow-y-scroll tracking-normal;
+    @apply mb-8 overflow-y-scroll tracking-normal bg-zinc-50 dark:bg-zinc-900;
     font-family: -apple-system, system-ui, sans-serif, Roboto, "Noto Sans", "Segoe UI";
   }
 
   img {
-    @apply mx-auto dark:filter dark:brightness-75;
+    @apply mx-auto dark:filter dark:brightness-75 shadow-lg;
   }
 
   /* iframe  */

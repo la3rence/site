@@ -47,17 +47,11 @@ const Blog = props => {
     setLikes(likes);
   };
 
-  const withImageMargin = image ? "sm:-mt-28 -mt-32" : "mt-28";
-  const withImageColor = image ? "text-zinc-50" : "";
-
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
       <article className="blog">
         {!props.noTitle && (
-          <h1
-            id="title"
-            className={`articleTitle text-balance font-medium mb-0 ${withImageMargin} ${withImageColor}`}
-          >
+          <h1 id="title" className={`articleTitle text-balance font-medium mb-0 mt-14`}>
             {title}
           </h1>
         )}
@@ -70,15 +64,15 @@ const Blog = props => {
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
                   <Avatar src={`https://github.com/${cfg.github}.png`} size={25} alt={author} />
-                  <small className={`ml-2 ${withImageColor}`}>{author}</small>
-                  <small className={`before:content-['/'] before:p-0 before:m-2 ${withImageColor}`}>
+                  <small className={`ml-2`}>{author}</small>
+                  <small className={`before:content-['/'] before:p-0 before:m-2`}>
                     <time dateTime={date}>{date}</time>
                   </small>
                 </div>
               </Link>
             </div>
             <div className="flex-1" />
-            <div className={`${withImageColor}`} id="views">
+            <div id="views">
               {view > 10 && (
                 <small>
                   {view} {translations["views"]}

@@ -3,7 +3,7 @@ export default function Project({ name, desc, desc_zh, url, locale }) {
     <>
       {name && (
         <a
-          className="group cursor-pointer no-underline bg-zinc-100 
+          className="group cursor-pointer no-underline bg-zinc-100
        hover:bg-zinc-200 sm:w-[49%] w-full dark:bg-zinc-800 dark:hover:bg-zinc-600 shadow"
           href={url}
           target="_blank"
