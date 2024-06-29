@@ -81,7 +81,7 @@ function Header({
       </Head>
       <header
         className="flex justify-between mt-12 sticky top-0 z-50
-        backdrop-saturate-150 backdrop-blur-lg bg-opacity-75 bg-zinc-50 dark:bg-zinc-900 dark:bg-opacity-0"
+        backdrop-saturate-150 backdrop-blur-lg bg-opacity-70 bg-zinc-50 dark:bg-zinc-900 dark:bg-opacity-0"
       >
         <div className="w-[48rem] flex justify-between mx-auto">
           <h1 className="w-32 cursor-pointe ">
