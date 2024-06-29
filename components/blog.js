@@ -109,7 +109,7 @@ const Blog = props => {
             )}
           </div>
         )}
-        <div className="article mt-6">
+        <div className="article">
           {image && <div className="h-4"></div>}
           {children}
         </div>

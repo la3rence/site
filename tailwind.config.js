@@ -37,17 +37,26 @@ module.exports = {
                 },
               },
             },
-            "h2 a, h3 a, h4 a, h5 a, h6 a": {
+            "h1, h2, h3, h4, h5, h6": {
+              "margin-top": "1em",
+            },
+            "h2 a, h3 a, h4 a, h5 a, h6 a, .data-footnote-backref": {
               "text-decoration": "none",
             },
             ".toc-link": {
-              color: "#666",
+              color: "#777",
+              "&:hover": {
+                color: "#000",
+              },
               "@media (prefers-color-scheme: dark)": {
-                color: "#ccc",
+                color: "#bbb",
+                "&:hover": {
+                  color: "#fff",
+                },
               },
             },
-            ".data-footnote-backref": {
-              "text-decoration": "none",
+            ".toc-item": {
+              "list-style-type": "none",
             },
           },
         },

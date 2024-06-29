@@ -65,15 +65,11 @@
   h3 > a,
   h4 > a,
   h5 > a {
-    @apply hover:after:content-["#"] hover:after:mx-2 hover:text-gray-400 cursor-pointer;
+    @apply hover:after:content-["#"] hover:after:mx-1 hover:text-gray-400;
   }
 
-  details {
-    @apply text-sm px-4 py-2 border-t-2 border-b-2 border-dashed border-zinc-200 dark:border-zinc-800;
-  }
-
-  summary {
-    @apply cursor-pointer font-semibold;
+  #toc {
+    @apply h-0 sticky -ml-44 w-40 top-0 text-sm pt-4;
   }
 }
 
