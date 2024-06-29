@@ -9,7 +9,7 @@ import LocalizationSwitch from "./switcher";
 
 function Header({
   title,
-  blog,
+  // blog,
   description,
   date,
   themeColor,
@@ -79,25 +79,19 @@ function Header({
         ))}
         {enableAdsense && <Adsense />}
       </Head>
-      {image && (
-        <div
-          style={{ "--image-url": `url('/images/${image}')` }}
-          className={`h-60 sm:h-48 bg-cover bg-center w-full -z-50 top-0 bg-[image:var(--image-url)]`}
-        >
-          <div className="h-60 sm:h-48 bg-gradient-to-b from-transparent to-zinc-900 w-full"></div>
-        </div>
-      )}
-      {!blog && (
-        <header className="mx-auto max-w-3xl flex mt-12 text-zinc-500">
-          <h1 className="w-32 cursor-pointer">
+      <header
+        className="flex justify-between mt-12 sticky top-0 z-50
+        backdrop-saturate-150 backdrop-blur-lg bg-opacity-75 bg-zinc-50 dark:bg-zinc-900 dark:bg-opacity-0"
+      >
+        <div className="w-[48rem] flex justify-between mx-auto">
+          <h1 className="w-32 cursor-pointe ">
             <Link href={"/"}>
               <div className={`py-1 -mx-2 ${hoverTabStyle}`}>
                 <Logo title={siteTitle} />
               </div>
             </Link>
           </h1>
-          <div className="flex-1" />
-          <nav className="flex-4 flex items-center">
+          <nav className="flex-4 flex items-center ">
             <ul className="flex">
               {navItems?.map(item => {
                 return (
@@ -118,8 +112,8 @@ function Header({
               )}
             </ul>
           </nav>
-        </header>
-      )}
+        </div>
+      </header>
     </>
   );
 }
