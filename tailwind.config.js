@@ -21,7 +21,7 @@ module.exports = {
       typography: () => ({
         DEFAULT: {
           css: {
-            "p>a:not(.data-footnote-backref), .blog li>a": {
+            "p>a:not(.data-footnote-backref), .blog li>a:not(.toc-link)": {
               "border-bottom-width": "1px",
               "text-decoration": "none",
               "border-color": "#bbb",
@@ -37,16 +37,7 @@ module.exports = {
                 },
               },
             },
-            "h2 a, h3 a, h4 a, h5 a, h6 a": {
-              "text-decoration": "none",
-            },
-            ".toc-link": {
-              color: "#666",
-              "@media (prefers-color-scheme: dark)": {
-                color: "#ccc",
-              },
-            },
-            ".data-footnote-backref": {
+            "h2 a, h3 a, h4 a, h5 a, h6 a, .data-footnote-backref, .toc-link": {
               "text-decoration": "none",
             },
           },
