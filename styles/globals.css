@@ -2,7 +2,7 @@
 
 @layer base {
   body {
-    @apply mb-8 overflow-y-scroll tracking-normal bg-zinc-50 dark:bg-zinc-900;
+    @apply mb-8 overflow-y-scroll tracking-normal bg-white dark:bg-zinc-900;
     font-family: -apple-system, system-ui, sans-serif, Roboto, "Noto Sans", "Segoe UI";
   }
 
