@@ -44,7 +44,7 @@ function Header({
     ],
   });
   const hoverTabStyle =
-    "hover:bg-zinc-100 text-zinc-700 transition duration-500 dark:hover:bg-zinc-700 dark:text-zinc-300 hover:transition-transform";
+    "opacity-65 hover:opacity-95 transition duration-500 hover:transition-transform";
   return (
     <>
       <Head>
@@ -79,11 +79,8 @@ function Header({
         ))}
         {enableAdsense && <Adsense />}
       </Head>
-      <header
-        className="flex justify-between mt-12 sticky top-0 z-50
-        backdrop-saturate-150 backdrop-blur-lg bg-opacity-70 bg-zinc-50 dark:bg-zinc-900 dark:bg-opacity-0"
-      >
-        <div className="w-[48rem] flex justify-between mx-auto">
+      <header className="flex justify-between sticky top-0 mt-10 z-50 backdrop-blur-lg bg-white/50 dark:bg-zinc-900/50 ">
+        <div className="w-[48rem] flex justify-between mx-auto ">
           <h1 className="w-32 cursor-pointer">
             <Link href={"/"}>
               <div className={`py-1 -mx-2 ${hoverTabStyle}`}>
@@ -91,12 +88,15 @@ function Header({
               </div>
             </Link>
           </h1>
-          <nav className="flex-4 flex items-center">
+          <nav className="flex-4 mt-3 items-center">
             <ul className="flex">
               {navItems?.map(item => {
                 return (
                   <li key={item.label}>
-                    <Link href={item.path} className={`px-2 py-1 cursor-pointer ${hoverTabStyle}`}>
+                    <Link
+                      href={item.path}
+                      className={`mx-2 ${router.asPath == item.path ? "opacity-90" : hoverTabStyle}`}
+                    >
                       {translations[item.label]}
                     </Link>
                   </li>
@@ -104,7 +104,7 @@ function Header({
               })}
               {config.locales?.length > 1 && (
                 <LocalizationSwitch
-                  className="px-2 py-1 hover:scale-110 transition-all"
+                  className={`px-2 py-1 hover:scale-110 transition-all ${hoverTabStyle}`}
                   locales={config.locales}
                   targeturl={router.asPath}
                   currentlocale={router.locale}
