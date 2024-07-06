@@ -24,7 +24,7 @@
     "gray-matter": "4.0.3",
     "hast-util-from-html": "^2.0.0",
     "hast-util-to-jsx-runtime": "^2.1.1",
-    "highlight.js": "11.9.0",
+    "highlight.js": "11.10.0",
     "markdown-it": "^14.0.0",
     "medium-zoom": "^1.1.0",
     "mongodb": "^6.0.0",
