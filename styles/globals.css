@@ -6,8 +6,12 @@
     font-family: -apple-system, system-ui, sans-serif, Roboto, "Noto Sans", "Segoe UI";
   }
 
+  figure {
+    @apply max-w-max w-full mx-auto;
+  }
+
   img {
-    @apply mx-auto dark:filter dark:brightness-75 shadow-lg;
+    @apply mx-auto dark:filter dark:brightness-75;
   }
 
   /* iframe  */
@@ -26,39 +30,35 @@
   }
 
   figcaption {
-    @apply text-center font-mono text-balance;
+    @apply text-center text-balance;
   }
 }
 
 @tailwind components;
 
 @layer components {
-  /* margin all content except media like images */
   .blogIndex,
   .articleTitle,
+  .tags,
+  .social,
+  .comments,
+  .gist,
   p,
   blockquote,
+  ol,
   ul,
   h1,
   h2,
   h3,
   h4,
-  h5 {
-    @apply mx-4;
-  }
-
-  p:has(img),
-  p:has(span),
-  li > p {
-    @apply mx-0;
-  }
-
+  h5,
   code {
-    @apply break-words;
+    @apply max-w-3xl mx-auto px-2;
   }
 
-  details:has(pre) pre {
-    @apply -mx-4;
+  table,
+  .projects {
+    @apply max-w-4xl mx-auto;
   }
 
   h2 > a,
@@ -68,13 +68,13 @@
     @apply hover:after:content-["#"] hover:after:mx-2 hover:text-gray-400 cursor-pointer;
   }
 
-  details {
+  /* details {
     @apply text-sm px-4 py-2 border-t-2 border-b-2 border-dashed border-zinc-200 dark:border-zinc-800;
-  }
+  } */
 
-  summary {
+  /* summary {
     @apply cursor-pointer font-semibold;
-  }
+  } */
 }
 
 @tailwind utilities;

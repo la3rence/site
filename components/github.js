@@ -31,19 +31,21 @@ export default function GitHub({ user, repo }) {
   }
 
   return (
-    <div className="my-6 flex items-center shadow-md dark:bg-black">
+    <div className="my-4 flex items-center border-t border-b border-zinc-100 dark:border-zinc-800  dark:bg-black">
       <div className="flex-1">
-        <p className="my-2 pl-4">
-          <span className="mr-1">📔</span>
+        <p className="my-2">
+          <span className="mr-1 h-5 w-5">
+            <GitHubIcon style={{ height: 20, width: 20 }} />
+          </span>
           <a href={data.html_url} target="_blank" rel="noopener noreferrer">
-            {data.name}
+            {data.full_name}
           </a>
           <span className="ml-2 rounded-full border border-zinc-500 text-xs px-1">
             {data.is_template ? "Public template" : "Public"}
           </span>
         </p>
         <p className="my-3 text-sm">{data.description}</p>
-        <p className="my-3 text-sm pl-4">
+        <p className="my-3 text-sm">
           {data && (
             <span
               className={`w-3 h-3 inline-block rounded-full mr-1 ${
@@ -56,9 +58,9 @@ export default function GitHub({ user, repo }) {
           <span>🛠 {data.forks}</span>
         </p>
       </div>
-      <div className="w-28 h-24">
+      {/* <div className="w-28 h-24">
         <GitHubIcon style={{ height: 84, width: 84 }} />
-      </div>
+      </div> */}
     </div>
   );
 }

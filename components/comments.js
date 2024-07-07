@@ -19,5 +19,5 @@ export default function Comments() {
     scriptElement.setAttribute("data-input-position", "bottom");
     ref.current?.appendChild(scriptElement);
   }, []);
-  return <div className="mx-2" ref={ref} />;
+  return <div ref={ref} />;
 }

@@ -20,8 +20,10 @@ export default function Douban({ id, reverse }) {
   }
 
   return (
-    <div className={`flex h-36 my-4 shadow-lg dark:bg-black ${reverse ? "flex-row-reverse" : ""}`}>
-      <div className="w-2/3 flex flex-col px-4">
+    <div
+      className={`flex h-36 my-4 max-w-4xl mx-auto border dark:bg-black ${reverse ? "flex-row-reverse" : ""}`}
+    >
+      <div className="w-2/3 flex flex-col px-4  ">
         <div className="truncate py-2 flex">
           {movie.title} {movie.original_title}
         </div>

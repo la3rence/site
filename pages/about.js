@@ -21,7 +21,7 @@ const About = props => {
           <h3 id="projects">
             <a href="#projects">{translations["Open-Source Projects"]}</a>
           </h3>
-          <div className="flex flex-wrap gap-3">
+          <div className="projects flex flex-wrap gap-3">
             {config.projects.map(project => (
               <Project {...project} key={project.name} locale={locale} />
             ))}

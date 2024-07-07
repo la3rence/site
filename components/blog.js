@@ -110,19 +110,19 @@ const Blog = props => {
       </article>
       {!props.noMeta && (
         <>
-          <div className="mx-2 mt-10">
+          <div className="tags mt-10">
             <div>
               {tags && tags.split(",").map(each => <Tag tag={each} key={each} locale={locale} />)}
             </div>
           </div>
           <hr />
-          <div>
+          <div className="social">
             {likes?.length > 0 && (
               <>
                 <h4 id="like">
                   {translations["Likes"]} ({likes?.length})
                 </h4>
-                <div className="mx-4 mt-2 mr-1 flex">
+                <div className="mx-2 mt-2 mr-1 flex">
                   {likes?.map(like => {
                     return (
                       <a
@@ -145,7 +145,7 @@ const Blog = props => {
                   {translations["Replies from Fediverse"]}
                   {replies?.length > 0 ? `(${replies?.length})` : ""}
                 </h4>
-                <div className="mx-4 mt-4 text-sm">
+                <div className="mx-2 mt-4 text-sm">
                   <span>{translations["Search this URL on Mastodon to reply"]}:</span>
                   <div className="font-mono my-4 break-words">{pageURL}</div>
                   <div className="mt-6">
@@ -176,13 +176,15 @@ const Blog = props => {
               </>
             )}
           </div>
-          {cfg.enableDisqus && !props.noReply && (
-            <Disqus url={pageURL} identifier={id} title={title} />
-          )}
-          {cfg.enableGitHubComment && !props.noReply && <Comments />}
-          {/* {!props.noReward && (
+          <div className="comments">
+            {cfg.enableDisqus && !props.noReply && (
+              <Disqus url={pageURL} identifier={id} title={title} />
+            )}
+            {cfg.enableGitHubComment && !props.noReply && <Comments />}
+            {/* {!props.noReward && (
             <RewardImages text={"Scan the QR Code to leave a tip :)"} />
           )} */}
+          </div>
         </>
       )}
     </Layout>
