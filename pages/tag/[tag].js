@@ -9,43 +9,45 @@ function TagPage({ tags, postData, translations }) {
   const { query, locale } = useRouter();
   return (
     <Layout title={`Tag: ${query.tag}`} tags={`${query.tag}, Tags`}>
-      <h2>
-        {translations["Tagged with"]} <code>{query.tag}</code>
-      </h2>
-      <div className="mt-8">
-        {tags
-          ?.filter(item => item.locale === locale)
-          ?.map(item => (
-            <Tag
-              tag={item.label}
-              key={`${item.label}_${item.locale}`}
-              highlight={query.tag.toLowerCase().trim() === item.label}
-              locale={item.locale}
-            />
-          ))}
-      </div>
-      <div className="mt-8 mx-4">
-        {postData
-          ?.filter(post => post.locale === locale)
-          ?.map(post => (
-            <div className="mt-6" key={post.id}>
-              <span className="text-lg">
-                <Link
-                  href={`/blog/${post.id}`}
-                  className={`p-0 no-underline font-normal`}
-                  locale={locale}
-                >
-                  {post.title}
-                </Link>
-              </span>
-              <div className="font-mono pt-2">
-                <span className="pr-2">{post.date}</span>
-                {post.tags.split(",").map(tag => (
-                  <Tag tag={tag} key={tag} locale={locale} />
-                ))}
+      <div className="tags">
+        <h2>
+          {translations["Tagged with"]} <code>{query.tag}</code>
+        </h2>
+        <div className="mt-8">
+          {tags
+            ?.filter(item => item.locale === locale)
+            ?.map(item => (
+              <Tag
+                tag={item.label}
+                key={`${item.label}_${item.locale}`}
+                highlight={query.tag.toLowerCase().trim() === item.label}
+                locale={item.locale}
+              />
+            ))}
+        </div>
+        <div className="mt-8 mx-4">
+          {postData
+            ?.filter(post => post.locale === locale)
+            ?.map(post => (
+              <div className="mt-6" key={post.id}>
+                <span className="text-lg">
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className={`p-0 no-underline font-normal`}
+                    locale={locale}
+                  >
+                    {post.title}
+                  </Link>
+                </span>
+                <div className="font-mono pt-2">
+                  <span className="pr-2">{post.date}</span>
+                  {post.tags.split(",").map(tag => (
+                    <Tag tag={tag} key={tag} locale={locale} />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
     </Layout>
   );

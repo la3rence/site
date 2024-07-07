@@ -8,13 +8,15 @@ function TagIndex({ tags, translations }) {
   const { locale } = useRouter();
   return (
     <Layout title={translations["Tags"]} tags={`Tags`}>
-      <h2>{translations["Tags"]}</h2>
-      <div className="mt-8">
-        {tags
-          ?.filter(item => item.locale === locale)
-          ?.map(item => (
-            <Tag tag={item.label} key={item.label} locale={item.locale} />
-          ))}
+      <div className="tags">
+        <h2>{translations["Tags"]}</h2>
+        <div className="mt-8">
+          {tags
+            ?.filter(item => item.locale === locale)
+            ?.map(item => (
+              <Tag tag={item.label} key={item.label} locale={item.locale} />
+            ))}
+        </div>
       </div>
     </Layout>
   );
