@@ -1,9 +1,9 @@
 ---
 title: 这个网站是如何构建的
 date: "2022-08-27"
-modified: "2024-05-04"
+modified: "2024-07-07"
 description: 此文用于端到端测试 Markdown 样式
-tags: markdown, example, guide, jamstack, ssg, vercel, nextjs
+tags: markdown, example, guide, jamstack, ssg, vercel, nextjs, design
 ---
 
 ## 使用方式
@@ -39,6 +39,11 @@ turbo build
 通过 `pnpm fmt` 来将所有代码和文本进行格式化。
 
 这篇文章展示了此博客项目所能展示的一切媒体信息，比如代码引用、表格展示、图片、视频、豆瓣卡片等等。
+
+2024/07 更新：
+
+- 顶部导航栏启用毛玻璃动态悬浮
+- 全新的 edge to edge 设计风格，充分利用屏幕区域展示代码和图片
 
 ## 技术细节
 

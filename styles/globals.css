@@ -42,7 +42,6 @@
   .tags,
   .social,
   .comments,
-  .gist,
   p,
   blockquote,
   ol,
@@ -60,8 +59,9 @@
   }
 
   table,
+  .gist,
   .projects {
-    @apply max-w-4xl mx-auto;
+    @apply max-w-3xl mx-auto;
   }
 
   h2 > a,
