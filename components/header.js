@@ -79,8 +79,8 @@ function Header({
         ))}
         {enableAdsense && <Adsense />}
       </Head>
-      <header className="flex justify-between sticky top-0 mt-10 z-50 backdrop-blur-lg bg-white/50 dark:bg-zinc-900/50 ">
-        <div className="flex justify-between max-w-3xl mx-auto w-full  ">
+      <header className="flex justify-between sticky top-0 mt-10 z-50 backdrop-blur-lg bg-white/50 dark:bg-zinc-900/50">
+        <div className="flex justify-between max-w-3xl mx-auto w-full">
           <h1 className="w-48 cursor-pointer">
             <Link href={"/"}>
               <div className={`py-1 ${hoverTabStyle}`}>
@@ -89,7 +89,7 @@ function Header({
             </Link>
           </h1>
           <div className="flex-1"></div>
-          <nav className="w-48 mt-3 items-center mx-2">
+          <nav className="w-48 mt-3 mx-4 items-center ">
             <ul className="flex">
               {navItems?.map(item => {
                 return (

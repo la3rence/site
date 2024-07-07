@@ -119,10 +119,10 @@ const Blog = props => {
           <div className="social">
             {likes?.length > 0 && (
               <>
-                <h4 id="like">
+                <h6 id="like" className="font-bold my-2">
                   {translations["Likes"]} ({likes?.length})
-                </h4>
-                <div className="mx-2 mt-2 mr-1 flex">
+                </h6>
+                <div className="mt-2 mr-1 flex">
                   {likes?.map(like => {
                     return (
                       <a
@@ -141,13 +141,15 @@ const Blog = props => {
             )}
             {!props.noReply && (
               <>
-                <h4 id="reply">
+                <h6 id="reply" className="font-bold my-2">
                   {translations["Replies from Fediverse"]}
                   {replies?.length > 0 ? `(${replies?.length})` : ""}
-                </h4>
-                <div className="mx-2 mt-4 text-sm">
-                  <span>{translations["Search this URL on Mastodon to reply"]}:</span>
-                  <div className="font-mono my-4 break-words">{pageURL}</div>
+                </h6>
+                <div className="mt-4 text-sm">
+                  <span>
+                    {translations["Search this URL on Mastodon to reply"]}:<code>{pageURL}</code>
+                  </span>
+                  {/* <div className="font-mono my-4 break-words"></div> */}
                   <div className="mt-6">
                     {replies?.map(reply => {
                       return (

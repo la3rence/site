@@ -53,7 +53,7 @@
   h4,
   h5,
   code {
-    @apply max-w-3xl mx-auto px-2;
+    @apply max-w-3xl mx-auto px-4 break-words;
   }
 
   table,
