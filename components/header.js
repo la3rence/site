@@ -6,6 +6,7 @@ import Logo from "./logo";
 import { Adsense } from "./analytics";
 import withLocalization from "./withI18n";
 import LocalizationSwitch from "./switcher";
+import React, { useEffect, useState } from "react";
 
 function Header({
   title,
@@ -45,6 +46,24 @@ function Header({
   });
   const hoverTabStyle =
     "opacity-65 hover:opacity-95 transition duration-500 hover:transition-transform";
+
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        setIsNavbarVisible(false);
+      } else {
+        setIsNavbarVisible(true);
+      }
+      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollTop]);
+
   return (
     <>
       <Head>
@@ -79,7 +98,9 @@ function Header({
         ))}
         {enableAdsense && <Adsense />}
       </Head>
-      <header className="flex justify-between sticky top-0 mt-10 z-50 backdrop-blur-lg bg-white/50 dark:bg-zinc-900/50">
+      <header
+        className={`${isNavbarVisible ? "translate-y-0" : "-translate-y-full"} sticky-header`}
+      >
         <div className="flex justify-between max-w-3xl mx-auto w-full">
           <h1 className="w-48 cursor-pointer">
             <Link href={"/"}>

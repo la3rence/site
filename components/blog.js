@@ -3,15 +3,14 @@ import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
 import withLocalization from "./withI18n";
-import { useEffect, useState } from "react";
-import "highlight.js/styles/sunburst.css";
-import "gist-syntax-themes/stylesheets/one-dark.css";
+import React, { useEffect, useState } from "react";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import cfg from "../lib/config.mjs";
 import Disqus from "./disqus";
 import Comments from "./comments";
 import mediumZoom from "medium-zoom";
+import { useTheme } from "next-themes";
 
 const Blog = props => {
   const {
@@ -30,6 +29,7 @@ const Blog = props => {
   } = props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
@@ -49,6 +49,16 @@ const Blog = props => {
 
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
+      {resolvedTheme && (
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href={resolvedTheme === "light" ? "/css/github.min.css" : "/css/github-dark.min.css"}
+        />
+      )}
+      {resolvedTheme === "dark" && (
+        <link rel="stylesheet" type="text/css" href="/css/terminal.css" />
+      )}
       <article className="blog">
         {!props.noTitle && (
           <h1 id="title" className={`articleTitle text-balance font-medium mb-0 mt-14`}>

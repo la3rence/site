@@ -40,9 +40,7 @@ export default function GitHub({ user, repo }) {
           <a href={data.html_url} target="_blank" rel="noopener noreferrer">
             {data.full_name}
           </a>
-          <span className="ml-2 rounded-full border border-zinc-500 text-xs px-1">
-            {data.is_template ? "Public template" : "Public"}
-          </span>
+          <span className="ml-2 rounded-full border border-zinc-500 text-xs px-1">Public</span>
         </p>
         <p className="my-3 text-sm">{data.description}</p>
         <p className="my-3 text-sm">
