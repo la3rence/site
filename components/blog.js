@@ -3,15 +3,14 @@ import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
 import withLocalization from "./withI18n";
-import { useEffect, useState } from "react";
-import "highlight.js/styles/sunburst.css";
-import "gist-syntax-themes/stylesheets/one-dark.css";
+import React, { useEffect, useState } from "react";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import cfg from "../lib/config.mjs";
 import Disqus from "./disqus";
 import Comments from "./comments";
 import mediumZoom from "medium-zoom";
+import { useTheme } from "next-themes";
 
 const Blog = props => {
   const {
@@ -30,6 +29,7 @@ const Blog = props => {
   } = props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
@@ -49,6 +49,16 @@ const Blog = props => {
 
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
+      {resolvedTheme && (
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href={resolvedTheme === "light" ? "/css/github.min.css" : "/css/github-dark.min.css"}
+        />
+      )}
+      {resolvedTheme === "dark" && (
+        <link rel="stylesheet" type="text/css" href="/css/terminal.css" />
+      )}
       <article className="blog">
         {!props.noTitle && (
           <h1 id="title" className={`articleTitle text-balance font-medium mb-0 mt-14`}>
@@ -110,19 +120,19 @@ const Blog = props => {
       </article>
       {!props.noMeta && (
         <>
-          <div className="mx-2 mt-10">
+          <div className="tags mt-10">
             <div>
               {tags && tags.split(",").map(each => <Tag tag={each} key={each} locale={locale} />)}
             </div>
           </div>
           <hr />
-          <div>
+          <div className="social">
             {likes?.length > 0 && (
               <>
-                <h4 id="like">
+                <h6 id="like" className="font-bold my-2">
                   {translations["Likes"]} ({likes?.length})
-                </h4>
-                <div className="mx-4 mt-2 mr-1 flex">
+                </h6>
+                <div className="mt-2 mr-1 flex">
                   {likes?.map(like => {
                     return (
                       <a
@@ -141,13 +151,15 @@ const Blog = props => {
             )}
             {!props.noReply && (
               <>
-                <h4 id="reply">
+                <h6 id="reply" className="font-bold my-2">
                   {translations["Replies from Fediverse"]}
                   {replies?.length > 0 ? `(${replies?.length})` : ""}
-                </h4>
-                <div className="mx-4 mt-4 text-sm">
-                  <span>{translations["Search this URL on Mastodon to reply"]}:</span>
-                  <div className="font-mono my-4 break-words">{pageURL}</div>
+                </h6>
+                <div className="mt-4 text-sm">
+                  <span>
+                    {translations["Search this URL on Mastodon to reply"]}:<code>{pageURL}</code>
+                  </span>
+                  {/* <div className="font-mono my-4 break-words"></div> */}
                   <div className="mt-6">
                     {replies?.map(reply => {
                       return (
@@ -176,13 +188,15 @@ const Blog = props => {
               </>
             )}
           </div>
-          {cfg.enableDisqus && !props.noReply && (
-            <Disqus url={pageURL} identifier={id} title={title} />
-          )}
-          {cfg.enableGitHubComment && !props.noReply && <Comments />}
-          {/* {!props.noReward && (
+          <div className="comments">
+            {cfg.enableDisqus && !props.noReply && (
+              <Disqus url={pageURL} identifier={id} title={title} />
+            )}
+            {cfg.enableGitHubComment && !props.noReply && <Comments />}
+            {/* {!props.noReward && (
             <RewardImages text={"Scan the QR Code to leave a tip :)"} />
           )} */}
+          </div>
         </>
       )}
     </Layout>

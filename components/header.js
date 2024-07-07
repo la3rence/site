@@ -6,6 +6,7 @@ import Logo from "./logo";
 import { Adsense } from "./analytics";
 import withLocalization from "./withI18n";
 import LocalizationSwitch from "./switcher";
+import React, { useEffect, useState } from "react";
 
 function Header({
   title,
@@ -45,6 +46,24 @@ function Header({
   });
   const hoverTabStyle =
     "opacity-65 hover:opacity-95 transition duration-500 hover:transition-transform";
+
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        setIsNavbarVisible(false);
+      } else {
+        setIsNavbarVisible(true);
+      }
+      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollTop]);
+
   return (
     <>
       <Head>
@@ -79,16 +98,19 @@ function Header({
         ))}
         {enableAdsense && <Adsense />}
       </Head>
-      <header className="flex justify-between sticky top-0 mt-10 z-50 backdrop-blur-lg bg-white/50 dark:bg-zinc-900/50 ">
-        <div className="w-[48rem] flex justify-between mx-auto ">
-          <h1 className="w-32 cursor-pointer">
+      <header
+        className={`${isNavbarVisible ? "translate-y-0" : "-translate-y-full"} sticky-header`}
+      >
+        <div className="flex justify-between max-w-3xl mx-auto w-full">
+          <h1 className="w-48 cursor-pointer">
             <Link href={"/"}>
-              <div className={`py-1 -mx-2 ${hoverTabStyle}`}>
+              <div className={`py-1 ${hoverTabStyle}`}>
                 <Logo title={siteTitle} />
               </div>
             </Link>
           </h1>
-          <nav className="flex-4 mt-3 items-center">
+          <div className="flex-1"></div>
+          <nav className="w-48 mt-3 mx-4 items-center ">
             <ul className="flex">
               {navItems?.map(item => {
                 return (

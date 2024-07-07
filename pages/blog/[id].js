@@ -28,7 +28,7 @@ const PathId = props => {
   return (
     <Blog {...props}>
       {/* <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} /> */}
-      <main>{render(props.htmlAst)}</main>
+      <main className="overflow-visible h-auto">{render(props.htmlAst)}</main>
     </Blog>
   );
 };
