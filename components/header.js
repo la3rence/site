@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 
 function Header({
   title,
-  // blog,
   description,
   date,
   themeColor,
@@ -18,6 +17,8 @@ function Header({
   modified,
   tags,
   image,
+  blog,
+  i18n,
   translations,
 }) {
   const router = useRouter();
@@ -126,7 +127,7 @@ function Header({
               })}
               {config.locales?.length > 1 && (
                 <LocalizationSwitch
-                  className={`px-2 py-1 hover:scale-110 transition-all ${hoverTabStyle}`}
+                  className={`${blog && i18n?.length <= 1 ? "pointer-events-none" : ""} px-2 py-1 hover:scale-110 transition-all ${hoverTabStyle}`}
                   locales={config.locales}
                   targeturl={router.asPath}
                   currentlocale={router.locale}
