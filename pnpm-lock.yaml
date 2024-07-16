@@ -102,7 +102,7 @@ dependencies:
 devDependencies:
   "@tailwindcss/typography":
     specifier: 0.5.13
-    version: 0.5.13(tailwindcss@3.4.4)
+    version: 0.5.13(tailwindcss@3.4.5)
   autoprefixer:
     specifier: 10.4.19
     version: 10.4.19(postcss@8.4.39)
@@ -119,8 +119,8 @@ devDependencies:
     specifier: 3.3.3
     version: 3.3.3
   tailwindcss:
-    specifier: 3.4.4
-    version: 3.4.4
+    specifier: 3.4.5
+    version: 3.4.5
   typescript:
     specifier: 5.5.3
     version: 5.5.3
@@ -539,7 +539,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@tailwindcss/typography@0.5.13(tailwindcss@3.4.4):
+  /@tailwindcss/typography@0.5.13(tailwindcss@3.4.5):
     resolution:
       {
         integrity: sha512-ADGcJ8dX21dVVHIwTRgzrcunY6YY9uSlAHHGVKvkA+vLc5qLwEszvKts40lx7z0qc4clpjclwLeK5rVCV2P/uw==,
@@ -551,7 +551,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.4.4
+      tailwindcss: 3.4.5
     dev: true
 
   /@types/debug@4.1.12:
@@ -5628,10 +5628,10 @@ packages:
       use-sync-external-store: 1.2.2(react@18.3.1)
     dev: false
 
-  /tailwindcss@3.4.4:
+  /tailwindcss@3.4.5:
     resolution:
       {
-        integrity: sha512-ZoyXOdJjISB7/BcLTR6SEsLgKtDStYyYZVLsUtWChO4Ps20CBad7lfJKVDiejocV4ME1hLmyY0WJE3hSDcmQ2A==,
+        integrity: sha512-DlTxttYcogpDfx3tf/8jfnma1nfAYi2cBUYV2YNoPPecwmO3YGiFlOX9D8tGAu+EDF38ryBzvrDKU/BLMsUwbw==,
       }
     engines: { node: ">=14.0.0" }
     hasBin: true
