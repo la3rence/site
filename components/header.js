@@ -71,6 +71,8 @@ function Header({
         <title>{pageTitle}</title>
         <meta name="keywords" content={`${tags}, ${siteTitle}, ${authorName}, Blog, Article`} />
         <meta name="Description" content={theDescription} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:url" content={`${baseURL}${router.asPath}`} />
         <meta property="og:type" content="website" />
@@ -106,12 +108,12 @@ function Header({
           <h1 className="w-48 cursor-pointer">
             <Link href={"/"}>
               <div className={`py-1 ${hoverTabStyle}`}>
-                <Logo title={siteTitle} />
+                <Logo title={"B!og"} />
               </div>
             </Link>
           </h1>
           <div className="flex-1"></div>
-          <nav className="w-48 mt-3 mx-4 items-center ">
+          <nav className="mt-2">
             <ul className="flex">
               {navItems?.map(item => {
                 return (

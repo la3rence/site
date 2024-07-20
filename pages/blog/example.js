@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import Blog from "../../components/blog";
 import Image from "next/image";
 import cfg from "../../lib/config.mjs";
@@ -13,7 +14,7 @@ export const blogProps = {
   someKey: "someValeInJSXProps",
   tags: "example, test, jsx",
   locale: "en",
-  visible: false,
+  visible: true,
 };
 
 /**

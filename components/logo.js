@@ -1,7 +1,11 @@
+import { Favicon } from "./svg";
+
 const Logo = ({ title }) => (
-  <span className="inline-flex items-center pb-1">
-    <span className="mt-0 text-3xl font-bold">◳</span>
-    <span className="pl-2 pt-1">{title}</span>
+  <span className="inline-flex items-center mt-1">
+    <span className="mt-0">
+      <Favicon />
+    </span>
+    <span className="px-2">{title}</span>
   </span>
 );
 

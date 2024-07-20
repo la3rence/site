@@ -85,3 +85,16 @@ export function Translation(props) {
     </svg>
   );
 }
+
+export function Favicon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      xmlns="http://www.w3.org/2000/svg"
+      className="dark:filter dark:invert rounded-full"
+    >
+      <circle cx="9" cy="9" r="10" stroke="none" fill="#666" />
+    </svg>
+  );
+}
