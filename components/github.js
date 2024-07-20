@@ -33,7 +33,7 @@ export default function GitHub({ user, repo }) {
   return (
     <div className="my-4 flex items-center border-t border-b border-zinc-100 dark:border-zinc-800  dark:bg-black">
       <div className="flex-1">
-        <p className="my-2">
+        <p className="my-3">
           <span className="mr-1 h-5 w-5">
             <GitHubIcon style={{ height: 20, width: 20 }} />
           </span>
