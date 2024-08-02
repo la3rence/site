@@ -10,10 +10,9 @@ tags: app, life, 2024
 
 - 📨 邮件客户端
   - Apple 邮件
-  - [Skiff 邮件](https://go.lawrenceli.me/skiff) `hi@lawrenceli.me`。
 - 📮 邮件服务器
   - Outlook（中国大陆可用）
-  - [Skiff 邮件](https://go.lawrenceli.me/skiff)。 很遗憾该服务尚不支持 POP3/IMAP。
+  - [Lark 邮件](https://www.larksuite.com/mail) `hi@lawrenceli.me`。
 - 📝 注释
   - Apple Notes（使用 [montaigne.io](https://montaigne.io)，可以将 Apple Notes 成为一个静态网站）
 - ✅ 待办事项
