@@ -113,7 +113,7 @@ int main(void){
 
 运行结果：
 
-```txt
+```plaintext
 parent process pid = 91650, child pid= 91651
 everyone
 child process pid = 91651, parent process id = 91650

@@ -15,7 +15,7 @@ Invert a binary tree. Problem from leetcode.
 
 Here's the input:
 
-```txt
+```plaintext
      4
    /   \
   2     7
@@ -25,7 +25,7 @@ Here's the input:
 
 and the out put looks like:
 
-```txt
+```plaintext
      4
    /   \
   7     2

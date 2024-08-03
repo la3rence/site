@@ -51,8 +51,7 @@ turbo build
 
 Next.js 会主动调用我们写好的一些函数 (`getStaticProps()`)，让组件得到数据的输入，从而**在构建阶段**将 React 组件提前渲染完成。`remark` 库可以将原生的 markdown 语法编译成 html 对应的 dom - 在此项目中，我们让它固定遍历 `posts` 文件夹下的 markdown 文件，依次编译，让其作为 `[id].js` 的动态路由页面的 `props`，从而渲染出博客文章:
 
-```JavaScript
-// [id].js
+```js caption="SSG in '[id].js': fetch data in build time" {3} showLineNumbers{38}
 export const getStaticProps = async context => {
   const { id } = context.params;
   const mdData = await getMdContentById(id);
