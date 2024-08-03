@@ -11,7 +11,7 @@ tags: programming
 
 有如下输入:
 
-```txt
+```plaintext
      4
    /   \
   2     7
@@ -21,7 +21,7 @@ tags: programming
 
 期望输出结果是这样:
 
-```txt
+```plaintext
      4
    /   \
   7     2

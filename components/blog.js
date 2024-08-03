@@ -49,13 +49,6 @@ const Blog = props => {
 
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
-      {resolvedTheme && (
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href={resolvedTheme === "light" ? "/css/github.min.css" : "/css/github-dark.min.css"}
-        />
-      )}
       {resolvedTheme === "dark" && (
         <link rel="stylesheet" type="text/css" href="/css/terminal.css" />
       )}

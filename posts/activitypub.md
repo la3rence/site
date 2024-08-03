@@ -15,7 +15,7 @@ tags: blog, activitypub, fediverse, guide, ssg, serverless, openweb
 
 此 API 的定义参考 [RFC 7033](https://www.rfc-editor.org/rfc/rfc7033.html)。这个 WebFinger 协议目的是提供一种针对单个域名的**用户发现**方式。考虑到此 API 必须使用 `Content-Type: application/jrd+json` 作为 HTTP 的报文响应类型，因此不推荐直接使用静态文件托管 JSON，请使用 REST API 来构建此实现。
 
-```txt
+```plaintext
 https://example.com/.well-known/webfinger?resource=acct:lawrence@example.com
 ```
 

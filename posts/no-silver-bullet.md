@@ -23,7 +23,7 @@ tags: software, programming, engineering, reading
 
 沟通管道数量（n 为一个项目团队中的人数，显然，人数越多，沟通成本越大）：
 
-```txt
+```plaintext
 p = n(n-1)/2
 ```
 

@@ -18,8 +18,8 @@ visible: true
 
 遵循 SpringBoot 广为人知的约定大于配置，Spring 官方提供了 [Flyway 的自动配置实现](https://github.com/spring-projects/spring-boot/tree/main/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/flyway)。
 
-```java
-@AutoConfiguration(after = { DataSourceAutoConfiguration.class, JdbcTemplateAutoConfiguration.class,HibernateJpaAutoConfiguration.class })
+```java {2-4} showLineNumbers
+@AutoConfiguration(after = { DataSourceAutoConfiguration.class,JdbcTemplateAutoConfiguration.class,HibernateJpaAutoConfiguration.class })
 @ConditionalOnClass(Flyway.class)
 @Conditional(FlywayDataSourceCondition.class)
 @ConditionalOnProperty(prefix = "spring.flyway", name = "enabled", matchIfMissing = true)
@@ -54,7 +54,7 @@ public class FlywayAutoConfiguration { /*...*/ }
 
 Flyway 会基于默认配置的文件夹路径 classpath:db/migration 发现版本变更文件或实现类。
 
-```txt
+```shell
 V{VERSION}__{DESCRIPTION}.sql
 V{VERSION}__{DESCRIPTION}.java
 ```
@@ -135,7 +135,7 @@ public class MyApplication {
 
 最后，定义一个 Component Bean 去实现 `BaseJavaMigration`:
 
-```java
+```java {12} showLineNumbers caption="Example Migration Component"
 package me.lawrenceli.balabala.migration;
 
 import org.flywaydb.core.api.migration.BaseJavaMigration;

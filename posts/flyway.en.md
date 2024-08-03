@@ -18,7 +18,7 @@ visible: true
 
 Following Spring Boot's well-known convention-over-configuration principle, the Spring team provides [Flyway Auto Configuration](https://github.com/spring-projects/spring-boot/tree/main/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/flyway).
 
-```java
+```java {2-4} showLineNumbers
 @AutoConfiguration(after = { DataSourceAutoConfiguration.class, JdbcTemplateAutoConfiguration.class,HibernateJpaAutoConfiguration.class })
 @ConditionalOnClass(Flyway.class)
 @Conditional(FlywayDataSourceCondition.class)
@@ -54,7 +54,7 @@ There are two ways to use it:
 
 Flyway will discover version change files or implementation classes based on the default configured folder path `classpath:db/migration`.
 
-```txt
+```shell
 V{VERSION}__{DESCRIPTION}.sql
 V{VERSION}__{DESCRIPTION}.java
 ```
@@ -137,7 +137,7 @@ public class MyApplication {
 
 Finally, define a Component Bean to implement `BaseJavaMigration`:
 
-```java
+```java {12} showLineNumbers caption="Example Migration Component"
 package me.lawrenceli.balabala.migration;
 
 import org.flywaydb.core.api.migration.BaseJavaMigration;

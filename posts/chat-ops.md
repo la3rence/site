@@ -109,7 +109,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 比如让机器人展示下仓库目前的 Pull Request，然后测试这个 PR，通过后批准这个 PR，最终合并 PR，上线生产，聊天记录会是这样的：
 
-```txt
+```plaintext
 Users 命令: /pr
 Robot 回复: 当前仓库的 PullRequest 列表...
           [#709] fix: typo
