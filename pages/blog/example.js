@@ -6,6 +6,7 @@ import Bilibili from "../../components/bilibili";
 import Douban from "../../components/douban";
 import GitHub from "../../components/github";
 import demoPic from "../../public/images/the1975.jpg";
+import Trade from "../../components/trade";
 
 export const blogProps = {
   author: cfg.authorName,
@@ -23,13 +24,16 @@ export const blogProps = {
  */
 export default function Example() {
   return (
-    <Blog {...blogProps}>
+    <Blog {...blogProps} noReply>
       <p>
         This page is fully rendered by <code>JSX</code>. You can update this page with JavaScript
         and React components.
       </p>
       <p>
         Image example: <code>{"<Image />"}</code>
+      </p>
+      <p>
+        Apple Inc Current Price: <Trade symbol="AAPL"></Trade>
       </p>
       <div className="filter dark:brightness-75 ">
         <Image src={demoPic} alt={"Demo image"} />

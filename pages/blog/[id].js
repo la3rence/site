@@ -9,6 +9,7 @@ const Douban = lazy(() => import("../../components/douban"));
 const Bilibili = lazy(() => import("../../components/bilibili"));
 const Tweet = lazy(() => import("../../components/twitter"));
 const GitHub = lazy(() => import("../../components/github"));
+const Trade = lazy(() => import("../../components/trade"));
 
 const render = ast => {
   return toJsxRuntime(ast, {
@@ -20,6 +21,7 @@ const render = ast => {
       bilibili: Bilibili,
       github: GitHub,
       tweet: Tweet,
+      trade: Trade,
     },
   });
 };
