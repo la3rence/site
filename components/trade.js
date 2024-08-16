@@ -39,9 +39,9 @@ const Trade = ({ symbol }) => {
         } catch (error) {
           console.warn("websocket data parse failed", event.data);
         }
-        if (receivedData && receivedData?.data) {
-          const floatString = receivedData?.data[0]?.p;
-          if (receivedData?.data[0]?.s === symbol) {
+        if (receivedData?.data) {
+          const floatString = receivedData.data[0]?.p;
+          if (receivedData.data[0]?.s === symbol) {
             const float = Number.parseFloat(floatString);
             setPrice(float.toFixed(2));
           }
