@@ -3,11 +3,17 @@ export default function Umami() {
     <script
       async
       src={process.env.NEXT_PUBLIC_ANALYTICS_URL}
+      fetchpriority="low"
       data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}
     ></script>
   );
 }
 
 export const Adsense = () => (
-  <script async src={process.env.NEXT_PUBLIC_ADS_URL} crossOrigin="anonymous"></script>
+  <script
+    async
+    src={process.env.NEXT_PUBLIC_ADS_URL}
+    fetchpriority="low"
+    crossOrigin="anonymous"
+  ></script>
 );

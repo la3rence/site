@@ -6,6 +6,7 @@ export default function Comments() {
     const scriptElement = document.createElement("script");
     scriptElement.async = true;
     scriptElement.crossOrigin = "anonymous";
+    scriptElement.fetchPriority = "low";
     scriptElement.src = "https://giscus.app/client.js";
     scriptElement.setAttribute("data-repo", `${cfg.github}/${cfg.commentRepo}`);
     scriptElement.setAttribute("data-repo-id", cfg.commentRepoId);

@@ -50,7 +50,8 @@ const Blog = props => {
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
       {resolvedTheme === "dark" && (
-        <link rel="stylesheet" type="text/css" href="/css/terminal.css" />
+        // eslint-disable-next-line @next/next/no-css-tags
+        <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/terminal.css" />
       )}
       <article className="blog">
         {!props.noTitle && (
