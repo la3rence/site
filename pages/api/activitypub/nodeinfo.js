@@ -10,7 +10,7 @@ export default async function nodeInfo(req, res) {
         software: {
           homepage: baseURL,
           github: `https://github.com/${github}/${repo}`,
-          follow: "https://mstdn.social/@lawrence`,
+          follow: "https://mstdn.social/@lawrence",
         },
       },
       openRegistrations: false,
