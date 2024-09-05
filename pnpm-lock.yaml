@@ -81,8 +81,8 @@ dependencies:
     specifier: 10.0.0
     version: 10.0.0
   rehype-video:
-    specifier: 2.2.0
-    version: 2.2.0
+    specifier: 2.3.0
+    version: 2.3.0
   remark:
     specifier: 15.0.1
     version: 15.0.1
@@ -5198,10 +5198,10 @@ packages:
       unified: 11.0.5
     dev: false
 
-  /rehype-video@2.2.0:
+  /rehype-video@2.3.0:
     resolution:
       {
-        integrity: sha512-Cy3b6gYvDOgTt7bAmJ1WYiRW9IlVJ8Ua+VdnTjnGTxUGECT7v3oj99cF+q1ZSpGJ+ReGOM6r+9+lvj/Vgi7mbA==,
+        integrity: sha512-wBt/TIpSMQf6U2vH9bNij435fCYdIj/Prt0dMqexP0rk+Ix6nT8beQyu3XYXd7qLIOassHAbBBJxfZgwG+zL9A==,
       }
     engines: { node: ">=16" }
     dependencies:
