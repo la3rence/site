@@ -10,7 +10,7 @@ dependencies:
     version: 3.0.2
   "@microflash/rehype-figure":
     specifier: ^2.1.0
-    version: 2.1.0
+    version: 2.1.1
   "@shikijs/transformers":
     specifier: ^1.12.1
     version: 1.16.1
@@ -289,10 +289,10 @@ packages:
     engines: { node: ">=10" }
     dev: false
 
-  /@microflash/rehype-figure@2.1.0:
+  /@microflash/rehype-figure@2.1.1:
     resolution:
       {
-        integrity: sha512-Ff1rrqjRYcmV9/7Qk8HM/mBpz9k5yzO8pgKfbI2hnN09sBQXoeOP4d9J419Mwk+LoMZlSfd4kgI92dFRtYBvUg==,
+        integrity: sha512-wI9M4Yf+uhcolXkhRZAwGwyxjMfkXlPk6l2dVlyyQWFxQU3vPRJZKKKphafEMISdGd271MUVRNlnayUbn/cU0A==,
       }
     dependencies:
       hast-util-whitespace: 3.0.0
