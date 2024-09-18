@@ -102,7 +102,7 @@ dependencies:
 devDependencies:
   "@tailwindcss/typography":
     specifier: 0.5.15
-    version: 0.5.15(tailwindcss@3.4.11)
+    version: 0.5.15(tailwindcss@3.4.12)
   autoprefixer:
     specifier: 10.4.20
     version: 10.4.20(postcss@8.4.47)
@@ -119,8 +119,8 @@ devDependencies:
     specifier: 3.3.3
     version: 3.3.3
   tailwindcss:
-    specifier: 3.4.11
-    version: 3.4.11
+    specifier: 3.4.12
+    version: 3.4.12
   typescript:
     specifier: 5.6.2
     version: 5.6.2
@@ -565,7 +565,7 @@ packages:
       tslib: 2.7.0
     dev: false
 
-  /@tailwindcss/typography@0.5.15(tailwindcss@3.4.11):
+  /@tailwindcss/typography@0.5.15(tailwindcss@3.4.12):
     resolution:
       {
         integrity: sha512-AqhlCXl+8grUz8uqExv5OTtgpjuVIwFTSXTrh8y9/pw6q2ek7fJ+Y8ZEVw7EB2DCcuCOtEjf9w3+J3rzts01uA==,
@@ -577,7 +577,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.4.11
+      tailwindcss: 3.4.12
     dev: true
 
   /@types/debug@4.1.12:
@@ -4788,13 +4788,13 @@ packages:
       {
         integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==,
       }
+    dev: true
 
   /picocolors@1.1.0:
     resolution:
       {
         integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==,
       }
-    dev: true
 
   /picomatch@2.3.1:
     resolution:
@@ -4924,7 +4924,7 @@ packages:
     engines: { node: ^10 || ^12 || >=14 }
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       source-map-js: 1.2.0
     dev: false
 
@@ -5810,10 +5810,10 @@ packages:
       use-sync-external-store: 1.2.2(react@18.3.1)
     dev: false
 
-  /tailwindcss@3.4.11:
+  /tailwindcss@3.4.12:
     resolution:
       {
-        integrity: sha512-qhEuBcLemjSJk5ajccN9xJFtM/h0AVCPaA6C92jNP+M2J8kX+eMJHI7R2HFKUvvAsMpcfLILMCFYSeDwpMmlUg==,
+        integrity: sha512-Htf/gHj2+soPb9UayUNci/Ja3d8pTmu9ONTfh4QY8r3MATTZOzmv6UYWF7ZwikEIC8okpfqmGqrmDehua8mF8w==,
       }
     engines: { node: ">=14.0.0" }
     hasBin: true
@@ -5831,7 +5831,7 @@ packages:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       object-hash: 3.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
@@ -6192,7 +6192,7 @@ packages:
     dependencies:
       browserslist: 4.23.3
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
     dev: true
 
   /uri-js@4.4.1:
