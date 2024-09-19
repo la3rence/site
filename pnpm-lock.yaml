@@ -16,7 +16,7 @@ dependencies:
     version: 1.16.2
   "@vercel/og":
     specifier: ^0.6.0
-    version: 0.6.2
+    version: 0.6.3
   disqus-react:
     specifier: ^1.1.5
     version: 1.1.5(react-dom@18.3.1)(react@18.3.1)
@@ -852,10 +852,10 @@ packages:
         integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==,
       }
 
-  /@vercel/og@0.6.2:
+  /@vercel/og@0.6.3:
     resolution:
       {
-        integrity: sha512-OTe0KE37F5Y2eTys6eMnfopC+P4qr2ooXUTFyFPTplYSPwowmFk/HLD1FXtbKLjqsIH0SgekcJWad+C5uX4nkg==,
+        integrity: sha512-aoCrC9FqkeA+WEEb9CwSmjD0rGlFeNqbUsI41JPmKWR9Hx6FFn86tvH96O5HZMF6VAXTGHxa3nPH3BokROpdgA==,
       }
     engines: { node: ">=16" }
     dependencies:
