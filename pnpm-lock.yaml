@@ -13,7 +13,7 @@ dependencies:
     version: 2.1.1
   "@shikijs/transformers":
     specifier: ^1.12.1
-    version: 1.16.2
+    version: 1.16.3
   "@vercel/og":
     specifier: ^0.6.0
     version: 0.6.3
@@ -73,7 +73,7 @@ dependencies:
     version: 1.0.0
   rehype-pretty-code:
     specifier: ^0.14.0
-    version: 0.14.0(shiki@1.16.2)
+    version: 0.14.0(shiki@1.16.3)
   rehype-slug:
     specifier: 6.0.0
     version: 6.0.0
@@ -94,7 +94,7 @@ dependencies:
     version: 11.1.1
   shiki:
     specifier: ^1.12.1
-    version: 1.16.2
+    version: 1.16.3
   uuid:
     specifier: ^10.0.0
     version: 10.0.0
@@ -501,29 +501,31 @@ packages:
       }
     dev: true
 
-  /@shikijs/core@1.16.2:
+  /@shikijs/core@1.16.3:
     resolution:
       {
-        integrity: sha512-XSVH5OZCvE4WLMgdoBqfPMYmGHGmCC3OgZhw0S7KcSi2XKZ+5oHGe71GFnTljgdOxvxx5WrRks6QoTLKrl1eAA==,
+        integrity: sha512-yETIvrETCeC39gSPIiSADmjri9FwKmxz0QvONMtTIUYlKZe90CJkvcjPksayC2VQOtzOJonEiULUa8v8crUQvA==,
       }
     dependencies:
-      "@shikijs/vscode-textmate": 9.2.0
+      "@shikijs/vscode-textmate": 9.2.2
       "@types/hast": 3.0.4
+      oniguruma-to-js: 0.3.3
+      regex: 4.3.2
     dev: false
 
-  /@shikijs/transformers@1.16.2:
+  /@shikijs/transformers@1.16.3:
     resolution:
       {
-        integrity: sha512-AR6ANiKwi1dJr5g/W0L+Su4PoHurkHLgtNmesbOFOPGKNQC2BeGU/Z2Ghkl+cUF5PfE+UeLkxUwzpE6H37hTSg==,
+        integrity: sha512-bu4IcpUWmch4NvIWQgyMk2r9sH1XNZjUFgu56d3TPD1wLmBB/krctzVYgmurQ45X4dBEpNZdNvdG3v5B27taSw==,
       }
     dependencies:
-      shiki: 1.16.2
+      shiki: 1.16.3
     dev: false
 
-  /@shikijs/vscode-textmate@9.2.0:
+  /@shikijs/vscode-textmate@9.2.2:
     resolution:
       {
-        integrity: sha512-5FinaOp6Vdh/dl4/yaOTh0ZeKch+rYS8DUb38V3GMKYVkdqzxw53lViRKUYkVILRiVQT7dcPC7VvAKOR73zVtQ==,
+        integrity: sha512-TMp15K+GGYrWlZM8+Lnj9EaHEFmOen0WJBrfa17hF7taDOYthuPPV0GWzfd/9iMij0akS/8Yw2ikquH7uVi/fg==,
       }
     dev: false
 
@@ -4632,6 +4634,13 @@ packages:
       wrappy: 1.0.2
     dev: true
 
+  /oniguruma-to-js@0.3.3:
+    resolution:
+      {
+        integrity: sha512-m90/WEhgs8g4BxG37+Nu3YrMfJDs2YXtYtIllhsEPR+wP3+K4EZk6dDUvy2v2K4MNFDDOYKL4/yqYPXDqyozTQ==,
+      }
+    dev: false
+
   /optionator@0.9.4:
     resolution:
       {
@@ -5094,6 +5103,13 @@ packages:
       which-builtin-type: 1.1.4
     dev: true
 
+  /regex@4.3.2:
+    resolution:
+      {
+        integrity: sha512-kK/AA3A9K6q2js89+VMymcboLOlF5lZRCYJv3gzszXFHBr6kO6qLGzbm+UIugBEV8SMMKCTR59txoY6ctRHYVw==,
+      }
+    dev: false
+
   /regexp.prototype.flags@1.5.2:
     resolution:
       {
@@ -5163,7 +5179,7 @@ packages:
       unified: 11.0.5
     dev: false
 
-  /rehype-pretty-code@0.14.0(shiki@1.16.2):
+  /rehype-pretty-code@0.14.0(shiki@1.16.3):
     resolution:
       {
         integrity: sha512-hBeKF/Wkkf3zyUS8lal9RCUuhypDWLQc+h9UrP9Pav25FUm/AQAVh4m5gdvJxh4Oz+U+xKvdsV01p1LdvsZTiQ==,
@@ -5176,7 +5192,7 @@ packages:
       hast-util-to-string: 3.0.0
       parse-numeric-range: 1.3.0
       rehype-parse: 9.0.0
-      shiki: 1.16.2
+      shiki: 1.16.3
       unified: 11.0.5
       unist-util-visit: 5.0.0
     dev: false
@@ -5475,14 +5491,14 @@ packages:
     engines: { node: ">=8" }
     dev: true
 
-  /shiki@1.16.2:
+  /shiki@1.16.3:
     resolution:
       {
-        integrity: sha512-gSym0hZf5a1U0iDPsdoOAZbvoi+e0c6c3NKAi03FoSLTm7oG20tum29+gk0wzzivOasn3loxfGUPT+jZXIUbWg==,
+        integrity: sha512-GypUE+fEd06FqDs63LSAVlmq7WsahhPQU62cgZxGF+TJT5LjD2k7HTxXj4/CKOVuMM3+wWQ1t4Y5oooeJFRRBQ==,
       }
     dependencies:
-      "@shikijs/core": 1.16.2
-      "@shikijs/vscode-textmate": 9.2.0
+      "@shikijs/core": 1.16.3
+      "@shikijs/vscode-textmate": 9.2.2
       "@types/hast": 3.0.4
     dev: false
 
