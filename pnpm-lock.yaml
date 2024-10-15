@@ -34,7 +34,7 @@ dependencies:
     version: 2.0.3
   hast-util-to-jsx-runtime:
     specifier: ^2.1.1
-    version: 2.3.1
+    version: 2.3.2
   markdown-it:
     specifier: ^14.0.0
     version: 14.1.0
@@ -2878,10 +2878,10 @@ packages:
       zwitch: 2.0.4
     dev: false
 
-  /hast-util-to-jsx-runtime@2.3.1:
+  /hast-util-to-jsx-runtime@2.3.2:
     resolution:
       {
-        integrity: sha512-Rbemi1rzrkysSin0FDHZfsxYPoqLGHFfxFm28aOBHPibT7aqjy7kUgY636se9xbuCWUsFpWAYlmtGHQakiqtEA==,
+        integrity: sha512-1ngXYb+V9UT5h+PxNRa1O1FYguZK/XL+gkeqvp7EdHlB9oHUG0eYRo/vY5inBdcqo3RkPMC58/H94HvkbfGdyg==,
       }
     dependencies:
       "@types/estree": 1.0.6
