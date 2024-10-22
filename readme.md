@@ -1,4 +1,6 @@
 ## 关于
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fla3rence%2Fsite.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fla3rence%2Fsite?ref=badge_shield)
+
 
 **Lawrence Li** 是一名支持开放万维网的原教旨主义者。他生于 1994 年。他对 DevOps 和分布式系统特别感兴趣，尤其是 Kubernetes。他一直关心开源社区和新技术 - 最近非常热衷于 Serverless、云原生和 JAMstack。出于兴趣他学习了几种编程语言，并创造了一些有趣的东西（包括此网站）。他是极简主义设计、科幻电影和电子音乐的爱好者。他曾在在线教育创业公司、外资投行工作过，现在在上海一家 SaaS 公司担任软件工程师。
 
@@ -13,3 +15,7 @@ INTJ / 软件工程师 / 博主
 ### 联邦宇宙
 
 这个网站现已加入**联邦宇宙**！你可以通过 ActivityPub 协议来关注: `@lawrence@lawrenceli.me`
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fla3rence%2Fsite.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fla3rence%2Fsite?ref=badge_large)
