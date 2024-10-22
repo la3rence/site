@@ -37,7 +37,7 @@ const Trade = ({ symbol }) => {
         try {
           receivedData = JSON.parse(event.data);
         } catch (error) {
-          console.warn("websocket data parse failed", event.data);
+          console.warn("websocket data parse failed", event.data, error);
         }
         if (receivedData?.data) {
           const floatString = receivedData.data[0]?.p;

@@ -22,6 +22,6 @@ export default async function nodeInfo(req, res) {
     };
     res.json(data);
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: error });
   }
 }

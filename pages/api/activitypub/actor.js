@@ -18,7 +18,7 @@ export async function fetchActorInformation(actorUrl) {
     });
     return await response.json();
   } catch (error) {
-    console.error("Unable to fetch action information", actorUrl);
+    console.error("Unable to fetch action information", actorUrl, error);
   }
   return null;
 }
