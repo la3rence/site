@@ -13,7 +13,7 @@ dependencies:
     version: 2.1.1
   "@shikijs/transformers":
     specifier: ^1.12.1
-    version: 1.22.1
+    version: 1.22.2
   "@vercel/og":
     specifier: ^0.6.0
     version: 0.6.3
@@ -73,7 +73,7 @@ dependencies:
     version: 1.0.0
   rehype-pretty-code:
     specifier: 0.14.0
-    version: 0.14.0(shiki@1.22.1)
+    version: 0.14.0(shiki@1.22.2)
   rehype-slug:
     specifier: 6.0.0
     version: 6.0.0
@@ -93,8 +93,8 @@ dependencies:
     specifier: 11.1.1
     version: 11.1.1
   shiki:
-    specifier: 1.22.1
-    version: 1.22.1
+    specifier: 1.22.2
+    version: 1.22.2
   uuid:
     specifier: ^10.0.0
     version: 10.0.0
@@ -788,54 +788,54 @@ packages:
       }
     dev: true
 
-  /@shikijs/core@1.22.1:
+  /@shikijs/core@1.22.2:
     resolution:
       {
-        integrity: sha512-bqAhT/Ri5ixV4oYsvJNH8UJjpjbINWlWyXY6tBTsP4OmD6XnFv43nRJ+lTdxd2rmG5pgam/x+zGR6kLRXrpEKA==,
+        integrity: sha512-bvIQcd8BEeR1yFvOYv6HDiyta2FFVePbzeowf5pPS1avczrPK+cjmaxxh0nx5QzbON7+Sv0sQfQVciO7bN72sg==,
       }
     dependencies:
-      "@shikijs/engine-javascript": 1.22.1
-      "@shikijs/engine-oniguruma": 1.22.1
-      "@shikijs/types": 1.22.1
+      "@shikijs/engine-javascript": 1.22.2
+      "@shikijs/engine-oniguruma": 1.22.2
+      "@shikijs/types": 1.22.2
       "@shikijs/vscode-textmate": 9.3.0
       "@types/hast": 3.0.4
       hast-util-to-html: 9.0.3
     dev: false
 
-  /@shikijs/engine-javascript@1.22.1:
+  /@shikijs/engine-javascript@1.22.2:
     resolution:
       {
-        integrity: sha512-540pyoy0LWe4jj2BVbgELwOFu1uFvRI7lg4hdsExrSXA9x7gqfzZ/Nnh4RfX86aDAgJ647gx4TCmRwACbnQSvw==,
+        integrity: sha512-iOvql09ql6m+3d1vtvP8fLCVCK7BQD1pJFmHIECsujB0V32BJ0Ab6hxk1ewVSMFA58FI0pR2Had9BKZdyQrxTw==,
       }
     dependencies:
-      "@shikijs/types": 1.22.1
+      "@shikijs/types": 1.22.2
       "@shikijs/vscode-textmate": 9.3.0
       oniguruma-to-js: 0.4.3
     dev: false
 
-  /@shikijs/engine-oniguruma@1.22.1:
+  /@shikijs/engine-oniguruma@1.22.2:
     resolution:
       {
-        integrity: sha512-L+1Vmd+a2kk8HtogUFymQS6BjUfJnzcWoUp1BUgxoDiklbKSMvrsMuLZGevTOP1m0rEjgnC5MsDmsr8lX1lC+Q==,
+        integrity: sha512-GIZPAGzQOy56mGvWMoZRPggn0dTlBf1gutV5TdceLCZlFNqWmuc7u+CzD0Gd9vQUTgLbrt0KLzz6FNprqYAxlA==,
       }
     dependencies:
-      "@shikijs/types": 1.22.1
+      "@shikijs/types": 1.22.2
       "@shikijs/vscode-textmate": 9.3.0
     dev: false
 
-  /@shikijs/transformers@1.22.1:
+  /@shikijs/transformers@1.22.2:
     resolution:
       {
-        integrity: sha512-KvG49YFV6gV116sC4L3Sn1Rp6HXsioMKBBG373j088rw849440hm8s2r+/dgjsGLvT4p+QB7newev+5a3ARM6w==,
+        integrity: sha512-8f78OiBa6pZDoZ53lYTmuvpFPlWtevn23bzG+azpPVvZg7ITax57o/K3TC91eYL3OMJOO0onPbgnQyZjRos8XQ==,
       }
     dependencies:
-      shiki: 1.22.1
+      shiki: 1.22.2
     dev: false
 
-  /@shikijs/types@1.22.1:
+  /@shikijs/types@1.22.2:
     resolution:
       {
-        integrity: sha512-+45f8mu/Hxqs6Kyhfm98Nld5n7Q7lwhjU8UtdQwrOPs7BnM4VAb929O3IQ2ce+4D7SlNFlZGd8CnKRSnwbQreQ==,
+        integrity: sha512-NCWDa6LGZqTuzjsGfXOBWfjS/fDIbDdmVDug+7ykVe1IKT4c1gakrvlfFYp5NhAXH/lyqLM8wsAPo5wNy73Feg==,
       }
     dependencies:
       "@shikijs/vscode-textmate": 9.3.0
@@ -5381,7 +5381,7 @@ packages:
       unified: 11.0.5
     dev: false
 
-  /rehype-pretty-code@0.14.0(shiki@1.22.1):
+  /rehype-pretty-code@0.14.0(shiki@1.22.2):
     resolution:
       {
         integrity: sha512-hBeKF/Wkkf3zyUS8lal9RCUuhypDWLQc+h9UrP9Pav25FUm/AQAVh4m5gdvJxh4Oz+U+xKvdsV01p1LdvsZTiQ==,
@@ -5394,7 +5394,7 @@ packages:
       hast-util-to-string: 3.0.1
       parse-numeric-range: 1.3.0
       rehype-parse: 9.0.1
-      shiki: 1.22.1
+      shiki: 1.22.2
       unified: 11.0.5
       unist-util-visit: 5.0.0
     dev: false
@@ -5715,16 +5715,16 @@ packages:
     engines: { node: ">=8" }
     dev: true
 
-  /shiki@1.22.1:
+  /shiki@1.22.2:
     resolution:
       {
-        integrity: sha512-PbJ6XxrWLMwB2rm3qdjIHNm3zq4SfFnOx0B3rEoi4AN8AUngsdyZ1tRe5slMPtn6jQkbUURLNZPpLR7Do3k78g==,
+        integrity: sha512-3IZau0NdGKXhH2bBlUk4w1IHNxPh6A5B2sUpyY+8utLu2j/h1QpFkAaUA1bAMxOWWGtTWcAh531vnS4NJKS/lA==,
       }
     dependencies:
-      "@shikijs/core": 1.22.1
-      "@shikijs/engine-javascript": 1.22.1
-      "@shikijs/engine-oniguruma": 1.22.1
-      "@shikijs/types": 1.22.1
+      "@shikijs/core": 1.22.2
+      "@shikijs/engine-javascript": 1.22.2
+      "@shikijs/engine-oniguruma": 1.22.2
+      "@shikijs/types": 1.22.2
       "@shikijs/vscode-textmate": 9.3.0
       "@types/hast": 3.0.4
     dev: false
