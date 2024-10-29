@@ -44,7 +44,7 @@
     "remark-gfm": "4.0.0",
     "remark-rehype": "11.1.1",
     "shiki": "1.22.2",
-    "uuid": "^10.0.0"
+    "uuid": "^11.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.15",
