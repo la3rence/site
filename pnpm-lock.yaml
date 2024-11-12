@@ -51,8 +51,8 @@ dependencies:
     specifier: ^4.0.0
     version: 4.2.3(next@15.0.3)
   next-themes:
-    specifier: ^0.3.0
-    version: 0.3.0(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^0.4.0
+    version: 0.4.1(react-dom@18.3.1)(react@18.3.1)
   react:
     specifier: 18.3.1
     version: 18.3.1
@@ -4677,14 +4677,14 @@ packages:
       next: 15.0.3(react-dom@18.3.1)(react@18.3.1)
     dev: false
 
-  /next-themes@0.3.0(react-dom@18.3.1)(react@18.3.1):
+  /next-themes@0.4.1(react-dom@18.3.1)(react@18.3.1):
     resolution:
       {
-        integrity: sha512-/QHIrsYpd6Kfk7xakK4svpDI5mmXP0gfvCoJdGpZQ2TOrQZmsW0QxjaiLn8wbIKjtm4BTSqLoix4lxYYOnLJ/w==,
+        integrity: sha512-xD3cn42n0f1DFCAOlxJlrGPog+WdhWHObgJ+LTM7J5Bff/uBuq4vn/okSSao7puz7yBLcrELLOQ7F1/9hwycyQ==,
       }
     peerDependencies:
-      react: ^16.8 || ^17 || ^18
-      react-dom: ^16.8 || ^17 || ^18
+      react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
