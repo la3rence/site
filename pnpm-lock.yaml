@@ -43,7 +43,7 @@ dependencies:
     version: 1.1.0
   mongodb:
     specifier: ^6.0.0
-    version: 6.10.0
+    version: 6.11.0
   next:
     specifier: 15.0.3
     version: 15.0.3(react-dom@18.3.1)(react@18.3.1)
@@ -1543,10 +1543,10 @@ packages:
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
     dev: true
 
-  /bson@6.9.0:
+  /bson@6.10.0:
     resolution:
       {
-        integrity: sha512-X9hJeyeM0//Fus+0pc5dSUMhhrrmWwQUtdavaQeF3Ta6m69matZkGWV/MrBcnwUeLC8W9kwwc2hfkZgUuCX3Ig==,
+        integrity: sha512-ROchNosXMJD2cbQGm84KoP7vOGPO6/bOAW0veMMbzhXLqoZptcaYRVLitwvuhwhjjpU1qP4YZRWLhgETdgqUQw==,
       }
     engines: { node: ">=16.20.1" }
     dev: false
@@ -4611,10 +4611,10 @@ packages:
       whatwg-url: 13.0.0
     dev: false
 
-  /mongodb@6.10.0:
+  /mongodb@6.11.0:
     resolution:
       {
-        integrity: sha512-gP9vduuYWb9ZkDM546M+MP2qKVk5ZG2wPF63OvSRuUbqCR+11ZCAE1mOfllhlAG0wcoJY5yDL/rV3OmYEwXIzg==,
+        integrity: sha512-yVbPw0qT268YKhG241vAMLaDQAPbRyTgo++odSgGc9kXnzOujQI60Iyj23B9sQQFPSvmNPvMZ3dsFz0aN55KgA==,
       }
     engines: { node: ">=16.20.1" }
     peerDependencies:
@@ -4642,7 +4642,7 @@ packages:
         optional: true
     dependencies:
       "@mongodb-js/saslprep": 1.1.9
-      bson: 6.9.0
+      bson: 6.10.0
       mongodb-connection-string-url: 3.0.1
     dev: false
 
