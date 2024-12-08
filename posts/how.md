@@ -1,7 +1,7 @@
 ---
 title: 这个网站是如何构建的
 date: "2022-08-27"
-modified: "2024-07-07"
+modified: "2024-12-07"
 description: 此文用于端到端测试 Markdown 样式
 tags: markdown, example, guide, jamstack, ssg, vercel, nextjs, design
 ---
@@ -143,6 +143,18 @@ JAMstack.
 ## GitHub Gist
 
 `gist:darylwright/75332f27a6e9bff70bc0406114570829?file=gist-test.ts&highlights=1,3-5`
+
+## WebSub for RSS
+
+基于 GitHub Actions 来支持 WebSub 标准，即之前的 PubSubHubbub。这使得支持 WebSub 的 RSS 客户端不仅能立刻获取到新文章，也能减少客户端和服务端之间的轮询次数以及流量。细节: [site/issue/324](https://github.com/la3rence/site/issues/324).
+
+## ActivityPub
+
+网站通过最基本的一些 ActivityPub 和 WebFinger 协议部分实现了与联邦宇宙的交互。[实现细节](https://lawrenceli.me/blog/activitypub)。
+
+## I18n
+
+网站通过简单的配置以支持国际化。通过 markdown 文件名的中间后缀来和 Next.js 原生 locale 路由来实现区分语言类型展示不同文本。
 
 ## And more to do
 
