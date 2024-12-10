@@ -16,7 +16,7 @@
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@microflash/rehype-figure": "^2.1.0",
-    "@shikijs/transformers": "1.24.1",
+    "@shikijs/transformers": "1.24.2",
     "@vercel/og": "^0.6.0",
     "disqus-react": "^1.1.5",
     "dotenv": "16.4.7",
@@ -43,7 +43,7 @@
     "remark": "15.0.1",
     "remark-gfm": "4.0.0",
     "remark-rehype": "11.1.1",
-    "shiki": "1.24.1",
+    "shiki": "1.24.2",
     "uuid": "^11.0.0"
   },
   "devDependencies": {
