@@ -45,7 +45,7 @@ importers:
         version: 1.1.0
       mongodb:
         specifier: ^6.0.0
-        version: 6.11.0
+        version: 6.12.0
       next:
         specifier: 15.1.0
         version: 15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -2985,15 +2985,15 @@ packages:
         integrity: sha512-XqMGwRX0Lgn05TDB4PyG2h2kKO/FfWJyCzYQbIhXUxz7ETt0I/FqHjUeqj37irJ+Dl1ZtU82uYyj14u2XsZKfg==,
       }
 
-  mongodb@6.11.0:
+  mongodb@6.12.0:
     resolution:
       {
-        integrity: sha512-yVbPw0qT268YKhG241vAMLaDQAPbRyTgo++odSgGc9kXnzOujQI60Iyj23B9sQQFPSvmNPvMZ3dsFz0aN55KgA==,
+        integrity: sha512-RM7AHlvYfS7jv7+BXund/kR64DryVI+cHbVAy9P61fnb1RcWZqOW1/Wj2YhqMCx+MuYhqTRGv7AwHBzmsCKBfA==,
       }
     engines: { node: ">=16.20.1" }
     peerDependencies:
       "@aws-sdk/credential-providers": ^3.188.0
-      "@mongodb-js/zstd": ^1.1.0
+      "@mongodb-js/zstd": ^1.1.0 || ^2.0.0
       gcp-metadata: ^5.2.0
       kerberos: ^2.0.1
       mongodb-client-encryption: ">=6.0.0 <7"
@@ -6329,7 +6329,7 @@ snapshots:
       "@types/whatwg-url": 11.0.5
       whatwg-url: 13.0.0
 
-  mongodb@6.11.0:
+  mongodb@6.12.0:
     dependencies:
       "@mongodb-js/saslprep": 1.1.9
       bson: 6.10.1
