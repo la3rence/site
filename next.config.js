@@ -30,6 +30,7 @@ module.exports = {
         source: "/.well-known/:param",
         destination: "/api/.well-known/:param",
       },
+      { source: "/insight/:match*", destination: "https://cloud.umami.is/:match*" },
       // {
       //   source: "/:locale/atom.xml",
       //   destination: "/atom.:locale.xml",
