@@ -102,8 +102,8 @@ importers:
         version: 11.0.4
     devDependencies:
       "@tailwindcss/typography":
-        specifier: 0.5.15
-        version: 0.5.15(tailwindcss@3.4.17)
+        specifier: 0.5.16
+        version: 0.5.16(tailwindcss@3.4.17)
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -672,13 +672,13 @@ packages:
         integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==,
       }
 
-  "@tailwindcss/typography@0.5.15":
+  "@tailwindcss/typography@0.5.16":
     resolution:
       {
-        integrity: sha512-AqhlCXl+8grUz8uqExv5OTtgpjuVIwFTSXTrh8y9/pw6q2ek7fJ+Y8ZEVw7EB2DCcuCOtEjf9w3+J3rzts01uA==,
+        integrity: sha512-0wDLwCVF5V3x3b1SGXPCDcdsbDHMBe+lkFzBRaHeLvNi+nrrnZ1lA18u+OTWO8iSWU2GxUOCvlXtDuqftc1oiA==,
       }
     peerDependencies:
-      tailwindcss: ">=3.0.0 || insiders || >=4.0.0-alpha.20"
+      tailwindcss: ">=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1"
 
   "@types/debug@4.1.12":
     resolution:
@@ -4623,7 +4623,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  "@tailwindcss/typography@0.5.15(tailwindcss@3.4.17)":
+  "@tailwindcss/typography@0.5.16(tailwindcss@3.4.17)":
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
