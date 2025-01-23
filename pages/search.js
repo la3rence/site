@@ -64,7 +64,7 @@ export default function Search({ posts }) {
           ref={inputRef}
           type="text"
           onChange={search}
-          className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-none"
+          className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-hidden"
         />
       </div>
       {searchResults.map(searchResult => {

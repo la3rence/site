@@ -37,7 +37,7 @@ export default function Douban({ id, reverse }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <span className="bg-[#072] text-white p-[1px] rounded-sm mr-2">豆</span>
+            <span className="bg-[#072] text-white p-[1px] rounded-xs mr-2">豆</span>
             <span>{movie.url}</span>
           </a>
         </div>
