@@ -1,9 +1,9 @@
 // next.config.js
 
 module.exports = {
-  // experimental: {
-  //   appDir: true,
-  // },
+  experimental: {
+    // appDir: true,
+  },
   i18n: {
     locales: ["zh", "en"], // post.en.md, post.ja.md
     defaultLocale: "zh", // post.zh.md or post.md

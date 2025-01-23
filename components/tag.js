@@ -11,7 +11,7 @@ export default function Tag(props) {
       locale={props.locale}
     >
       <span
-        className={`before:content-['#'] duration-100 transition rounded inline-block p-1 mr-1 text-sm font-mono ${highlight}`}
+        className={`before:content-['#'] duration-100 transition rounded-sm inline-block p-1 mr-1 text-sm font-mono ${highlight}`}
       >
         {props.tag.trim()}
       </span>

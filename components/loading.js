@@ -4,13 +4,13 @@ export default function Skeleton() {
       <div className="animate-pulse flex space-x-4 max-w-3xl mx-auto">
         <div className="flex-1 space-y-5">
           <div className="grid grid-cols-3 gap-4">
-            <div className="h-3 bg-slate-200 rounded col-span-1"></div>
-            {/* <div className="h-2 bg-slate-200 rounded col-span-2"></div> */}
+            <div className="h-3 bg-slate-200 rounded-sm col-span-1"></div>
+            {/* <div className="h-2 bg-slate-200 rounded-sm col-span-2"></div> */}
           </div>
-          <div className="h-3 bg-slate-200 rounded"></div>
-          <div className="h-3 bg-slate-200 rounded"></div>
+          <div className="h-3 bg-slate-200 rounded-sm"></div>
+          <div className="h-3 bg-slate-200 rounded-sm"></div>
           <div className="grid grid-cols-3 gap-4">
-            <div className="h-3 bg-slate-200 rounded col-span-2"></div>
+            <div className="h-3 bg-slate-200 rounded-sm col-span-2"></div>
           </div>
         </div>
         <div className="bg-slate-200 w-20"></div>

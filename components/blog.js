@@ -60,11 +60,8 @@ const Blog = props => {
           </h1>
         )}
         {!props.noMeta && (
-          <div className="articleTitle flex justify-start items-center flex-wrap mt-1" id="meta">
-            <div
-              className="flex flex-2 items-center justify-center cursor-pointer rounded-lg
-           hover:bg-zinc-300 hover:bg-opacity-20 pr-2"
-            >
+          <div className="articleTitle flex items-center" id="meta">
+            <div className="flex mt-2 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-500 pr-2">
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
                   <Avatar src={`https://github.com/${cfg.github}.png`} size={25} alt={author} />

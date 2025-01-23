@@ -1,4 +1,6 @@
-@tailwind base;
+@import "tailwindcss";
+
+@config '../tailwind.config.js';
 
 @layer base {
   body {
@@ -16,12 +18,12 @@
   }
 
   ::selection {
-    @apply bg-yellow-300 bg-opacity-70;
+    @apply bg-yellow-300 bg-black/70;
   }
 
   @media (prefers-color-scheme: dark) {
     ::selection {
-      @apply bg-pink-300 bg-opacity-50;
+      @apply bg-pink-300 bg-black/50;
     }
   }
 
@@ -38,15 +40,15 @@
     @apply px-4;
   }
 
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
+  code[data-theme],
+  code[data-theme] span {
     color: var(--shiki-light);
     background-color: var(--shiki-light-bg);
   }
 
   @media (prefers-color-scheme: dark) {
-    code[data-theme*=" "],
-    code[data-theme*=" "] span {
+    code[data-theme],
+    code[data-theme] span {
       color: var(--shiki-dark);
       background-color: var(--shiki-dark-bg);
     }
@@ -70,11 +72,9 @@
   }
 
   span[data-highlighted-line=""] {
-    @apply bg-zinc-200 dark:bg-zinc-700 !important;
+    @apply bg-zinc-200 dark:bg-zinc-700;
   }
 }
-
-@tailwind components;
 
 @layer components {
   .blogIndex,
@@ -125,5 +125,3 @@
     @apply cursor-pointer font-semibold;
   }
 }
-
-@tailwind utilities;
