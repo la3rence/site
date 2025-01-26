@@ -49,7 +49,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "0.5.16",
-    "eslint": "9.18.0",
+    "eslint": "9.19.0",
     "eslint-config-next": "15.1.6",
     "postcss": "8.5.1",
     "prettier": "3.4.2",
