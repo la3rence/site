@@ -106,7 +106,7 @@ importers:
         version: 4.0.1
       "@tailwindcss/typography":
         specifier: 0.5.16
-        version: 0.5.16(tailwindcss@4.0.0)
+        version: 0.5.16(tailwindcss@4.0.1)
       eslint:
         specifier: 9.19.0
         version: 9.19.0(jiti@2.4.2)
@@ -120,8 +120,8 @@ importers:
         specifier: 3.4.2
         version: 3.4.2
       tailwindcss:
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.0.1
+        version: 4.0.1
       typescript:
         specifier: 5.7.3
         version: 5.7.3
@@ -4466,13 +4466,13 @@ snapshots:
       postcss: 8.5.1
       tailwindcss: 4.0.1
 
-  "@tailwindcss/typography@0.5.16(tailwindcss@4.0.0)":
+  "@tailwindcss/typography@0.5.16(tailwindcss@4.0.1)":
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 4.0.0
+      tailwindcss: 4.0.1
 
   "@types/debug@4.1.12":
     dependencies:
