@@ -45,7 +45,7 @@ importers:
         version: 1.1.0
       mongodb:
         specifier: ^6.0.0
-        version: 6.12.0
+        version: 6.13.0
       next:
         specifier: 15.1.6
         version: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1094,10 +1094,10 @@ packages:
       }
     engines: { node: ">=8" }
 
-  bson@6.10.1:
+  bson@6.10.2:
     resolution:
       {
-        integrity: sha512-P92xmHDQjSKPLHqFxefqMxASNq/aWJMEZugpCjf+AF/pgcUpMMQCg7t7+ewko0/u8AapvF3luf/FoehddEK+sA==,
+        integrity: sha512-5afhLTjqDSA3akH56E+/2J6kTDuSIlBxyXPdQslj9hcIgOUE378xdOfZvC/9q3LifJNI6KR/juZ+d0NRNYBwXg==,
       }
     engines: { node: ">=16.20.1" }
 
@@ -2977,10 +2977,10 @@ packages:
         integrity: sha512-rMO7CGo/9BFwyZABcKAWL8UJwH/Kc2x0g72uhDWzG48URRax5TCIcJ7Rc3RZqffZzO/Gwff/jyKwCU9TN8gehA==,
       }
 
-  mongodb@6.12.0:
+  mongodb@6.13.0:
     resolution:
       {
-        integrity: sha512-RM7AHlvYfS7jv7+BXund/kR64DryVI+cHbVAy9P61fnb1RcWZqOW1/Wj2YhqMCx+MuYhqTRGv7AwHBzmsCKBfA==,
+        integrity: sha512-KeESYR5TEaFxOuwRqkOm3XOsMqCSkdeDMjaW5u2nuKfX7rqaofp7JQGoi7sVqQcNJTKuveNbzZtWMstb8ABP6Q==,
       }
     engines: { node: ">=16.20.1" }
     peerDependencies:
@@ -4719,7 +4719,7 @@ snapshots:
     dependencies:
       fill-range: 7.1.1
 
-  bson@6.10.1: {}
+  bson@6.10.2: {}
 
   busboy@1.6.0:
     dependencies:
@@ -6164,10 +6164,10 @@ snapshots:
       "@types/whatwg-url": 11.0.5
       whatwg-url: 14.1.0
 
-  mongodb@6.12.0:
+  mongodb@6.13.0:
     dependencies:
       "@mongodb-js/saslprep": 1.1.9
-      bson: 6.10.1
+      bson: 6.10.2
       mongodb-connection-string-url: 3.0.2
 
   ms@2.1.3: {}
