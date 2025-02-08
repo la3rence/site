@@ -12,7 +12,7 @@ importers:
         version: 3.0.2
       "@microflash/rehype-figure":
         specifier: ^2.1.0
-        version: 2.1.2
+        version: 2.1.3
       "@shikijs/transformers":
         specifier: 2.3.2
         version: 2.3.2
@@ -408,10 +408,10 @@ packages:
       }
     engines: { node: ">=10" }
 
-  "@microflash/rehype-figure@2.1.2":
+  "@microflash/rehype-figure@2.1.3":
     resolution:
       {
-        integrity: sha512-EgI5xnFmOxI1WI6Jk2bCVByPIYY11j1JPfjQGKEstoVci0kGJfCe9Fa3B7LZr+WWQMAm/hfcQ9Q4veBItiApVg==,
+        integrity: sha512-8YsyqLKPnshjjtXkleX85+d1JPRWcjqURg80MvJWWINFRSTljq4yDoHZjbGBZz96+M3asZFsHqGIaCCMdjXyaA==,
       }
 
   "@mongodb-js/saslprep@1.1.9":
@@ -4291,7 +4291,7 @@ snapshots:
 
   "@jsdevtools/rehype-toc@3.0.2": {}
 
-  "@microflash/rehype-figure@2.1.2":
+  "@microflash/rehype-figure@2.1.3":
     dependencies:
       hast-util-whitespace: 3.0.0
       hastscript: 9.0.0
