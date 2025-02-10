@@ -89,8 +89,8 @@ importers:
         specifier: 15.0.1
         version: 15.0.1
       remark-gfm:
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.0.1
+        version: 4.0.1
       remark-rehype:
         specifier: 11.1.1
         version: 11.1.1
@@ -3452,10 +3452,10 @@ packages:
       }
     engines: { node: ">=16" }
 
-  remark-gfm@4.0.0:
+  remark-gfm@4.0.1:
     resolution:
       {
-        integrity: sha512-U92vJgBPkbw4Zfu/IiW2oTZLSL3Zpv+uI7My2eq8JxKgqraFdU8YUGicEJCEgSbeaG+QDFqIcwwfMTOEelPxuA==,
+        integrity: sha512-1quofZ2RQ9EWdeN34S79+KExV1764+wCUGop5CPL1WGdD0ocPpu91lzPGbwWMECpEpd42kJGQwzRfyov9j4yNg==,
       }
 
   remark-parse@11.0.0:
@@ -6501,7 +6501,7 @@ snapshots:
       unified: 11.0.5
       unist-util-visit: 5.0.0
 
-  remark-gfm@4.0.0:
+  remark-gfm@4.0.1:
     dependencies:
       "@types/mdast": 4.0.4
       mdast-util-gfm: 3.0.0
