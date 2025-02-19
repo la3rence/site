@@ -1,0 +1,18 @@
+# Lawrence Li 的个人博客
+
+## Docs
+
+- [在 Flyway 迁移类中实现依赖注入](https://lawrenceli.me/blog/flyway.md): 描述在 Spring Boot 中基于 Flyway SDK 直接配合 ORM 实现高效数据迁移
+- [我的默认应用](https://lawrenceli.me/blog/app-defaults-2023.md): 介绍博主日常使用的主要应用
+- [Cloudflare](https://lawrenceli.me/blog/cloudflare.md): 列举 Cloudflare 使用体验和技术细节
+- [ActivityPub](https://lawrenceli.me/blog/activitypub.md): 介绍联邦宇宙的去中心化协议 ActivityPub 及 Node.js 实现
+- [2022 年度总结](https://lawrenceli.me/blog/2022-in-review.md): 总结博主的 2022 年
+- [草台班子](https://lawrenceli.me/blog/makeshift-troupe.md): 起底世界本质
+- [这个网站是如何构建的](https://lawrenceli.me/blog/how.md): 该网站的技术架构、功能预览和实现细节
+- [基于 Go 的 ChatOps 实践](https://lawrenceli/me/blog/chat-ops.md): 钉钉机器人实现 CI/CD
+- [WebSocket 集群方案](https://lawrenceli.me/blog/websocket-cluster.md): 基于一致性哈希算法的有状态服务分布式应用场景
+- [声明式编程](https://lawrenceli.me/declarative-programming.md): 主流编程语言和工具、框架的接口形式
+- [我所见的世界](https://lawrenceli.me/blog/the-world-as-i-see-it.md): 充分发挥机器的优势，即便它们会剥夺我们的工作机会
+- [路径依赖于货物崇拜](https://lawrenceli.me/blog/path-dependence-and-cargo-cult.md): 我对软件工程及职业生涯的一些观点
+- [四层负载均衡和七层负载均衡](https://lawrenceli.me/blog/load-balancing.md): OSI 模型简介和 L4/L7 场景介绍
+- [关于博主](https://lawrenceli.me/readme.md): 博主的介绍

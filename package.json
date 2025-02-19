@@ -11,7 +11,8 @@
     "lint": "next lint",
     "export": "next export",
     "fmt": "prettier --write .",
-    "clean": "rm -rf .next; rm -rf node_modules"
+    "clean": "rm -rf .next; rm -rf node_modules",
+    "llms": "mkdir -p public/blog && cp -r posts/* public/blog/ && cp *.md public/ "
   },
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
