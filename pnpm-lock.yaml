@@ -36,7 +36,7 @@ importers:
         version: 2.0.3
       hast-util-to-jsx-runtime:
         specifier: ^2.1.1
-        version: 2.3.2
+        version: 2.3.3
       markdown-it:
         specifier: ^14.0.0
         version: 14.1.0
@@ -2062,10 +2062,10 @@ packages:
         integrity: sha512-wxQzXtdbhiwGAUKrnQJXlOPmHnEehzphwkK7aluUPQ+lEc1xefC8pblMgpp2w5ldBTEfveRIrADcrhGIWrlTDA==,
       }
 
-  hast-util-to-jsx-runtime@2.3.2:
+  hast-util-to-jsx-runtime@2.3.3:
     resolution:
       {
-        integrity: sha512-1ngXYb+V9UT5h+PxNRa1O1FYguZK/XL+gkeqvp7EdHlB9oHUG0eYRo/vY5inBdcqo3RkPMC58/H94HvkbfGdyg==,
+        integrity: sha512-pdpkP8YD4v+qMKn2lnKSiJvZvb3FunDmFYQvVOsoO08+eTNWdaWKPMrC5wwNICtU3dQWHhElj5Sf5jPEnv4qJg==,
       }
 
   hast-util-to-string@3.0.1:
@@ -3290,6 +3290,12 @@ packages:
     resolution:
       {
         integrity: sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig==,
+      }
+
+  property-information@7.0.0:
+    resolution:
+      {
+        integrity: sha512-7D/qOz/+Y4X/rzSB6jKxKUsQnphO046ei8qxG59mtM3RG3DHgTK81HrxrmoDVINJb8NKT5ZsRbwHvQ6B68Iyhg==,
       }
 
   proxy-from-env@1.1.0:
@@ -5449,7 +5455,7 @@ snapshots:
       stringify-entities: 4.0.4
       zwitch: 2.0.4
 
-  hast-util-to-jsx-runtime@2.3.2:
+  hast-util-to-jsx-runtime@2.3.3:
     dependencies:
       "@types/estree": 1.0.6
       "@types/hast": 3.0.4
@@ -5461,7 +5467,7 @@ snapshots:
       mdast-util-mdx-expression: 2.0.1
       mdast-util-mdx-jsx: 3.2.0
       mdast-util-mdxjs-esm: 2.0.1
-      property-information: 6.5.0
+      property-information: 7.0.0
       space-separated-tokens: 2.0.2
       style-to-object: 1.0.8
       unist-util-position: 5.0.0
@@ -6354,6 +6360,8 @@ snapshots:
       react-is: 16.13.1
 
   property-information@6.5.0: {}
+
+  property-information@7.0.0: {}
 
   proxy-from-env@1.1.0: {}
 
