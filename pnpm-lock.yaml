@@ -99,7 +99,7 @@ importers:
         version: 2.3.2
       uuid:
         specifier: ^11.0.0
-        version: 11.0.5
+        version: 11.1.0
     devDependencies:
       "@tailwindcss/postcss":
         specifier: ^4.0.0
@@ -1107,6 +1107,7 @@ packages:
         integrity: sha512-5afhLTjqDSA3akH56E+/2J6kTDuSIlBxyXPdQslj9hcIgOUE378xdOfZvC/9q3LifJNI6KR/juZ+d0NRNYBwXg==,
       }
     engines: { node: ">=16.20.1" }
+    deprecated: a critical bug affecting only useBigInt64=true deserialization usage is fixed in bson@6.10.3
 
   busboy@1.6.0:
     resolution:
@@ -4024,10 +4025,10 @@ packages:
         integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==,
       }
 
-  uuid@11.0.5:
+  uuid@11.1.0:
     resolution:
       {
-        integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==,
+        integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==,
       }
     hasBin: true
 
@@ -6947,7 +6948,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  uuid@11.0.5: {}
+  uuid@11.1.0: {}
 
   vfile-location@4.1.0:
     dependencies:
