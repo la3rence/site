@@ -17,62 +17,8 @@
     @apply relative w-full overflow-hidden pt-[56%];
   }
 
-  ::selection {
-    @apply bg-yellow-300 bg-black/70;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    ::selection {
-      @apply bg-pink-300 bg-black/50;
-    }
-  }
-
   figcaption {
     @apply text-center text-balance;
-  }
-
-  /* code block styles */
-  .prose pre {
-    @apply px-0 text-current;
-  }
-
-  pre code span[data-line=""] {
-    @apply px-4;
-  }
-
-  code[data-theme],
-  code[data-theme] span {
-    color: var(--shiki-light);
-    background-color: var(--shiki-light-bg);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    code[data-theme],
-    code[data-theme] span {
-      color: var(--shiki-dark);
-      background-color: var(--shiki-dark-bg);
-    }
-  }
-
-  code > [data-line]::before {
-    counter-increment: line;
-    content: counter(line);
-    display: none;
-    width: 1rem;
-    margin-right: 1rem;
-    text-align: right;
-    color: gray;
-  }
-
-  code[data-line-numbers-max-digits="1"] > [data-line]::before {
-    display: inline-block;
-  }
-  code[data-line-numbers-max-digits="2"] > [data-line]::before {
-    display: inline-block;
-  }
-
-  span[data-highlighted-line=""] {
-    @apply bg-zinc-200 dark:bg-zinc-700;
   }
 }
 
@@ -94,15 +40,33 @@
     @apply max-w-3xl mx-auto px-4;
   }
 
-  code {
-    @apply break-words mx-auto overflow-x-auto max-w-3xl;
+  pre code {
+    @apply block break-words mx-auto overflow-x-auto max-w-3xl;
     counter-reset: line;
+  }
+
+  .line {
+    @apply px-4;
+  }
+
+  .highlighted {
+    @apply w-full inline-block transition-colors bg-[rgba(140,150,170,0.15)];
   }
 
   table,
   .gist,
   .projects {
     @apply max-w-3xl mx-auto;
+  }
+
+  .shiki {
+    @apply mx-auto;
+  }
+
+  html.dark .shiki,
+  html.dark .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
   }
 
   h2 > a,
