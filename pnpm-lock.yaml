@@ -1043,10 +1043,10 @@ packages:
       }
     engines: { node: ">=4" }
 
-  axios@1.7.9:
+  axios@1.8.2:
     resolution:
       {
-        integrity: sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==,
+        integrity: sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==,
       }
 
   axobject-query@4.1.0:
@@ -4712,7 +4712,7 @@ snapshots:
 
   axe-core@4.10.2: {}
 
-  axios@1.7.9:
+  axios@1.8.2:
     dependencies:
       follow-redirects: 1.15.9
       form-data: 4.0.1
@@ -6482,7 +6482,7 @@ snapshots:
 
   rehype-gist@1.0.0:
     dependencies:
-      axios: 1.7.9
+      axios: 1.8.2
       hast-util-classnames: 2.0.1
       hast-util-from-html: 1.0.2
       hast-util-is-element: 2.1.3
