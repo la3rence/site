@@ -21,7 +21,7 @@ importers:
         version: 0.6.5
       disqus-react:
         specifier: ^1.1.5
-        version: 1.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 1.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       dotenv:
         specifier: 16.4.7
         version: 16.4.7
@@ -1394,14 +1394,14 @@ packages:
         integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==,
       }
 
-  disqus-react@1.1.5:
+  disqus-react@1.1.6:
     resolution:
       {
-        integrity: sha512-9fdG5m6c3wJzlCDLaMheuUagMVj3s5qgUSXdekpCsvzYOKG21AiuOoqyDzA0oXrpPnYzgpnsvPYqZ+i0hJPGZw==,
+        integrity: sha512-xyhgQO3aJkXqXMUASAuAOoykMdSIcAnIsoPsotk0NQkYoaSw7MwbR3WQfJgbAKhh3SCoag9wYkTTgaCkpu3LkA==,
       }
     peerDependencies:
-      react: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   doctrine@2.1.0:
     resolution:
@@ -4870,7 +4870,7 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
-  disqus-react@1.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  disqus-react@1.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
