@@ -114,8 +114,8 @@ importers:
         specifier: 15.2.1
         version: 15.2.1(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
       postcss:
-        specifier: 8.5.2
-        version: 8.5.2
+        specifier: 8.5.3
+        version: 8.5.3
       prettier:
         specifier: 3.5.2
         version: 3.5.2
@@ -3267,10 +3267,10 @@ packages:
       }
     engines: { node: ^10 || ^12 || >=14 }
 
-  postcss@8.5.2:
+  postcss@8.5.3:
     resolution:
       {
-        integrity: sha512-MjOadfU3Ys9KYoX0AdkBlFEF1Vx37uCCeN4ZHnmwm9FfpbsGWMZeBLMmmpY+6Ocqod7mkdZ0DT31OlbsFrLlkA==,
+        integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==,
       }
     engines: { node: ^10 || ^12 || >=14 }
 
@@ -4479,7 +4479,7 @@ snapshots:
       "@tailwindcss/node": 4.0.12
       "@tailwindcss/oxide": 4.0.12
       lightningcss: 1.29.2
-      postcss: 8.5.2
+      postcss: 8.5.3
       tailwindcss: 4.0.12
 
   "@tailwindcss/typography@0.5.16(tailwindcss@4.0.12)":
@@ -6383,7 +6383,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postcss@8.5.2:
+  postcss@8.5.3:
     dependencies:
       nanoid: 3.3.8
       picocolors: 1.1.1
