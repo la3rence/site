@@ -36,7 +36,7 @@ importers:
         version: 2.0.3
       hast-util-to-jsx-runtime:
         specifier: ^2.1.1
-        version: 2.3.3
+        version: 2.3.4
       markdown-it:
         specifier: ^14.0.0
         version: 14.1.0
@@ -2054,10 +2054,10 @@ packages:
         integrity: sha512-wxQzXtdbhiwGAUKrnQJXlOPmHnEehzphwkK7aluUPQ+lEc1xefC8pblMgpp2w5ldBTEfveRIrADcrhGIWrlTDA==,
       }
 
-  hast-util-to-jsx-runtime@2.3.3:
+  hast-util-to-jsx-runtime@2.3.4:
     resolution:
       {
-        integrity: sha512-pdpkP8YD4v+qMKn2lnKSiJvZvb3FunDmFYQvVOsoO08+eTNWdaWKPMrC5wwNICtU3dQWHhElj5Sf5jPEnv4qJg==,
+        integrity: sha512-2GSifZSlBD35z6/+sp+btB333wHFPck/rrlKZMc9IOUJk6anHuQuqC/oNI80Pj717wo8JCPdXjjasVqQu3UH8Q==,
       }
 
   hast-util-to-string@3.0.1:
@@ -5444,7 +5444,7 @@ snapshots:
       stringify-entities: 4.0.4
       zwitch: 2.0.4
 
-  hast-util-to-jsx-runtime@2.3.3:
+  hast-util-to-jsx-runtime@2.3.4:
     dependencies:
       "@types/estree": 1.0.6
       "@types/hast": 3.0.4
