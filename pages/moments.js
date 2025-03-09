@@ -12,7 +12,7 @@ export default function Moments(props) {
   return (
     <div className="mt-20">
       <h3 className="mt-10 text-6xl font-bold">Moments</h3>
-      <h4>Updated: 2025/03</h4>
+      <h4>Updated: 2025-03</h4>
       <div className="mt-10 -mx-6 md:m-20 flex flex-wrap justify-center">
         {props.pics.map(pic => (
           <figure className="flex flex-col items-center justify-center" key={pic.name}>

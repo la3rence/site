@@ -122,7 +122,7 @@ function Header({
                       href={item.path}
                       className={`mx-2 ${router.asPath == item.path ? "opacity-90" : hoverTabStyle}`}
                     >
-                      {translations[item.label]}
+                      {translations[item.label] ? translations[item.label] : item.label}
                     </Link>
                   </li>
                 );
