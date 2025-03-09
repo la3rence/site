@@ -41,8 +41,12 @@
   }
 
   pre code {
-    @apply block break-words mx-auto overflow-x-auto max-w-3xl;
+    @apply block mx-auto overflow-x-auto max-w-3xl;
     counter-reset: line;
+  }
+
+  code {
+    @apply break-words;
   }
 
   .line {
