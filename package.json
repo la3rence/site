@@ -20,7 +20,7 @@
     "@vercel/og": "^0.6.0",
     "disqus-react": "^1.1.5",
     "dotenv": "16.4.7",
-    "flexsearch": "^0.7.31",
+    "flexsearch": "^0.8.0",
     "gray-matter": "4.0.3",
     "hast-util-from-html": "^2.0.0",
     "hast-util-to-jsx-runtime": "^2.1.1",
