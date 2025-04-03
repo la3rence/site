@@ -41,7 +41,7 @@
     "rehype-video": "2.3.0",
     "remark": "15.0.1",
     "remark-gfm": "4.0.1",
-    "remark-rehype": "11.1.1",
+    "remark-rehype": "11.1.2",
     "uuid": "^11.0.0"
   },
   "devDependencies": {
