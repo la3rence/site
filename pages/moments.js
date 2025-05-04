@@ -6,28 +6,31 @@ import mediumZoom from "medium-zoom";
 
 export default function Moments(props) {
   useEffect(() => {
-    mediumZoom(document.querySelectorAll("img"), { background: "#fff", margin: 24 });
+    const selector = document.querySelectorAll("img");
+    mediumZoom(selector, {
+      background: "#eee9",
+      margin: 24,
+    });
   }, []);
 
   return (
     <div className="mt-20">
       <h3 className="mt-10 text-6xl font-bold">Moments</h3>
       <h4>Updated: 2025-03</h4>
-      <div className="mt-10 -mx-6 md:m-20 flex flex-wrap justify-center">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {props.pics.map(pic => (
-          <figure className="flex flex-col items-center justify-center" key={pic.name}>
+          <figure key={pic.name}>
             <Image
-              className="md:px-2 my-4 object-contain h-auto"
+              className="mx-auto object-cover aspect-square"
               src={`/images/moments/${pic.name}`}
-              width={450}
-              height={500}
+              width={600}
+              height={600}
+              unoptimized={false}
               data-zoom-src={`/images/moments/${pic.name}`}
               priority={false}
+              loading="lazy"
               alt={pic.name.replace(/\.[^/.]+$/, "")}
             />
-            <figcaption className="text-xs mb-2 text-zinc-500 text-center">
-              {pic.name.replace(/\.[^/.]+$/, "")}
-            </figcaption>
           </figure>
         ))}
       </div>
