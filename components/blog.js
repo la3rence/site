@@ -3,7 +3,7 @@ import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
 import withLocalization from "./withI18n";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import cfg from "../lib/config.mjs";
@@ -26,6 +26,7 @@ const Blog = props => {
     i18n,
     locale,
     translations,
+    hasGist,
   } = props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -49,7 +50,11 @@ const Blog = props => {
 
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
-      {resolvedTheme === "dark" && (
+      {hasGist && (
+        // eslint-disable-next-line @next/next/no-css-tags
+        <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/gist.css" />
+      )}
+      {hasGist && resolvedTheme === "dark" && (
         // eslint-disable-next-line @next/next/no-css-tags
         <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/terminal.css" />
       )}

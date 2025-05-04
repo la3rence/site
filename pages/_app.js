@@ -1,7 +1,6 @@
 import App from "next/app";
 import { ThemeProvider } from "next-themes";
 import "../styles/globals.css";
-import "../styles/gist.css";
 import config from "../lib/config.mjs";
 import Umami from "../components/analytics";
 
