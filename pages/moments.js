@@ -8,11 +8,33 @@ import Header from "../components/header";
 export default function Moments(props) {
   const title = "Moments";
   useEffect(() => {
-    const selector = document.querySelectorAll("img");
-    mediumZoom(selector, {
-      background: "#eee9",
-      margin: 24,
-    });
+    let zoom;
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    const handleMediaChange = e => {
+      if (!e.matches && !zoom) {
+        // 非移动设备且 zoom 未初始化时初始化
+        zoom = mediumZoom(document.querySelectorAll("img"), {
+          background: "#eee9",
+          margin: 24,
+        });
+      } else if (e.matches && zoom) {
+        // 移动设备且 zoom 已初始化时销毁
+        zoom.detach();
+        zoom = null;
+      }
+    };
+
+    // 初始检查
+    handleMediaChange(mediaQuery);
+    // 监听屏幕变化
+    mediaQuery.addEventListener("change", handleMediaChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+      if (zoom) {
+        zoom.detach();
+      }
+    };
   }, []);
 
   return (

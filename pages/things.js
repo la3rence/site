@@ -86,10 +86,10 @@ export default function Things(props) {
         <h1 id="title" className={`articleTitle text-balance text-2xl mb-0 mt-14`}>
           {title}
         </h1>
-        <div className="mt-10 -mx-6">
+        <div className="mt-10">
           <table className="min-w-full">
             <thead>
-              <tr className="sticky top-0 bg-white dark:bg-zinc-900 shadow-2xs">
+              <tr className="sticky top-0 z-50 bg-white dark:bg-zinc-900 shadow-2xs">
                 <th className="py-4">设备</th>
                 <th className="cursor-pointer" onClick={() => handleSort("purchaseDate")}>
                   日期
