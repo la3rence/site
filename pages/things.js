@@ -62,7 +62,7 @@ export default function Things(props) {
 
   const StatusDot = ({ status }) => (
     <span
-      className={`inline-block w-5 h-5 rounded-full
+      className={`inline-block w-6 h-6 rounded-full
         ${
           status === "在用"
             ? "bg-green-500"
@@ -79,56 +79,46 @@ export default function Things(props) {
 
   return (
     <div className="mt-20 p-8 max-w-4xl mx-auto">
-      <h3 className="mt-10 text-6xl font-bold">Things</h3>
-      <div className="mt-10 -mx-6 overflow-x-auto">
+      <h3 className="text-6xl font-bold">Things</h3>
+      <div className="mt-10 -mx-6">
         <table className="min-w-full">
           <thead>
-            <tr className="border-b">
-              <th className="text-center py-4">设备名称</th>
-              <th
-                className="text-center py-4 font-mono cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                onClick={() => handleSort("purchaseDate")}
-              >
+            <tr className="sticky top-0 bg-white dark:bg-zinc-900 shadow-2xs">
+              <th className="py-4">设备</th>
+              <th className="cursor-pointer" onClick={() => handleSort("purchaseDate")}>
                 日期
                 <SortIndicator column="purchaseDate" />
               </th>
-              <th
-                className="text-center py-4 font-mono cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                onClick={() => handleSort("price")}
-              >
+              <th className="cursor-pointer" onClick={() => handleSort("price")}>
                 价格
                 <SortIndicator column="price" />
               </th>
-              <th
-                className="text-center py-4 font-mono cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                onClick={() => handleSort("daysOwned")}
-              >
+              <th className="cursor-pointer" onClick={() => handleSort("daysOwned")}>
                 天数
                 <SortIndicator column="daysOwned" />
               </th>
-              <th
-                className="text-center py-4 font-mono cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                onClick={() => handleSort("dailyCost")}
-              >
+              <th className="cursor-pointer" onClick={() => handleSort("dailyCost")}>
                 日均
                 <SortIndicator column="dailyCost" />
               </th>
-              <th className="text-center py-4">状态</th>
+              <th className="py-4">状态</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y">
             {items.map((item, index) => (
-              <tr key={index} className="border-b hover:bg-zinc-200 dark:hover:bg-zinc-800">
-                <td className="py-4">
-                  <span className="mx-1">{item.emoji}</span>
+              <tr
+                key={index}
+                className="transition-all border-b border-zinc-300 duration-200
+                 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:border-zinc-700"
+              >
+                <td className="text-balance py-4">
+                  <span className="mx-1 pl-2">{item.emoji}</span>
                   {item.name}
                 </td>
-                <td className="text-center py-4 font-mono">{item.purchaseDate}</td>
-                <td className="text-center py-4 font-mono">{item.price.toLocaleString()}￥</td>
-                <td className="text-center py-4 font-mono">
-                  {calculateDaysOwned(item.purchaseDate)}
-                </td>
-                <td className="text-center py-4 font-mono">
+                <td className="text-center font-mono">{item.purchaseDate}</td>
+                <td className="text-center">{item.price?.toLocaleString()}￥</td>
+                <td className="text-center">{calculateDaysOwned(item.purchaseDate)}</td>
+                <td className="text-center">
                   {calculateDailyCost(item.price, item.purchaseDate)}￥
                 </td>
                 <td className="py-4 flex items-center justify-center">
@@ -150,6 +140,6 @@ export const getStaticProps = async () => {
     props: {
       items: JSON.parse(JSON.stringify(items)),
     },
-    revalidate: 3600,
+    revalidate: 7200,
   };
 };
