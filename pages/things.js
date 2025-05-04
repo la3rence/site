@@ -1,8 +1,10 @@
 import { useState } from "react";
+import Header from "../components/header";
 import { getCollection } from "../lib/mongo";
 
 export default function Things(props) {
   const [items, setItems] = useState(props.items);
+  const title = "Things";
 
   const [sortConfig, setSortConfig] = useState({
     key: "purchaseDate",
@@ -62,7 +64,7 @@ export default function Things(props) {
 
   const StatusDot = ({ status }) => (
     <span
-      className={`inline-block w-6 h-6 rounded-full
+      className={`inline-block w-5 h-5 rounded-full
         ${
           status === "在用"
             ? "bg-green-500"
@@ -78,58 +80,63 @@ export default function Things(props) {
   );
 
   return (
-    <div className="mt-20 p-8 max-w-4xl mx-auto">
-      <h3 className="text-6xl font-bold">Things</h3>
-      <div className="mt-10 -mx-6">
-        <table className="min-w-full">
-          <thead>
-            <tr className="sticky top-0 bg-white dark:bg-zinc-900 shadow-2xs">
-              <th className="py-4">设备</th>
-              <th className="cursor-pointer" onClick={() => handleSort("purchaseDate")}>
-                日期
-                <SortIndicator column="purchaseDate" />
-              </th>
-              <th className="cursor-pointer" onClick={() => handleSort("price")}>
-                价格
-                <SortIndicator column="price" />
-              </th>
-              <th className="cursor-pointer" onClick={() => handleSort("daysOwned")}>
-                天数
-                <SortIndicator column="daysOwned" />
-              </th>
-              <th className="cursor-pointer" onClick={() => handleSort("dailyCost")}>
-                日均
-                <SortIndicator column="dailyCost" />
-              </th>
-              <th className="py-4">状态</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y">
-            {items.map((item, index) => (
-              <tr
-                key={index}
-                className="transition-all border-b border-zinc-300 duration-200
-                 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:border-zinc-700"
-              >
-                <td className="text-balance py-4">
-                  <span className="mx-1 pl-2">{item.emoji}</span>
-                  {item.name}
-                </td>
-                <td className="text-center font-mono">{item.purchaseDate}</td>
-                <td className="text-center">{item.price?.toLocaleString()}￥</td>
-                <td className="text-center">{calculateDaysOwned(item.purchaseDate)}</td>
-                <td className="text-center">
-                  {calculateDailyCost(item.price, item.purchaseDate)}￥
-                </td>
-                <td className="py-4 flex items-center justify-center">
-                  <StatusDot status={item.status} />
-                </td>
+    <>
+      <Header title={title} tags={title} />
+      <div className="max-w-4xl mx-auto">
+        <h1 id="title" className={`articleTitle text-balance text-2xl mb-0 mt-14`}>
+          {title}
+        </h1>
+        <div className="mt-10 -mx-6">
+          <table className="min-w-full">
+            <thead>
+              <tr className="sticky top-0 bg-white dark:bg-zinc-900 shadow-2xs">
+                <th className="py-4">设备</th>
+                <th className="cursor-pointer" onClick={() => handleSort("purchaseDate")}>
+                  日期
+                  <SortIndicator column="purchaseDate" />
+                </th>
+                <th className="cursor-pointer" onClick={() => handleSort("price")}>
+                  价格
+                  <SortIndicator column="price" />
+                </th>
+                <th className="cursor-pointer" onClick={() => handleSort("daysOwned")}>
+                  天数
+                  <SortIndicator column="daysOwned" />
+                </th>
+                <th className="cursor-pointer" onClick={() => handleSort("dailyCost")}>
+                  日均
+                  <SortIndicator column="dailyCost" />
+                </th>
+                <th className="py-4">状态</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y">
+              {items.map((item, index) => (
+                <tr
+                  key={index}
+                  className="transition-all border-b border-zinc-300 duration-200
+                 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:border-zinc-700"
+                >
+                  <td className="text-balance py-4">
+                    <span className="mx-1 pl-2">{item.emoji}</span>
+                    {item.name}
+                  </td>
+                  <td className="text-center font-mono">{item.purchaseDate}</td>
+                  <td className="text-center">{item.price?.toLocaleString()}￥</td>
+                  <td className="text-center">{calculateDaysOwned(item.purchaseDate)}</td>
+                  <td className="text-center">
+                    {calculateDailyCost(item.price, item.purchaseDate)}￥
+                  </td>
+                  <td className="py-4 flex items-center justify-center">
+                    <StatusDot status={item.status} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

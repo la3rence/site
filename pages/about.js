@@ -10,7 +10,7 @@ const About = props => {
   const translations = props.translations;
   const locale = useRouter().locale;
   return (
-    <Layout title={translations["About"]} tags={"About"}>
+    <Layout title="About" tags={"About"}>
       <div
         dangerouslySetInnerHTML={{
           __html: props.htmlStringContent,
