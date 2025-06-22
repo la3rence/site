@@ -6,7 +6,7 @@ import Logo from "./logo";
 import { Adsense } from "./analytics";
 import withLocalization from "./withI18n";
 import LocalizationSwitch from "./switcher";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function Header({
   title,

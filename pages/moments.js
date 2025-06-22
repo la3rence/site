@@ -4,9 +4,12 @@ import path from "path";
 import { useEffect } from "react";
 import mediumZoom from "medium-zoom";
 import Header from "../components/header";
+import { useTheme } from "next-themes";
 
+// todo: lazy load images
 export default function Moments(props) {
   const title = "Moments";
+  const { resolvedTheme } = useTheme();
   useEffect(() => {
     let zoom;
     const mediaQuery = window.matchMedia("(max-width: 768px)");
@@ -14,10 +17,17 @@ export default function Moments(props) {
     const handleMediaChange = e => {
       if (!e.matches && !zoom) {
         // 非移动设备且 zoom 未初始化时初始化
-        zoom = mediumZoom(document.querySelectorAll("img"), {
-          background: "#eee9",
-          margin: 24,
-        });
+        if (resolvedTheme === "dark") {
+          zoom = mediumZoom(document.querySelectorAll("img"), {
+            background: "#111111bb",
+            margin: 24,
+          });
+        } else {
+          zoom = mediumZoom(document.querySelectorAll("img"), {
+            background: "#eeeeee99",
+            margin: 24,
+          });
+        }
       } else if (e.matches && zoom) {
         // 移动设备且 zoom 已初始化时销毁
         zoom.detach();
@@ -35,7 +45,7 @@ export default function Moments(props) {
         zoom.detach();
       }
     };
-  }, []);
+  }, [resolvedTheme]);
 
   return (
     <>
@@ -49,7 +59,7 @@ export default function Moments(props) {
           {props.pics.map(pic => (
             <figure key={pic.name}>
               <Image
-                className="mx-auto object-cover aspect-square"
+                className="mx-auto object-cover aspect-square z-50 shadow-xs"
                 src={`/images/moments/${pic.name}`}
                 width={600}
                 height={600}
