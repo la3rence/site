@@ -1,14 +1,21 @@
 import Image from "next/image";
+import { useState } from "react";
 
-export default function Avatar({ src, size, alt }) {
+export default function Avatar({ src, size, alt, fallback }) {
+  const [imageError, setImageError] = useState(false);
   if (src) {
     return (
       <Image
         className="rounded-full not-prose inline-block border border-zinc-300"
-        src={`${process.env.NEXT_PUBLIC_PROXY_URL}${src.replace("https://", "")}`}
+        src={
+          imageError
+            ? fallback
+            : `${process.env.NEXT_PUBLIC_PROXY_URL}${src.replace("https://", "")}`
+        }
         width={size}
         height={size}
         alt={alt}
+        onError={() => setImageError(true)}
       />
     );
   } else

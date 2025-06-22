@@ -162,7 +162,12 @@ const Blog = props => {
                         <div key={reply.url} className="mt-1">
                           <div className="flex">
                             <span className="mr-2 not-prose">
-                              <Avatar src={reply.avatar} size={25} alt={reply.account} />
+                              <Avatar
+                                src={reply.avatar}
+                                size={25}
+                                alt={reply.account}
+                                fallback={"/images/mstdn.png"}
+                              />
                             </span>
                             <a
                               href={reply.url}
