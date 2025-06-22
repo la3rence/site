@@ -138,7 +138,12 @@ const Blog = props => {
                         className="not-prose mr-1"
                         rel="noopener noreferrer"
                       >
-                        <Avatar src={like.avatar} size={25} alt={like.actor} />
+                        <Avatar
+                          src={like.avatar}
+                          size={25}
+                          alt={like.actor}
+                          fallback="/images/mstdn.png"
+                        />
                       </a>
                     );
                   })}
@@ -166,7 +171,7 @@ const Blog = props => {
                                 src={reply.avatar}
                                 size={25}
                                 alt={reply.account}
-                                fallback={"/images/mstdn.png"}
+                                fallback="/images/mstdn.png"
                               />
                             </span>
                             <a
