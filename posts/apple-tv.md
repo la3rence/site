@@ -5,8 +5,6 @@ description: " 小巧玲珑的电视盒子"
 tags: apple, tv
 ---
 
-APPLE: <trade symbol="AAPL" />
-
 过年回老家看电视，运营商送的网络电视盒子主屏幕花花绿绿，我一个程序员都费了好久才找到地方卫视的直播频道。
 
 索性去电商平台搜搜看有没有更好的硬件、翻看各种测评文章和视频。清晰了需求定位后，我果断找了一家有现货的店铺下单了一款美版 Apple TV 2022 (4K)。
@@ -32,3 +30,5 @@ APPLE: <trade symbol="AAPL" />
 种种体验让我想起[知乎上一个回答](https://www.zhihu.com/question/477077785/answer/2425144012)：
 
 > 长这么大，听过最清晰的《义勇军进行曲》是在 Apple Music。
+
+<trade symbol="AAPL"></trade>

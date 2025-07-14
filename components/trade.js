@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import config from "../lib/config.mjs";
 
 /**
@@ -71,13 +71,20 @@ const Trade = ({ symbol }) => {
   }, [symbol]);
 
   // fallback the t-1 price
-  if (!price || price == 0 || !isConnected) {
-    return <span className="font-bold">■{previous}$</span>;
+  if (!price || !isConnected) {
+    if (previous == 0) {
+      return <span></span>;
+    }
+    return (
+      <span className="font-bold">
+        {symbol}: ■{previous}$
+      </span>
+    );
   }
 
   return (
-    <span className={`font-bold ${previous > price ? "text-green-600" : "text-red-600"} `}>
-      {previous < price ? "▲" : "▼"}
+    <span className={`font-bold ${previous > price ? "text-green-600" : "text-red-600"}`}>
+      {symbol}: {previous < price ? "▲" : "▼"}
       {price}$
     </span>
   );

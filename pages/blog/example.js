@@ -33,7 +33,7 @@ export default function Example() {
         Image example: <code>{"<Image />"}</code>
       </p>
       <p>
-        Apple Inc Current Price: <Trade symbol="AAPL"></Trade>
+        <Trade symbol="AAPL"></Trade>
       </p>
       <div className="filter dark:brightness-75 ">
         <Image src={demoPic} alt={"Demo image"} />
