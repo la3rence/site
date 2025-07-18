@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "markdown": "github",
   "scripts": {
-    "dev": "pnpm feed && next dev -H 0.0.0.0 --turbo",
+    "dev": "pnpm feed & next dev -H 0.0.0.0 --turbopack",
     "feed": "node ./lib/feed.mjs",
     "websub": "node ./lib/websub.mjs",
     "start": "next start",
-    "build": "NEXT_PUBLIC_BUILDTIME=$(date '+%s') next build && pnpm feed && next-sitemap && pnpm llms",
+    "build": "NEXT_PUBLIC_BUILDTIME=$(date '+%s') next build --turbopack && pnpm feed && next-sitemap && pnpm llms",
     "lint": "next lint",
     "export": "next export",
     "fmt": "prettier --write .",
