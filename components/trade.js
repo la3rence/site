@@ -14,7 +14,9 @@ const Trade = ({ symbol }) => {
 
   useEffect(() => {
     const fetchPrevious = async () => {
-      const res = await fetch(`https://trade.${config.domain}/quote?symbol=${symbol}`);
+      const res = await fetch(`https://trade.${config.domain}/quote?symbol=${symbol}`, {
+        cache: "no-store",
+      });
       const json = await res.json();
       const floatString = json?.pc;
       const float = Number.parseFloat(floatString);

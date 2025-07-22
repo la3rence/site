@@ -1,7 +1,13 @@
 import { ImageResponse } from "@vercel/og";
 import siteConfig from "../../lib/config.mjs";
+import cache from "../../lib/cache";
 
 async function fetchFont(text, font) {
+  const cachedFont = cache.get(`font:${font}:${text}`);
+  if (cachedFont) {
+    return Uint8Array.from(Buffer.from(cachedFont, "base64")).buffer;
+  }
+
   const API = `https://fonts.googleapis.com/css2?family=${font}&text=${encodeURIComponent(
     text + "●▲■",
   )}`;
@@ -17,7 +23,10 @@ async function fetchFont(text, font) {
   const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
   if (!resource) return null;
   const res = await fetch(resource[1]);
-  return res.arrayBuffer();
+  const buffer = await res.arrayBuffer();
+  // cache buffer
+  cache.set(`font:${font}:${text}`, Buffer.from(buffer).toString("base64"));
+  return buffer;
 }
 
 export const config = {

@@ -1,5 +1,6 @@
 import config from "../../../lib/config.mjs";
 import { getOrigin, respondActivityJSON } from "../../../lib/util.js";
+import cache from "../../../lib/cache";
 
 export const getFediAcctFromActor = (username, actor) => {
   const actorURL = new URL(actor);
@@ -8,15 +9,22 @@ export const getFediAcctFromActor = (username, actor) => {
 };
 
 export async function fetchActorInformation(actorUrl) {
-  // console.log("Fetching actor from: ", actorUrl);
+  // cache actor info
+  const cachedActor = cache.get(`activitypub:actor:${actorUrl}`);
+  if (cachedActor) {
+    return cachedActor;
+  }
   try {
     const response = await fetch(actorUrl, {
       headers: {
         "Content-Type": "application/activity+json",
         Accept: "application/activity+json",
       },
+      cache: "force-cache",
     });
-    return await response.json();
+    const actorInfo = await response.json();
+    cache.set(`activitypub:actor:${actorUrl}`, actorInfo, 3600 * 24);
+    return actorInfo;
   } catch (error) {
     console.error("Unable to fetch action information", actorUrl, error);
   }
