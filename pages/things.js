@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../components/header";
 import { getCollection } from "../lib/mongo";
+import cache from "../lib/cache";
 
 export default function Things(props) {
   const [items, setItems] = useState(props.items);
@@ -141,8 +142,17 @@ export default function Things(props) {
 }
 
 export const getStaticProps = async () => {
+  if (cache.has("things")) {
+    return {
+      props: {
+        items: JSON.parse(cache.get("things")),
+      },
+      revalidate: 3600,
+    };
+  }
   const collection = await getCollection("things");
   const items = await collection.find({}).sort({ purchaseDate: -1 }).toArray();
+  cache.set("things", JSON.stringify(items));
   return {
     props: {
       items: JSON.parse(JSON.stringify(items)),

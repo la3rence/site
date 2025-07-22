@@ -18,6 +18,7 @@ export default function GitHub({ user, repo }) {
     const getGitHubRepo = async (user, repo) => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_PROXY_URL}api.github.com/repos/${user}/${repo}`,
+        { cache: "force-cache" },
       );
       const data = await res.json();
       setData(data);

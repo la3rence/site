@@ -7,7 +7,9 @@ export default function Douban({ id, reverse }) {
 
   useEffect(() => {
     const fetchMovie = async id => {
-      const res = await fetch(`https://moviedb.lawrenceli.me/data/${id}.json`);
+      const res = await fetch(`https://moviedb.lawrenceli.me/data/${id}.json`, {
+        cache: "force-cache",
+      });
       const json = await res.json();
       setMovie(json);
     };
