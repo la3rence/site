@@ -19,7 +19,7 @@
     "@microflash/rehype-figure": "^2.1.0",
     "@vercel/og": "^0.8.0",
     "disqus-react": "^1.1.5",
-    "dotenv": "17.2.0",
+    "dotenv": "17.2.1",
     "flexsearch": "^0.8.0",
     "gray-matter": "4.0.3",
     "hast-util-from-html": "^2.0.0",
