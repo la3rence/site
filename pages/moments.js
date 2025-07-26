@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import mediumZoom from "medium-zoom";
 import Header from "../components/header";
 import { useTheme } from "next-themes";
-import LazyImage from "../components/LazyImage";
+import Image from "next/image";
 
 export default function Moments(props) {
   const title = "Moments";
@@ -57,7 +57,7 @@ export default function Moments(props) {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {props.pics.map(pic => (
             <figure key={pic.name}>
-              <LazyImage
+              <Image
                 className="mx-auto object-cover aspect-square z-50 shadow-xs"
                 src={`/images/moments/${pic.name}`}
                 width={600}
