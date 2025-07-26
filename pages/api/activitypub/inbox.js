@@ -6,7 +6,7 @@ import { saveLike } from "./like";
 
 export default async function inbox(req, res) {
   if (req.method !== "POST") {
-    res.statusCode = 404;
+    res.statusCode = 405;
     res.end("method not allowed");
     return;
   }
@@ -16,12 +16,16 @@ export default async function inbox(req, res) {
   // todo: verify signature
   const requestBody = req.body;
   const message = JSON.parse(requestBody);
-  console.log("inbox msg", message);
-  if (message.actor != null) {
-    // console.log("actor info to save: ", message.actor);
-    // todo: await saveActor(actorInformation);
-    // Add the actor information to the message so that it's saved directly.
+  if (message.type == "Delete") {
+    res.end("ok");
+    return;
   }
+  console.log("inbox msg", message);
+  // if (message.actor != null) {
+  //   // console.log("actor info to save: ", message.actor);
+  //   // todo: await saveActor(actorInformation);
+  //   // Add the actor information to the message so that it's saved directly.
+  // }
   if (message.type == "Follow" && message.actor != null) {
     console.log("follower to accept & save");
     // Accept & save to my own db
