@@ -1,5 +1,6 @@
 import { getCollection } from "../../lib/mongo";
 import { IS_PROD } from "../../lib/env";
+import cache from "../../lib/cache";
 
 // export const config = {
 //   runtime: "experimental-edge",
@@ -8,6 +9,7 @@ import { IS_PROD } from "../../lib/env";
 const pageViews = await getCollection("pageViews");
 
 export default async function view(req, res) {
+  console.log("cache stats", cache.getStats());
   if (IS_PROD) {
     const page = req.query.page ? req.query.page : "/";
     const currentPageView = await recordPageView(page);
