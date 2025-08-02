@@ -5,6 +5,7 @@ import { lazy } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import config from "../../lib/config.mjs";
+import { memo } from "react";
 const Douban = lazy(() => import("../../components/douban"));
 const Bilibili = lazy(() => import("../../components/bilibili"));
 const Tweet = lazy(() => import("../../components/twitter"));
@@ -35,7 +36,7 @@ const PathId = props => {
   );
 };
 
-export default PathId;
+export default memo(PathId);
 
 export const getStaticProps = async context => {
   const { id } = context.params;
