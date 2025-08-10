@@ -18,7 +18,7 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 9
+          version: 10
           run_install: true
       - name: Post WebSub
         run: pnpm websub
