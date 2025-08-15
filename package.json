@@ -50,7 +50,7 @@
     "@shikijs/transformers": "3.9.2",
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "0.5.16",
-    "eslint": "9.32.0",
+    "eslint": "9.33.0",
     "eslint-config-next": "15.4.6",
     "minify-xml": "^4.5.2",
     "postcss": "8.5.6",
