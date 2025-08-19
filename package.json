@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@shikijs/rehype": "^3.1.0",
-    "@shikijs/transformers": "3.9.2",
+    "@shikijs/transformers": "3.10.0",
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "0.5.16",
     "eslint": "9.33.0",
