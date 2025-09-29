@@ -127,7 +127,7 @@ export default function Vix(props) {
       <p>
         当前恐慌指数:{" "}
         <strong className={colorClass}>{hasLatest ? `${dailyLatest}%` : "暂无数据"}</strong>
-        。该数据基于沪深 30 指数期权计算的隐含波动率，反映了市场对未来 30 天股价波动的预期.
+        。该数据基于沪深 300 指数期权计算的隐含波动率，反映了市场对未来 30 天股价波动的预期.
         数值越高表示市场预期波动越大，投资者情绪越紧张.
       </p>
       <p className="flex flex-wrap gap-2 mt-4">
