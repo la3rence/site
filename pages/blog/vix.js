@@ -41,10 +41,10 @@ export const getStaticProps = async () => {
       low: Number(item.low?.toFixed(2)),
       close: Number(item.close?.toFixed(2)),
       timestamp: new Date(item.date).getTime(),
-    }));
-
-  const dailyLatest =
-    dailyPoints.length > 0 ? dailyPoints[dailyPoints.length - 1].volatility : null;
+    }))
+    .sort((a, b) => a.timestamp - b.timestamp);
+  const latestPoint = dailyPoints[dailyPoints.length - 1] ?? null;
+  const dailyLatest = latestPoint?.volatility ?? null;
   return {
     props: {
       dailyPoints,
@@ -57,18 +57,20 @@ export const getStaticProps = async () => {
 export default function Vix(props) {
   const data = props.dailyPoints;
   const dailyLatest = props.dailyLatest;
-  let colorClass = "";
-  if (dailyLatest < 15) {
+  const hasLatest = typeof dailyLatest === "number" && Number.isFinite(dailyLatest);
+  let colorClass = hasLatest ? "" : "text-gray-400";
+  if (hasLatest && dailyLatest < 15) {
     colorClass = "text-green-600";
-  } else if (dailyLatest >= 15 && dailyLatest <= 20) {
+  } else if (hasLatest && dailyLatest <= 20) {
     colorClass = "text-yellow-600";
-  } else if (dailyLatest > 20 && dailyLatest <= 25) {
+  } else if (hasLatest && dailyLatest <= 25) {
     colorClass = "text-orange-600";
-  } else if (dailyLatest > 25) {
+  } else if (hasLatest && dailyLatest > 25) {
     colorClass = "text-red-600";
   }
+  const latestLabel = hasLatest ? `${dailyLatest}` : "暂无数据";
   return (
-    <Blog {...blogProps} title={blogProps.title + ": " + dailyLatest} noReply noMeta>
+    <Blog {...blogProps} title={`${blogProps.title}: ${latestLabel}`} noReply noMeta>
       <div className="h-72 md:h-96 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 30, right: 20, left: 0, bottom: 30 }}>
@@ -105,8 +107,9 @@ export default function Vix(props) {
         </ResponsiveContainer>
       </div>
       <p>
-        当前恐慌指数: <strong className={colorClass}>{dailyLatest}%</strong>. 该数据基于沪深 300
-        指数期权计算的隐含波动率指数，反映了市场对未来 30 天股价波动的预期.
+        当前恐慌指数:{" "}
+        <strong className={colorClass}>{hasLatest ? `${dailyLatest}%` : "暂无数据"}</strong>
+        。该数据基于沪深 30 指数期权计算的隐含波动率指数，反映了市场对未来 30 天股价波动的预期.
         数值越高表示市场预期波动越大，投资者情绪越紧张.
       </p>
       <p className="flex flex-wrap gap-2 mt-4">
@@ -132,8 +135,8 @@ const CustomDot = props => {
   if (isLatestPoint) {
     return (
       <g>
-        <Dot cx={cx} cy={cy} r={4} fill={"#60a5fa"} stroke={"#1e40af"} strokeWidth={2} />
-        <circle cx={cx} cy={cy} r={7} fill="none" strokeWidth={1} opacity={0.3} />
+        <Dot cx={cx} cy={cy} r={4} fill={"#60a5fa"} stroke="#1e40af" strokeWidth={2} />
+        <circle cx={cx} cy={cy} r={7} fill="none" stroke="#60a5fa" strokeWidth={1} opacity={0.3} />
       </g>
     );
   }
