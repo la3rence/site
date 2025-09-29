@@ -26,22 +26,40 @@ export const getStaticProps = async () => {
   const data = await fetch(process.env.QVIX_300_DAILY_API, { cache: "no-cache" });
   const resp = await data.json();
   const dailyPoints = resp
-    .filter(item => item.close != null)
+    .map(item => {
+      const parsedClose = Number.parseFloat(item.close);
+      const parsedOpen = Number.parseFloat(item.open);
+      const parsedHigh = Number.parseFloat(item.high);
+      const parsedLow = Number.parseFloat(item.low);
+
+      const volatility = Number.isFinite(parsedClose)
+        ? parseFloat((parsedClose * 100).toFixed(2)) / 100
+        : null;
+      const open = Number.isFinite(parsedOpen)
+        ? parseFloat((parsedOpen * 100).toFixed(2)) / 100
+        : null;
+      const high = Number.isFinite(parsedHigh)
+        ? parseFloat((parsedHigh * 100).toFixed(2)) / 100
+        : null;
+      const low = Number.isFinite(parsedLow)
+        ? parseFloat((parsedLow * 100).toFixed(2)) / 100
+        : null;
+      const close = Number.isFinite(parsedClose)
+        ? parseFloat((parsedClose * 100).toFixed(2)) / 100
+        : null;
+
+      const itemDate = new Date(item.date);
+      const timestamp = !isNaN(itemDate.getTime()) ? itemDate.getTime() : null;
+      const date = timestamp ? new Date(item.date).toLocaleDateString("zh-CN") : null;
+      return { date, volatility, open, high, low, close, timestamp };
+    })
+    .filter(item => item.timestamp !== null && item.volatility !== null)
     .filter(item => {
       const itemDate = new Date(item.date);
       const yearsAgo = new Date();
       yearsAgo.setFullYear(yearsAgo.getFullYear() - 2);
       return itemDate >= yearsAgo;
     })
-    .map(item => ({
-      date: new Date(item.date).toLocaleDateString("zh-CN"),
-      volatility: Number(item.close?.toFixed(2)),
-      open: Number(item.open?.toFixed(2)),
-      high: Number(item.high?.toFixed(2)),
-      low: Number(item.low?.toFixed(2)),
-      close: Number(item.close?.toFixed(2)),
-      timestamp: new Date(item.date).getTime(),
-    }))
     .sort((a, b) => a.timestamp - b.timestamp);
   const latestPoint = dailyPoints[dailyPoints.length - 1] ?? null;
   const dailyLatest = latestPoint?.volatility ?? null;
@@ -109,7 +127,7 @@ export default function Vix(props) {
       <p>
         当前恐慌指数:{" "}
         <strong className={colorClass}>{hasLatest ? `${dailyLatest}%` : "暂无数据"}</strong>
-        。该数据基于沪深 30 指数期权计算的隐含波动率指数，反映了市场对未来 30 天股价波动的预期.
+        。该数据基于沪深 30 指数期权计算的隐含波动率，反映了市场对未来 30 天股价波动的预期.
         数值越高表示市场预期波动越大，投资者情绪越紧张.
       </p>
       <p className="flex flex-wrap gap-2 mt-4">
