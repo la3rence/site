@@ -20,18 +20,15 @@ export const blogProps = {
   visible: true,
 };
 
-const viewMode = "daily"; // currently only support daily data.
-
 export const getStaticProps = async () => {
-  const data = await fetch(process.env.QVIX_300_DAILY_API, { cache: "no-cache" });
-  const resp = await data.json();
-  const dailyPoints = resp
+  const dailyData = await fetch(process.env.QVIX_300_DAILY_API);
+  const dailyResp = await dailyData.json();
+  const dailyPoints = dailyResp
     .map(item => {
       const parsedClose = Number.parseFloat(item.close);
       const parsedOpen = Number.parseFloat(item.open);
       const parsedHigh = Number.parseFloat(item.high);
       const parsedLow = Number.parseFloat(item.low);
-
       const volatility = Number.isFinite(parsedClose)
         ? parseFloat((parsedClose * 100).toFixed(2)) / 100
         : null;
@@ -61,74 +58,85 @@ export const getStaticProps = async () => {
       return itemDate >= yearsAgo;
     })
     .sort((a, b) => a.timestamp - b.timestamp);
-  const latestPoint = dailyPoints[dailyPoints.length - 1] ?? null;
-  const dailyLatest = latestPoint?.volatility ?? null;
+
+  const minuteData = await fetch(process.env.QVIX_300_MIN_API, { cache: "no-cache" });
+  const minuteResp = await minuteData.json();
+  const minutePoints = minuteResp
+    .map((item, index) => ({
+      time: item.time,
+      volatility: item.qvix !== null ? Number(item.qvix.toFixed(2)) : null,
+      timestamp: Date.now() + index,
+    }))
+    .sort((a, b) => a.timestamp - b.timestamp);
+  const validPoints = minutePoints.filter(item => item.volatility != null);
+  const latestData = validPoints[validPoints.length - 1] ?? null;
+  const current = latestData?.volatility ?? null;
+
   return {
     props: {
       dailyPoints,
-      dailyLatest,
+      minutePoints,
+      current,
     },
-    revalidate: 3600, // an hour
+    revalidate: 60, // a minute
   };
 };
 
-export default function Vix(props) {
-  const data = props.dailyPoints;
-  const dailyLatest = props.dailyLatest;
-  const hasLatest = typeof dailyLatest === "number" && Number.isFinite(dailyLatest);
-  let colorClass = hasLatest ? "" : "text-gray-400";
-  if (hasLatest && dailyLatest < 15) {
-    colorClass = "text-green-600";
-  } else if (hasLatest && dailyLatest <= 20) {
-    colorClass = "text-yellow-600";
-  } else if (hasLatest && dailyLatest <= 25) {
-    colorClass = "text-orange-600";
-  } else if (hasLatest && dailyLatest > 25) {
-    colorClass = "text-red-600";
-  }
-  const latestLabel = hasLatest ? `${dailyLatest}` : "暂无数据";
+const Chart = ({ data, viewMode }) => {
   return (
-    <Blog {...blogProps} title={`${blogProps.title}: ${latestLabel}`} noReply noMeta>
-      <div className="h-72 md:h-96 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data} margin={{ top: 30, right: 20, left: 0, bottom: 30 }}>
-            <CartesianGrid strokeDasharray="3 3" className="opacity-20" />
-            <XAxis
-              dataKey={viewMode === "daily" ? "date" : "time"}
-              fontSize={10}
-              tickLine={false}
-              axisLine={false}
-              angle={viewMode === "daily" ? -45 : 0}
-              textAnchor={viewMode === "daily" ? "end" : "middle"}
-              height={viewMode === "daily" ? 60 : 30}
-            />
-            <YAxis
-              fontSize={10}
-              tickLine={false}
-              axisLine={false}
-              domain={["dataMin - 1", "dataMax + 1"]}
-              tickFormatter={value => `${value}`}
-            />
-            <Tooltip content={<CustomTooltip />} />
-            <Line
-              type="monotone"
-              dataKey="volatility"
-              strokeWidth={2.5}
-              dot={<CustomDot data={data} />}
-              activeDot={{
-                r: 5,
-                strokeWidth: 2,
-              }}
-              connectNulls={false}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={data} margin={{ top: 30, right: 20, left: 0, bottom: 30 }}>
+        <CartesianGrid strokeDasharray="3 3" className="opacity-25" />
+        <XAxis
+          dataKey={viewMode === "daily" ? "date" : "time"}
+          fontSize={10}
+          tickLine={false}
+          axisLine={false}
+          angle={viewMode === "daily" ? -45 : 0}
+          textAnchor={viewMode === "daily" ? "end" : "middle"}
+          height={viewMode === "daily" ? 60 : 30}
+        />
+        <YAxis
+          fontSize={10}
+          tickLine={false}
+          axisLine={false}
+          domain={["dataMin - 1", "dataMax + 1"]}
+          tickFormatter={value => `${value}`}
+        />
+        <Tooltip content={<CustomTooltip viewMode={viewMode} />} />
+        <Line
+          type="monotone"
+          dataKey="volatility"
+          strokeWidth={2.5}
+          dot={<CustomDot data={data} />}
+          activeDot={{
+            r: 5,
+            strokeWidth: 2,
+          }}
+          connectNulls={false}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+};
+
+export default function Vix(props) {
+  const dailyData = props.dailyPoints;
+  const minuteData = props.minutePoints;
+  const current = props.current;
+  return (
+    <Blog {...blogProps} title={`${blogProps.title}: ${current}`} noReply noMeta>
+      <div className="h-72 md:h-96 w-full text-center my-10">
+        <div>沪深 300 股指期权隐含波动率 当前</div>
+        <Chart data={minuteData} viewMode="minute" />
+      </div>
+      <div className="h-72 md:h-96 w-full text-center my-10">
+        <div>沪深 300 股指期权隐含波动率 历史</div>
+        <Chart data={dailyData} viewMode="daily" />
       </div>
       <p>
-        当前恐慌指数:{" "}
-        <strong className={colorClass}>{hasLatest ? `${dailyLatest}%` : "暂无数据"}</strong>
-        。该数据基于沪深 300 指数期权计算的隐含波动率，反映了市场对未来 30 天股价波动的预期.
-        数值越高表示市场预期波动越大，投资者情绪越紧张.
+        该数据基于沪深 300 指数期权计算的隐含波动率，反映了市场对未来 30 天股价波动的预期。
+        数值越高表示市场预期波动越大，投资者情绪越紧张。
       </p>
       <p className="flex flex-wrap gap-2 mt-4">
         <span className="text-green-600 border rounded-4xl text-xs py-1 px-2">
@@ -161,7 +169,7 @@ const CustomDot = props => {
   return null;
 };
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload, label, viewMode }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
