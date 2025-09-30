@@ -21,8 +21,16 @@ export const blogProps = {
 };
 
 export const getStaticProps = async () => {
-  const dailyData = await fetch(process.env.QVIX_300_DAILY_API);
-  const dailyResp = await dailyData.json();
+  let dailyResp = [];
+  let minuteResp = [];
+  try {
+    const dailyData = await fetch(process.env.QVIX_300_DAILY_API);
+    const minuteData = await fetch(process.env.QVIX_300_MIN_API, { cache: "no-cache" });
+    dailyResp = await dailyData.json();
+    minuteResp = await minuteData.json();
+  } catch (error) {
+    console.error("Error fetching stock data:", error);
+  }
   const dailyPoints = dailyResp
     .map(item => {
       const parsedClose = Number.parseFloat(item.close);
@@ -59,8 +67,6 @@ export const getStaticProps = async () => {
     })
     .sort((a, b) => a.timestamp - b.timestamp);
 
-  const minuteData = await fetch(process.env.QVIX_300_MIN_API, { cache: "no-cache" });
-  const minuteResp = await minuteData.json();
   const minutePoints = minuteResp
     .map((item, index) => ({
       time: item.time,
