@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import cfg from "../lib/config.mjs";
-import Disqus from "./disqus";
 import Comments from "./comments";
 import mediumZoom from "medium-zoom";
 import { useTheme } from "next-themes";
@@ -27,6 +26,7 @@ const Blog = props => {
     locale,
     translations,
     hasGist,
+    hasAlert,
   } = props;
   const [replies, setReplies] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -57,6 +57,9 @@ const Blog = props => {
       {hasGist && resolvedTheme === "dark" && (
         // eslint-disable-next-line @next/next/no-css-tags
         <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/terminal.css" />
+      )}
+      {hasAlert && (
+        <link rel="stylesheet" fetchPriority="low" type="text/css" href="/css/alert.css" />
       )}
       <article className="blog">
         {!props.noTitle && (
@@ -152,15 +155,14 @@ const Blog = props => {
             )}
             {!props.noReply && (
               <>
-                <h6 id="reply" className="font-bold my-2">
+                {/* <h6 id="reply" className="font-bold my-2">
                   {translations["Replies from Fediverse"]}
                   {replies?.length > 0 ? `(${replies?.length})` : ""}
-                </h6>
+                </h6>*/}
                 <div className="mt-4 text-sm">
-                  <span>
+                  {/* <span>
                     {translations["Search this URL on Mastodon to reply"]}:<code>{pageURL}</code>
-                  </span>
-                  {/* <div className="font-mono my-4 break-words"></div> */}
+                  </span>*/}
                   <div className="mt-6">
                     {replies?.map(reply => {
                       return (
@@ -195,9 +197,6 @@ const Blog = props => {
             )}
           </div>
           <div className="comments">
-            {cfg.enableDisqus && !props.noReply && (
-              <Disqus url={pageURL} identifier={id} title={title} />
-            )}
             {cfg.enableGitHubComment && !props.noReply && <Comments />}
             {/* {!props.noReward && (
             <RewardImages text={"Scan the QR Code to leave a tip :)"} />

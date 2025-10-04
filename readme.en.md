@@ -9,7 +9,3 @@ Email: <hi@lawrenceli.me>
 ### Mail Subscription
 
 Subscribe this blog via [MailChimp](https://subscribe.lawrenceli.me/). You will receive the mail about my new post when it published.
-
-### Fediverse
-
-This blog is now in the **Fediverse**! Follow it with ActivityPub: `@lawrence@lawrenceli.me`

@@ -16,9 +16,6 @@ importers:
       "@vercel/og":
         specifier: ^0.8.0
         version: 0.8.5
-      disqus-react:
-        specifier: ^1.1.5
-        version: 1.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       dotenv:
         specifier: 17.2.3
         version: 17.2.3
@@ -76,6 +73,9 @@ importers:
       rehype-gist:
         specifier: 1.0.0
         version: 1.0.0
+      rehype-github-alerts:
+        specifier: ^4.1.1
+        version: 4.1.1
       rehype-slug:
         specifier: 6.0.0
         version: 6.0.0
@@ -305,6 +305,7 @@ packages:
       }
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-libvips-linux-arm@1.2.0":
     resolution:
@@ -313,6 +314,7 @@ packages:
       }
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-libvips-linux-ppc64@1.2.0":
     resolution:
@@ -321,6 +323,7 @@ packages:
       }
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-libvips-linux-s390x@1.2.0":
     resolution:
@@ -329,6 +332,7 @@ packages:
       }
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-libvips-linux-x64@1.2.0":
     resolution:
@@ -337,6 +341,7 @@ packages:
       }
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-libvips-linuxmusl-arm64@1.2.0":
     resolution:
@@ -345,6 +350,7 @@ packages:
       }
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   "@img/sharp-libvips-linuxmusl-x64@1.2.0":
     resolution:
@@ -353,6 +359,7 @@ packages:
       }
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   "@img/sharp-linux-arm64@0.34.3":
     resolution:
@@ -362,6 +369,7 @@ packages:
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-linux-arm@0.34.3":
     resolution:
@@ -371,6 +379,7 @@ packages:
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-linux-ppc64@0.34.3":
     resolution:
@@ -380,6 +389,7 @@ packages:
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
     cpu: [ppc64]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-linux-s390x@0.34.3":
     resolution:
@@ -389,6 +399,7 @@ packages:
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-linux-x64@0.34.3":
     resolution:
@@ -398,6 +409,7 @@ packages:
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   "@img/sharp-linuxmusl-arm64@0.34.3":
     resolution:
@@ -407,6 +419,7 @@ packages:
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   "@img/sharp-linuxmusl-x64@0.34.3":
     resolution:
@@ -416,6 +429,7 @@ packages:
     engines: { node: ^18.17.0 || ^20.3.0 || >=21.0.0 }
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   "@img/sharp-wasm32@0.34.3":
     resolution:
@@ -553,6 +567,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   "@next/swc-linux-arm64-musl@15.5.4":
     resolution:
@@ -562,6 +577,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   "@next/swc-linux-x64-gnu@15.5.4":
     resolution:
@@ -571,6 +587,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   "@next/swc-linux-x64-musl@15.5.4":
     resolution:
@@ -580,6 +597,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   "@next/swc-win32-arm64-msvc@15.5.4":
     resolution:
@@ -626,6 +644,12 @@ packages:
         integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==,
       }
     engines: { node: ">=12.4.0" }
+
+  "@primer/octicons@19.18.0":
+    resolution:
+      {
+        integrity: sha512-4P8FS7slUp0vHE7zLtlfOQcgF99r0tdxpriT3ahp6iwwnf1hF3OlDWXEp5n6b6G5eIY1cNr1bCrjRL+DkRjFVw==,
+      }
 
   "@reduxjs/toolkit@2.9.0":
     resolution:
@@ -799,6 +823,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   "@tailwindcss/oxide-linux-arm64-musl@4.1.14":
     resolution:
@@ -808,6 +833,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   "@tailwindcss/oxide-linux-x64-gnu@4.1.14":
     resolution:
@@ -817,6 +843,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   "@tailwindcss/oxide-linux-x64-musl@4.1.14":
     resolution:
@@ -826,6 +853,7 @@ packages:
     engines: { node: ">= 10" }
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   "@tailwindcss/oxide-wasm32-wasi@4.1.14":
     resolution:
@@ -1692,15 +1720,6 @@ packages:
       {
         integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==,
       }
-
-  disqus-react@1.1.6:
-    resolution:
-      {
-        integrity: sha512-xyhgQO3aJkXqXMUASAuAOoykMdSIcAnIsoPsotk0NQkYoaSw7MwbR3WQfJgbAKhh3SCoag9wYkTTgaCkpu3LkA==,
-      }
-    peerDependencies:
-      react: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^15.6.1 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   doctrine@2.1.0:
     resolution:
@@ -2881,6 +2900,7 @@ packages:
     engines: { node: ">= 12.0.0" }
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.30.1:
     resolution:
@@ -2890,6 +2910,7 @@ packages:
     engines: { node: ">= 12.0.0" }
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.30.1:
     resolution:
@@ -2899,6 +2920,7 @@ packages:
     engines: { node: ">= 12.0.0" }
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.30.1:
     resolution:
@@ -2908,6 +2930,7 @@ packages:
     engines: { node: ">= 12.0.0" }
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-win32-arm64-msvc@1.30.1:
     resolution:
@@ -3884,6 +3907,12 @@ packages:
     resolution:
       {
         integrity: sha512-Y4uYZxLZlbR2owq2apKpQD2RIvwGzGtddTmOCoTnjQGX4rCqqReQJR6bkOiEAEcLLTko3HIvqWcXPqVkN14b5A==,
+      }
+
+  rehype-github-alerts@4.1.1:
+    resolution:
+      {
+        integrity: sha512-4i9Oj/LPeU3GaBeqPRqdon4s0+mSHsRnMO7hMZs1YOtHtGG10dSghkvY0EsB8LYbZ9qkLF36J2RNXmcMfAcmqQ==,
       }
 
   rehype-slug@6.0.0:
@@ -4929,6 +4958,10 @@ snapshots:
 
   "@nolyfill/is-core-module@1.0.39": {}
 
+  "@primer/octicons@19.18.0":
+    dependencies:
+      object-assign: 4.1.1
+
   "@reduxjs/toolkit@2.9.0(react-redux@9.2.0(react@19.2.0)(redux@5.0.1))(react@19.2.0)":
     dependencies:
       "@standard-schema/spec": 1.0.0
@@ -5558,11 +5591,6 @@ snapshots:
   devlop@1.1.0:
     dependencies:
       dequal: 2.0.3
-
-  disqus-react@1.1.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
-    dependencies:
-      react: 19.2.0
-      react-dom: 19.2.0(react@19.2.0)
 
   doctrine@2.1.0:
     dependencies:
@@ -7246,6 +7274,13 @@ snapshots:
       unist-util-visit: 4.1.2
     transitivePeerDependencies:
       - debug
+
+  rehype-github-alerts@4.1.1:
+    dependencies:
+      "@primer/octicons": 19.18.0
+      hast-util-from-html: 2.0.3
+      hast-util-is-element: 3.0.0
+      unist-util-visit: 5.0.0
 
   rehype-slug@6.0.0:
     dependencies:

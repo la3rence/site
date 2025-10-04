@@ -9,7 +9,3 @@ INTJ / 软件工程师 / 博主
 ### 邮件订阅
 
 通过 [MailChimp](https://subscribe.lawrenceli.me/) 订阅此博客。当有新的文章发布时你会收到邮件通知。
-
-### 联邦宇宙
-
-这个网站现已加入**联邦宇宙**！你可以通过 ActivityPub 协议来关注: `@lawrence@lawrenceli.me`

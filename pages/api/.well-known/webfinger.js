@@ -6,13 +6,17 @@ export default async function webfinger(req, res) {
   res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate=60");
   const origin = getOrigin(req);
   const resource = req.query.resource;
-  if (!resource || resource != `acct:${config.activityPubUser}@${req.headers.host}`) {
+  if (
+    !resource ||
+    resource != `acct:${config.activityPubUser}@${req.headers.host}` ||
+    !config.enableActivityPub
+  ) {
     res.statusCode = 404;
     res.end(`{"error": "unknown resource"}`);
     return;
   }
   res.statusCode = 200;
-  res.end(`{  
+  res.end(`{
     "subject": "acct:${config.activityPubUser}@${req.headers.host}",
     "aliases": [],
     "links": [
@@ -25,10 +29,6 @@ export default async function webfinger(req, res) {
         "rel": "self",
         "type": "application/activity+json",
         "href": "${origin}/api/activitypub/actor"
-      },
-      {
-        "rel": "http://openid.net/specs/connect/1.0/issuer",
-        "href": "${config.oidcIssuer}"
       }
     ]
   }`);

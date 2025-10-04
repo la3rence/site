@@ -59,6 +59,7 @@
 
   table,
   .gist,
+  .markdown-alert,
   .projects {
     @apply max-w-3xl mx-auto;
   }
@@ -81,7 +82,7 @@
   }
 
   .sticky-header {
-    @apply ease-out transition-transform duration-500 flex justify-between sticky 
+    @apply ease-out transition-transform duration-500 flex justify-between sticky
    top-0 mt-10 z-50 backdrop-blur-lg bg-white/70 dark:bg-zinc-900/70;
   }
 

@@ -11,19 +11,6 @@ module.exports = {
   },
   transpilePackages: ["react-tweet"],
   poweredByHeader: false,
-  async headers() {
-    return [
-      {
-        source: "/ads.txt",
-        headers: [
-          {
-            key: "Content-Type",
-            value: "text/plain",
-          },
-        ],
-      },
-    ];
-  },
   async rewrites() {
     return [
       {
@@ -35,17 +22,6 @@ module.exports = {
         source: "/:locale/atom.xml",
         destination: "/atom.:locale.xml",
         locale: false,
-      },
-      {
-        source: "/blog/:path",
-        has: [
-          {
-            type: "header",
-            key: "accept",
-            value: "(.*activity.*)",
-          },
-        ],
-        destination: "/api/activitypub/blog/:path",
       },
     ];
   },

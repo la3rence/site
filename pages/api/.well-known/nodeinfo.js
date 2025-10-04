@@ -1,6 +1,11 @@
 import { getOrigin } from "../../../lib/util";
+import config from "../../../lib/config.mjs";
 
 export default async function nodeinfo(req, res) {
+  if (!config.enableActivityPub) {
+    res.status(404);
+    return;
+  }
   try {
     const origin = getOrigin(req);
     res.json({
