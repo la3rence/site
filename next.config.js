@@ -31,22 +31,22 @@ module.exports = {
         destination: "/api/.well-known/:param",
       },
       { source: "/insight/:match*", destination: "https://cloud.umami.is/:match*" },
-      // {
-      //   source: "/:locale/atom.xml",
-      //   destination: "/atom.:locale.xml",
-      //   locale: false,
-      // },
-      // {
-      //   source: "/blog/:path",
-      //   has: [
-      //     {
-      //       type: "header",
-      //       key: "accept",
-      //       value: "(.*activity.*)",
-      //     },
-      //   ],
-      //   destination: "/api/activitypub/blog/:path",
-      // },
+      {
+        source: "/:locale/atom.xml",
+        destination: "/atom.:locale.xml",
+        locale: false,
+      },
+      {
+        source: "/blog/:path",
+        has: [
+          {
+            type: "header",
+            key: "accept",
+            value: "(.*activity.*)",
+          },
+        ],
+        destination: "/api/activitypub/blog/:path",
+      },
     ];
   },
   async redirects() {
