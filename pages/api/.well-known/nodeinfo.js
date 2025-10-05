@@ -3,7 +3,8 @@ import config from "../../../lib/config.mjs";
 
 export default async function nodeinfo(req, res) {
   if (!config.enableActivityPub) {
-    res.sendStatus(404);
+    res.status(404);
+    res.end();
     return;
   }
   try {
