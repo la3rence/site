@@ -6,7 +6,7 @@ tags: blog, activitypub, fediverse, guide, ssg, serverless, openweb
 ---
 
 > [!WARNING]
-> 这不是一篇严肃的 ActivityPub 教程，仅仅是一些基于个人实现时的简单概括。该网站并不支持所有 ActivityPub 协议要求。由于联邦宇宙实例众多而本人服务器资源有源，笔者可能会关闭本站 ActivityPub 服务。
+> 这不是一篇严肃的 ActivityPub 教程，仅仅是一些基于个人实现时的简单概括。该网站并不支持所有 ActivityPub 协议要求。由于联邦宇宙实例众多而本人服务器资源有限，笔者可能会关闭本站 ActivityPub 服务。
 
 [Aaron Swartz 于十年前的这个时候自杀了](https://www.nytimes.com/2013/01/13/technology/aaron-swartz-internet-activist-dies-at-26.html)。他起草的 [RSS (1.0) 协议](https://web.resource.org/rss/1.0/)、[和 John Gruber 一起设计、创造的 Markdown](https://daringfireball.net/projects/markdown/) 至今一直拥有大量互联网用户。这十年间互联网并没有因他的离世而产生 Open Web 原教旨主义者所期待的愿景。类似「剑桥分析公司」的事情你我都有耳闻。万维网的发明人 Tim Berners-Lee 博士后来提出了 [SoLiD 项目](https://solidproject.org/) —— 通过将用户数据和应用彻底分离，来实现用户对自身数据的完全掌控。ActivityPub 协议与之类似，但仅面向社交网站。如今，[ActivityPub 已经成为了 W3C 的推荐标准](https://www.w3.org/TR/activitypub/)；Elon Musk 收购 Twitter 公司之后，由于 "Hardcore Software Engineering" 所展露出的负外部性，Mastodon (长毛象)成为了最火热的分布式/去中心化社交网络平台，而 Mastodon 正是 ActivityPub 的实现之一。这个 [Implementation Report](https://activitypub.rocks/implementation-report/) 页面展示了一些实现了 ActivityPub 协议的网站列表。
 
