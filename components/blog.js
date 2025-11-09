@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Layout from "./layout";
 import withView from "./withView";
@@ -32,12 +31,6 @@ const Blog = props => {
   const [likes, setLikes] = useState([]);
   const { resolvedTheme } = useTheme();
 
-  useEffect(() => {
-    mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
-    getReplies(id);
-    getLikes(id);
-  }, [id]);
-
   const getReplies = async id => {
     const replies = await (await fetch(`/api/activitypub/reply?id=${id}`)).json();
     setReplies(replies);
@@ -47,6 +40,15 @@ const Blog = props => {
     const likes = await (await fetch(`/api/like?id=${id}`)).json();
     setLikes(likes);
   };
+
+  useEffect(() => {
+    const fetchActivity = async () => {
+      await getReplies(id);
+      await getLikes(id);
+    };
+    fetchActivity();
+    mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
+  }, [id]);
 
   return (
     <Layout blog {...props} domain={new URL(pageURL).hostname}>
@@ -59,6 +61,7 @@ const Blog = props => {
         <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/terminal.css" />
       )}
       {hasAlert && (
+        // eslint-disable-next-line @next/next/no-css-tags
         <link rel="stylesheet" fetchPriority="low" type="text/css" href="/css/alert.css" />
       )}
       <article className="blog">

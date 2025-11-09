@@ -3,14 +3,16 @@ import Header from "../components/header";
 import { getCollection } from "../lib/mongo";
 import cache from "../lib/cache";
 
+const SortIndicator = ({ column, sortConfig }) => {
+  if (sortConfig.key !== column) return null;
+  return <span className="ml-1">{sortConfig.direction === "asc" ? "↑" : "↓"}</span>;
+};
+
 export default function Things(props) {
   const [items, setItems] = useState(props.items);
   const title = "Things";
 
-  const [sortConfig, setSortConfig] = useState({
-    key: "purchaseDate",
-    direction: "desc",
-  });
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   // 排序处理函数
   const handleSort = key => {
@@ -46,10 +48,10 @@ export default function Things(props) {
   };
 
   // 排序指示器组件
-  const SortIndicator = ({ column }) => {
-    if (sortConfig.key !== column) return null;
-    return <span className="ml-1">{sortConfig.direction === "asc" ? "↑" : "↓"}</span>;
-  };
+  // const SortIndicator = ({ column }) => {
+  //   if (sortConfig.key !== column) return null;
+  //   return <span className="ml-1">{sortConfig.direction === "asc" ? "↑" : "↓"}</span>;
+  // };
 
   const calculateDaysOwned = purchaseDate => {
     const purchase = new Date(purchaseDate);
@@ -94,19 +96,19 @@ export default function Things(props) {
                 <th className="py-4">设备</th>
                 <th className="cursor-pointer" onClick={() => handleSort("purchaseDate")}>
                   日期
-                  <SortIndicator column="purchaseDate" />
+                  <SortIndicator column="purchaseDate" sortConfig={sortConfig} />
                 </th>
                 <th className="cursor-pointer" onClick={() => handleSort("price")}>
                   价格
-                  <SortIndicator column="price" />
+                  <SortIndicator column="price" sortConfig={sortConfig} />
                 </th>
                 <th className="cursor-pointer" onClick={() => handleSort("daysOwned")}>
                   天数
-                  <SortIndicator column="daysOwned" />
+                  <SortIndicator column="daysOwned" sortConfig={sortConfig} />
                 </th>
                 <th className="cursor-pointer" onClick={() => handleSort("dailyCost")}>
                   日均
-                  <SortIndicator column="dailyCost" />
+                  <SortIndicator column="dailyCost" sortConfig={sortConfig} />
                 </th>
                 <th className="py-4">状态</th>
               </tr>

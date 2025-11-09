@@ -45,7 +45,10 @@ export default function Search({ posts }) {
         content: `Tags: ${post.tags}`,
       });
     });
-    setIndex(index);
+    const init = async () => {
+      setIndex(index);
+    };
+    init();
     inputRef.current.focus();
   }, [posts]);
 

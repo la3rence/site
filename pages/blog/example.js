@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-sync-scripts */
 import Blog from "../../components/blog";
 import Image from "next/image";
 import cfg from "../../lib/config.mjs";

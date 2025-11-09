@@ -13,11 +13,13 @@ const Footer = ({ translations }) => {
   const [pageRequestDuration, setPageRequestDuration] = useState(0);
 
   useEffect(() => {
-    if (enableBuildInfo) {
+    if (!enableBuildInfo) return;
+    const init = async () => {
       setMounted(true);
       const pnt = performance.getEntriesByType("navigation")[0];
       setPageRequestDuration(pnt.responseEnd - pnt.startTime);
-    }
+    };
+    init();
   }, []);
 
   if (enableBuildInfo && !mounted) {
