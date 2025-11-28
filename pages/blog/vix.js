@@ -158,10 +158,12 @@ export default function Vix(props) {
         <div>沪深 300 股指期权隐含波动率 当前</div>
         <Chart data={minuteData} viewMode="minute" />
       </div>
-      <div className="h-72 md:h-96 w-full text-center my-10">
-        <div>沪深 300 股指期权隐含波动率 历史</div>
-        <Chart data={dailyData} viewMode="daily" />
-      </div>
+      {dailyData?.length > 0 && (
+        <div className="h-72 md:h-96 w-full text-center my-10">
+          <div>沪深 300 股指期权隐含波动率 历史</div>
+          <Chart data={dailyData} viewMode="daily" />
+        </div>
+      )}
       <p>
         该数据基于沪深 300 指数期权计算的隐含波动率，反映了市场对未来 30 天股价波动的预期。
         数值越高表示市场预期波动越大，投资者情绪越紧张。
