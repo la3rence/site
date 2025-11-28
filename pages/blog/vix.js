@@ -24,13 +24,25 @@ export const getStaticProps = async () => {
   let dailyResp = [];
   let minuteResp = [];
   try {
-    const dailyData = await fetch(process.env.QVIX_300_DAILY_API);
-    const minuteData = await fetch(process.env.QVIX_300_MIN_API, { cache: "no-cache" });
-    dailyResp = await dailyData.json();
-    minuteResp = await minuteData.json();
+    const [dailyData, minuteData] = await Promise.all([
+      fetch(process.env.QVIX_300_DAILY_API, {
+        signal: AbortSignal.timeout(30000),
+      }).then(res => res.json()),
+      fetch(process.env.QVIX_300_MIN_API, {
+        cache: "no-cache",
+        signal: AbortSignal.timeout(30000),
+      }).then(res => res.json()),
+    ]);
+    dailyResp = dailyData;
+    minuteResp = minuteData;
   } catch (error) {
-    console.error("Error fetching stock data:", error);
+    if (error.name === "TimeoutError") {
+      console.error("Request timed out fetching stock data");
+    } else {
+      console.error("Error fetching stock data:", error);
+    }
   }
+
   const dailyPoints = dailyResp
     .map(item => {
       const parsedClose = Number.parseFloat(item.close);
