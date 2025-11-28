@@ -23,23 +23,33 @@ export const blogProps = {
 export const getStaticProps = async () => {
   let dailyResp = [];
   let minuteResp = [];
+
+  // 单独请求日线数据
   try {
-    const [dailyData, minuteData] = await Promise.all([
-      fetch(process.env.QVIX_300_DAILY_API, {
-        signal: AbortSignal.timeout(30000),
-      }).then(res => res.json()),
-      fetch(process.env.QVIX_300_MIN_API, {
-        cache: "no-cache",
-        signal: AbortSignal.timeout(30000),
-      }).then(res => res.json()),
-    ]);
+    const dailyData = await fetch(process.env.QVIX_300_DAILY_API, {
+      signal: AbortSignal.timeout(20000),
+    }).then(res => res.json());
     dailyResp = dailyData;
+  } catch (error) {
+    if (error.name === "TimeoutError") {
+      console.error("Daily data request timed out");
+    } else {
+      console.error("Error fetching daily data:", error);
+    }
+  }
+
+  // 单独请求分钟数据
+  try {
+    const minuteData = await fetch(process.env.QVIX_300_MIN_API, {
+      cache: "no-cache",
+      signal: AbortSignal.timeout(30000),
+    }).then(res => res.json());
     minuteResp = minuteData;
   } catch (error) {
     if (error.name === "TimeoutError") {
-      console.error("Request timed out fetching stock data");
+      console.error("Minute data request timed out");
     } else {
-      console.error("Error fetching stock data:", error);
+      console.error("Error fetching minute data:", error);
     }
   }
 
@@ -96,7 +106,7 @@ export const getStaticProps = async () => {
       minutePoints,
       current,
     },
-    revalidate: 60, // a minute
+    revalidate: 45,
   };
 };
 
