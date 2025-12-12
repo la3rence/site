@@ -32,7 +32,7 @@
     "node-cache": "^5.1.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-tweet": "3.2.2",
+    "react-tweet": "3.3.0",
     "recharts": "^3.2.1",
     "rehype-autolink-headings": "7.1.0",
     "rehype-external-links": "3.0.0",
