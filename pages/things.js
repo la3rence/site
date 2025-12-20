@@ -82,6 +82,8 @@ export default function Things(props) {
     />
   );
 
+  const summary = props.summary;
+
   return (
     <>
       <Header title={title} tags={title} />
@@ -135,6 +137,14 @@ export default function Things(props) {
                   </td>
                 </tr>
               ))}
+              <tr className=" bg-zinc-50 dark:bg-zinc-800 border-t-2 border-zinc-300 dark:border-zinc-700">
+                <td className="text-balance py-4 pl-2 mx-1">🟰 SUM()</td>
+                <td className="text-center font-mono">-</td>
+                <td className="text-center">{summary.totalPrice.toLocaleString()}￥</td>
+                <td className="text-center">{summary.averageDaysOwned.toFixed(1)}</td>
+                <td className="text-center">{summary.totalDailyCost.toFixed(2)}￥</td>
+                <td className="py-4 flex items-center justify-center">-</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -144,20 +154,48 @@ export default function Things(props) {
 }
 
 export const getStaticProps = async () => {
+  let items;
   if (cache.has("things")) {
-    return {
-      props: {
-        items: JSON.parse(cache.get("things")),
-      },
-      revalidate: 3600,
-    };
+    items = JSON.parse(cache.get("things"));
+  } else {
+    const collection = await getCollection("things");
+    items = await collection.find({}).sort({ purchaseDate: -1 }).toArray();
+    cache.set("things", JSON.stringify(items));
   }
-  const collection = await getCollection("things");
-  const items = await collection.find({}).sort({ purchaseDate: -1 }).toArray();
-  cache.set("things", JSON.stringify(items));
+
+  const calculateDaysOwned = purchaseDate => {
+    const purchase = new Date(purchaseDate);
+    const today = new Date();
+    const diffTime = Math.abs(today - purchase);
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
+
+  const calculateDailyCost = (price, purchaseDate) => {
+    const daysOwned = calculateDaysOwned(purchaseDate);
+    return (price / daysOwned).toFixed(2);
+  };
+
+  const totalPrice = items.reduce((sum, item) => sum + (item.price || 0), 0);
+  const totalDaysOwned = items.reduce(
+    (sum, item) => sum + calculateDaysOwned(item.purchaseDate),
+    0,
+  );
+  const averageDaysOwned = items.length > 0 ? totalDaysOwned / items.length : 0;
+  const totalDailyCost = items.reduce(
+    (sum, item) => sum + parseFloat(calculateDailyCost(item.price, item.purchaseDate)),
+    0,
+  );
+
+  const summary = {
+    totalPrice,
+    averageDaysOwned,
+    totalDailyCost,
+  };
+
   return {
     props: {
       items: JSON.parse(JSON.stringify(items)),
+      summary,
     },
     revalidate: 7200,
   };
