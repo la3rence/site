@@ -46,16 +46,16 @@ void main() {
 
 ### Music
 
-- 年度最佳歌曲： *BIRDS OF A FEATHER* - Billie Eilish
+- 年度最佳歌曲： _BIRDS OF A FEATHER_ - Billie Eilish
 
 ### Movie / Shows
 
-- 年度最佳剧集： *流人 第五季*
-- 年度最佳电影： *F1：狂飙飞车*
+- 年度最佳剧集： _流人 第五季_
+- 年度最佳电影： _F1：狂飙飞车_
 
 年初用国补还买了小米电视 S55 MiniLED，但今年都基本没怎么剧和电影，可以说是最近十年看的最少的一年了。每周必看 B 站主要的几个 Up：小 Lin 说，Koala 聊开源，马督工，jyhachi。
 
-2026 年期待的剧集：*豺狼的日子 第二季*，*投行风云 第四季*。
+2026 年期待的剧集：_豺狼的日子 第二季_，_投行风云 第四季_。
 
 ### Things
 
