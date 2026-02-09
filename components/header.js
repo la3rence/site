@@ -44,7 +44,8 @@ function Header({
       },
     ],
   });
-  const hoverTabStyle = "opacity-65 hover:opacity-95 transition duration-500 hover:transition-transform";
+  const hoverTabStyle =
+    "opacity-65 hover:opacity-95 transition duration-500 hover:transition-transform";
 
   return (
     <>
