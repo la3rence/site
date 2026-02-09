@@ -1,24 +1,29 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import prettier from "eslint-config-prettier/flat";
-
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  prettier,
-  {
-    rules: {
-      "react/jsx-no-target-blank": "off",
-      "react/no-unknown-property": "off",
-    },
+module.exports = {
+  extends: [
+    'next/core-web-vitals',
+    'eslint:recommended',
+    'prettier',
+  ],
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    }
   },
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-]);
-
-export default eslintConfig;
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  rules: {
+    'react/jsx-no-target-blank': 'off',
+    'react/no-unknown-property': 'off',
+  },
+  ignorePatterns: [
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+  ]
+};
