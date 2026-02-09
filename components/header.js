@@ -6,7 +6,6 @@ import Logo from "./logo";
 import { Adsense } from "./analytics";
 import withLocalization from "./withI18n";
 import LocalizationSwitch from "./switcher";
-import { useEffect, useState } from "react";
 
 function Header({
   title,
@@ -45,25 +44,7 @@ function Header({
       },
     ],
   });
-  const hoverTabStyle =
-    "opacity-65 hover:opacity-95 transition duration-500 hover:transition-transform";
-
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      if (scrollTop > lastScrollTop) {
-        setIsNavbarVisible(false);
-      } else {
-        setIsNavbarVisible(true);
-      }
-      setLastScrollTop(scrollTop <= 0 ? 0 : scrollTop);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollTop]);
+  const hoverTabStyle = "opacity-65 hover:opacity-95 transition duration-500 hover:transition-transform";
 
   return (
     <>
@@ -101,9 +82,7 @@ function Header({
         ))}
         {enableAdsense && <Adsense />}
       </Head>
-      <header
-        className={`${isNavbarVisible ? "translate-y-0" : "-translate-y-full"} sticky-header`}
-      >
+      <header className="flex justify-between sticky top-0 mt-10 z-50 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-lg">
         <div className="flex justify-between max-w-3xl mx-auto w-full">
           <h1 className="w-48 cursor-pointer">
             <Link href={"/"}>
