@@ -18,7 +18,7 @@
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@microflash/rehype-figure": "^2.1.0",
     "@vercel/og": "^0.8.0",
-    "dotenv": "17.2.4",
+    "dotenv": "17.3.1",
     "flexsearch": "^0.8.0",
     "gray-matter": "4.0.3",
     "hast-util-from-html": "^2.0.0",
