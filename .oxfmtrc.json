@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "arrowParens": "avoid",
+  "printWidth": 100,
+  "sortPackageJson": true,
+  "ignorePatterns": ["node_modules", ".next", ".idea", ".obsidian", ".git", "public/*"]
+}
