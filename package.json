@@ -1,7 +1,6 @@
 {
   "name": "lawrenceli.me",
   "version": "1.0.0",
-  "markdown": "github",
   "scripts": {
     "dev": "pnpm feed & next dev -H 0.0.0.0 --turbopack",
     "feed": "node ./lib/feed.mjs",
@@ -10,7 +9,8 @@
     "build": "NEXT_PUBLIC_BUILDTIME=$(date '+%s') next build && pnpm feed && next-sitemap && pnpm llms",
     "lint": "eslint .",
     "export": "next export",
-    "fmt": "prettier --write .",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "clean": "rm -rf .next; rm -rf node_modules",
     "llms": "mkdir -p public/blog && cp -r posts/* public/blog/ && cp *.md public/ "
   },
@@ -55,15 +55,12 @@
     "eslint-config-next": "16.2.0",
     "eslint-config-prettier": "^10.1.8",
     "minify-xml": "^4.5.2",
+    "oxfmt": "^0.41.0",
     "postcss": "8.5.8",
-    "prettier": "3.8.1",
     "tailwindcss": "4.2.2",
     "unist-util-visit": "^5.0.0"
   },
-  "prettier": {
-    "arrowParens": "avoid",
-    "printWidth": 100
-  },
+  "markdown": "github",
   "engines": {
     "node": "24.x"
   }
