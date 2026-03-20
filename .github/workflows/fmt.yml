@@ -1,5 +1,4 @@
-# Github Actions
-name: Format & Lint
+name: autofix.ci # needs to use this name
 
 on:
   push:
@@ -35,4 +34,5 @@ jobs:
         run: |
           pnpm fmt
           pnpm lint
+
       - uses: autofix-ci/action@v1.3.3
