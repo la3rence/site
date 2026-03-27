@@ -15,6 +15,7 @@ export default function Avatar({ src, size, alt, fallback }) {
         width={size}
         height={size}
         alt={alt}
+        loading="lazy"
         onError={() => setImageError(true)}
       />
     );

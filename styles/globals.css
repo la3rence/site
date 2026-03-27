@@ -6,10 +6,14 @@
   body {
     @apply mb-8 overflow-y-scroll tracking-normal bg-white dark:bg-zinc-900;
     font-family: -apple-system, system-ui, sans-serif, Roboto, "Noto Sans", "Segoe UI";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   img {
     @apply mx-auto dark:filter dark:brightness-75;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   /* iframe  */
@@ -87,5 +91,15 @@
 
   summary {
     @apply cursor-pointer font-semibold;
+  }
+
+  /* Performance-focused animation optimization */
+  * {
+    @apply animate-none;
+  }
+
+  .animate-in {
+    animation-fill-mode: both;
+    animation-duration: 0.3s;
   }
 }

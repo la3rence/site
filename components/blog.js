@@ -42,12 +42,21 @@ const Blog = props => {
   };
 
   useEffect(() => {
-    const fetchActivity = async () => {
-      await getReplies(id);
-      await getLikes(id);
-    };
-    fetchActivity();
-    mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
+    // Defer API calls until after the initial render and when element is in viewport
+    const timer = setTimeout(() => {
+      const fetchActivity = async () => {
+        await getReplies(id);
+        await getLikes(id);
+      };
+      fetchActivity();
+    }, 1000); // Small delay to prioritize initial content
+
+    // Initialize medium zoom after component has had chance to render
+    Promise.resolve().then(() => {
+      mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
+    });
+
+    return () => clearTimeout(timer);
   }, [id]);
 
   return (
