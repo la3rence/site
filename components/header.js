@@ -6,6 +6,15 @@ import Logo from "./logo";
 import { Adsense } from "./analytics";
 import withLocalization from "./withI18n";
 import LocalizationSwitch from "./switcher";
+import { RSS, GitHubIcon, TwitterIcon } from "./svg";
+import Avatar from "./avatar";
+
+const NavComponents = {
+  RSS: <RSS />,
+  GitHub: <GitHubIcon />,
+  Twitter: <TwitterIcon />,
+  About: <Avatar />,
+};
 
 function Header({
   title,
@@ -83,33 +92,38 @@ function Header({
         ))}
         {enableAdsense && <Adsense />}
       </Head>
-      <header className="flex justify-between sticky top-0 mt-10 z-50 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-lg">
+      <header className="flex justify-between top-0 mt-20 z-50 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-lg">
         <div className="flex justify-between max-w-3xl mx-auto w-full">
           <h1 className="w-48 cursor-pointer">
             <Link href={"/"}>
-              <div className={`py-1 ${hoverTabStyle}`}>
-                <Logo title={"B!og"} />
+              <div className={`${hoverTabStyle}`}>
+                <Logo title={siteTitle} />
               </div>
             </Link>
           </h1>
           <div className="flex-1"></div>
-          <nav className="mt-2">
+          <nav>
             <ul className="flex">
-              {navItems?.map(item => {
+              {navItems?.map((item, index) => {
                 return (
-                  <li key={item.label}>
+                  <li key={`nav-${index}`}>
                     <Link
                       href={item.path}
+                      title={item.label}
                       className={`mx-2 ${router.asPath == item.path ? "opacity-90" : hoverTabStyle}`}
                     >
-                      {translations[item.label] ? translations[item.label] : item.label}
+                      {NavComponents[item.label]
+                        ? NavComponents[item.label]
+                        : translations[item.label]
+                          ? translations[item.label]
+                          : item.label}
                     </Link>
                   </li>
                 );
               })}
               {config.locales?.length > 1 && (
                 <LocalizationSwitch
-                  className={`${blog && i18n?.length <= 1 ? "pointer-events-none" : ""} px-2 py-1 hover:scale-110 transition-all ${hoverTabStyle}`}
+                  className={`${blog && i18n?.length <= 1 ? "pointer-events-none" : ""} mx-1 py-1 hover:scale-110 transition-all ${hoverTabStyle}`}
                   locales={config.locales}
                   targeturl={router.asPath}
                   currentlocale={router.locale}

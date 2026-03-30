@@ -87,7 +87,7 @@ export default function Things(props) {
   return (
     <>
       <Header title={title} tags={title} />
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         <h1 id="title" className={`articleTitle text-balance text-2xl mb-0 mt-14`}>
           {title}
         </h1>

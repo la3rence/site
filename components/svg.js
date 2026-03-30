@@ -68,6 +68,23 @@ export function SearchIcon(props) {
   );
 }
 
+export function RSS(props) {
+  return (
+    <svg
+      className="inline-block fill-black dark:fill-white"
+      {...props}
+      height="14"
+      width="14"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="-271 273 256 256"
+    >
+      <path d="M-271,360v48.9c31.9,0,62.1,12.6,84.7,35.2c22.6,22.6,35.1,52.8,35.1,84.8v0.1h49.1c0-46.6-19-88.7-49.6-119.4 C-182.2,379-224.4,360.1-271,360z"></path>
+      <path d="M-237,460.9c-9.4,0-17.8,3.8-24,10s-10,14.6-10,24c0,9.3,3.8,17.7,10,23.9c6.2,6.1,14.6,9.9,24,9.9s17.8-3.7,24-9.9 s10-14.6,10-23.9c0-9.4-3.8-17.8-10-24C-219.2,464.7-227.6,460.9-237,460.9z"></path>
+      <path d="M-90.1,348.1c-46.3-46.4-110.2-75.1-180.8-75.1v48.9C-156.8,322-64.1,414.9-64,529h49C-15,458.4-43.7,394.5-90.1,348.1z"></path>
+    </svg>
+  );
+}
+
 export function Translation(props) {
   return (
     <svg
@@ -89,12 +106,12 @@ export function Translation(props) {
 export function Favicon() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="20"
+      height="20"
       xmlns="http://www.w3.org/2000/svg"
-      className="dark:filter dark:invert rounded-full"
+      className="fill-black dark:fill-white rounded-full"
     >
-      <circle cx="9" cy="9" r="10" stroke="none" fill="#666" />
+      <circle cx="10" cy="10" r="10" stroke="none" />
     </svg>
   );
 }

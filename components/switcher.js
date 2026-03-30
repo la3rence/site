@@ -8,7 +8,7 @@ const LocalizationSwitch = props => {
         ?.filter(language => language !== props.currentlocale)
         ?.map(language => {
           return (
-            <Link key={language} href={props.targeturl} locale={language}>
+            <Link key={language} href={props.targeturl} locale={language} title="Translate">
               <Translation />
             </Link>
           );
