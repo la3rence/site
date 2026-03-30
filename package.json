@@ -6,7 +6,7 @@
     "feed": "node ./lib/feed.mjs",
     "websub": "node ./lib/websub.mjs",
     "start": "next start",
-    "build": "NEXT_PUBLIC_BUILDTIME=$(date '+%s') next build && pnpm feed && next-sitemap && pnpm llms",
+    "build": "next build && pnpm feed && next-sitemap && pnpm llms",
     "lint": "eslint .",
     "export": "next export",
     "fmt": "oxfmt",

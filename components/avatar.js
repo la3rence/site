@@ -21,6 +21,6 @@ export default function Avatar({ src, size, alt, fallback }) {
     );
   } else
     return (
-      <span className="inline-block w-5 h-5 px-2 rounded-full leading-normal text-zinc-300 dark:text-black bg-black dark:bg-zinc-300"></span>
+      <span className="inline-block w-5 h-5 px-2 mt-1 rounded-full leading-normal text-zinc-300 dark:text-black bg-zinc-500 dark:bg-zinc-300"></span>
     );
 }
