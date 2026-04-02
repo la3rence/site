@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Blog from "../../components/blog";
 import cfg from "../../lib/config.mjs";
-import { getOrigin } from "../../lib/util";
+import { fetchVixData } from "../../lib/vix-data-fetcher";
 import {
   LineChart,
   Line,
@@ -23,16 +23,10 @@ export const blogProps = {
 };
 
 // 服务端渲染时获取初始数据
-export const getServerSideProps = async ({ req }) => {
+export const getServerSideProps = async () => {
   try {
-    const reqOrigin = getOrigin(req);
-
-    // 通过API路由获取数据而不是直接调用外部API
-    const dailyRes = await fetch(`${reqOrigin}/api/vix-data?dataType=daily`);
-    const dailyData = await dailyRes.json();
-
-    const minuteRes = await fetch(`${reqOrigin}/api/vix-data?dataType=minute`);
-    const minuteData = await minuteRes.json();
+    const dailyData = await fetchVixData("daily");
+    const minuteData = await fetchVixData("minute");
 
     const dailyPoints = dailyData.data || [];
     const minutePoints = minuteData.data || [];
@@ -132,12 +126,15 @@ export default function Vix(props) {
     const timeInMinutes = hour * 60 + minute;
     const marketOpenTime = 9 * 60 + 30; // 9:30 AM
     const marketCloseTime = 15 * 60 + 0; // 3:00 PM
-
     return timeInMinutes >= marketOpenTime && timeInMinutes < marketCloseTime;
   };
 
   // 客户端轮询更新数据
   useEffect(() => {
+    let intervalId;
+    let marketCheckTimeoutId;
+    let inFlight = false;
+
     const fetchData = async dataType => {
       try {
         const response = await fetch(`/api/vix-data?dataType=${dataType}`);
@@ -152,34 +149,37 @@ export default function Vix(props) {
     };
 
     const updateData = async () => {
-      if (!isChinaMarketHours()) {
+      if (inFlight || !isChinaMarketHours()) {
         return; // 不在交易时间内则不更新
       }
-
+      inFlight = true;
       setLoading(true);
-
-      // 只获取分钟数据
-      const minuteResult = await fetchData("minute");
-
-      if (minuteResult) {
-        setMinuteData(minuteResult.data);
-
-        // 更新当前波动率
-        const validPoints = minuteResult.data.filter(item => item.volatility != null);
-        const latestData = validPoints[validPoints.length - 1] ?? null;
-        setCurrent(latestData?.volatility ?? null);
+      try {
+        const minuteResult = await fetchData("minute");
+        if (minuteResult) {
+          setMinuteData(minuteResult.data);
+          const validPoints = minuteResult.data.filter(item => item.volatility != null);
+          const latestData = validPoints[validPoints.length - 1] ?? null;
+          setCurrent(latestData?.volatility ?? null);
+          setLastUpdated(new Date());
+        }
+      } finally {
+        setLoading(false);
+        inFlight = false;
       }
-
-      setLastUpdated(new Date());
-      setLoading(false);
     };
 
     // 立即更新一次
     // updateData();
 
     // 设置 30 秒定时器进行自动更新（交易时间）
-    let intervalId;
     const scheduleUpdates = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      if (marketCheckTimeoutId) {
+        clearTimeout(marketCheckTimeoutId);
+      }
       if (isChinaMarketHours()) {
         intervalId = setInterval(updateData, 30000); // 30秒
       } else {
@@ -191,12 +191,12 @@ export default function Vix(props) {
             return; // 退出检查循环
           } else {
             // 继续检查
-            setTimeout(checkMarketHours, 60000); // 每分钟检查一次
+            marketCheckTimeoutId = setTimeout(checkMarketHours, 60000); // 每分钟检查一次
           }
         };
 
         // 开始检查市场时间
-        setTimeout(checkMarketHours, 60000); // 一分钟后再次检查
+        marketCheckTimeoutId = setTimeout(checkMarketHours, 60000); // 一分钟后再次检查
       }
     };
 
@@ -204,11 +204,13 @@ export default function Vix(props) {
 
     // 监听窗口聚焦事件，以便在用户回来时立即检查
     const handleVisibilityChange = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      if (marketCheckTimeoutId) {
+        clearTimeout(marketCheckTimeoutId);
+      }
       if (!document.hidden) {
-        // 页面可见时，重新检查市场时间并重启轮询（如果需要）
-        if (intervalId) {
-          clearInterval(intervalId);
-        }
         scheduleUpdates();
       }
     };
@@ -219,6 +221,9 @@ export default function Vix(props) {
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
+      }
+      if (marketCheckTimeoutId) {
+        clearTimeout(marketCheckTimeoutId);
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
