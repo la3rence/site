@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Blog from "../../components/blog";
 import cfg from "../../lib/config.mjs";
+import { getOrigin } from "../../lib/util";
 import {
   LineChart,
   Line,
@@ -22,10 +23,9 @@ export const blogProps = {
 };
 
 // 服务端渲染时获取初始数据
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ req }) => {
   try {
-    // 构建完整的API URL，适用于服务器端
-    const reqOrigin = process.env.NODE_ENV === "production" ? cfg.baseURL : "http://localhost:3000";
+    const reqOrigin = getOrigin(req);
 
     // 通过API路由获取数据而不是直接调用外部API
     const dailyRes = await fetch(`${reqOrigin}/api/vix-data?dataType=daily`);
