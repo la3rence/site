@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import Blog from "../../components/blog";
 import cfg from "../../lib/config.mjs";
+import { fetchVixData } from "../../lib/vix-data-fetcher";
 import {
   LineChart,
   Line,
@@ -20,94 +22,39 @@ export const blogProps = {
   visible: true,
 };
 
-export const getStaticProps = async () => {
-  let dailyResp = [];
-  let minuteResp = [];
-
-  // 单独请求日线数据
+// 服务端渲染时获取初始数据
+export const getServerSideProps = async () => {
   try {
-    const dailyData = await fetch(process.env.QVIX_300_DAILY_API, {
-      signal: AbortSignal.timeout(20000),
-    }).then(res => res.json());
-    dailyResp = dailyData;
+    const dailyData = await fetchVixData("daily");
+    const minuteData = await fetchVixData("minute");
+
+    const dailyPoints = dailyData.data || [];
+    const minutePoints = minuteData.data || [];
+
+    const validPoints = minutePoints.filter(item => item.volatility != null);
+    const latestData = validPoints[validPoints.length - 1] ?? null;
+    const current = latestData?.volatility ?? null;
+
+    return {
+      props: {
+        serverDailyPoints: dailyPoints,
+        serverMinutePoints: minutePoints,
+        serverCurrent: current,
+        initialTimestamp: Date.now(),
+      },
+    };
   } catch (error) {
-    if (error.name === "TimeoutError") {
-      console.error("Daily data request timed out");
-    } else {
-      console.error("Error fetching daily data:", error);
-    }
+    console.error("Error fetching initial data:", error);
+
+    return {
+      props: {
+        serverDailyPoints: [],
+        serverMinutePoints: [],
+        serverCurrent: null,
+        initialTimestamp: Date.now(),
+      },
+    };
   }
-
-  // 单独请求分钟数据
-  try {
-    const minuteData = await fetch(process.env.QVIX_300_MIN_API, {
-      cache: "no-cache",
-      signal: AbortSignal.timeout(30000),
-    }).then(res => res.json());
-    minuteResp = minuteData;
-  } catch (error) {
-    if (error.name === "TimeoutError") {
-      console.error("Minute data request timed out");
-    } else {
-      console.error("Error fetching minute data:", error);
-    }
-  }
-
-  const dailyPoints = dailyResp
-    .map(item => {
-      const parsedClose = Number.parseFloat(item.close);
-      const parsedOpen = Number.parseFloat(item.open);
-      const parsedHigh = Number.parseFloat(item.high);
-      const parsedLow = Number.parseFloat(item.low);
-      const volatility = Number.isFinite(parsedClose)
-        ? parseFloat((parsedClose * 100).toFixed(2)) / 100
-        : null;
-      const open = Number.isFinite(parsedOpen)
-        ? parseFloat((parsedOpen * 100).toFixed(2)) / 100
-        : null;
-      const high = Number.isFinite(parsedHigh)
-        ? parseFloat((parsedHigh * 100).toFixed(2)) / 100
-        : null;
-      const low = Number.isFinite(parsedLow)
-        ? parseFloat((parsedLow * 100).toFixed(2)) / 100
-        : null;
-      const close = Number.isFinite(parsedClose)
-        ? parseFloat((parsedClose * 100).toFixed(2)) / 100
-        : null;
-
-      const itemDate = new Date(item.date);
-      const timestamp = !isNaN(itemDate.getTime()) ? itemDate.getTime() : null;
-      const date = timestamp ? new Date(item.date).toLocaleDateString("zh-CN") : null;
-      return { date, volatility, open, high, low, close, timestamp };
-    })
-    .filter(item => item.timestamp !== null && item.volatility !== null)
-    .filter(item => {
-      const itemDate = new Date(item.date);
-      const yearsAgo = new Date();
-      yearsAgo.setFullYear(yearsAgo.getFullYear() - 2);
-      return itemDate >= yearsAgo;
-    })
-    .sort((a, b) => a.timestamp - b.timestamp);
-
-  const minutePoints = minuteResp
-    .map((item, index) => ({
-      time: item.time,
-      volatility: item.qvix !== null ? Number(item.qvix.toFixed(2)) : null,
-      timestamp: Date.now() + index,
-    }))
-    .sort((a, b) => a.timestamp - b.timestamp);
-  const validPoints = minutePoints.filter(item => item.volatility != null);
-  const latestData = validPoints[validPoints.length - 1] ?? null;
-  const current = latestData?.volatility ?? null;
-
-  return {
-    props: {
-      dailyPoints,
-      minutePoints,
-      current,
-    },
-    revalidate: 45,
-  };
 };
 
 const Chart = ({ data, viewMode }) => {
@@ -149,19 +96,159 @@ const Chart = ({ data, viewMode }) => {
 };
 
 export default function Vix(props) {
-  const dailyData = props.dailyPoints;
-  const minuteData = props.minutePoints;
-  const current = props.current;
+  const [dailyData] = useState(props.serverDailyPoints);
+  const [minuteData, setMinuteData] = useState(props.serverMinutePoints);
+  const [current, setCurrent] = useState(props.serverCurrent);
+  const [lastUpdated, setLastUpdated] = useState(new Date(props.initialTimestamp));
+  const [loading, setLoading] = useState(false);
+
+  // 判断当前是否在中国股市交易时间内 (北京时间 9:30-15:00)
+  const isChinaMarketHours = () => {
+    // 获取UTC时间
+    const utcTime = new Date();
+
+    // 计算北京时间（UTC+8）
+    const beijingTime = new Date(utcTime.getTime() + 8 * 60 * 60 * 1000);
+
+    // 获取星期几 (0=周日, 1=周一, ..., 6=周六)
+    const dayOfWeek = beijingTime.getUTCDay();
+
+    // 检查是否是周一到周五
+    if (dayOfWeek === 0 || dayOfWeek === 6) {
+      return false; // 周末不交易
+    }
+
+    // 获取小时和分钟
+    const hour = beijingTime.getUTCHours();
+    const minute = beijingTime.getUTCMinutes();
+
+    // 检查是否在 9:30-15:00 之间
+    const timeInMinutes = hour * 60 + minute;
+    const marketOpenTime = 9 * 60 + 30; // 9:30 AM
+    const marketCloseTime = 15 * 60 + 0; // 3:00 PM
+    return timeInMinutes >= marketOpenTime && timeInMinutes < marketCloseTime;
+  };
+
+  // 客户端轮询更新数据
+  useEffect(() => {
+    let intervalId;
+    let marketCheckTimeoutId;
+    let inFlight = false;
+
+    const fetchData = async dataType => {
+      try {
+        const response = await fetch(`/api/vix-data?dataType=${dataType}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${dataType} data: ${response.status}`);
+        }
+        return await response.json();
+      } catch (error) {
+        console.error(`Error fetching ${dataType} data:`, error);
+        return null;
+      }
+    };
+
+    const updateData = async () => {
+      if (inFlight || !isChinaMarketHours()) {
+        return; // 不在交易时间内则不更新
+      }
+      inFlight = true;
+      setLoading(true);
+      try {
+        const minuteResult = await fetchData("minute");
+        if (minuteResult) {
+          setMinuteData(minuteResult.data);
+          const validPoints = minuteResult.data.filter(item => item.volatility != null);
+          const latestData = validPoints[validPoints.length - 1] ?? null;
+          setCurrent(latestData?.volatility ?? null);
+          setLastUpdated(new Date());
+        }
+      } finally {
+        setLoading(false);
+        inFlight = false;
+      }
+    };
+
+    // 立即更新一次
+    // updateData();
+
+    // 设置 30 秒定时器进行自动更新（交易时间）
+    const scheduleUpdates = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      if (marketCheckTimeoutId) {
+        clearTimeout(marketCheckTimeoutId);
+      }
+      if (isChinaMarketHours()) {
+        intervalId = setInterval(updateData, 30000); // 30秒
+      } else {
+        // 检查到非交易时间，设置一个计时器在下一个交易时间段开始时重新启动轮询
+        const checkMarketHours = () => {
+          if (isChinaMarketHours()) {
+            // 开始轮询
+            intervalId = setInterval(updateData, 30000);
+            return; // 退出检查循环
+          } else {
+            // 继续检查
+            marketCheckTimeoutId = setTimeout(checkMarketHours, 60000); // 每分钟检查一次
+          }
+        };
+
+        // 开始检查市场时间
+        marketCheckTimeoutId = setTimeout(checkMarketHours, 60000); // 一分钟后再次检查
+      }
+    };
+
+    scheduleUpdates();
+
+    // 监听窗口聚焦事件，以便在用户回来时立即检查
+    const handleVisibilityChange = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      if (marketCheckTimeoutId) {
+        clearTimeout(marketCheckTimeoutId);
+      }
+      if (!document.hidden) {
+        scheduleUpdates();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // 清理函数
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+      if (marketCheckTimeoutId) {
+        clearTimeout(marketCheckTimeoutId);
+      }
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   return (
-    <Blog {...blogProps} title={`${blogProps.title}: ${current}`} noReply noMeta>
+    <Blog {...blogProps} title={`${blogProps.title}: ${current || "加载中..."}`} noReply noMeta>
       <div className="h-72 md:h-96 w-full text-center my-10">
-        <div>沪深 300 股指期权隐含波动率 当前</div>
+        <div className="mb-2">
+          沪深 300 股指期权隐含波动率 当前: {current !== null ? current.toFixed(2) : "加载中..."}
+        </div>
+        <div className="text-xs text-gray-500 mb-2">
+          最后更新: {lastUpdated.toLocaleTimeString("zh-CN")} {loading && "(自动更新中...)"}
+          {!isChinaMarketHours() && " (非交易时间)"}
+        </div>
         <Chart data={minuteData} viewMode="minute" />
       </div>
-      {dailyData?.length > 0 && (
+      {dailyData?.length > 0 ? (
         <div className="h-72 md:h-96 w-full text-center my-10">
           <div>沪深 300 股指期权隐含波动率 历史</div>
           <Chart data={dailyData} viewMode="daily" />
+        </div>
+      ) : (
+        <div className="h-72 md:h-96 w-full text-center my-10 flex items-center justify-center">
+          <p>正在加载历史数据...</p>
         </div>
       )}
       <p>
@@ -204,16 +291,16 @@ const CustomTooltip = ({ active, payload, label, viewMode }) => {
     const data = payload[0].payload;
     return (
       <div className="border border-gray-200 dark:border-gray-700 rounded-sm p-0 shadow-xs backdrop-blur-xs">
-        <p className="text-xs text-gray-700 dark:text-gray-200">{`隐含波动率: ${payload[0].value}%`}</p>
-        <p className="text-xs text-gray-600 dark:text-gray-400">
+        <p className="text-xs text-gray-700 dark:text-gray-400">{`隐含波动率: ${payload[0].value}%`}</p>
+        <p className="text-xs text-gray-600 dark:text-gray-500">
           {viewMode === "daily" ? `日期: ${label}` : `时间: ${label}`}
         </p>
         {viewMode === "daily" && data.open && (
           <div className="space-y-1">
-            <p className="text-xs text-gray-600 dark:text-gray-400">{`开盘: ${data.open}%`}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">{`最高: ${data.high}%`}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">{`最低: ${data.low}%`}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400">{`收盘: ${data.close}%`}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-500">{`开盘: ${data.open}%`}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-500">{`最高: ${data.high}%`}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-500">{`最低: ${data.low}%`}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-500">{`收盘: ${data.close}%`}</p>
           </div>
         )}
       </div>
