@@ -24,8 +24,10 @@ export const blogProps = {
 
 export const getStaticProps = async () => {
   try {
-    const dailyData = await fetchVixData("daily");
-    const minuteData = await fetchVixData("minute");
+    const [dailyData, minuteData] = await Promise.all([
+      fetchVixData("daily"),
+      fetchVixData("minute"),
+    ]);
 
     const dailyPoints = dailyData.data || [];
     const minutePoints = minuteData.data || [];
