@@ -22,8 +22,7 @@ export const blogProps = {
   visible: true,
 };
 
-// 服务端渲染时获取初始数据
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   try {
     const dailyData = await fetchVixData("daily");
     const minuteData = await fetchVixData("minute");
@@ -42,6 +41,7 @@ export const getServerSideProps = async () => {
         serverCurrent: current,
         initialTimestamp: Date.now(),
       },
+      revalidate: 60, // 每 60 秒后台重新验证
     };
   } catch (error) {
     console.error("Error fetching initial data:", error);
@@ -53,6 +53,7 @@ export const getServerSideProps = async () => {
         serverCurrent: null,
         initialTimestamp: Date.now(),
       },
+      revalidate: 60,
     };
   }
 };
@@ -106,23 +107,15 @@ export default function Vix(props) {
   const isChinaMarketHours = () => {
     // 获取UTC时间
     const utcTime = new Date();
-
     // 计算北京时间（UTC+8）
     const beijingTime = new Date(utcTime.getTime() + 8 * 60 * 60 * 1000);
-
-    // 获取星期几 (0=周日, 1=周一, ..., 6=周六)
     const dayOfWeek = beijingTime.getUTCDay();
-
     // 检查是否是周一到周五
     if (dayOfWeek === 0 || dayOfWeek === 6) {
       return false; // 周末不交易
     }
-
-    // 获取小时和分钟
     const hour = beijingTime.getUTCHours();
     const minute = beijingTime.getUTCMinutes();
-
-    // 检查是否在 9:30-15:00 之间
     const timeInMinutes = hour * 60 + minute;
     const marketOpenTime = 9 * 60 + 30; // 9:30 AM
     const marketCloseTime = 15 * 60 + 0; // 3:00 PM
