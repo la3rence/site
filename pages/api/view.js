@@ -11,7 +11,12 @@ const pageViews = await getCollection("pageViews");
 export default async function view(req, res) {
   console.log("cache stats", cache.getStats());
   if (IS_PROD) {
-    const page = req.query.page ? req.query.page : "/";
+    let page = req.query.page ? req.query.page : "/";
+    // Ensure page is always a simple string to prevent NoSQL injection
+    if (Array.isArray(page)) {
+      page = page[0];
+    }
+    page = String(page);
     const currentPageView = await recordPageView(page);
     res.json(currentPageView); // pageKey, view
     return;
