@@ -1,5 +1,7 @@
 name: WebSub
 # example: https://vercel.com/guides/how-can-i-run-end-to-end-tests-after-my-vercel-preview-deployment
+permissions:
+  contents: read
 on:
   deployment_status:
 
