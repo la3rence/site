@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import config from "../lib/config.mjs";
 
+const inlineTradeClassName =
+  "inline-flex items-baseline gap-1 whitespace-nowrap align-baseline rounded-sm px-1 font-medium tabular-nums";
+
 /**
  * Real-time stock price. Just for fun :)
  *
@@ -78,14 +81,16 @@ const Trade = ({ symbol }) => {
       return <span></span>;
     }
     return (
-      <span className="font-bold">
+      <span className={`${inlineTradeClassName} text-zinc-700 dark:text-zinc-300`}>
         {symbol}: ■{previous}$
       </span>
     );
   }
 
   return (
-    <span className={`font-bold ${previous > price ? "text-green-600" : "text-red-600"}`}>
+    <span
+      className={`${inlineTradeClassName} ${previous > price ? "text-green-600" : "text-red-600"}`}
+    >
       {symbol}: {previous < price ? "▲" : "▼"}
       {price}$
     </span>

@@ -1,37 +1,19 @@
-import Blog from "../../components/blog";
-import { getMdContentById, getMdPostsData, defaultMarkdownDirectory } from "../../lib/ssg";
+import { memo, useRef } from "react";
 import path from "path";
-import { lazy } from "react";
-import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-import { toJsxRuntime } from "hast-util-to-jsx-runtime";
+import Blog from "../../components/blog";
+import EmbedHydrator from "../../components/embed-hydrator";
+import { getMdContentById, getMdPostsData, defaultMarkdownDirectory } from "../../lib/ssg";
 import config from "../../lib/config.mjs";
-import { memo } from "react";
-const Douban = lazy(() => import("../../components/douban"));
-const Bilibili = lazy(() => import("../../components/bilibili"));
-const Tweet = lazy(() => import("../../components/twitter"));
-const GitHub = lazy(() => import("../../components/github"));
-const Trade = lazy(() => import("../../components/trade"));
-
-const render = ast => {
-  return toJsxRuntime(ast, {
-    Fragment,
-    jsx,
-    jsxs,
-    components: {
-      douban: Douban,
-      bilibili: Bilibili,
-      github: GitHub,
-      tweet: Tweet,
-      trade: Trade,
-    },
-  });
-};
 
 const PathId = props => {
+  const containerRef = useRef(null);
+
   return (
     <Blog {...props}>
-      {/* <div dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} /> */}
-      <main className="overflow-visible h-auto">{render(props.htmlAst)}</main>
+      <main className="overflow-visible h-auto">
+        <div ref={containerRef} dangerouslySetInnerHTML={{ __html: props.htmlStringContent }} />
+        <EmbedHydrator containerRef={containerRef} />
+      </main>
     </Blog>
   );
 };
@@ -44,7 +26,7 @@ export const getStaticProps = async context => {
   const mdData = await getMdContentById(
     locale ? `${id}.${locale}` : id,
     defaultMarkdownDirectory,
-    false,
+    true,
   );
   return {
     props: mdData,
@@ -59,9 +41,6 @@ export const getStaticPaths = async () => {
       locale: config.locales?.includes(data.locale) ? data.locale : config.defaultLocale,
     };
   });
-  // const paths = [
-  //   { params: { id: "hi" }, locale: "zh" },
-  // ];
   return {
     paths,
     fallback: false,
