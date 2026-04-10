@@ -11,14 +11,31 @@ export default function ArticleViewCount({ translations }) {
 
   useEffect(() => {
     const routePath = getRoutePath(router.asPath);
+    let disposed = false;
 
     const fetchViewCount = async () => {
-      const res = await fetch(`/api/view?page=${routePath}`);
-      const data = await res.json();
-      setViewCount(data?.count ?? 0);
+      try {
+        const res = await fetch(`/api/view?page=${routePath}`);
+        if (!res.ok) {
+          throw new Error(`view fetch failed: ${res.status}`);
+        }
+        const data = await res.json();
+        if (!disposed) {
+          setViewCount(data?.count ?? 0);
+        }
+      } catch (error) {
+        if (!disposed) {
+          setViewCount(0);
+        }
+        console.warn("article view fetch failed", routePath, error);
+      }
     };
 
     fetchViewCount();
+
+    return () => {
+      disposed = true;
+    };
   }, [router.asPath]);
 
   if (viewCount <= 10) {

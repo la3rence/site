@@ -50,18 +50,31 @@ export default function ArticleSocial({ translations, noReply }) {
     let disposed = false;
 
     const fetchSocial = async () => {
-      const [replyRes, likeRes] = await Promise.all([
-        fetch(`/api/activitypub/reply?id=${routePath}`),
-        fetch(`/api/like?id=${routePath}`),
-      ]);
-      const [replyData, likeData] = await Promise.all([replyRes.json(), likeRes.json()]);
+      try {
+        const [replyRes, likeRes] = await Promise.all([
+          fetch(`/api/activitypub/reply?id=${routePath}`),
+          fetch(`/api/like?id=${routePath}`),
+        ]);
 
-      if (disposed) {
-        return;
+        if (!replyRes.ok || !likeRes.ok) {
+          throw new Error(`social fetch failed: ${replyRes.status}/${likeRes.status}`);
+        }
+
+        const [replyData, likeData] = await Promise.all([replyRes.json(), likeRes.json()]);
+
+        if (disposed) {
+          return;
+        }
+
+        setReplies(Array.isArray(replyData) ? replyData : []);
+        setLikes(Array.isArray(likeData) ? likeData : []);
+      } catch (error) {
+        if (!disposed) {
+          setReplies([]);
+          setLikes([]);
+        }
+        console.warn("article social fetch failed", routePath, error);
       }
-
-      setReplies(replyData);
-      setLikes(likeData);
     };
 
     fetchSocial();
