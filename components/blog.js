@@ -1,14 +1,16 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Layout from "./layout";
-import withView from "./withView";
 import withLocalization from "./withI18n";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import cfg from "../lib/config.mjs";
-import Comments from "./comments";
-import mediumZoom from "medium-zoom";
 import { useTheme } from "next-themes";
+
+const ArticleImageZoom = dynamic(() => import("./article-image-zoom"), { ssr: false });
+const ArticleViewCount = dynamic(() => import("./article-view-count"), { ssr: false });
+const ArticleSocial = dynamic(() => import("./article-social"), { ssr: false });
 
 const Blog = props => {
   const {
@@ -16,10 +18,8 @@ const Blog = props => {
     title,
     date,
     author,
-    view,
     id,
     tags,
-    pageURL,
     image,
     i18n,
     locale,
@@ -27,40 +27,11 @@ const Blog = props => {
     hasGist,
     hasAlert,
   } = props;
-  const [replies, setReplies] = useState([]);
-  const [likes, setLikes] = useState([]);
   const { resolvedTheme } = useTheme();
-
-  const getReplies = async id => {
-    const replies = await (await fetch(`/api/activitypub/reply?id=${id}`)).json();
-    setReplies(replies);
-  };
-
-  const getLikes = async id => {
-    const likes = await (await fetch(`/api/like?id=${id}`)).json();
-    setLikes(likes);
-  };
-
-  useEffect(() => {
-    // Defer API calls until after the initial render and when element is in viewport
-    const timer = setTimeout(() => {
-      const fetchActivity = async () => {
-        await getReplies(id);
-        await getLikes(id);
-      };
-      fetchActivity();
-    }, 1000); // Small delay to prioritize initial content
-
-    // Initialize medium zoom after component has had chance to render
-    Promise.resolve().then(() => {
-      mediumZoom(document.querySelectorAll("figure>img"), { background: "rgba(0,0,0,0.3)" });
-    });
-
-    return () => clearTimeout(timer);
-  }, [id]);
+  const articleRef = useRef(null);
 
   return (
-    <Layout blog {...props} domain={new URL(pageURL).hostname}>
+    <Layout blog {...props}>
       {hasGist && (
         // eslint-disable-next-line @next/next/no-css-tags
         <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/gist.css" />
@@ -73,7 +44,7 @@ const Blog = props => {
         // eslint-disable-next-line @next/next/no-css-tags
         <link rel="stylesheet" fetchPriority="low" type="text/css" href="/css/alert.css" />
       )}
-      <article className="blog">
+      <article className="blog" ref={articleRef}>
         {!props.noTitle && (
           <h1 id="title" className={`articleTitle text-balance font-medium mb-0 mt-14`}>
             {title}
@@ -94,11 +65,7 @@ const Blog = props => {
             </div>
             <div className="flex-1" />
             <div id="views">
-              {view > 10 && (
-                <small>
-                  {view} {translations["views"]}
-                </small>
-              )}
+              <ArticleViewCount translations={translations} />
             </div>
             {i18n?.length > 1 && (
               <div className="justify-end ml-2" id="i18n">
@@ -128,6 +95,7 @@ const Blog = props => {
           {image && <div className="h-4"></div>}
           {children}
         </div>
+        <ArticleImageZoom containerRef={articleRef} />
       </article>
       {!props.noMeta && (
         <>
@@ -137,87 +105,11 @@ const Blog = props => {
             </div>
           </div>
           <hr />
-          <div className="social">
-            {likes?.length > 0 && (
-              <>
-                <h6 id="like" className="font-bold my-2">
-                  {translations["Likes"]} ({likes?.length})
-                </h6>
-                <div className="mt-2 mr-1 flex">
-                  {likes?.map(like => {
-                    return (
-                      <a
-                        href={like.actor}
-                        target="_blank"
-                        key={like._id}
-                        className="not-prose mr-1"
-                        rel="noopener noreferrer"
-                      >
-                        <Avatar
-                          src={like.avatar}
-                          size={25}
-                          alt={like.actor}
-                          fallback="/images/mstdn.png"
-                        />
-                      </a>
-                    );
-                  })}
-                </div>
-              </>
-            )}
-            {!props.noReply && (
-              <>
-                {/* <h6 id="reply" className="font-bold my-2">
-                  {translations["Replies from Fediverse"]}
-                  {replies?.length > 0 ? `(${replies?.length})` : ""}
-                </h6>*/}
-                <div className="mt-4 text-sm">
-                  {/* <span>
-                    {translations["Search this URL on Mastodon to reply"]}:<code>{pageURL}</code>
-                  </span>*/}
-                  <div className="mt-6">
-                    {replies?.map(reply => {
-                      return (
-                        <div key={reply.url} className="mt-1">
-                          <div className="flex">
-                            <span className="mr-2 not-prose">
-                              <Avatar
-                                src={reply.avatar}
-                                size={25}
-                                alt={reply.account}
-                                fallback="/images/mstdn.png"
-                              />
-                            </span>
-                            <a
-                              href={reply.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="no-underline hover:underline"
-                            >
-                              <span className="h-6 leading-6">
-                                {reply.account} {translations["commented"]}:
-                              </span>
-                            </a>
-                          </div>
-                          <span dangerouslySetInnerHTML={{ __html: reply.content }}></span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-          <div className="comments">
-            {cfg.enableGitHubComment && !props.noReply && <Comments />}
-            {/* {!props.noReward && (
-            <RewardImages text={"Scan the QR Code to leave a tip :)"} />
-          )} */}
-          </div>
+          <ArticleSocial translations={translations} noReply={props.noReply} />
         </>
       )}
     </Layout>
   );
 };
 
-export default withView(withLocalization(Blog));
+export default withLocalization(Blog);

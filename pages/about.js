@@ -1,6 +1,5 @@
 import Layout from "../components/layout";
 import { getMdContentById } from "../lib/ssg";
-import withView from "../components/withView";
 import Project from "../components/project";
 import config from "../lib/config.mjs";
 import withLocalization from "../components/withI18n";
@@ -32,7 +31,7 @@ const About = props => {
   );
 };
 
-export default withView(withLocalization(About));
+export default withLocalization(About);
 
 // render `./readme.md` or `./reademe.en.md`
 export const getStaticProps = async context => {

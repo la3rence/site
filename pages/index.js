@@ -1,8 +1,7 @@
 import Link from "next/link";
-import withView from "../components/withView";
 import Layout from "./../components/layout";
 import { useRouter } from "next/router";
-import { getAllPostData } from "../lib/ssg";
+import { getAllPostIndexData } from "../lib/ssg";
 
 const getYear = date => new Date(date).getFullYear();
 
@@ -50,10 +49,10 @@ const Index = function index({ allPostsData }) {
   );
 };
 
-export default withView(Index);
+export default Index;
 
 export const getStaticProps = async () => {
-  const allPostsData = (await getAllPostData()).map(post => ({
+  const allPostsData = (await getAllPostIndexData()).map(post => ({
     id: post.id,
     title: post.title,
     date: post.date,
