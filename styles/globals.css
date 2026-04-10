@@ -68,6 +68,11 @@
     @apply max-w-3xl mx-auto;
   }
 
+  th[align="center"],
+  td[align="center"] {
+    text-align: center !important;
+  }
+
   .shiki {
     @apply mx-auto;
   }
@@ -91,15 +96,5 @@
 
   summary {
     @apply cursor-pointer font-semibold;
-  }
-
-  /* Performance-focused animation optimization */
-  * {
-    @apply animate-none;
-  }
-
-  .animate-in {
-    animation-fill-mode: both;
-    animation-duration: 0.3s;
   }
 }
