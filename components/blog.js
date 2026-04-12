@@ -2,15 +2,38 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import Layout from "./layout";
 import withLocalization from "./withI18n";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Tag from "./tag";
 import Avatar from "./avatar";
 import cfg from "../lib/config.mjs";
 import { useTheme } from "next-themes";
 
-const ArticleImageZoom = dynamic(() => import("./article-image-zoom"), { ssr: false });
-const ArticleViewCount = dynamic(() => import("./article-view-count"), { ssr: false });
+const ArticleImageZoom = dynamic(() => import("./article-image-zoom"), {
+  ssr: false,
+});
+const ArticleViewCount = dynamic(() => import("./article-view-count"), {
+  ssr: false,
+});
 const ArticleSocial = dynamic(() => import("./article-social"), { ssr: false });
+
+// Non-blocking CSS loader — avoids render-blocking stylesheet fetch
+const loadCSS = href => {
+  const existing = document.querySelector(`link[href="${href}"]`);
+  if (existing) return;
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = href;
+  link.media = "print";
+  link.onload = () => {
+    link.media = "all";
+  };
+  document.head.appendChild(link);
+};
+
+const removeCSS = href => {
+  const link = document.querySelector(`link[href="${href}"]`);
+  if (link) link.remove();
+};
 
 const Blog = props => {
   const {
@@ -28,22 +51,25 @@ const Blog = props => {
     hasAlert,
   } = props;
   const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    if (hasAlert) loadCSS("/css/alert.css");
+  }, [hasGist, hasAlert]);
+
+  useEffect(() => {
+    if (hasGist) {
+      loadCSS("/css/gist.css");
+      if (resolvedTheme === "dark") {
+        loadCSS("/css/terminal.css");
+      } else {
+        removeCSS("/css/terminal.css");
+      }
+    }
+  }, [hasGist, resolvedTheme]);
   const articleRef = useRef(null);
 
   return (
     <Layout blog {...props}>
-      {hasGist && (
-        // eslint-disable-next-line @next/next/no-css-tags
-        <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/gist.css" />
-      )}
-      {hasGist && resolvedTheme === "dark" && (
-        // eslint-disable-next-line @next/next/no-css-tags
-        <link rel="stylesheet" fetchpriority="low" type="text/css" href="/css/terminal.css" />
-      )}
-      {hasAlert && (
-        // eslint-disable-next-line @next/next/no-css-tags
-        <link rel="stylesheet" fetchPriority="low" type="text/css" href="/css/alert.css" />
-      )}
       <article className="blog" ref={articleRef}>
         {!props.noTitle && (
           <h1 id="title" className={`articleTitle text-balance font-medium mb-0 mt-14`}>

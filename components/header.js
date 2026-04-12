@@ -64,6 +64,9 @@ function Header({
         <meta name="Description" content={theDescription} />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://giscus.app" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href={baseURL} />
+        <link rel="preconnect" href="https://raw.githubusercontent.com" crossOrigin="anonymous" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:url" content={`${baseURL}${router.asPath}`} />
         <meta property="og:type" content="website" />

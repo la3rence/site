@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 
 const embedLoaders = {
@@ -11,47 +11,61 @@ const embedLoaders = {
   tweet: () => import("./twitter"),
 };
 
+const scheduleIdle = fn => {
+  if (typeof requestIdleCallback !== "undefined") {
+    requestIdleCallback(fn, { timeout: 2000 });
+  } else {
+    setTimeout(fn, 0);
+  }
+};
+
 export default function EmbedHydrator({ containerRef }) {
+  const hydratedRef = useRef(false);
+
   useEffect(() => {
     const container = containerRef.current;
-    let disposed = false;
 
-    if (!container) {
+    if (!container || hydratedRef.current) {
       return;
     }
 
-    const mountedRoots = [];
+    hydratedRef.current = true;
+
     const nodes = [...container.querySelectorAll("[data-embed]")];
+    if (nodes.length === 0) return;
 
-    const hydrateEmbeds = async () => {
-      await Promise.all(
-        nodes.map(async node => {
-          const embedType = node.getAttribute("data-embed");
-          const loadComponent = embedLoaders[embedType];
+    const mountedRoots = [];
+    let disposed = false;
 
-          if (!loadComponent) {
-            return;
-          }
+    scheduleIdle(() => {
+      if (disposed) return;
 
-          try {
-            const props = JSON.parse(node.getAttribute("data-props") || "{}");
-            const { default: EmbedComponent } = await loadComponent();
+      const hydrateEmbeds = async () => {
+        await Promise.all(
+          nodes.map(async node => {
+            const embedType = node.getAttribute("data-embed");
+            const loadComponent = embedLoaders[embedType];
 
-            if (disposed) {
-              return;
+            if (!loadComponent) return;
+
+            try {
+              const props = JSON.parse(node.getAttribute("data-props") || "{}");
+              const { default: EmbedComponent } = await loadComponent();
+
+              if (disposed) return;
+
+              const root = createRoot(node);
+              root.render(<EmbedComponent {...props} />);
+              mountedRoots.push(root);
+            } catch (error) {
+              console.warn(`hydrate embed failed: ${embedType}`, error);
             }
+          }),
+        );
+      };
 
-            const root = createRoot(node);
-            root.render(<EmbedComponent {...props} />);
-            mountedRoots.push(root);
-          } catch (error) {
-            console.warn(`hydrate embed failed: ${embedType}`, error);
-          }
-        }),
-      );
-    };
-
-    hydrateEmbeds();
+      hydrateEmbeds();
+    });
 
     return () => {
       disposed = true;

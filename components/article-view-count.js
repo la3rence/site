@@ -5,6 +5,14 @@ const getRoutePath = asPath => {
   return asPath.split("?")[0].split("#")[0];
 };
 
+const scheduleIdle = fn => {
+  if (typeof requestIdleCallback !== "undefined") {
+    requestIdleCallback(fn, { timeout: 2000 });
+  } else {
+    setTimeout(fn, 0);
+  }
+};
+
 export default function ArticleViewCount({ translations }) {
   const router = useRouter();
   const [viewCount, setViewCount] = useState(0);
@@ -31,7 +39,9 @@ export default function ArticleViewCount({ translations }) {
       }
     };
 
-    fetchViewCount();
+    scheduleIdle(() => {
+      if (!disposed) fetchViewCount();
+    });
 
     return () => {
       disposed = true;
