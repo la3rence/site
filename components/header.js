@@ -100,7 +100,7 @@ function Header({
           <h1 className="w-48 cursor-pointer">
             <Link href={"/"}>
               <div className={`${hoverTabStyle}`}>
-                <Logo title={siteTitle} />
+                <Logo title={router.asPath === "/" ? siteTitle : "Blog"} />
               </div>
             </Link>
           </h1>
@@ -108,11 +108,27 @@ function Header({
           <nav>
             <ul className="flex">
               {navItems?.map((item, index) => {
+                if (item.label === "Locale") {
+                  if (config.locales?.length <= 1) return null;
+                  return (
+                    <li key={`nav-${index}`}>
+                      <LocalizationSwitch
+                        className={`transition-all ${hoverTabStyle} ${blog && i18n?.length <= 1 ? "pointer-events-none" : ""} `}
+                        locales={config.locales}
+                        targeturl={router.asPath}
+                        currentlocale={router.locale}
+                      />
+                    </li>
+                  );
+                }
+                const isExternal = /^https?:\/\//.test(item.path);
                 return (
                   <li key={`nav-${index}`}>
                     <Link
                       href={item.path}
                       title={item.label}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
                       className={`mx-2 ${router.asPath == item.path ? "opacity-90" : hoverTabStyle}`}
                     >
                       {NavComponents[item.label]
@@ -124,14 +140,6 @@ function Header({
                   </li>
                 );
               })}
-              {config.locales?.length > 1 && (
-                <LocalizationSwitch
-                  className={`${blog && i18n?.length <= 1 ? "pointer-events-none" : ""} mx-1 py-1 hover:scale-110 transition-all ${hoverTabStyle}`}
-                  locales={config.locales}
-                  targeturl={router.asPath}
-                  currentlocale={router.locale}
-                />
-              )}
             </ul>
           </nav>
         </div>

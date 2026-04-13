@@ -90,9 +90,9 @@ export function Translation(props) {
     <svg
       className="fill-black dark:fill-white"
       {...props}
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+      viewBox="-6 -6 30 30"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g>
