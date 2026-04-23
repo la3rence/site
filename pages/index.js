@@ -18,7 +18,6 @@ const Index = function index({ postsByYear }) {
                 <Link
                   href={`/blog/${post.id}`}
                   locale={post.locale}
-                  prefetch={false}
                   className={`text-lg font-normal no-underline hover:text-zinc-500`}
                 >
                   <span>{post.title}</span>
