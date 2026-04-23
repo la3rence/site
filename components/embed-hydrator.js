@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
+import { scheduleIdle } from "../lib/schedule-idle";
 
 const embedLoaders = {
   bilibili: () => import("./bilibili"),
@@ -9,14 +10,6 @@ const embedLoaders = {
   github: () => import("./github"),
   trade: () => import("./trade"),
   tweet: () => import("./twitter"),
-};
-
-const scheduleIdle = fn => {
-  if (typeof requestIdleCallback !== "undefined") {
-    requestIdleCallback(fn, { timeout: 2000 });
-  } else {
-    setTimeout(fn, 0);
-  }
 };
 
 export default function EmbedHydrator({ containerRef }) {
@@ -35,40 +28,84 @@ export default function EmbedHydrator({ containerRef }) {
     if (nodes.length === 0) return;
 
     const mountedRoots = [];
+    const hydratedNodes = new WeakSet();
+    const scheduledHydrations = [];
+    // Reuse the same dynamic import promise for embeds of the same type.
+    const componentPromises = new Map();
     let disposed = false;
+    let observer;
 
-    scheduleIdle(() => {
-      if (disposed) return;
+    const hydrateNode = async node => {
+      if (disposed || hydratedNodes.has(node)) {
+        return;
+      }
 
-      const hydrateEmbeds = async () => {
-        await Promise.all(
-          nodes.map(async node => {
-            const embedType = node.getAttribute("data-embed");
-            const loadComponent = embedLoaders[embedType];
+      hydratedNodes.add(node);
 
-            if (!loadComponent) return;
+      const embedType = node.getAttribute("data-embed");
+      const loadComponent = embedLoaders[embedType];
 
-            try {
-              const props = JSON.parse(node.getAttribute("data-props") || "{}");
-              const { default: EmbedComponent } = await loadComponent();
+      if (!loadComponent) {
+        return;
+      }
 
-              if (disposed) return;
+      try {
+        const props = JSON.parse(node.getAttribute("data-props") || "{}");
+        if (!componentPromises.has(embedType)) {
+          componentPromises.set(embedType, loadComponent());
+        }
+        const { default: EmbedComponent } = await componentPromises.get(embedType);
 
-              const root = createRoot(node);
-              root.render(<EmbedComponent {...props} />);
-              mountedRoots.push(root);
-            } catch (error) {
-              console.warn(`hydrate embed failed: ${embedType}`, error);
+        if (disposed) return;
+
+        const root = createRoot(node);
+        root.render(<EmbedComponent {...props} />);
+        mountedRoots.push(root);
+      } catch (error) {
+        console.warn(`hydrate embed failed: ${embedType}`, error);
+      }
+    };
+
+    const scheduleHydration = node => {
+      if (hydratedNodes.has(node)) {
+        return;
+      }
+
+      // Push non-critical hydration out of the initial article render.
+      const cancel = scheduleIdle(
+        () => {
+          hydrateNode(node);
+        },
+        { timeout: 2000 },
+      );
+      scheduledHydrations.push(cancel);
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      nodes.forEach(scheduleHydration);
+    } else {
+      // Start hydrating shortly before the embed scrolls into view.
+      observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              return;
             }
-          }),
-        );
-      };
 
-      hydrateEmbeds();
-    });
+            observer?.unobserve(entry.target);
+            scheduleHydration(entry.target);
+          });
+        },
+        { rootMargin: "800px 0px" },
+      );
+
+      nodes.forEach(node => observer.observe(node));
+    }
 
     return () => {
       disposed = true;
+      observer?.disconnect();
+      scheduledHydrations.forEach(cancel => cancel());
       setTimeout(() => {
         mountedRoots.forEach(root => root.unmount());
       }, 0);
