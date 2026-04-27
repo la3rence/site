@@ -55,7 +55,7 @@
     "eslint-config-next": "16.2.4",
     "eslint-config-prettier": "^10.1.8",
     "minify-xml": "^4.5.2",
-    "oxfmt": "^0.46.0",
+    "oxfmt": "^0.47.0",
     "postcss": "8.5.10",
     "tailwindcss": "4.2.4",
     "unist-util-visit": "^5.0.0"
