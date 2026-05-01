@@ -15,6 +15,7 @@ const ArticleViewCount = dynamic(() => import("./article-view-count"), {
   ssr: false,
 });
 const ArticleSocial = dynamic(() => import("./article-social"), { ssr: false });
+const ArticleActions = dynamic(() => import("./article-actions"), { ssr: false });
 
 // Non-blocking CSS loader — avoids render-blocking stylesheet fetch
 const loadCSS = href => {
@@ -131,6 +132,7 @@ const Blog = props => {
             </div>
           </div>
           <hr />
+          <ArticleActions translations={translations} />
           <ArticleSocial translations={translations} noReply={props.noReply} />
         </>
       )}
