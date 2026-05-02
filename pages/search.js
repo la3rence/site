@@ -1,105 +1,88 @@
 import Layout from "../components/layout";
 import FlexSearch from "flexsearch";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { getMdPostsData } from "../lib/ssg.mjs";
 import Link from "next/link";
-import MarkdownIt from "markdown-it";
 
 export default function Search({ posts }) {
-  const [index, setIndex] = useState();
-  const [searchResults, setSearchResults] = useState([]);
-  const [keywords, setKeywords] = useState([]);
-  const inputRef = useRef();
-  useEffect(() => {
-    const index = new FlexSearch.Document({
-      tokenize: "full",
+  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState("");
+  const inputRef = useRef(null);
+
+  const index = useMemo(() => {
+    const idx = new FlexSearch.Document({
+      tokenize: "forward",
       document: {
         id: "id",
-        index: ["content"],
-        store: ["id", "content", "title", "path", "tags", "description"],
+        index: ["title", "content", "tags"],
+        store: ["title", "path", "content"],
       },
     });
     posts.forEach(post => {
-      const paragraphs = post.content.split("\n").filter(Boolean); // split full article
-      for (let i = 0; i < paragraphs.length; i++) {
-        index.add({
-          id: `${post.id}?${i}`,
-          title: post.title,
-          tags: post.tags,
-          path: post.path,
-          content: paragraphs[i],
-        });
-      }
-      index.add({
-        id: `${post.id}`,
+      idx.add({
+        id: post.id,
         title: post.title,
-        tags: post.tags,
+        tags: post.tags || "",
         path: post.path,
-        content: `${post.title}: ${post.description}`,
-      });
-      index.add({
-        id: `${post.id}?tag`,
-        title: post.title,
-        tags: post.tags,
-        path: post.path,
-        content: `Tags: ${post.tags}`,
+        content: post.content,
       });
     });
-    const init = async () => {
-      setIndex(index);
-    };
-    init();
-    inputRef.current.focus();
+    return idx;
   }, [posts]);
 
-  const search = async () => {
-    const keyword = inputRef.current.value;
-    setKeywords(keyword);
-    const searchResults = index.search(keyword, { enrich: true, bool: "or" });
-    const results = buildArray(searchResults);
-    setSearchResults(results);
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const search = () => {
+    const q = inputRef.current?.value || "";
+    setQuery(q);
+    if (!q.trim() || !index) {
+      setResults([]);
+      return;
+    }
+    const raw = index.search(q, { enrich: true, limit: 20 });
+
+    const merged = new Map();
+    raw.forEach(field => {
+      field.result?.forEach(r => {
+        if (!merged.has(r.id)) {
+          merged.set(r.id, r.doc);
+        }
+      });
+    });
+
+    setResults([...merged.values()]);
   };
 
   return (
-    <Layout title={"Search"}>
-      <div className="flex my-20">
+    <Layout title="Search">
+      <div className="flex my-20 justify-center">
         <input
           ref={inputRef}
           type="text"
           onChange={search}
-          className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-hidden"
+          placeholder="Search..."
+          className="h-12 pl-4 py-3 bg-zinc-100 flex-1 dark:bg-zinc-800 rounded-none outline-hidden max-w-3xl"
         />
       </div>
-      {searchResults.map(searchResult => {
-        return (
-          <div key={searchResult.path}>
-            <Link href={searchResult.path} className="no-underline cursor-pointer">
-              {searchResult.title.includes(keywords) ? (
-                <h2
-                  dangerouslySetInnerHTML={{
-                    __html: `${searchResult.title.replace(
-                      keywords,
-                      `<mark>${keywords}</mark>`,
-                      "gi",
-                    )}`,
-                  }}
-                />
-              ) : (
-                <h2>{searchResult.title}</h2>
-              )}
-            </Link>
-            <div className="break-words">
-              {searchResult.items.map(item => {
-                return (
-                  <div className="rounded-md" key={item.id}>
-                    <HighlightMatches match={keywords} value={item.content} indexId={item.id} />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
+
+      {query && results.length === 0 && (
+        <p className="text-zinc-400 dark:text-zinc-500">No results.</p>
+      )}
+
+      {results.map(post => (
+        <div key={post.id} className="mb-8">
+          <Link href={post.path} className="no-underline cursor-pointer">
+            <h2>
+              <Highlight text={post.title} query={query} />
+            </h2>
+          </Link>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-3 wrap-break-words">
+            <Snippet text={post.content} query={query} />
+          </p>
+        </div>
+      ))}
     </Layout>
   );
 }
@@ -109,75 +92,49 @@ export const getStaticProps = async () => {
   posts.forEach(post => {
     post.path = `/blog/${post.id}`;
   });
-  return {
-    props: {
-      posts,
-    },
-  };
+  return { props: { posts } };
 };
 
-function groupByPath(arr) {
-  return Object.values(
-    arr.reduce((result, item) => {
-      result[item.path] = result[item.path] || {
-        title: item.title,
-        path: item.path,
-        items: [],
-      };
-      result[item.path].items.push(item);
-      return result;
-    }, {}),
-  );
+function Highlight({ text, query }) {
+  if (!query || !text) return text;
+
+  const words = buildWords(query);
+  if (!words) return text;
+
+  return markParts(text, words);
 }
 
-function buildArray(originalArray) {
-  let temp = [];
-  for (let i = 0; i < originalArray.length; i++) {
-    const searchObj = originalArray[i];
-    const results = searchObj?.result;
-    for (let j = 0; j < results.length; j++) {
-      const result = results[j];
-      const resultDoc = result.doc;
-      temp.push(resultDoc);
-    }
-  }
-  temp.sort((a, b) => a.id.localeCompare(b.id));
-  return groupByPath(temp);
+function Snippet({ text, query }) {
+  if (!text || !query) return text?.slice(0, 150);
+
+  const words = buildWords(query);
+  if (!words) return text.slice(0, 150);
+
+  const re = new RegExp(words, "ig");
+  const match = re.exec(text);
+
+  if (!match) return text.slice(0, 150);
+
+  const start = Math.max(0, match.index - 60);
+  const end = Math.min(text.length, match.index + match[0].length + 80);
+  const snippet =
+    (start > 0 ? "..." : "") + text.slice(start, end) + (end < text.length ? "..." : "");
+
+  return <Highlight text={snippet} query={query} />;
 }
 
-const HighlightMatches = ({ value, match, indexId }) => {
-  const md = new MarkdownIt();
-  const splitText = value ? value.split("") : [];
-  const escapedSearch = match.trim().replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
-  const regexp = RegExp("(" + escapedSearch.replaceAll(" ", "|") + ")", "ig");
-  let result;
-  let id = 0;
-  let index = 0;
-  const res = [];
+function buildWords(query) {
+  return query
+    .trim()
+    .replace(/[|\\{}()[\]^$+*?.]/g, "\\$&")
+    .replace(/\s+/g, "|");
+}
 
-  if (value) {
-    while ((result = regexp.exec(value)) !== null) {
-      const before = splitText.splice(0, result.index - index).join("");
-      const keyword = splitText.splice(0, regexp.lastIndex - result.index).join("");
-      const markdown = `${before}${keyword}${splitText.join("")}`;
-      let rendered = md.render(markdown);
-      if (!rendered.includes("<img")) {
-        rendered = rendered.replaceAll(keyword, `<mark>${keyword}</mark>`);
-      }
-      if (res.find(dom => dom.props.indexid === indexId)) {
-        continue;
-      }
-      res.push(
-        <span
-          key={id++}
-          indexid={indexId}
-          dangerouslySetInnerHTML={{
-            __html: rendered,
-          }}
-        ></span>,
-      );
-      index = regexp.lastIndex;
-    }
-  }
-  return <>{res}</>;
-};
+function markParts(text, words) {
+  const splitRe = new RegExp(`(${words})`, "ig");
+  const testRe = new RegExp(`^(${words})$`, "i");
+
+  return text
+    .split(splitRe)
+    .map((part, i) => (testRe.test(part) ? <mark key={i}>{part}</mark> : part));
+}
