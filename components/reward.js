@@ -43,7 +43,7 @@ export default function RewardImages({ text, translations }) {
             onClick={copyEth}
             className="flex items-center justify-center gap-1.5 cursor-pointer group"
           >
-            <span className="text-xs text-zinc-400 dark:text-zinc-500">ETH</span>
+            <span className="text-xs text-zinc-400 dark:text-zinc-500">EVM</span>
             <span className="text-xs text-black dark:text-white whitespace-nowrap">
               {eth.slice(0, 6)}...{eth.slice(-4)}
             </span>
