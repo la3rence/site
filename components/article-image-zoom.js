@@ -1,7 +1,11 @@
 import { useEffect } from "react";
+import { useTheme } from "next-themes";
 import { scheduleIdle } from "../lib/schedule-idle";
+import { createImageZoom } from "../lib/image-zoom";
 
 export default function ArticleImageZoom({ containerRef }) {
+  const { resolvedTheme } = useTheme();
+
   useEffect(() => {
     const container = containerRef.current;
 
@@ -9,7 +13,7 @@ export default function ArticleImageZoom({ containerRef }) {
       return;
     }
 
-    // Skip the dynamic import entirely for text-only posts.
+    // Skip initialization entirely for text-only posts.
     const images = container.querySelectorAll("figure>img");
     if (images.length === 0) {
       return;
@@ -17,19 +21,19 @@ export default function ArticleImageZoom({ containerRef }) {
 
     let zoom;
     let disposed = false;
-    const startZoom = async () => {
-      const { default: mediumZoom } = await import("medium-zoom");
-
+    const startZoom = () => {
       if (disposed) {
         return;
       }
 
-      zoom = mediumZoom(images, {
-        background: "rgba(0,0,0,0.3)",
+      zoom = createImageZoom(images, {
+        background: resolvedTheme === "dark" ? "rgba(0,0,0,0.72)" : "rgba(255,255,255,0.68)",
+        backdropFilter: resolvedTheme === "dark" ? "none" : "blur(18px) saturate(1.2)",
+        maxScale: 1.35,
       });
     };
 
-    // Keep the zoom library out of the critical path for article navigation.
+    // Keep zoom setup out of the critical path for article navigation.
     const cancelIdle = scheduleIdle(
       () => {
         startZoom();
@@ -42,7 +46,7 @@ export default function ArticleImageZoom({ containerRef }) {
       cancelIdle();
       zoom?.detach();
     };
-  }, [containerRef]);
+  }, [containerRef, resolvedTheme]);
 
   return null;
 }

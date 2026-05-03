@@ -1,42 +1,36 @@
 import fs from "fs";
 import path from "path";
-import { useEffect } from "react";
-import mediumZoom from "medium-zoom";
+import { useEffect, useRef } from "react";
 import Header from "../components/header";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { createImageZoom } from "../lib/image-zoom";
 
 export default function Moments(props) {
   const title = "Moments";
   const { resolvedTheme } = useTheme();
+  const galleryRef = useRef(null);
+
   useEffect(() => {
     let zoom;
     const mediaQuery = window.matchMedia("(max-width: 768px)");
 
     const handleMediaChange = e => {
       if (!e.matches && !zoom) {
-        // 非移动设备且 zoom 未初始化时初始化
-        if (resolvedTheme === "dark") {
-          zoom = mediumZoom(document.querySelectorAll("img"), {
-            background: "#111111bb",
-            margin: 24,
-          });
-        } else {
-          zoom = mediumZoom(document.querySelectorAll("img"), {
-            background: "#eeeeee99",
-            margin: 24,
-          });
-        }
+        const images = galleryRef.current?.querySelectorAll("img") ?? [];
+        zoom = createImageZoom(images, {
+          background: resolvedTheme === "dark" ? "rgba(0,0,0,0.82)" : "rgba(255,255,255,0.68)",
+          backdropFilter: resolvedTheme === "dark" ? "none" : "blur(18px) saturate(1.2)",
+          margin: 24,
+          maxScale: 1.35,
+        });
       } else if (e.matches && zoom) {
-        // 移动设备且 zoom 已初始化时销毁
         zoom.detach();
         zoom = null;
       }
     };
 
-    // 初始检查
     handleMediaChange(mediaQuery);
-    // 监听屏幕变化
     mediaQuery.addEventListener("change", handleMediaChange);
     return () => {
       mediaQuery.removeEventListener("change", handleMediaChange);
@@ -54,7 +48,10 @@ export default function Moments(props) {
           {title}
         </h1>
         <h4>Updated: 2025-03</h4>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div
+          ref={galleryRef}
+          className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
           {props.pics.map(pic => (
             <figure key={pic.name}>
               <Image
