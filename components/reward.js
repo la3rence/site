@@ -18,27 +18,31 @@ export default function RewardImages({ text, translations }) {
 
   return (
     <div className="text-center">
-      <div className="filter grayscale-50 contrast-200">
-        <div>
-          <Image
-            className="inline-block dark:invert mx-5 my-0"
-            src="/images/alipay.svg"
-            width={120}
-            height={120}
-            alt="qrcode-alipay"
-          ></Image>
-          <Image
-            className="inline-block dark:invert mx-5 mt-0 mb-0"
-            src="/images/wechat-reward.png"
-            width={100}
-            height={100}
-            alt="qrcode-alipay"
-          ></Image>
+      <div>
+        <div className="flex flex-wrap items-center justify-center gap-4 my-4">
+          <div className="size-[168px] bg-white rounded-md border border-zinc-200 flex items-center justify-center overflow-hidden">
+            <Image
+              className="block size-[196px] object-contain"
+              src="/images/alipay.svg"
+              width={196}
+              height={196}
+              alt="qrcode-alipay"
+            ></Image>
+          </div>
+          <div className="size-[168px] bg-white p-3 rounded-md border border-zinc-200 flex items-center justify-center">
+            <Image
+              className="block size-36 object-contain"
+              src="/images/wechat-reward.png"
+              width={144}
+              height={144}
+              alt="qrcode-wechat-reward"
+            ></Image>
+          </div>
         </div>
-        <small>{text}</small>
+        {text && <small>{text}</small>}
       </div>
       {eth && (
-        <div className="mt=0 mb-2">
+        <div className="mt-0 mb-2">
           <div
             onClick={copyEth}
             className="flex items-center justify-center gap-1.5 cursor-pointer group"

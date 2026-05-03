@@ -48,7 +48,7 @@ export default function ArticleActions({ translations }) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
           onClick={onBackdropClick}
         >
-          <div className="bg-white dark:bg-zinc-900 rounded-xl p-6 max-w-sm w-full mx-4 relative">
+          <div className="bg-white dark:bg-zinc-900 rounded-xl p-5 sm:p-6 max-w-md w-full mx-4 relative">
             <button
               onClick={close}
               className="absolute top-3 right-5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 text-3xl leading-none cursor-pointer bg-transparent border-none"
