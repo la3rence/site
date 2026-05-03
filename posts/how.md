@@ -80,7 +80,9 @@ export const getStaticProps = async context => {
 
 ### PageSpeed
 
-![pagespeed-100](/images/pagespeed.png#wide "test")
+PageSpeed 是 Google 对网页性能、可访问性、最佳实践和 SEO 的综合体检，而当前网站这几项指标都能拿到满分；对专业做前端的开发者以及 SEO 的来说都明白这意味着什么。
+
+![PageSpeed 满分：性能、可访问性、最佳实践和 SEO 均为 100](/images/pagespeed.png#wide "PageSpeed 满分报告")
 
 ### Movie
 

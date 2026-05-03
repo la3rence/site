@@ -9,7 +9,7 @@ tags: apple, tv
 
 索性去电商平台搜搜看有没有更好的硬件、翻看各种测评文章和视频。清晰了需求定位后，我果断找了一家有现货的店铺下单了一款美版 Apple TV 2022 (4K)。
 
-![Apple TV](/images/apple-tv/tv.jpg)
+![Apple TV](/images/apple-tv/tv.jpg#wide)
 
 一直担心年前收不到货，没想到快递很敬业地发过来了。
 

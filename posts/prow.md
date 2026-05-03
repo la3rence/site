@@ -162,7 +162,7 @@ kubectl create configmap config \
 
 在 GitHub 的 Issue 或 Pull Request 页面下你可以用一个简单的 `/meow` 命令让机器人随机发送一张 🐱 的图片。无需任何刷新，GitHub 页面会自动地更新此页面（后来发现是基于 WebSocket）：
 
-![cat-in-issue](/images/prow/1.png)
+![cat-in-issue](/images/prow/1.png#wide)
 
 我们注意到， Kubernetes 维护人员会使用 `/test` 命令来让集群内的 Pod 执行测试并将结果告诉 GitHub，这就是 ProwJob 实现的了。
 
@@ -204,7 +204,7 @@ presubmits:
 
 `/test` 后面加 presubmits 的 name 名可触发指定的测试 Pod，all 则测试全部。测试若失败，可使用 `/retest` 来重新测试。
 
-![Prow-in-Pull-Request-Test.png](/images/prow/2.png)
+![Prow-in-Pull-Request-Test.png](/images/prow/2.png#wide)
 
 如果测试通过，可使用 `/lgtm` 触发 tide 让机器人合并代码（注意自己不能 `/lgtm`）。
 

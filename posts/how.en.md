@@ -80,6 +80,12 @@ An interesting way to say it is that JAMstack is a CDN-first application.
 
 > It's now possible, instead, to push content directly to the network and design frameworks that optimize for this capability. As a result, with optimizations like static asset hoisting, websites are now becoming faster and more reliable than ever before.
 
+### PageSpeed
+
+PageSpeed is Google's health check for performance, accessibility, best practices, and SEO, and this site can score full marks across all of them; frontend developers and SEO practitioners know exactly what that means.
+
+![PageSpeed full scores: performance, accessibility, best practices, and SEO are all 100](/images/pagespeed.png#wide "PageSpeed full score report")
+
 ### Movie
 
 You can write specific React components to make Markdown support richer page content, similar to `MDX`.
