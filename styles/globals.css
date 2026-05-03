@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./markdown-typography.css";
+@import "./markdown-image-layout.css";
 
 @config '../tailwind.config.js';
 

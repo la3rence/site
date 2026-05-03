@@ -1,0 +1,53 @@
+/* Prose overrides that used to live in tailwind.config.js typography.DEFAULT.css. */
+.prose
+  :where(p > a:not(.data-footnote-backref), .blog li > a):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  ) {
+  word-break: break-word;
+  border-color: #bbb;
+  border-bottom-width: 1px;
+  text-decoration: none;
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.prose
+  :where(p > a:not(.data-footnote-backref), .blog li > a):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  ):hover {
+  border-color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose
+    :where(p > a:not(.data-footnote-backref), .blog li > a):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
+    border-color: #999;
+  }
+
+  .prose
+    :where(p > a:not(.data-footnote-backref), .blog li > a):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ):hover {
+    border-color: #fff;
+  }
+}
+
+.prose
+  :where(h2 a, h3 a, h4 a, h5 a, h6 a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  text-decoration: none;
+}
+
+.prose :where(.toc-link):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose :where(.toc-link):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    color: #ccc;
+  }
+}
+
+.prose :where(.data-footnote-backref):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  text-decoration: none;
+}

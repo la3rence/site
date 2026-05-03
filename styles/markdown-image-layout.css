@@ -1,0 +1,47 @@
+/* Layout rules for Markdown images annotated by lib/markdown-image-layout.mjs. */
+.blog figure.md-image {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog figure.md-image > img,
+.blog img.md-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog figure.md-image-contained,
+.blog img.md-image-contained {
+  box-sizing: border-box;
+  width: min(var(--image-max-width), 100%);
+  max-width: 100%;
+}
+
+.blog figure.md-image-contained > img {
+  width: 100%;
+}
+
+.blog figure.md-image-wide,
+.blog img.md-image-wide {
+  box-sizing: border-box;
+  width: min(72rem, 100%);
+  max-width: 100%;
+}
+
+.blog figure.md-image-wide > img {
+  width: 100%;
+}
+
+.blog figure.md-image-full,
+.blog img.md-image-full {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.blog figure.md-image-full > img,
+.blog img.md-image-full {
+  width: 100%;
+}

@@ -78,6 +78,10 @@ export const getStaticProps = async context => {
 
 > It's now possible, instead, to push content directly to the network and design frameworks that optimize for this capability. As a result, with optimizations like static asset hoisting, websites are now becoming faster and more reliable than ever before.
 
+### PageSpeed
+
+![pagespeed-100](/images/pagespeed.png#wide "test")
+
 ### Movie
 
 你可以编写特定的 React 组件来让 Markdown 支持更丰富的页面内容，这种实现方式和 `MDX` 类似。
