@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import { scheduleIdle } from "../lib/schedule-idle";
 import { createImageZoom } from "../lib/image-zoom";
 
-export default function ArticleImageZoom({ containerRef }) {
+export default function ArticleImageZoom({ containerRef, contentKey }) {
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function ArticleImageZoom({ containerRef }) {
       cancelIdle();
       zoom?.detach();
     };
-  }, [containerRef, resolvedTheme]);
+  }, [containerRef, contentKey, resolvedTheme]);
 
   return null;
 }

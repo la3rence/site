@@ -112,7 +112,7 @@ Result:
 
 ### Video
 
-You can directly display videos from B station through `<bilibili />` component, based on iframe. And you can also make a tiny change to let it be `<youtube />`.
+You can directly display videos from Bilibili through `<bilibili />` component, based on iframe. And you can also make a tiny change to let it be `<youtube />`.
 
 <div style="display: flex; justify-content: center;">
   <iframe width="900" height="480" src="https://www.youtube.com/embed/rR4n-0KYeKQ?si=gLjwn8rHDxYc4cUF"></iframe>

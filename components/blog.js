@@ -122,7 +122,7 @@ const Blog = props => {
           {image && <div className="h-4"></div>}
           {children}
         </div>
-        <ArticleImageZoom containerRef={articleRef} />
+        <ArticleImageZoom containerRef={articleRef} contentKey={`${id}:${locale}`} />
       </article>
       {!props.noMeta && (
         <>
