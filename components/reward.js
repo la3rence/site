@@ -5,6 +5,7 @@ import cfg from "../lib/config.mjs";
 export default function RewardImages({ text, translations }) {
   const [copied, setCopied] = useState(false);
   const eth = cfg.ethAddress;
+  const rewardURL = cfg.rewardURL;
 
   const copyEth = async () => {
     try {
@@ -21,13 +22,25 @@ export default function RewardImages({ text, translations }) {
       <div>
         <div className="flex flex-wrap items-center justify-center gap-4 my-4">
           <div className="size-[168px] bg-white rounded-md border border-zinc-200 flex items-center justify-center overflow-hidden">
-            <Image
-              className="block size-[196px] object-contain"
-              src="/images/alipay.svg"
-              width={196}
-              height={196}
-              alt="qrcode-alipay"
-            ></Image>
+            {rewardURL ? (
+              <a href={rewardURL} target="_blank" rel="noopener noreferrer">
+                <Image
+                  className="block size-[196px] object-contain"
+                  src="/images/alipay.svg"
+                  width={196}
+                  height={196}
+                  alt="qrcode-alipay"
+                ></Image>
+              </a>
+            ) : (
+              <Image
+                className="block size-[196px] object-contain"
+                src="/images/alipay.svg"
+                width={196}
+                height={196}
+                alt="qrcode-alipay"
+              ></Image>
+            )}
           </div>
           <div className="size-[168px] bg-white p-3 rounded-md border border-zinc-200 flex items-center justify-center">
             <Image
