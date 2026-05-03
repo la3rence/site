@@ -2,7 +2,7 @@ import A from "./a";
 import config from "../lib/config.mjs";
 import withLocalization from "./withI18n";
 
-const { siteTitle } = config;
+const { copyrightYear, siteTitle } = config;
 
 const Footer = ({ translations }) => {
   return (
@@ -15,7 +15,7 @@ const Footer = ({ translations }) => {
         <A href="https://status.lawrenceli.me/">
           <span className="mr-1">{translations["Status"]}</span>
         </A>
-        · <span>{new Date().getFullYear()} ©️ </span>
+        · <span>{copyrightYear} ©️ </span>
         <A href="/" self="true">
           <span>{siteTitle}</span>
         </A>

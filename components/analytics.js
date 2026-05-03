@@ -1,19 +1,27 @@
+import Script from "next/script";
+
 export default function Umami() {
   return (
-    <script
-      async
+    <Script
+      id="umami-analytics"
       src="/insight/script.js"
-      fetchpriority="low"
+      strategy="lazyOnload"
       data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}
-    ></script>
+    />
   );
 }
 
-export const Adsense = () => (
-  <script
-    async
-    src={process.env.NEXT_PUBLIC_ADS_URL}
-    fetchpriority="low"
-    crossOrigin="anonymous"
-  ></script>
-);
+export const Adsense = () => {
+  if (!process.env.NEXT_PUBLIC_ADS_URL) {
+    return null;
+  }
+
+  return (
+    <Script
+      id="adsense"
+      src={process.env.NEXT_PUBLIC_ADS_URL}
+      strategy="lazyOnload"
+      crossOrigin="anonymous"
+    />
+  );
+};

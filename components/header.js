@@ -91,8 +91,8 @@ function Header({
             href={`/${locale}/${config.feedFile}`}
           />
         ))}
-        {enableAdsense && <Adsense />}
       </Head>
+      {enableAdsense && <Adsense />}
       <header className="flex justify-between top-0 mt-20 z-50 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-lg">
         <div className="flex justify-between max-w-3xl mx-auto w-full">
           <h1 className="w-48 cursor-pointer">
