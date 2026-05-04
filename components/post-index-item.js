@@ -26,7 +26,7 @@ export default function PostIndexItem({ post }) {
           onFocus={() => setPreviewActive(true)}
           onBlur={() => setPreviewActive(false)}
         >
-          <span className="font-mono text-zinc-400">{post.date.substring(5)}</span>
+          <span className="font-mono text-zinc-500">{post.date.substring(5)}</span>
           <span className="px-2 text-zinc-400">·</span>
           <span>{post.title}</span>
         </Link>
