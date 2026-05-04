@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   CartesianGrid,
   Dot,
@@ -9,41 +10,79 @@ import {
   YAxis,
 } from "recharts";
 
-export default function VixChart({ data, viewMode }) {
+export default function VixChart({ data, viewMode, compact = false }) {
+  const containerRef = useRef(null);
+  const [hasSize, setHasSize] = useState(false);
+  const margin = compact
+    ? { top: 8, right: 8, left: 8, bottom: 8 }
+    : { top: 30, right: 20, left: 0, bottom: 30 };
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) {
+      return undefined;
+    }
+
+    const updateSize = () => {
+      const { width, height } = container.getBoundingClientRect();
+      setHasSize(width > 0 && height > 0);
+    };
+
+    updateSize();
+
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", updateSize);
+      return () => window.removeEventListener("resize", updateSize);
+    }
+
+    const resizeObserver = new ResizeObserver(updateSize);
+    resizeObserver.observe(container);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={data} margin={{ top: 30, right: 20, left: 0, bottom: 30 }}>
-        <CartesianGrid strokeDasharray="3 3" className="opacity-25" />
-        <XAxis
-          dataKey={viewMode === "daily" ? "date" : "time"}
-          fontSize={10}
-          tickLine={false}
-          axisLine={false}
-          angle={viewMode === "daily" ? -45 : 0}
-          textAnchor={viewMode === "daily" ? "end" : "middle"}
-          height={viewMode === "daily" ? 60 : 30}
-        />
-        <YAxis
-          fontSize={10}
-          tickLine={false}
-          axisLine={false}
-          domain={["dataMin - 1", "dataMax + 1"]}
-          tickFormatter={value => `${value}`}
-        />
-        <Tooltip content={<CustomTooltip viewMode={viewMode} />} />
-        <Line
-          type="monotone"
-          dataKey="volatility"
-          strokeWidth={2.5}
-          dot={<CustomDot data={data} />}
-          activeDot={{
-            r: 5,
-            strokeWidth: 2,
-          }}
-          connectNulls={false}
-        />
-      </LineChart>
-    </ResponsiveContainer>
+    <div ref={containerRef} className="h-full w-full">
+      {hasSize && (
+        <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+          <LineChart data={data} margin={margin}>
+            {!compact && <CartesianGrid strokeDasharray="3 3" className="opacity-25" />}
+            <XAxis
+              dataKey={viewMode === "daily" ? "date" : "time"}
+              fontSize={10}
+              tickLine={false}
+              axisLine={false}
+              hide={compact}
+              angle={viewMode === "daily" ? -45 : 0}
+              textAnchor={viewMode === "daily" ? "end" : "middle"}
+              height={viewMode === "daily" ? 60 : 30}
+            />
+            <YAxis
+              fontSize={10}
+              tickLine={false}
+              axisLine={false}
+              hide={compact}
+              domain={["dataMin - 1", "dataMax + 1"]}
+              tickFormatter={value => `${value}`}
+            />
+            {!compact && <Tooltip content={<CustomTooltip viewMode={viewMode} />} />}
+            <Line
+              type="monotone"
+              dataKey="volatility"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              dot={<CustomDot data={data} />}
+              activeDot={{
+                r: 5,
+                strokeWidth: 2,
+              }}
+              connectNulls={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      )}
+    </div>
   );
 }
 

@@ -3,6 +3,11 @@ title: "Apple TV"
 date: "2023-01-21"
 description: " 小巧玲珑的电视盒子"
 tags: apple, tv
+preview:
+  type: image
+  src: /images/apple-tv/tv.jpg
+  alt: Apple TV
+  title: Apple TV
 ---
 
 过年回老家看电视，运营商送的网络电视盒子主屏幕花花绿绿，我一个程序员都费了好久才找到地方卫视的直播频道。

@@ -18,6 +18,12 @@ export const blogProps = {
   date: "2025-09-28",
   locale: "zh",
   visible: true,
+  preview: {
+    type: "chart",
+    source: "vix",
+    title: "沪深 300 波动率",
+    dataType: "minute",
+  },
 };
 
 export const getStaticProps = async () => {

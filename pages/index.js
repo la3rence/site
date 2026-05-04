@@ -1,5 +1,6 @@
-import Link from "next/link";
 import Layout from "./../components/layout";
+import PostIndexItem from "../components/post-index-item";
+import { normalizePostPreview } from "../lib/post-preview.mjs";
 import { getAllPostIndexData } from "../lib/ssg";
 
 const getYear = date => new Date(date).getFullYear();
@@ -14,16 +15,7 @@ const Index = function index({ postsByYear }) {
               {year}
             </div>
             {posts.map(post => (
-              <div className="my-4" key={post.id}>
-                <Link
-                  href={`/blog/${post.id}`}
-                  locale={post.locale}
-                  className={`text-lg font-normal no-underline hover:text-zinc-500`}
-                >
-                  <span>{post.title}</span>
-                  <span className="font-mono text-base text-zinc-500 float-right">{post.date}</span>
-                </Link>
-              </div>
+              <PostIndexItem post={post} key={`${post.id}:${post.locale}`} />
             ))}
           </div>
         ))}
@@ -41,12 +33,19 @@ export const getStaticProps = async ({ locale }) => {
       const year = getYear(post.date);
       const posts = result[year] || [];
 
-      posts.push({
+      const preview = normalizePostPreview(post.preview);
+      const indexPost = {
         id: post.id,
         title: post.title,
         date: post.date,
         locale: post.locale ? post.locale : null,
-      });
+      };
+
+      if (preview) {
+        indexPost.preview = preview;
+      }
+
+      posts.push(indexPost);
 
       result[year] = posts;
       return result;
