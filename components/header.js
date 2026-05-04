@@ -10,9 +10,13 @@ import { RSS, GitHubIcon, TwitterIcon } from "./svg";
 import Avatar from "./avatar";
 
 const NavComponents = {
-  RSS: <RSS />,
+  RSS: (
+    <RSS className="inline-block fill-black transition-colors group-hover:fill-[#f26522] dark:fill-white dark:group-hover:fill-[#f26522]" />
+  ),
   GitHub: <GitHubIcon />,
-  Twitter: <TwitterIcon />,
+  Twitter: (
+    <TwitterIcon className="inline-block fill-black transition-colors group-hover:fill-[#1DA1F2] dark:fill-white dark:group-hover:fill-[#1DA1F2]" />
+  ),
   About: <Avatar />,
 };
 
@@ -127,7 +131,7 @@ function Header({
                       title={item.label}
                       target={isExternal ? "_blank" : undefined}
                       rel={isExternal ? "noopener noreferrer" : undefined}
-                      className={`mx-2 ${router.asPath == item.path ? "opacity-90" : hoverTabStyle}`}
+                      className={`group mx-2 ${router.asPath == item.path ? "opacity-90" : hoverTabStyle}`}
                     >
                       {NavComponents[item.label]
                         ? NavComponents[item.label]

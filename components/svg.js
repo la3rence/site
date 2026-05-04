@@ -1,8 +1,10 @@
-export function TwitterIcon(props) {
+const defaultIconClassName = "inline-block fill-black dark:fill-white";
+
+export function TwitterIcon({ className = defaultIconClassName, ...props }) {
   return (
     <svg
       {...props}
-      className="inline-block fill-black dark:fill-white"
+      className={className}
       aria-label="Twitter/X"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
@@ -16,11 +18,11 @@ export function TwitterIcon(props) {
   );
 }
 
-export function GitHubIcon(props) {
+export function GitHubIcon({ className = defaultIconClassName, ...props }) {
   return (
     <svg
       {...props}
-      className="inline-block fill-black dark:fill-white"
+      className={className}
       aria-label="GitHub"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
@@ -68,11 +70,11 @@ export function SearchIcon(props) {
   );
 }
 
-export function RSS(props) {
+export function RSS({ className = defaultIconClassName, ...props }) {
   return (
     <svg
-      className="inline-block fill-black dark:fill-white"
       {...props}
+      className={className}
       height="14"
       width="14"
       xmlns="http://www.w3.org/2000/svg"
