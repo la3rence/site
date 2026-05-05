@@ -4,8 +4,6 @@ import Layout from "./layout";
 import withLocalization from "./withI18n";
 import { useRef, useEffect } from "react";
 import Tag from "./tag";
-import Avatar from "./avatar";
-import cfg from "../lib/config.mjs";
 import { useTheme } from "next-themes";
 
 const ArticleImageZoom = dynamic(() => import("./article-image-zoom"), {
@@ -82,7 +80,14 @@ const Blog = props => {
             <div className="flex mt-2 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-500 pr-2">
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
-                  <Avatar src={`https://github.com/${cfg.github}.png`} size={25} alt={author} />
+                  <img
+                    src="/images/avatar.png"
+                    width={25}
+                    height={25}
+                    alt={author}
+                    className="rounded-full inline-block border border-zinc-300"
+                    loading="lazy"
+                  />
                   <small className={`ml-2`}>{author}</small>
                   <small className={`before:content-['/'] before:p-0 before:m-2`}>
                     <time dateTime={date}>{date}</time>
