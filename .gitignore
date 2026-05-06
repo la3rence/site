@@ -119,7 +119,7 @@ public/sitemap*
 public/robots.txt
 public/blog/*
 public/*.md
-# public/images/avatar.png
+public/images/avatar.png
 
 # editor
 .obsidian/
