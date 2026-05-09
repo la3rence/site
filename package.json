@@ -55,7 +55,7 @@
     "minify-xml": "^4.5.2",
     "oxfmt": "^0.48.0",
     "postcss": "8.5.14",
-    "tailwindcss": "4.2.4",
+    "tailwindcss": "4.3.0",
     "unist-util-visit": "^5.0.0"
   },
   "markdown": "github",
