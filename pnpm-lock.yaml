@@ -17,6 +17,9 @@ importers:
       '@vercel/og':
         specifier: ^0.11.0
         version: 0.11.1
+      axios:
+        specifier: ^1.16.0
+        version: 1.16.0
       dotenv:
         specifier: 17.4.2
         version: 17.4.2

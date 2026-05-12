@@ -1,6 +1,5 @@
 import Layout from "./../components/layout";
 import PostIndexItem from "../components/post-index-item";
-import { normalizePostPreview } from "../lib/post-preview.mjs";
 import { getAllPostIndexData } from "../lib/ssg";
 
 const getYear = date => new Date(date).getFullYear();
@@ -33,19 +32,12 @@ export const getStaticProps = async ({ locale }) => {
       const year = getYear(post.date);
       const posts = result[year] || [];
 
-      const preview = normalizePostPreview(post.preview);
-      const indexPost = {
+      posts.push({
         id: post.id,
         title: post.title,
         date: post.date,
         locale: post.locale ? post.locale : null,
-      };
-
-      if (preview) {
-        indexPost.preview = preview;
-      }
-
-      posts.push(indexPost);
+      });
 
       result[year] = posts;
       return result;
