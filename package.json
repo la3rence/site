@@ -61,5 +61,6 @@
   "markdown": "github",
   "engines": {
     "node": "24.x"
-  }
+  },
+  "packageManager": "pnpm@11.0.8"
 }
