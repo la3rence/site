@@ -27,7 +27,6 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 11
           run_install: true
 
       - name: Format & Lint
