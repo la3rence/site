@@ -1,5 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Layout from "./layout";
 import withLocalization from "./withI18n";
 import { useRef, useEffect } from "react";
@@ -80,7 +81,7 @@ const Blog = props => {
             <div className="flex mt-2 cursor-pointer rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-500 pr-2">
               <Link href={"/"} className="no-underline p-1">
                 <div className="flex items-center justify-start flex-wrap not-prose">
-                  <img
+                  <Image
                     src="/images/avatar.png"
                     width={25}
                     height={25}

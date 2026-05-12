@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import FlexSearch from "flexsearch";
+import { Document } from "flexsearch";
 import { useState, useRef, useEffect, useMemo } from "react";
 import { getMdPostsData } from "../lib/ssg.mjs";
 import Link from "next/link";
@@ -10,7 +10,7 @@ export default function Search({ posts }) {
   const inputRef = useRef(null);
 
   const index = useMemo(() => {
-    const idx = new FlexSearch.Document({
+    const idx = new Document({
       tokenize: "forward",
       document: {
         id: "id",

@@ -24,8 +24,7 @@ export default function GitHub({ user, repo }) {
       setData(data);
     };
     getGitHubRepo(user, repo);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user, repo]);
 
   if (!data) {
     return <Skeleton />;

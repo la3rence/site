@@ -1,0 +1,18 @@
+{
+  "plugins": ["react", "nextjs"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "19"
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "allow",
+    "react/iframe-missing-sandbox": "allow",
+    "eslint/no-underscore-dangle": "allow",
+    "eslint/no-shadow": "allow"
+  }
+}
