@@ -15,10 +15,12 @@ export default function NotePage({ note }) {
         <meta name="robots" content="noindex" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main
-        className="mx-auto max-w-3xl px-6 py-16 prose prose-slate dark:prose-invert"
-        dangerouslySetInnerHTML={{ __html: note.html }}
-      />
+      <main className="flex min-h-screen flex-col items-center justify-center px-6">
+        <div
+          className="prose prose-slate dark:prose-invert max-w-3xl"
+          dangerouslySetInnerHTML={{ __html: note.html }}
+        />
+      </main>
       <style>{`
         body { margin: 0; }
       `}</style>
