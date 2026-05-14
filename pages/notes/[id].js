@@ -4,12 +4,7 @@ import { getNote } from "../../lib/notes";
 export default function NotePage({ note }) {
   if (!note) {
     return (
-      <>
-        <Head>
-          <title>Not Found</title>
-        </Head>
-        <div className="flex min-h-screen items-center justify-center text-zinc-500">Not Found</div>
-      </>
+      <div className="flex min-h-screen items-center justify-center text-zinc-500">Not Found</div>
     );
   }
 

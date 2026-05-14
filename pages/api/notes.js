@@ -56,7 +56,7 @@ export default async function handler(req, res) {
 
     try {
       await res.revalidate("/notes");
-    } catch (e) {
+    } catch {
       // revalidation error is non-fatal (first build, etc.)
     }
 
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
 
     try {
       await res.revalidate("/notes");
-    } catch (e) {
+    } catch {
       // non-fatal
     }
 
@@ -96,7 +96,7 @@ export default async function handler(req, res) {
 
     try {
       await res.revalidate("/notes");
-    } catch (e) {
+    } catch {
       // non-fatal
     }
 
