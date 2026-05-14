@@ -299,27 +299,21 @@ export default function NotesPage({ serverNotes }) {
         ) : null}
 
         {/* Timeline */}
-        <div className="space-y-8">
+        <div className="space-y-8 notes-timeline">
           {notes.map(note => (
             <div key={note.id} className="group">
-              <div className="flex items-start gap-2">
+              <div className="flex items-center gap-2">
                 <Link
                   href={`/notes/${note.id}`}
-                  className="shrink-0 text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 pt-0.5 no-underline"
+                  className="shrink-0 text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 no-underline"
                 >
                   {formatDate(note.createdAt)}
                 </Link>
-                {note.hidden && composing && (
-                  <span className="shrink-0 text-xs text-amber-500 border border-amber-500 rounded px-1">
-                    hidden
-                  </span>
-                )}
-                <div className="flex-1" />
                 {composing && editingId !== note.id && (
                   <>
                     <button
                       onClick={() => handleEdit(note)}
-                      className="opacity-0 group-hover:opacity-100 text-xs text-zinc-400 hover:text-zinc-600 cursor-pointer transition-opacity mr-2"
+                      className="opacity-0 group-hover:opacity-100 text-xs text-zinc-400 hover:text-zinc-600 cursor-pointer transition-opacity"
                     >
                       edit
                     </button>
@@ -330,6 +324,11 @@ export default function NotesPage({ serverNotes }) {
                       delete
                     </button>
                   </>
+                )}
+                {note.hidden && composing && (
+                  <span className="shrink-0 text-xs text-amber-500 border border-amber-500 rounded px-1">
+                    hidden
+                  </span>
                 )}
               </div>
               {editingId === note.id ? (
@@ -382,7 +381,7 @@ export default function NotesPage({ serverNotes }) {
                 </div>
               ) : (
                 <div
-                  className="prose prose-slate dark:prose-invert text-sm mt-1 prose-p:my-1 prose-p:leading-relaxed"
+                  className="prose prose-slate dark:prose-invert text-sm mt-1 prose-p:my-1 prose-p:leading-relaxed max-w-none"
                   dangerouslySetInnerHTML={{ __html: note.html }}
                 />
               )}
@@ -391,6 +390,20 @@ export default function NotesPage({ serverNotes }) {
           {notes.length === 0 && <p className="text-zinc-400 text-sm">no notes yet</p>}
         </div>
       </div>
+      <style>{`
+        .notes-timeline p,
+        .notes-timeline blockquote,
+        .notes-timeline ol,
+        .notes-timeline ul,
+        .notes-timeline h1,
+        .notes-timeline h2,
+        .notes-timeline h3,
+        .notes-timeline h4,
+        .notes-timeline h5 {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+      `}</style>
     </>
   );
 }
