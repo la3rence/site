@@ -201,6 +201,7 @@ export default function NotesPage({ serverNotes }) {
   const formatDate = d => {
     const date = new Date(d);
     return date.toLocaleDateString(dateLocale, {
+      year: "numeric",
       month: "short",
       day: "numeric",
       hour: "2-digit",
