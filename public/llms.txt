@@ -2,6 +2,8 @@
 
 ## Docs
 
+- [句子之外](https://lawrenceli.me/blog/beyond-the-lines.md): 最近几年从发布会、英美剧和电影里记下的一些英文原句，以及它们如何慢慢改变了我看世界的方式。
+- [写在 2025 年末](https://lawrenceli.me/blog/2025-in-review.md): 2025 博主总结
 - [在 Flyway 迁移类中实现依赖注入](https://lawrenceli.me/blog/flyway.md): 描述在 Spring Boot 中基于 Flyway SDK 直接配合 ORM 实现高效数据迁移
 - [我的默认应用](https://lawrenceli.me/blog/app-defaults-2023.md): 介绍博主日常使用的主要应用
 - [Cloudflare](https://lawrenceli.me/blog/cloudflare.md): 列举 Cloudflare 使用体验和技术细节

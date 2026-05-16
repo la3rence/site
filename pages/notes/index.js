@@ -309,6 +309,9 @@ export default function NotesPage({ serverNotes }) {
                 >
                   {formatDate(note.createdAt)}
                 </Link>
+                {note.hidden && composing && (
+                  <span className="shrink-0 text-xs text-amber-500">hidden</span>
+                )}
                 {composing && editingId !== note.id && (
                   <>
                     <button
@@ -324,11 +327,6 @@ export default function NotesPage({ serverNotes }) {
                       delete
                     </button>
                   </>
-                )}
-                {note.hidden && composing && (
-                  <span className="shrink-0 text-xs text-amber-500 border border-amber-500 rounded px-1">
-                    hidden
-                  </span>
                 )}
               </div>
               {editingId === note.id ? (
