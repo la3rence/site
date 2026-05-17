@@ -1,23 +1,17 @@
-import {
-  listNotes,
-  getNote,
-  createNote,
-  updateNote,
-  deleteNote,
-} from "../../lib/notes";
+import { listNotes, getNote, createNote, updateNote, deleteNote } from "../../lib/notes";
 import { renderMarkdown } from "../../lib/markdown-simple.mjs";
 import cache from "../../lib/cache";
 
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
 const NOTES_TTL = 1800; // 30 minutes
 
-const checkAuth = (req) => {
+const checkAuth = req => {
   const auth = req.headers.authorization;
   if (!auth || !ADMIN_TOKEN) return false;
   return auth === `Bearer ${ADMIN_TOKEN}`;
 };
 
-const serialize = (note) => ({
+const serialize = note => ({
   id: note._id.toString(),
   content: note.content,
   html: note.html,
@@ -26,9 +20,9 @@ const serialize = (note) => ({
   updatedAt: note.updatedAt,
 });
 
-const hasAuthHeader = (req) => !!req.headers.authorization;
+const hasAuthHeader = req => !!req.headers.authorization;
 
-const invalidateNotesCache = (noteId) => {
+const invalidateNotesCache = noteId => {
   cache.del("notes_list_true");
   cache.del("notes_list_false");
   if (noteId) cache.del(`note_${noteId}`);
