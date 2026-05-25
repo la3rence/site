@@ -1,6 +1,6 @@
 import { removeFollower, saveFollower } from "./followers";
 import { v4 as uuidv4 } from "uuid";
-import { getOrigin, sendSignedRequest } from "../../../lib/util.js";
+import { getActivityPubInboxUrl, getOrigin, sendSignedRequest } from "../../../lib/util.js";
 import { saveReply } from "./reply";
 import { saveLike } from "./like";
 
@@ -29,8 +29,12 @@ export default async function inbox(req, res) {
   if (message.type == "Follow" && message.actor != null) {
     console.log("follower to accept & save");
     // Accept & save to my own db
-    await sendAcceptMessage(message, origin);
-    await saveFollower(message.actor);
+    try {
+      await sendAcceptMessage(message, origin);
+      await saveFollower(message.actor);
+    } catch (error) {
+      console.error("Unable to accept follower", error);
+    }
   }
   if (message.type == "Like") {
     await saveLike(message);
@@ -61,48 +65,7 @@ async function sendAcceptMessage(body, originDomain) {
   if (typeof body?.actor !== "string") {
     throw new Error("Invalid actor");
   }
-
-  let actorUrl;
-  try {
-    actorUrl = new URL(body.actor);
-  } catch {
-    throw new Error("Invalid actor URL");
-  }
-
-  if (actorUrl.protocol !== "http:" && actorUrl.protocol !== "https:") {
-    throw new Error("Unsupported actor URL protocol");
-  }
-  if (actorUrl.username || actorUrl.password || actorUrl.search || actorUrl.hash) {
-    throw new Error("Invalid actor URL format");
-  }
-
-  const hostname = actorUrl.hostname.toLowerCase();
-  const ipv4Regex = /^(?:\d{1,3}\.){3}\d{1,3}$/;
-  const isPrivateOrLoopbackIpv4 = (() => {
-    if (!ipv4Regex.test(hostname)) return false;
-    const parts = hostname.split(".").map(x => parseInt(x, 10));
-    if (parts.some(octet => Number.isNaN(octet) || octet < 0 || octet > 255)) return true;
-    const [a, b] = parts;
-    return (
-      a === 10 ||
-      (a === 172 && b >= 16 && b <= 31) ||
-      (a === 192 && b === 168) ||
-      a === 127 ||
-      (a === 169 && b === 254)
-    );
-  })();
-
-  if (
-    hostname === "localhost" ||
-    hostname === "127.0.0.1" ||
-    hostname === "::1" ||
-    hostname.endsWith(".local") ||
-    isPrivateOrLoopbackIpv4
-  ) {
-    throw new Error("Refusing to send request to unsafe actor host");
-  }
-
-  const inboxUrl = new URL("/inbox", actorUrl.origin);
+  const inboxUrl = getActivityPubInboxUrl(body.actor);
 
   const message = {
     "@context": "https://www.w3.org/ns/activitystreams",
@@ -111,9 +74,5 @@ async function sendAcceptMessage(body, originDomain) {
     actor: `${originDomain}/api/activitypub/actor`,
     object: body,
   };
-  await sendSignedRequest(
-    `${originDomain}/api/activitypub/actor#main-key`,
-    inboxUrl,
-    message,
-  );
+  await sendSignedRequest(`${originDomain}/api/activitypub/actor#main-key`, inboxUrl, message);
 }

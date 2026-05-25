@@ -8,6 +8,23 @@ const SortIndicator = ({ column, sortConfig }) => {
   return <span className="ml-1">{sortConfig.direction === "asc" ? "↑" : "↓"}</span>;
 };
 
+const StatusDot = ({ status }) => (
+  <span
+    className={`inline-block w-5 h-5 rounded-full
+      ${
+        status === "在用"
+          ? "bg-green-500"
+          : status === "闲置"
+            ? "bg-orange-300"
+            : status === "损坏"
+              ? "bg-red-600"
+              : "bg-gray-600"
+      }
+    `}
+    title={status}
+  />
+);
+
 export default function Things(props) {
   const [items, setItems] = useState(props.items);
   const title = "Things";
@@ -64,23 +81,6 @@ export default function Things(props) {
     const daysOwned = calculateDaysOwned(purchaseDate);
     return (price / daysOwned).toFixed(2);
   };
-
-  const StatusDot = ({ status }) => (
-    <span
-      className={`inline-block w-5 h-5 rounded-full
-        ${
-          status === "在用"
-            ? "bg-green-500"
-            : status === "闲置"
-              ? "bg-orange-300"
-              : status === "损坏"
-                ? "bg-red-600"
-                : "bg-gray-600"
-        }
-      `}
-      title={status}
-    />
-  );
 
   const summary = props.summary;
 

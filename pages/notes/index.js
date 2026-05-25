@@ -8,11 +8,20 @@ import { listNotes } from "../../lib/notes";
 const TOKEN_KEY = "notes_admin_token";
 const API = "/api/notes";
 
-const getToken = () => null;
+const getToken = () => {
+  if (typeof window === "undefined") return null;
+  return window.sessionStorage.getItem(TOKEN_KEY);
+};
 
-const setToken = _t => {};
+const setToken = token => {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.setItem(TOKEN_KEY, token);
+};
 
-const clearToken = () => {};
+const clearToken = () => {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.removeItem(TOKEN_KEY);
+};
 
 const renderMarkdown = async md => {
   const { remark } = await import("remark");
