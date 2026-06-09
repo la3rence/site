@@ -50,7 +50,7 @@
     "@shikijs/rehype": "^4.0.0",
     "@shikijs/transformers": "4.2.0",
     "@tailwindcss/postcss": "^4.0.0",
-    "@tailwindcss/typography": "0.5.19",
+    "@tailwindcss/typography": "0.5.20",
     "minify-xml": "^4.5.2",
     "oxfmt": "^0.53.0",
     "oxlint": "^1.63.0",
