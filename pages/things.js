@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "../components/header";
-import { getCollection } from "../lib/mongo";
+import { getOptionalCollection } from "../lib/mongo";
 import cache from "../lib/cache";
 
 const SortIndicator = ({ column, sortConfig }) => {
@@ -154,13 +154,15 @@ export default function Things(props) {
 }
 
 export const getStaticProps = async () => {
-  let items;
-  if (cache.has("things")) {
-    items = JSON.parse(cache.get("things"));
-  } else {
-    const collection = await getCollection("things");
-    items = await collection.find({}).sort({ purchaseDate: -1 }).toArray();
-    cache.set("things", JSON.stringify(items));
+  let items = [];
+  const collection = await getOptionalCollection("things");
+  if (collection) {
+    if (cache.has("things")) {
+      items = JSON.parse(cache.get("things"));
+    } else {
+      items = await collection.find({}).sort({ purchaseDate: -1 }).toArray();
+      cache.set("things", JSON.stringify(items));
+    }
   }
 
   const calculateDaysOwned = purchaseDate => {

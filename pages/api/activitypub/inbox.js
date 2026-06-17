@@ -3,8 +3,14 @@ import { v4 as uuidv4 } from "uuid";
 import { getActivityPubInboxUrl, getOrigin, sendSignedRequest } from "../../../lib/util.js";
 import { saveReply } from "./reply";
 import { saveLike } from "./like";
+import config from "../../../lib/config.mjs";
 
 export default async function inbox(req, res) {
+  if (!config.enableActivityPub) {
+    res.status(503).end("activitypub is not configured");
+    return;
+  }
+
   if (req.method !== "POST") {
     res.statusCode = 405;
     res.end("method not allowed");

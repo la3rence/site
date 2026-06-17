@@ -78,7 +78,7 @@ export default async function actor(req, res) {
     publicKey: {
       id: `${origin}/api/activitypub/actor#main-key`,
       owner: `${origin}/api/activitypub/actor`,
-      publicKeyPem: process.env.ACTIVITYPUB_PUBLIC_KEY,
+      publicKeyPem: config.activityPubPublicKey,
     },
   });
 }

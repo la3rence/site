@@ -1,9 +1,16 @@
 import { getOrigin, respondActivityJSON } from "../../../lib/util";
 import { getCollection } from "../../../lib/mongo";
 import { IS_PROD } from "../../../lib/env";
+import config from "../../../lib/config.mjs";
 
 const FOLLOWERS_COLLECTION = "followers";
-const followersCollection = await getCollection(FOLLOWERS_COLLECTION);
+let followersCollectionPromise;
+
+const getFollowersCollection = () => {
+  if (!config.enableActivityPub) return null;
+  followersCollectionPromise ||= getCollection(FOLLOWERS_COLLECTION);
+  return followersCollectionPromise;
+};
 
 export default async function followers(req, res) {
   const origin = getOrigin(req);
@@ -19,6 +26,8 @@ export default async function followers(req, res) {
 }
 
 export async function saveFollower(follower) {
+  const followersCollection = await getFollowersCollection();
+  if (!followersCollection) return;
   const data = await followersCollection.findOne();
   let orderedItems = [];
   if (data) {
@@ -34,6 +43,8 @@ export async function saveFollower(follower) {
 }
 
 export async function removeFollower(follower) {
+  const followersCollection = await getFollowersCollection();
+  if (!followersCollection) return;
   const data = await followersCollection.findOne();
   let orderedItems = [];
   if (data) {
@@ -50,6 +61,8 @@ export async function removeFollower(follower) {
 }
 
 export async function getAllFollowers() {
+  const followersCollection = await getFollowersCollection();
+  if (!followersCollection) return [];
   const data = await followersCollection.findOne();
   if (data) {
     return data.orderedItems;

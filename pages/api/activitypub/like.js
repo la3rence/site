@@ -1,10 +1,19 @@
 import { getCollection } from "../../../lib/mongo";
 import cache from "../../../lib/cache";
+import config from "../../../lib/config.mjs";
 
 const LIKES_COLLECTION = "likes";
-const likesCollection = await getCollection(LIKES_COLLECTION);
+let likesCollectionPromise;
+
+const getLikesCollection = () => {
+  if (!config.enableActivityPub) return null;
+  likesCollectionPromise ||= getCollection(LIKES_COLLECTION);
+  return likesCollectionPromise;
+};
 
 export const saveLike = async message => {
+  const likesCollection = await getLikesCollection();
+  if (!likesCollection) return;
   const like = {
     actor: message.actor,
     object: message.object,
@@ -22,6 +31,8 @@ export const getLikeForObjectId = async objectId => {
   if (cachedLikes) {
     return cachedLikes;
   }
+  const likesCollection = await getLikesCollection();
+  if (!likesCollection) return [];
   const queryObject = { object: objectId };
   const projectionObject = { actor: 1 };
   const result = await likesCollection.find(queryObject, projectionObject).toArray();

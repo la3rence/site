@@ -2,13 +2,22 @@ import { getCollection } from "../../../lib/mongo";
 import { fetchActorInformation, getFediAcctFromActor, fetchAvatar } from "./actor";
 import { getOrigin } from "../../../lib/util";
 import cache from "../../../lib/cache";
+import config from "../../../lib/config.mjs";
 
 const REPLY_COLLECTION = "reply";
-const replyCollection = await getCollection(REPLY_COLLECTION);
+let replyCollectionPromise;
+
+const getReplyCollection = () => {
+  if (!config.enableActivityPub) return null;
+  replyCollectionPromise ||= getCollection(REPLY_COLLECTION);
+  return replyCollectionPromise;
+};
 
 // msg example: https://toot.io/users/lawrence/statuses/109679255155820013/activity
 export const saveReply = async msg => {
   if (msg.object.type === "Note") {
+    const replyCollection = await getReplyCollection();
+    if (!replyCollection) return;
     const inReplyTo = msg.object.inReplyTo; // blog id
     const actor = msg.actor; // who replied.
     const published = msg.published;
@@ -33,17 +42,16 @@ export const saveReply = async msg => {
   }
 };
 
-export default async function reply(req, res) {
-  const origin = getOrigin(req);
-  const inReplyTo = `${origin}${req.query.id}`;
+export const getRepliesForObject = async inReplyTo => {
   const cachedReplies = cache.get(`activitypub:replies:${inReplyTo}`);
   if (cachedReplies) {
-    res.json(cachedReplies);
-    return;
+    return cachedReplies;
   }
   const query = {
     inReplyTo: inReplyTo,
   };
+  const replyCollection = await getReplyCollection();
+  if (!replyCollection) return [];
   const replies = await replyCollection.find(query).toArray();
   await Promise.all(
     replies.map(async reply => {
@@ -51,5 +59,12 @@ export default async function reply(req, res) {
     }),
   );
   cache.set(`activitypub:replies:${inReplyTo}`, replies);
+  return replies;
+};
+
+export default async function reply(req, res) {
+  const origin = getOrigin(req);
+  const inReplyTo = `${origin}${req.query.id}`;
+  const replies = await getRepliesForObject(inReplyTo);
   res.json(replies);
 }

@@ -1,8 +1,14 @@
 import { generateNote } from "./outbox";
 import { getMdContentById } from "../../../lib/ssg.mjs";
 import { getOrigin, sendSignedRequest } from "../../../lib/util";
+import config from "../../../lib/config.mjs";
 
 export default async function publish(req, res) {
+  if (!config.enableActivityPub) {
+    res.status(503).json({ error: "activitypub is not configured" });
+    return;
+  }
+
   const origin = getOrigin(req);
   const id = req.query.id;
   if (!id) {

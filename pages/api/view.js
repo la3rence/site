@@ -1,4 +1,4 @@
-import { getCollection } from "../../lib/mongo";
+import { getOptionalCollection } from "../../lib/mongo";
 import { IS_PROD } from "../../lib/env";
 import cache from "../../lib/cache";
 
@@ -6,7 +6,12 @@ import cache from "../../lib/cache";
 //   runtime: "experimental-edge",
 // };
 
-const pageViews = await getCollection("pageViews");
+let pageViewsPromise;
+
+const getPageViewsCollection = () => {
+  pageViewsPromise ||= getOptionalCollection("pageViews");
+  return pageViewsPromise;
+};
 
 export default async function view(req, res) {
   console.log("cache stats", cache.getStats());
@@ -25,6 +30,8 @@ export default async function view(req, res) {
 }
 
 export async function recordPageView(path) {
+  const pageViews = await getPageViewsCollection();
+  if (!pageViews) return {};
   const filter = { path: path };
   const update = { $inc: { count: 1 } };
   const options = { upsert: true, returnOriginal: false };
