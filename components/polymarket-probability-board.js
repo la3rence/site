@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const CHART_HEIGHT = 420;
+const CHART_HEIGHT = 400;
 const PLOT_TOP = 92;
 const PLOT_BOTTOM = 56;
-const RIGHT_GUTTER = 24;
+const RIGHT_GUTTER = 10;
 const LEFT_GUTTER = 10;
 const MAX_VISIBLE_SERIES = 4;
 const HOVER_LABEL_GAP = 8;
@@ -157,9 +157,7 @@ const densifyHistory = history => {
     const segmentRatio =
       (timestamp - left.timestamp) / Math.max(right.timestamp - left.timestamp, 1);
     const linearPrice = left.price + (right.price - left.price) * segmentRatio;
-    const wave = Math.sin(ratio * Math.PI * Math.max(history.length - 1, 1)) * 0.35;
-    const amplitude = Math.max(Math.abs(right.price - left.price), 0.6);
-    const price = Math.max(0, Math.min(100, linearPrice + wave * amplitude));
+    const price = Math.max(0, Math.min(100, linearPrice));
 
     points.push({
       timestamp,
@@ -470,7 +468,7 @@ function EventEmbedFigure({ group }) {
   return (
     <figure
       ref={containerRef}
-      className="relative m-0 w-full max-w-[920px] overflow-hidden border border-[var(--pm-border)] bg-[var(--pm-bg)] p-5 text-[var(--pm-title)] [--pm-axis:#94A3B8] [--pm-bg:#FFFFFF] [--pm-border:#E2E8F0] [--pm-hover-line:#CBD5E1] [--pm-hover-line-idle:#E2E8F0] [--pm-muted:#64748B] [--pm-muted-line:#94A3B8] [--pm-shadow-path:rgba(15,23,42,0.12)] [--pm-title:#0F172A] [--pm-tooltip-bg:#FFFFFF] [--pm-tooltip-border:#CBD5E1] [--pm-tooltip-text:#0F172A] dark:[--pm-axis:#334253] dark:[--pm-bg:#18181B] dark:[--pm-border:#151A21] dark:[--pm-hover-line:#334155] dark:[--pm-hover-line-idle:#151A20] dark:[--pm-muted:#91A0B4] dark:[--pm-muted-line:#48515D] dark:[--pm-shadow-path:rgba(0,0,0,0.18)] dark:[--pm-title:#F3F5F7] dark:[--pm-tooltip-bg:#0A0D11] dark:[--pm-tooltip-border:#293240] dark:[--pm-tooltip-text:#F3F5F7]"
+      className="relative m-0 w-full max-w-220 overflow-hidden border border-(--pm-border) bg-(--pm-bg) px-2 py-0 text-[var(--pm-title)] [--pm-axis:#94A3B8] [--pm-bg:#FFFFFF] [--pm-border:#E2E8F0] [--pm-hover-line:#CBD5E1] [--pm-hover-line-idle:#E2E8F0] [--pm-muted:#64748B] [--pm-muted-line:#94A3B8] [--pm-shadow-path:rgba(15,23,42,0.12)] [--pm-title:#0F172A] [--pm-tooltip-bg:#FFFFFF] [--pm-tooltip-border:#CBD5E1] [--pm-tooltip-text:#0F172A] dark:[--pm-axis:#334253] dark:[--pm-bg:#18181B] dark:[--pm-border:#151A21] dark:[--pm-hover-line:#334155] dark:[--pm-hover-line-idle:#151A20] dark:[--pm-muted:#91A0B4] dark:[--pm-muted-line:#48515D] dark:[--pm-shadow-path:rgba(0,0,0,0.18)] dark:[--pm-title:#F3F5F7] dark:[--pm-tooltip-bg:#0A0D11] dark:[--pm-tooltip-border:#293240] dark:[--pm-tooltip-text:#F3F5F7]"
       aria-label={`prediction market: ${group.title}`}
       itemScope
       itemType="https://schema.org/WebPage"
@@ -497,8 +495,9 @@ function EventEmbedFigure({ group }) {
             x={LEFT_GUTTER}
             y={CHART_TITLE_Y}
             fill="var(--pm-title)"
-            fontSize="26"
-            fontWeight="700"
+            fontSize="22"
+            fontWeight="600"
+            className="text-balance"
           >
             <title>{group.title}</title>
             {chartTitle}
@@ -523,14 +522,16 @@ function EventEmbedFigure({ group }) {
             </div>
           </foreignObject>
 
-          <line
-            x1={hoverX ?? geometry.plotEndX}
-            x2={hoverX ?? geometry.plotEndX}
-            y1={PLOT_TOP - 6}
-            y2={CHART_HEIGHT - PLOT_BOTTOM + 4}
-            stroke={hoverX === null ? "var(--pm-hover-line-idle)" : "var(--pm-hover-line)"}
-            strokeWidth="1.5"
-          />
+          {hoverX !== null && (
+            <line
+              x1={hoverX}
+              x2={hoverX}
+              y1={PLOT_TOP - 6}
+              y2={CHART_HEIGHT - PLOT_BOTTOM + 4}
+              stroke="var(--pm-hover-line)"
+              strokeWidth="1.5"
+            />
+          )}
 
           {visibleSeries.map(item => {
             const split =

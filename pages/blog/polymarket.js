@@ -8,6 +8,7 @@ import {
 } from "../../lib/polymarket-data-fetcher";
 
 const REFRESH_INTERVAL = 60000;
+const FETCH_TIMEOUT_MS = 8000;
 
 const createTitle = () => "预测市场";
 
@@ -61,9 +62,13 @@ export default function PolymarketPage({ serverSnapshot }) {
       }
 
       inFlight = true;
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
       try {
-        const response = await fetch("/api/polymarket-data");
+        const response = await fetch("/api/polymarket-data", {
+          signal: controller.signal,
+        });
 
         if (!response.ok) {
           throw new Error(`Failed to fetch Polymarket data: ${response.status}`);
@@ -74,6 +79,7 @@ export default function PolymarketPage({ serverSnapshot }) {
       } catch (error) {
         console.error("Error updating polymarket snapshot:", error);
       } finally {
+        clearTimeout(timeoutId);
         inFlight = false;
       }
     };
