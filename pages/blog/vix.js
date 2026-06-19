@@ -18,6 +18,7 @@ export const blogProps = {
   date: "2025-09-28",
   locale: "zh",
   visible: true,
+  tags: "market, trade",
   preview: {
     type: "chart",
     source: "vix",
@@ -191,7 +192,7 @@ export default function Vix(props) {
   }, []);
 
   return (
-    <Blog {...blogProps} title={`${blogProps.title}: ${current || "加载中..."}`} noReply noMeta>
+    <Blog {...blogProps} title={`${blogProps.title}: ${current || "加载中..."}`} noReply>
       <div className="h-72 md:h-96 w-full text-center my-10">
         <div className="mb-2">
           沪深 300 股指期权隐含波动率 当前: {current !== null ? current.toFixed(2) : "加载中..."}

@@ -130,18 +130,16 @@ const Blog = props => {
         </div>
         <ArticleImageZoom containerRef={articleRef} contentKey={`${id}:${locale}`} />
       </article>
-      {!props.noMeta && (
-        <>
-          <div className="tags mt-10">
-            <div>
-              {tags && tags.split(",").map(each => <Tag tag={each} key={each} locale={locale} />)}
-            </div>
+      <>
+        <div className="tags mt-10">
+          <div>
+            {tags && tags.split(",").map(each => <Tag tag={each} key={each} locale={locale} />)}
           </div>
-          <hr />
-          <ArticleActions translations={translations} />
-          <ArticleSocial translations={translations} noReply={props.noReply} />
-        </>
-      )}
+        </div>
+        <hr />
+        <ArticleActions translations={translations} />
+        <ArticleSocial translations={translations} noReply={props.noReply} />
+      </>
     </Layout>
   );
 };

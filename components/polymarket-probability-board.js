@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const CHART_HEIGHT = 400;
 const PLOT_TOP = 92;
 const PLOT_BOTTOM = 56;
-const RIGHT_GUTTER = 10;
+const RIGHT_GUTTER = 14;
 const LEFT_GUTTER = 10;
 const MAX_VISIBLE_SERIES = 4;
 const HOVER_LABEL_GAP = 8;
@@ -468,7 +468,7 @@ function EventEmbedFigure({ group }) {
   return (
     <figure
       ref={containerRef}
-      className="relative m-0 w-full max-w-220 overflow-hidden border border-(--pm-border) bg-(--pm-bg) px-2 py-0 text-[var(--pm-title)] [--pm-axis:#94A3B8] [--pm-bg:#FFFFFF] [--pm-border:#E2E8F0] [--pm-hover-line:#CBD5E1] [--pm-hover-line-idle:#E2E8F0] [--pm-muted:#64748B] [--pm-muted-line:#94A3B8] [--pm-shadow-path:rgba(15,23,42,0.12)] [--pm-title:#0F172A] [--pm-tooltip-bg:#FFFFFF] [--pm-tooltip-border:#CBD5E1] [--pm-tooltip-text:#0F172A] dark:[--pm-axis:#334253] dark:[--pm-bg:#18181B] dark:[--pm-border:#151A21] dark:[--pm-hover-line:#334155] dark:[--pm-hover-line-idle:#151A20] dark:[--pm-muted:#91A0B4] dark:[--pm-muted-line:#48515D] dark:[--pm-shadow-path:rgba(0,0,0,0.18)] dark:[--pm-title:#F3F5F7] dark:[--pm-tooltip-bg:#0A0D11] dark:[--pm-tooltip-border:#293240] dark:[--pm-tooltip-text:#F3F5F7]"
+      className="relative m-0 w-full max-w-220 overflow-hidden bg-(--pm-bg) px-2 py-0 text-(--pm-title) [--pm-axis:#94A3B8] [--pm-bg:#FFFFFF] [--pm-border:#E2E8F0] [--pm-hover-line:#CBD5E1] [--pm-hover-line-idle:#E2E8F0] [--pm-muted:#64748B] [--pm-muted-line:#94A3B8] [--pm-shadow-path:rgba(15,23,42,0.12)] [--pm-title:#0F172A] [--pm-tooltip-bg:#FFFFFF] [--pm-tooltip-border:#CBD5E1] [--pm-tooltip-text:#0F172A] dark:[--pm-axis:#334253] dark:[--pm-bg:#18181B] dark:[--pm-border:#151A21] dark:[--pm-hover-line:#334155] dark:[--pm-hover-line-idle:#151A20] dark:[--pm-muted:#91A0B4] dark:[--pm-muted-line:#48515D] dark:[--pm-shadow-path:rgba(0,0,0,0.18)] dark:[--pm-title:#F3F5F7] dark:[--pm-tooltip-bg:#0A0D11] dark:[--pm-tooltip-border:#293240] dark:[--pm-tooltip-text:#F3F5F7]"
       aria-label={`prediction market: ${group.title}`}
       itemScope
       itemType="https://schema.org/WebPage"
@@ -482,7 +482,7 @@ function EventEmbedFigure({ group }) {
       {geometry ? (
         <svg
           viewBox={`0 0 ${Math.max(width, 320)} ${CHART_HEIGHT}`}
-          className="block h-[420px] w-full"
+          className="block h-105 w-full"
           onMouseLeave={() => setHoverX(null)}
           onMouseMove={event => {
             const rect = event.currentTarget.getBoundingClientRect();
@@ -504,7 +504,7 @@ function EventEmbedFigure({ group }) {
           </text>
 
           <foreignObject x={LEFT_GUTTER} y={CHART_LEGEND_Y} width={geometry.plotWidth} height="34">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] leading-none text-[var(--pm-muted)]">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] leading-none text-(--pm-muted)">
               {visibleSeries.map(item => (
                 <div key={item.id} className="flex items-center gap-2">
                   <span
@@ -512,8 +512,8 @@ function EventEmbedFigure({ group }) {
                     style={{ backgroundColor: item.color }}
                   />
                   <span>
-                    {item.shortLabel}{" "}
-                    <span className="font-semibold text-[var(--pm-title)]">
+                    {item.shortLabel}
+                    <span className="font-semibold text-(--pm-title) pl-1">
                       {formatPercent(item.yesPercent)}
                     </span>
                   </span>
@@ -636,8 +636,7 @@ function EventEmbedFigure({ group }) {
                         x={labelX + HOVER_LABEL_PADDING_X + 8}
                         y={item.labelY + 1}
                         fill="var(--pm-tooltip-text)"
-                        fontSize="15"
-                        fontWeight="600"
+                        fontSize="13"
                         dominantBaseline="middle"
                       >
                         <title>{item.label}</title>
@@ -647,7 +646,7 @@ function EventEmbedFigure({ group }) {
                         x={labelX + labelWidth - HOVER_LABEL_PADDING_X}
                         y={item.labelY + 1}
                         fill="var(--pm-muted)"
-                        fontSize="15"
+                        fontSize="13"
                         fontWeight="600"
                         dominantBaseline="middle"
                         textAnchor="end"
@@ -665,7 +664,7 @@ function EventEmbedFigure({ group }) {
               x={Math.max(width, 320) - RIGHT_GUTTER}
               y={PLOT_TOP - 16}
               fill="var(--pm-muted)"
-              fontSize="14"
+              fontSize="10"
               textAnchor="end"
             >
               {hoverLabel}
@@ -686,7 +685,7 @@ function EventEmbedFigure({ group }) {
           ))}
         </svg>
       ) : (
-        <div className="flex h-[420px] items-center justify-center text-sm text-[var(--pm-muted)]">
+        <div className="flex h-105 items-center justify-center text-sm text-(--pm-muted)">
           暂无走势图数据
         </div>
       )}
