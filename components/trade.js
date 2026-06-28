@@ -17,7 +17,7 @@ const Trade = ({ symbol }) => {
 
   useEffect(() => {
     const fetchPrevious = async () => {
-      const res = await fetch(`https://trade.${config.domain}/quote?symbol=${symbol}`, {
+      const res = await fetch(`https://trade-us-ws.${config.domain}/quote?symbol=${symbol}`, {
         cache: "no-store",
       });
       const json = await res.json();
@@ -28,7 +28,7 @@ const Trade = ({ symbol }) => {
     fetchPrevious();
 
     const createWebSocket = () => {
-      const socket = new WebSocket(`wss://trade.${config.domain}`);
+      const socket = new WebSocket(`wss://trade-us-ws.${config.domain}`);
 
       socket.onopen = () => {
         console.log("WebSocket connection established");
