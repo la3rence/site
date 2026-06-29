@@ -54,7 +54,7 @@
     "minify-xml": "^4.5.2",
     "oxfmt": "^0.56.0",
     "oxlint": "^1.63.0",
-    "postcss": "8.5.15",
+    "postcss": "8.5.16",
     "tailwindcss": "4.3.1",
     "unist-util-visit": "^5.0.0"
   },
