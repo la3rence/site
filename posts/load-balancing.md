@@ -8,15 +8,16 @@ tags: network, http, dns
 对于初次了解负载均衡的人来说，可能会被理解成「四次负载均衡」、「七次负载均衡」，这就完全错了。这里要理解的话直接参考英文：layer 4 load-balancing & layer 7 load-balancing. 其实应当理解为工作在 OSI 第四层、第七层的负载均衡。
 
 所以，所谓的层指的是 [OSI 网络模型](https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B)中的层次，分别对应于传输层（比如 TCP）和应用层（具体的 Application）。
-| Layer | Name | OSI protocols | TCP/IP protocols |
-|:---:|:------------:|:---------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
-| 7 | Application | FTAM X.400 X.500 DAP ROSE RTSE ACSE CMIP | HTTP HTTPS FTP SMTP |
-| 6 | Presentation | ISO/IEC 8823X.226 ISO/IEC 9576-1 X.236 | MIME SSL/TLS XDR |
-| 5 | Session | ISO/IEC 8327 X.225ISO/IEC 9548-1 X.235 | Sockets (session establishment in TCP / RTP / PPTP) |
-| 4 | Transport | ISO/IEC 8073 TP0 TP1 TP2 TP3 TP4 (X.224)ISO/IEC 8602X.234 | TCP UDP SCTP DCCP |
-| 3 | Network | ISO/IEC 8208 X.25(PLP) ISO/IEC 8878 X.223 ISO/IEC 8473-1CLNP X.233 ISO/IEC 10589 IS-IS | IP IPsec ICMP IGMP OSPF RIP |
-| 2 | Data link | ISO/IEC 7666 X.25(LAPB) Token Bus X.222 ISO/IEC 8802-2 LLC| PPP SBTV SLIP |
-| 1 | Physical | X.25 (X.21bis EIA/TIA-232 EIA/TIA-449 EIA-530G.703) | TCP/IP stack does not care about the physical medium, as long as it provides a way to communicate octets |
+
+| Layer |     Name     |                                     OSI protocols                                      |                                             TCP/IP protocols                                             |
+| :---: | :----------: | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
+|   7   | Application  |                        FTAM X.400 X.500 DAP ROSE RTSE ACSE CMIP                        |                                           HTTP HTTPS FTP SMTP                                            |
+|   6   | Presentation |                         ISO/IEC 8823X.226 ISO/IEC 9576-1 X.236                         |                                             MIME SSL/TLS XDR                                             |
+|   5   |   Session    |                         ISO/IEC 8327 X.225ISO/IEC 9548-1 X.235                         |                           Sockets (session establishment in TCP / RTP / PPTP)                            |
+|   4   |  Transport   |               ISO/IEC 8073 TP0 TP1 TP2 TP3 TP4 (X.224)ISO/IEC 8602X.234                |                                            TCP UDP SCTP DCCP                                             |
+|   3   |   Network    | ISO/IEC 8208 X.25(PLP) ISO/IEC 8878 X.223 ISO/IEC 8473-1CLNP X.233 ISO/IEC 10589 IS-IS |                                       IP IPsec ICMP IGMP OSPF RIP                                        |
+|   2   |  Data link   |               ISO/IEC 7666 X.25(LAPB) Token Bus X.222 ISO/IEC 8802-2 LLC               |                                              PPP SBTV SLIP                                               |
+|   1   |   Physical   |                  X.25 (X.21bis EIA/TIA-232 EIA/TIA-449 EIA-530G.703)                   | TCP/IP stack does not care about the physical medium, as long as it provides a way to communicate octets |
 
 因此，基于 OSI 模型，先讲一个三层负载均衡 （即 IP 网络层）的例子 —— DNS 解析，同一个域名可以解析到多个 IP 上，但轮询策略大多数情况下不在自己手上。笔者加入的一家跨国公司内就提供了工作在此层的 Load Balancer，它会根据开发提供的应用健康情况实时动态更新内部网络的 DNS 解析记录，毋庸置疑，公司内部有非常复杂的网络拓扑，包括这样一个工作在局域网中的 DNS 服务器；四层负载均衡其实是在三层基础上加上了端口，也就是通过 IP + Port 的形式进行转发，而七层负载均衡在四层的基础上考虑应用的 URL 或应用层协议的其他字段（比如 HTTP Header）等方式做转发。
 

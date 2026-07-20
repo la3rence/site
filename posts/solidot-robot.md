@@ -30,4 +30,4 @@ curl -XGET -L https://post-solidot-news-to-fanfou.now.sh/api/start
 
 ## Todo
 
-- [x] ~Refactor with ESM~
+- [x] ~~Refactor with ESM~~
