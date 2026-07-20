@@ -52,7 +52,7 @@
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/typography": "0.5.20",
     "minify-xml": "^4.5.2",
-    "oxfmt": "^0.56.0",
+    "oxfmt": "^0.59.0",
     "oxlint": "^1.63.0",
     "postcss": "8.5.15",
     "tailwindcss": "4.3.1",
