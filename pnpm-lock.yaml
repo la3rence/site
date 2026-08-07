@@ -81,8 +81,8 @@ importers:
         specifier: 10.0.1
         version: 10.0.1
       rehype-video:
-        specifier: 2.3.1
-        version: 2.3.1
+        specifier: 2.3.2
+        version: 2.3.2
       remark:
         specifier: 15.0.1
         version: 15.0.1
@@ -2008,8 +2008,8 @@ packages:
   rehype-stringify@10.0.1:
     resolution: {integrity: sha512-k9ecfXHmIPuFVI61B9DeLPN0qFHfawM6RsuX48hoqlaKSF61RskNjSm1lI8PhBEM0MRdLxVVm4WmTqJQccH9mA==}
 
-  rehype-video@2.3.1:
-    resolution: {integrity: sha512-KnDlv9s2KpsI1B9/HGMpe49GDRpfXjJZhQTiSuvsLlYSSmdUDqAhojdprQLms4d3SmQty4jysSy3abGkX1aQcA==}
+  rehype-video@2.3.2:
+    resolution: {integrity: sha512-AubStCkbWMFvVZ1ETxbSmu62BHPOImL2F1qR+EKVLsUxpTerjgLY078HBfwvx1/TPhHoOCr8gNWuBfy13Dv4Dw==}
     engines: {node: '>=16'}
 
   remark-gfm@4.0.1:
@@ -4141,7 +4141,7 @@ snapshots:
       hast-util-to-html: 9.0.5
       unified: 11.0.5
 
-  rehype-video@2.3.1:
+  rehype-video@2.3.2:
     dependencies:
       unified: 11.0.5
       unist-util-visit: 5.1.0
