@@ -118,8 +118,8 @@ importers:
         specifier: ^1.63.0
         version: 1.77.0
       postcss:
-        specifier: 8.5.25
-        version: 8.5.25
+        specifier: 8.5.26
+        version: 8.5.26
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
@@ -1780,6 +1780,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@3.3.17:
+    resolution: {integrity: sha512-xQLf0A3HOMlgHq0n247/LRuAOYmB7dXJ/DvAxGvsSBij45XtBSmQycu+F8ODbHwns/XyFZagyL1+J0Offw1E0g==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
   next-sitemap@4.2.3:
     resolution: {integrity: sha512-vjdCxeDuWDzldhCnyFCQipw5bfpl4HmZA7uoo3GAaYGjGgfL4Cxb1CiztPuWGmS+auYs7/8OekRS8C2cjdAsjQ==}
     engines: {node: '>=14.18'}
@@ -1894,8 +1899,8 @@ packages:
     resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.5.25:
-    resolution: {integrity: sha512-DTPx3RWSSnWyzLxQnlH0rJP+EW5ekl16ZU4/psbIhA0e53kJfdgaN5vKM+xP7yJtXVu+nfdVFmlgFDEKAe4Pyw==}
+  postcss@8.5.26:
+    resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   process-nextick-args@2.0.1:
@@ -2837,7 +2842,7 @@ snapshots:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
-      postcss: 8.5.25
+      postcss: 8.5.26
       tailwindcss: 4.3.3
 
   '@tailwindcss/typography@0.5.20(tailwindcss@4.3.3)':
@@ -3835,6 +3840,8 @@ snapshots:
 
   nanoid@3.3.16: {}
 
+  nanoid@3.3.17: {}
+
   next-sitemap@4.2.3(next@16.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)):
     dependencies:
       '@corex/deepmerge': 4.0.43
@@ -3979,9 +3986,9 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postcss@8.5.25:
+  postcss@8.5.26:
     dependencies:
-      nanoid: 3.3.16
+      nanoid: 3.3.17
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
