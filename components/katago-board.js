@@ -9,7 +9,7 @@ import styles from "./katago-board.module.css";
 
 const API = "https://kata.lawrenceli.me/api/v1/analysis";
 const MAX_VISITS = 50;
-const REQUEST_TIMEOUT = 50000;
+const REQUEST_TIMEOUT = 100000;
 
 // 棋盘 SVG 尺寸（viewBox 单位）
 const M = 34;
@@ -191,7 +191,7 @@ export default function KatagoBoard() {
       }
     } catch (e) {
       if (e.name === "AbortError") return; // 被悔棋/新局取消
-      setError("AI 分析失败（服务繁忙），可重试或让 AI 弃权");
+      setError("AI 分析失败，可重试或让 AI 弃权");
       setPhase("error");
     } finally {
       clearTimeout(timeout);
@@ -301,7 +301,7 @@ export default function KatagoBoard() {
       : "对局结束"
     : phase === "error"
       ? error
-      : `轮到${turn === "B" ? "黑" : "白"}棋${turn === userColor ? "（你）" : ""}`;
+      : `轮到${turn === "B" ? "黑" : "白"}棋`;
 
   const resultText = result
     ? result.via === "resign"
@@ -329,7 +329,7 @@ export default function KatagoBoard() {
       >
         <div className="flex w-16 shrink-0 items-center justify-center">
           {phase === "thinking" && (
-            <span className="flex items-center gap-1" aria-label="AI 思考中">
+            <span className="flex items-center gap-1" aria-label="Thinking">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-500 dark:bg-zinc-400" />
               <span
                 className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-500 dark:bg-zinc-400"
@@ -342,7 +342,7 @@ export default function KatagoBoard() {
             </span>
           )}
         </div>
-        <span className={`w-36 shrink-0 text-center ${hint ? "text-red-500" : ""}`}>
+        <span className={`w-36 shrink-0 text-xs ${hint ? "text-red-500" : ""}`}>
           {hint || statusText}
         </span>
         <div className="w-44 shrink-0 text-center text-xs tabular-nums">
@@ -354,7 +354,7 @@ export default function KatagoBoard() {
       {/* 棋盘 */}
       <div
         className={
-          zen ? "w-full max-w-[min(92vw,92vh)] px-4 sm:px-0" : "relative mx-auto max-w-[720px]"
+          zen ? "w-full max-w-[min(92vw,92vh)] px-4 sm:px-0" : "relative mx-auto max-w-180"
         }
       >
         <svg
@@ -455,10 +455,10 @@ export default function KatagoBoard() {
 
       {/* 分析信息 */}
       {!zen && (analysis || (gameOver && resultText) || phase === "error") && (
-        <div className="mx-auto mt-4 max-w-[720px] text-sm text-zinc-600 dark:text-zinc-400">
+        <div className="mx-auto mt-4 max-w-180 text-sm text-zinc-600 dark:text-zinc-400">
           {analysis ? (
             <div className="flex flex-col gap-1.5 text-xs tabular-nums">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mx-1">
                 <span className="w-7 shrink-0">AI</span>
                 <div className="h-2 flex-1 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
                   <div
@@ -513,7 +513,7 @@ export default function KatagoBoard() {
         className={
           zen
             ? "hidden"
-            : "mx-auto mt-4 flex max-w-[720px] flex-wrap items-center justify-center gap-2 text-xs"
+            : "mx-auto mt-4 flex max-w-180 flex-wrap items-center justify-center gap-2 text-xs"
         }
       >
         {/* 执黑 / 执白 */}
