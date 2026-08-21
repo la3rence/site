@@ -19,6 +19,11 @@ export default function ArticleImageZoom({ containerRef, contentKey }) {
       return;
     }
 
+    // Record which content version this zoom setup targets, so an in-place
+    // content swap (a new contentKey) re-runs this effect and rebuilds the
+    // zoom handlers for the new images.
+    container.dataset.zoomKey = contentKey;
+
     let zoom;
     let disposed = false;
     const startZoom = () => {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Blog from "../../components/blog";
 import cfg from "../../lib/config.mjs";
@@ -73,7 +73,7 @@ export default function Vix(props) {
   const [loading, setLoading] = useState(false);
 
   // 判断当前是否在中国股市交易时间内 (北京时间 9:30-15:00)
-  const isChinaMarketHours = () => {
+  const isChinaMarketHours = useCallback(() => {
     // 获取UTC时间
     const utcTime = new Date();
     // 计算北京时间（UTC+8）
@@ -89,7 +89,7 @@ export default function Vix(props) {
     const marketOpenTime = 9 * 60 + 30; // 9:30 AM
     const marketCloseTime = 15 * 60 + 0; // 3:00 PM
     return timeInMinutes >= marketOpenTime && timeInMinutes < marketCloseTime;
-  };
+  }, []);
 
   // 客户端轮询更新数据
   useEffect(() => {
@@ -189,7 +189,7 @@ export default function Vix(props) {
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [isChinaMarketHours]);
 
   return (
     <Blog {...blogProps} title={`${blogProps.title}: ${current || "加载中..."}`} noReply>
@@ -198,7 +198,8 @@ export default function Vix(props) {
           沪深 300 股指期权隐含波动率 当前: {current !== null ? current.toFixed(2) : "加载中..."}
         </div>
         <div className="text-xs text-gray-500 mb-2">
-          最后更新: {lastUpdated.toLocaleTimeString("zh-CN")} {loading && "(自动更新中...)"}
+          最后更新: {lastUpdated.toLocaleTimeString("zh-CN")}{" "}
+          {loading && "(自动更新中...)"(数据存在延迟)}
           {!isChinaMarketHours() && " (非交易时间)"}
         </div>
         <Chart data={minuteData} viewMode="minute" />
