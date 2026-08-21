@@ -1,0 +1,24 @@
+/* KataGo 对弈棋盘配色（CSS Module，仅随组件加载） */
+.goBoard {
+  --go-board-bg: #f5f4f0;
+  --go-line: #9c9a91;
+  --go-black-fill: #18181b;
+  --go-black-edge: #3f3f46;
+  --go-white-fill: #fafafa;
+  --go-white-edge: #a1a1aa;
+  --go-mark-on-black: #fafafa;
+  --go-mark-on-white: #18181b;
+  --go-ghost-opacity: 0.4;
+}
+
+:global(html.dark) .goBoard {
+  --go-board-bg: #171614;
+  --go-line: #52525b;
+  --go-black-fill: #1e1e21;
+  --go-black-edge: #71717a;
+  --go-white-fill: #d4d4d8;
+  --go-white-edge: #71717a;
+  --go-mark-on-black: #d4d4d8;
+  --go-mark-on-white: #1e1e21;
+  --go-ghost-opacity: 0.7;
+}
