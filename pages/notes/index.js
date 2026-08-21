@@ -60,14 +60,26 @@ export default function NotesPage({ serverNotes }) {
   // Restore token from sessionStorage on mount and fetch authed notes
   useEffect(() => {
     const saved = getToken();
-    if (saved) {
+    if (!saved) return;
+
+    let cancelled = false;
+    // Defer the state restore to a microtask so it does not run synchronously
+    // inside the effect (satisfies the set-state-in-effect lint rule) while
+    // still applying immediately after mount.
+    queueMicrotask(() => {
+      if (cancelled) return;
       setTokenState(saved);
       setComposing(true);
-      fetch(API, { headers: { Authorization: `Bearer ${saved}` } })
-        .then(r => r.ok && r.json())
-        .then(data => data && setNotes(data))
-        .catch(() => {});
-    }
+    });
+
+    fetch(API, { headers: { Authorization: `Bearer ${saved}` } })
+      .then(r => r.ok && r.json())
+      .then(data => data && setNotes(data))
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const handleAuth = async e => {

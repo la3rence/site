@@ -54,7 +54,7 @@ const Blog = props => {
 
   useEffect(() => {
     if (hasAlert) loadCSS("/css/alert.css");
-  }, [hasGist, hasAlert]);
+  }, [hasAlert]);
 
   useEffect(() => {
     if (hasGist) {
