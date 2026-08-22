@@ -27,14 +27,14 @@ export default Index;
 
 export const getStaticProps = async ({ locale }) => {
   const postsByYearMap = (await getAllPostIndexData())
-    .filter(post => post.locale === locale)
+    .filter(post => post.locale === locale || post.i18n?.includes(locale))
     .reduce((result, post) => {
       const year = getYear(post.date);
       const posts = result[year] || [];
 
       posts.push({
         id: post.id,
-        title: post.title,
+        title: post.title_i18n?.[locale] ?? post.title,
         date: post.date,
         locale: post.locale ? post.locale : null,
       });
