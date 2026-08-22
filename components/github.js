@@ -13,18 +13,48 @@ const languageColorMapping = {
 
 export default function GitHub({ user, repo }) {
   const [data, setData] = useState(null);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const getGitHubRepo = async (user, repo) => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PROXY_URL}api.github.com/repos/${user}/${repo}`,
-        { cache: "force-cache" },
-      );
-      const data = await res.json();
-      setData(data);
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_PROXY_URL}api.github.com/repos/${user}/${repo}`,
+          { cache: "force-cache", credentials: "omit" },
+        );
+        if (!res.ok) {
+          throw new Error(`GitHub fetch failed: ${res.status}`);
+        }
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.warn("GitHub repo fetch failed", user, repo, error);
+        setFailed(true);
+      }
     };
     getGitHubRepo(user, repo);
   }, [user, repo]);
+
+  if (failed) {
+    return (
+      <div className="my-4 flex items-center border-t border-b border-zinc-100 dark:border-zinc-800 dark:bg-black">
+        <div className="flex-1 py-3">
+          <p className="my-3">
+            <span className="mr-1 h-5 w-5 align-middle">
+              <GitHubIcon style={{ height: 20, width: 20 }} />
+            </span>
+            <a
+              href={`https://github.com/${user}/${repo}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {user}/{repo} on GitHub
+            </a>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (!data) {
     return <Skeleton />;

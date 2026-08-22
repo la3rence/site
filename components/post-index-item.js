@@ -5,7 +5,6 @@ export default function PostIndexItem({ post }) {
     <div className="my-4">
       <Link
         href={`/blog/${post.id}`}
-        locale={post.locale}
         className="text-lg font-normal no-underline hover:text-zinc-500"
       >
         <span className="font-mono text-zinc-500">{post.date.substring(5)}</span>

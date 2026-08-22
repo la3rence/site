@@ -6,7 +6,7 @@ function withLocalization(Component) {
   return function WithLocalization(props) {
     const router = useRouter();
     const translations = getTranslations(router.locale);
-    return <Component {...props} translations={translations} />;
+    return <Component {...props} translations={translations} locale={router.locale} />;
   };
 }
 
