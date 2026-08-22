@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { N, coordToXY, xyToCoord, buildState, isLegal } from "../lib/go-rules";
 import styles from "./katago-board.module.css";
+import withLocalization from "./withI18n";
 
 /**
  * 19x19 围棋对弈棋盘，与 katago-server (https://kata.lawrenceli.me) 实时对弈。
@@ -47,7 +48,8 @@ function useAnimatedValue(value, duration = 700) {
 
 // ---------- 组件 ----------
 
-export default function KatagoBoard() {
+function KatagoBoard({ translations }) {
+  const t = translations;
   const [moves, setMoves] = useState([]);
   const [phase, setPhase] = useState("user"); // user | thinking | error | over
   const [userColor, setUserColor] = useState("B");
@@ -73,6 +75,16 @@ export default function KatagoBoard() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [zen]);
+
+  // AI 思考中时把浏览器标签标题切换为「思考中」，结束后还原
+  useEffect(() => {
+    if (typeof document === "undefined") return; // SSR 安全
+    const prev = document.title;
+    if (phase === "thinking") document.title = t["Thinking"];
+    return () => {
+      if (phase === "thinking") document.title = prev;
+    };
+  }, [phase, t]);
 
   const commitMoves = useCallback(next => {
     movesRef.current = next;
@@ -191,12 +203,12 @@ export default function KatagoBoard() {
       }
     } catch (e) {
       if (e.name === "AbortError") return; // 被悔棋/新局取消
-      setError("AI 分析失败，可重试或让 AI 弃权");
+      setError(t["AI analysis failed, retry or let AI pass"]);
       setPhase("error");
     } finally {
       clearTimeout(timeout);
     }
-  }, [analyze, finishGame, commitMoves]);
+  }, [analyze, finishGame, commitMoves, t]);
 
   /** 用户落子 */
   const play = useCallback(
@@ -205,7 +217,7 @@ export default function KatagoBoard() {
       const idx = y * N + x;
       if (board[idx] !== 0) return;
       if (!isLegal(board, idx, userColor === "B" ? 1 : 2, posKeys)) {
-        showHint("此处不能落子");
+        showHint(t["Cannot play here"]);
         return;
       }
       const next = [...movesRef.current, { color: userColor, x, y }];
@@ -218,7 +230,7 @@ export default function KatagoBoard() {
       setPhase("thinking");
       runAI();
     },
-    [board, posKeys, userColor, isUserTurn, runAI, finishGame, showHint, commitMoves],
+    [board, posKeys, userColor, isUserTurn, runAI, finishGame, showHint, commitMoves, t],
   );
 
   /** 悔棋：撤销直到轮到自己（至少撤一手） */
@@ -297,18 +309,23 @@ export default function KatagoBoard() {
 
   const statusText = gameOver
     ? result?.via === "resign"
-      ? "你认输了"
-      : "对局结束"
+      ? t["You resigned"]
+      : t["Game over"]
     : phase === "error"
       ? error
-      : `轮到${turn === "B" ? "黑" : "白"}棋`;
+      : turn === "B"
+        ? t["Black to move"]
+        : t["White to move"];
 
   const resultText = result
     ? result.via === "resign"
-      ? `${result.winner === "B" ? "黑" : "白"}方获胜（认输）`
+      ? t[result.winner === "B" ? "Black wins by resignation" : "White wins by resignation"]
       : result.via === "score"
-        ? `${result.winner === "B" ? "黑" : "白"}方胜 ${result.delta.toFixed(1)} 目`
-        : "双方弃权，无法获取目差"
+        ? t[result.winner === "B" ? "Black wins by score" : "White wins by score"].replace(
+            "%s",
+            result.delta.toFixed(1),
+          )
+        : t["Both passed, score unavailable"]
     : null;
 
   return (
@@ -346,8 +363,9 @@ export default function KatagoBoard() {
           {hint || statusText}
         </span>
         <div className="w-44 shrink-0 text-center text-xs tabular-nums">
-          {captured.B + captured.W > 0 && `提子 黑 ${captured.B} · 白 ${captured.W} ｜ `}
-          手数 {moves.length}
+          {captured.B + captured.W > 0 &&
+            `${t["Captured"]} ${t["Black"]} ${captured.B} · ${t["White"]} ${captured.W} ｜ `}
+          {t["Moves"]} {moves.length}
         </div>
       </div>
 
@@ -360,7 +378,9 @@ export default function KatagoBoard() {
         <svg
           ref={svgRef}
           viewBox={`0 0 ${S} ${S}`}
-          className={`${styles.goBoard} h-auto w-full select-none rounded-lg shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800`}
+          className={`${styles.goBoard} h-auto w-full select-none rounded-lg shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800 ${
+            phase === "thinking" ? "cursor-wait" : ""
+          }`}
           style={{ backgroundColor: "var(--go-board-bg)" }}
           onClick={e => {
             const p = onPointer(e);
@@ -460,7 +480,7 @@ export default function KatagoBoard() {
             <div className="flex flex-col gap-1.5 text-xs tabular-nums">
               <div className="flex items-center gap-2 mx-1">
                 <span className="w-7 shrink-0">AI</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+                <div className="h-1 flex-1 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
                   <div
                     className="h-full rounded-full bg-zinc-900 transition-[width] duration-700 ease-out dark:bg-zinc-500"
                     style={{
@@ -486,7 +506,7 @@ export default function KatagoBoard() {
                   runAI();
                 }}
               >
-                重试
+                {t["Retry"]}
               </button>
               <button
                 className="rounded-md border border-zinc-300 px-3 py-1 text-xs hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
@@ -501,7 +521,7 @@ export default function KatagoBoard() {
                   }
                 }}
               >
-                AI 弃权
+                {t["Let AI pass"]}
               </button>
             </div>
           )}
@@ -522,14 +542,14 @@ export default function KatagoBoard() {
             <button
               key={c}
               onClick={() => newGame(c)}
-              title={c === "B" ? "执黑先手" : "执白后手"}
+              title={c === "B" ? t["Play Black (first move)"] : t["Play White (second move)"]}
               className={`rounded-full px-4 py-1 transition-colors duration-150 ${
                 userColor === c
                   ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900"
                   : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
               }`}
             >
-              {c === "B" ? "执黑" : "执白"}
+              {c === "B" ? t["Play Black"] : t["Play White"]}
             </button>
           ))}
         </div>
@@ -539,30 +559,30 @@ export default function KatagoBoard() {
           <button
             onClick={undo}
             disabled={gameOver || moves.length === 0}
-            title="悔棋：撤销直到轮到你"
+            title={t["Undo: revert until your turn"]}
             className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
           >
-            悔棋
+            {t["Undo"]}
           </button>
           <button
             onClick={pass}
             disabled={!isUserTurn}
-            title="弃权"
+            title={t["Pass"]}
             className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
           >
-            弃权
+            {t["Pass"]}
           </button>
           <button
             onClick={gameOver ? () => newGame(userColor) : resign}
             disabled={gameOver ? false : phase === "error"}
-            title={gameOver ? "再来一局" : "认输"}
+            title={gameOver ? t["Play again"] : t["Resign"]}
             className={`rounded-full px-4 py-1 transition-colors duration-150 disabled:pointer-events-none disabled:opacity-30 ${
               gameOver
                 ? "bg-zinc-900 text-zinc-50 hover:opacity-80 dark:bg-zinc-100 dark:text-zinc-900"
                 : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
             }`}
           >
-            {gameOver ? "再来一局" : "认输"}
+            {gameOver ? t["Play again"] : t["Resign"]}
           </button>
         </div>
 
@@ -570,10 +590,10 @@ export default function KatagoBoard() {
         <div className="flex items-center rounded-full border border-zinc-200 p-0.5 dark:border-zinc-800">
           <button
             onClick={() => setZen(true)}
-            title="禅模式：只显示棋盘（Esc 退出）"
+            title={t["Zen mode: board only (Esc to exit)"]}
             className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
           >
-            禅
+            {t["Zen"]}
           </button>
         </div>
       </div>
@@ -582,7 +602,7 @@ export default function KatagoBoard() {
       {zen && (
         <button
           onClick={() => setZen(false)}
-          title="退出禅模式 (Esc)"
+          title={t["Exit Zen mode (Esc)"]}
           className="absolute right-4 top-4 rounded-full px-3 py-1 text-xs text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-500 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
         >
           X
@@ -591,3 +611,5 @@ export default function KatagoBoard() {
     </div>
   );
 }
+
+export default withLocalization(KatagoBoard);

@@ -27,7 +27,7 @@ function TagPage({ tags, postData, translations }) {
         </div>
         <div className="mt-8 mx-4">
           {postData
-            ?.filter(post => post.locale === locale)
+            ?.filter(post => post.locale === locale || post.i18n?.includes(locale))
             ?.map(post => (
               <div className="mt-6" key={post.id}>
                 <span className="text-lg">
