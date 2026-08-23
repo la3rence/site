@@ -9,7 +9,7 @@ import withLocalization from "./withI18n";
  */
 const API = "https://go.game.lawrenceli.me/api/v1/analysis";
 const MAX_VISITS = 50;
-const REQUEST_TIMEOUT = 100000;
+const REQUEST_TIMEOUT = 120000;
 
 // 棋盘 SVG 尺寸（viewBox 单位）
 const M = 34;
