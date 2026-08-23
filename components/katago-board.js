@@ -4,11 +4,10 @@ import styles from "./katago-board.module.css";
 import withLocalization from "./withI18n";
 
 /**
- * 19x19 围棋对弈棋盘，与 katago-server (https://kata.lawrenceli.me) 实时对弈。
+ * 19x19 围棋对弈棋盘，与 AI 实时对弈。
  * 棋局状态完全在浏览器端维护，每次分析仅提交完整落子序列（无状态分析接口）。
  */
-
-const API = "https://kata.lawrenceli.me/api/v1/analysis";
+const API = "https://go.game.lawrenceli.me/api/v1/analysis";
 const MAX_VISITS = 50;
 const REQUEST_TIMEOUT = 100000;
 
