@@ -47,5 +47,13 @@
   "Black": "Black",
   "White": "White",
   "Captured": "Captured",
-  "Moves": "Moves"
+  "Moves": "Moves",
+  "Board size": "Board size",
+  "Confirm": "Confirm",
+  "Cancel": "Cancel",
+  "Start a new game?": "Start a new game?",
+  "Resign this game?": "Resign this game?",
+  "Switch to {size}×{size} board?": "Switch to {size}×{size} board?",
+  "Current game progress will be lost.": "Current game progress will be lost.",
+  "AI winrate": "AI winrate"
 }

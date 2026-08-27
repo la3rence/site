@@ -47,5 +47,13 @@
   "Black": "黑",
   "White": "白",
   "Captured": "提子",
-  "Moves": "手数"
+  "Moves": "手数",
+  "Board size": "棋盘尺寸",
+  "Confirm": "确认",
+  "Cancel": "取消",
+  "Start a new game?": "开始新对局？",
+  "Resign this game?": "认输本局？",
+  "Switch to {size}×{size} board?": "切换到 {size}×{size} 棋盘？",
+  "Current game progress will be lost.": "当前对局进度将丢失。",
+  "AI winrate": "AI 胜率"
 }
