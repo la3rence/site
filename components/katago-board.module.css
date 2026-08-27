@@ -8,6 +8,7 @@
   --go-white-edge: #a1a1aa;
   --go-mark-on-black: #fafafa;
   --go-mark-on-white: #18181b;
+  --go-hint: #18181b;
   --go-ghost-opacity: 0.4;
 }
 
@@ -16,9 +17,10 @@
   --go-line: #52525b;
   --go-black-fill: #1e1e21;
   --go-black-edge: #71717a;
-  --go-white-fill: #d4d4d8;
-  --go-white-edge: #71717a;
+  --go-white-fill: #a8a8ae;
+  --go-white-edge: #6b6b72;
   --go-mark-on-black: #d4d4d8;
   --go-mark-on-white: #1e1e21;
+  --go-hint: #d4d4d8;
   --go-ghost-opacity: 0.7;
 }

@@ -7,6 +7,7 @@ import {
   starPoints,
   BOARD_SIZES,
 } from "../lib/go-rules";
+import { parseSGF, toSGF } from "../lib/sgf";
 import styles from "./katago-board.module.css";
 import withLocalization from "./withI18n";
 
@@ -115,6 +116,11 @@ function KatagoBoard({ translations }) {
   const [zen, setZen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [dialog, setDialog] = useState(null); // { title, message, onConfirm, confirmText }
+  const [aiHint, setAiHint] = useState(null); // 建议落子坐标 { x, y } | null
+  const [hintLoading, setHintLoading] = useState(false);
+  const [replay, setReplay] = useState(false); // 对局结束后是否进入历史回放
+  const [replayStep, setReplayStep] = useState(0); // 回放展示前 N 手
+  const [replayPlaying, setReplayPlaying] = useState(false); // 回放自动播放
 
   const movesRef = useRef(moves);
   const userColorRef = useRef(userColor);
@@ -123,6 +129,7 @@ function KatagoBoard({ translations }) {
   const svgRef = useRef(null);
   const hintTimerRef = useRef(null);
   const runAIRef = useRef(null);
+  const fileInputRef = useRef(null); // 导入 SGF 的隐藏文件选择器
 
   // 棋谱持久化：仅在水合（mount）后写入，按当前棋盘尺寸分桶存储
   useEffect(() => {
@@ -228,13 +235,43 @@ function KatagoBoard({ translations }) {
     };
   }, [phase, t]);
 
+  // 回放自动播放：每 700ms 推进一步，到末尾停止
+  useEffect(() => {
+    if (!replay || !replayPlaying) return undefined;
+    if (replayStep >= moves.length) {
+      setReplayPlaying(false);
+      return undefined;
+    }
+    const id = setTimeout(() => setReplayStep(s => Math.min(moves.length, s + 1)), 700);
+    return () => clearTimeout(id);
+  }, [replay, replayPlaying, replayStep, moves.length]);
+
   const commitMoves = useCallback(next => {
     movesRef.current = next;
     setMoves(next);
+    setAiHint(null); // 局面已变化，清除上一条建议
   }, []);
 
   const st = useMemo(() => buildState(moves, size), [moves, size]);
   const { board, posKeys, captured, lastMove } = st;
+
+  // 回放：展示前 replayStep 手（仅在 replay 为真时有意义）
+  const displayMoves = useMemo(
+    () => (replay ? moves.slice(0, replayStep) : moves),
+    [replay, replayStep, moves],
+  );
+  const displaySt = useMemo(() => buildState(displayMoves, size), [displayMoves, size]);
+  const boardView = replay ? displaySt.board : board;
+  const lastMoveView = replay ? displaySt.lastMove : lastMove;
+  // 回放时每个落子点的手数（1-based），按落子顺序覆盖（后落者覆盖被提点）
+  const moveNumbers = useMemo(() => {
+    if (!replay) return null;
+    const map = new Array(size * size).fill(0);
+    displayMoves.forEach((m, k) => {
+      if (!m.pass) map[m.y * size + m.x] = k + 1;
+    });
+    return map;
+  }, [replay, displayMoves, size]);
   const aiColor = userColor === "B" ? "W" : "B";
   const turn = moves.length % 2 === 0 ? "B" : "W";
   const isUserTurn = phase === "user" && turn === userColor;
@@ -362,6 +399,7 @@ function KatagoBoard({ translations }) {
   /** 用户落子 */
   const play = useCallback(
     (x, y) => {
+      if (replay) return; // 回放中不可落子
       if (!isUserTurn) return;
       const idx = y * size + x;
       if (board[idx] !== 0) return;
@@ -379,7 +417,19 @@ function KatagoBoard({ translations }) {
       setPhase("thinking");
       runAI();
     },
-    [board, posKeys, size, userColor, isUserTurn, runAI, finishGame, showHint, commitMoves, t],
+    [
+      board,
+      posKeys,
+      size,
+      userColor,
+      isUserTurn,
+      runAI,
+      finishGame,
+      showHint,
+      commitMoves,
+      t,
+      replay,
+    ],
   );
 
   /** 悔棋：撤销直到轮到自己（至少撤一手） */
@@ -426,6 +476,8 @@ function KatagoBoard({ translations }) {
       setAnalysis(null);
       setResult(null);
       setHint(null);
+      setReplay(false);
+      setReplayPlaying(false);
       if (color === "W") runAI(); // 执白：AI 执黑先手
     },
     [runAI, commitMoves],
@@ -457,6 +509,8 @@ function KatagoBoard({ translations }) {
         setAnalysis(null);
         setResult(null);
         setHint(null);
+        setReplay(false);
+        setReplayPlaying(false);
         if (userColorRef.current === "W") runAI(); // 执白：AI 执黑先手
       }
     },
@@ -467,19 +521,132 @@ function KatagoBoard({ translations }) {
     if (gameOver) return;
     abortRef.current?.abort();
     abortRef.current = null;
+    setAiHint(null);
+    setReplay(false);
+    setReplayPlaying(false);
     setPhase("over");
     setResult({ winner: aiColor, via: "resign" });
   }, [gameOver, aiColor]);
 
+  /** 导入 SGF 解析结果：载入棋局并复位对弈状态 */
+  const loadImportedGame = useCallback(parsed => {
+    abortRef.current?.abort();
+    abortRef.current = null;
+    const s = parsed.size;
+    sizeRef.current = s;
+    setSize(s);
+    // 有结果 → 结束态（可直接回放）；否则以「下一步执子方」作为本机执子，便于续下
+    const nextColor = parsed.moves.length % 2 === 0 ? "B" : "W";
+    const uc = parsed.result ? "B" : nextColor;
+    userColorRef.current = uc;
+    setUserColor(uc);
+    movesRef.current = parsed.moves;
+    setMoves(parsed.moves);
+    setAnalysis(null);
+    setResult(parsed.result);
+    setError(null);
+    setHint(null);
+    setAiHint(null);
+    setReplay(false);
+    setReplayPlaying(false);
+    setPhase(parsed.result ? "over" : "user");
+  }, []);
+
+  /** 导出当前棋局为 SGF 文件并触发下载 */
+  const exportSGF = useCallback(() => {
+    if (typeof document === "undefined" || moves.length === 0) return;
+    const sgf = toSGF({
+      size,
+      moves,
+      result,
+      blackName: userColor === "B" ? "You" : "KataGo",
+      whiteName: userColor === "W" ? "You" : "KataGo",
+    });
+    const blob = new Blob([sgf], { type: "application/x-go-sgf" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `go-${size}x${size}-${moves.length}moves.sgf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, [size, moves, result, userColor]);
+
+  /** AI 建议：调用分析接口取出最佳应手，在棋谱上标出 */
+  const suggest = useCallback(async () => {
+    const ms = movesRef.current;
+    const N = sizeRef.current;
+    const turn = ms.length % 2 === 0 ? "B" : "W";
+    if (phase === "over") {
+      showHint(t["Game over"]);
+      return;
+    }
+    if (turn !== userColorRef.current) {
+      showHint(t["Wait for AI to move"]);
+      return;
+    }
+    setHintLoading(true);
+    const ctrl = new AbortController();
+    try {
+      const data = await analyze(ms, ctrl.signal);
+      const infos = (data.moveInfos || []).filter(i => i && typeof i.moveCoord === "string");
+      let best = null;
+      for (const info of infos) {
+        const xy = coordToXY(info.moveCoord, N);
+        if (!xy) continue;
+        const s = buildState(ms, N);
+        const stone = userColorRef.current === "B" ? 1 : 2;
+        if (isLegal(s.board, xy.y * N + xy.x, stone, s.posKeys, N)) {
+          best = xy;
+          break;
+        }
+      }
+      if (best) {
+        setAiHint(best);
+        showHint(t["AI suggests"].replace("{coord}", xyToCoord(best.x, best.y, N)));
+      } else {
+        setAiHint(null);
+        showHint(t["No suggestion available"]);
+      }
+    } catch (e) {
+      if (e.name !== "AbortError") showHint(t["Suggestion failed"]);
+    } finally {
+      setHintLoading(false);
+    }
+  }, [analyze, phase, showHint, t]);
+
   /** 二次确认弹窗：用于开新局 / 认输 / 切换棋盘，避免误操作丢失当前对局 */
-  const askConfirm = (title, message, onConfirm, confirmText) =>
-    setDialog({ title, message, onConfirm, confirmText: confirmText || t["Confirm"] });
+  const askConfirm = useCallback(
+    (title, message, onConfirm, confirmText) =>
+      setDialog({ title, message, onConfirm, confirmText: confirmText || t["Confirm"] }),
+    [t],
+  );
 
   const runConfirm = () => {
     const fn = dialog?.onConfirm;
     setDialog(null);
     fn?.();
   };
+
+  /** 选择 SGF 文件后：解析，成功则二次确认后载入，失败给出提示 */
+  const onImportFile = useCallback(
+    async e => {
+      const file = e.target.files && e.target.files[0];
+      e.target.value = ""; // 允许重复导入同一文件
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const parsed = parseSGF(text);
+        askConfirm(t["Import SGF?"], t["Current game progress will be lost."], () =>
+          loadImportedGame(parsed),
+        );
+      } catch (err) {
+        showHint(err.message || t["Failed to parse SGF"]);
+      }
+    },
+    [askConfirm, loadImportedGame, showHint, t],
+  );
 
   // ESC 关闭弹窗
   useEffect(() => {
@@ -494,6 +661,9 @@ function KatagoBoard({ translations }) {
   // ---------- 渲染 ----------
 
   const toSvg = (x, y) => ({ cx: M + x * CELL, cy: M + y * CELL });
+  const aiHintPos = aiHint ? toSvg(aiHint.x, aiHint.y) : null;
+  const hintColor = userColor === "B" ? "var(--go-black-fill)" : "var(--go-white-fill)";
+  const hintContrast = "var(--go-hint)"; // 与棋盘底色反色，保证任意棋子颜色下都清晰可见
 
   const onPointer = e => {
     if (!svgRef.current) return null;
@@ -625,11 +795,12 @@ function KatagoBoard({ translations }) {
             />
           ))}
           {/* 棋子 */}
-          {board.map((v, i) => {
+          {boardView.map((v, i) => {
             if (!v) return null;
             const x = i % size;
             const y = (i / size) | 0;
             const { cx, cy } = toSvg(x, y);
+            const num = moveNumbers ? moveNumbers[i] : 0;
             return (
               <g key={`stone-${i}`}>
                 <circle
@@ -642,7 +813,7 @@ function KatagoBoard({ translations }) {
                   }}
                   strokeWidth="1"
                 />
-                {lastMove && lastMove.x === x && lastMove.y === y && (
+                {lastMoveView && lastMoveView.x === x && lastMoveView.y === y && (
                   <circle
                     cx={cx}
                     cy={cy}
@@ -653,6 +824,22 @@ function KatagoBoard({ translations }) {
                       stroke: v === 1 ? "var(--go-mark-on-black)" : "var(--go-mark-on-white)",
                     }}
                   />
+                )}
+                {num > 0 && (
+                  <text
+                    x={cx}
+                    y={cy}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    fontSize={CELL * 0.42}
+                    style={{
+                      fill: v === 1 ? "var(--go-mark-on-black)" : "var(--go-mark-on-white)",
+                      pointerEvents: "none",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {num}
+                  </text>
                 )}
               </g>
             );
@@ -670,6 +857,27 @@ function KatagoBoard({ translations }) {
                 opacity: "var(--go-ghost-opacity)",
               }}
             />
+          )}
+
+          {/* AI 建议落子标记（空心环 + 中心点，轻微脉动以引起注意；描边用反色保证在深色棋盘上也能看清） */}
+          {aiHintPos && (
+            <g className="animate-pulse">
+              <circle
+                cx={aiHintPos.cx}
+                cy={aiHintPos.cy}
+                r={CELL * 0.46}
+                fill="none"
+                strokeWidth={CELL * 0.1}
+                style={{ stroke: hintContrast }}
+              />
+              <circle
+                cx={aiHintPos.cx}
+                cy={aiHintPos.cy}
+                r={CELL * 0.13}
+                strokeWidth={CELL * 0.04}
+                style={{ fill: hintColor, stroke: hintContrast }}
+              />
+            </g>
           )}
         </svg>
       </div>
@@ -732,7 +940,7 @@ function KatagoBoard({ translations }) {
       {/* 操作 */}
       <div
         className={
-          zen
+          zen || replay
             ? "hidden"
             : "mx-auto mt-8 flex max-w-180 flex-wrap items-center justify-center gap-2 text-xs"
         }
@@ -754,7 +962,7 @@ function KatagoBoard({ translations }) {
               title={t["Board size"]}
               className={`rounded-full px-3 py-1 transition-colors duration-150 ${
                 size === s
-                  ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900"
+                  ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-500 dark:text-zinc-50"
                   : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
               }`}
             >
@@ -776,7 +984,7 @@ function KatagoBoard({ translations }) {
               title={c === "B" ? t["Play Black (first move)"] : t["Play White (second move)"]}
               className={`rounded-full px-4 py-1 transition-colors duration-150 ${
                 userColor === c
-                  ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900"
+                  ? "bg-zinc-900 text-zinc-50 dark:bg-zinc-500 dark:text-zinc-50"
                   : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
               }`}
             >
@@ -819,7 +1027,7 @@ function KatagoBoard({ translations }) {
             title={gameOver ? t["Play again"] : t["Resign"]}
             className={`rounded-full px-4 py-1 transition-colors duration-150 disabled:pointer-events-none disabled:opacity-30 ${
               gameOver
-                ? "bg-zinc-900 text-zinc-50 hover:opacity-80 dark:bg-zinc-100 dark:text-zinc-900"
+                ? "bg-zinc-900 text-zinc-50 hover:opacity-80 dark:bg-zinc-500 dark:text-zinc-50"
                 : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
             }`}
           >
@@ -827,17 +1035,204 @@ function KatagoBoard({ translations }) {
           </button>
         </div>
 
-        {/* 禅 */}
+        {/* 对局结束后的「回放」入口 */}
+        {gameOver && (
+          <div className="flex items-center rounded-full border border-zinc-200 p-0.5 dark:border-zinc-800">
+            <button
+              onClick={() => {
+                setReplay(true);
+                setReplayStep(0);
+                setReplayPlaying(true);
+              }}
+              title={t["Replay"]}
+              className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            >
+              {t["Replay"]}
+            </button>
+          </div>
+        )}
+
+        {/* 禅（全屏放大图标） */}
         <div className="flex items-center rounded-full border border-zinc-200 p-0.5 dark:border-zinc-800">
           <button
             onClick={() => setZen(true)}
             title={t["Zen mode: board only (Esc to exit)"]}
-            className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            className="flex items-center justify-center rounded-full p-1.5 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
           >
-            {t["Zen"]}
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M3 8V5a2 2 0 0 1 2-2h3" />
+              <path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+              <path d="M3 16v3a2 2 0 0 0 2 2h3" />
+              <path d="M21 16v3a2 2 0 0 1-2 2h-3" />
+            </svg>
           </button>
         </div>
+
+        {/* AI 建议 */}
+        <div className="flex items-center rounded-full border border-zinc-200 p-0.5 dark:border-zinc-800">
+          <button
+            onClick={suggest}
+            disabled={!isUserTurn || gameOver || hintLoading}
+            title={t["Suggest a move"]}
+            className="flex min-w-[5.5rem] items-center justify-center gap-1.5 rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          >
+            {hintLoading ? (
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-zinc-500 dark:bg-zinc-400" />
+                {t["Suggesting..."]}
+              </span>
+            ) : (
+              t["Suggest"]
+            )}
+          </button>
+        </div>
+
+        {/* 导入 / 导出 SGF 棋谱 */}
+        <div className="flex items-center rounded-full border border-zinc-200 p-0.5 dark:border-zinc-800">
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            title={t["Import SGF"]}
+            className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          >
+            {t["Import"]}
+          </button>
+          <button
+            onClick={exportSGF}
+            disabled={moves.length === 0}
+            title={t["Export SGF"]}
+            className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+          >
+            {t["Export"]}
+          </button>
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".sgf,application/x-go-sgf"
+          onChange={onImportFile}
+          className="hidden"
+        />
       </div>
+
+      {/* 回放控制（仅对局结束后进入回放时显示；主操作区此时隐藏） */}
+      {replay && !zen && (
+        <div className="mx-auto mt-8 flex max-w-180 flex-wrap items-center justify-center gap-2 text-xs">
+          <div className="flex items-center rounded-full border border-zinc-200 p-0.5 dark:border-zinc-800">
+            <button
+              onClick={() => {
+                setReplayPlaying(false);
+                setReplayStep(s => Math.max(0, s - 1));
+              }}
+              disabled={replayStep === 0}
+              title={t["Previous move"]}
+              className="flex items-center justify-center rounded-full p-1.5 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M19 20L9 12l10-8v16z" />
+                <path d="M5 19V5" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setReplayPlaying(p => !p)}
+              title={replayPlaying ? t["Pause"] : t["Play"]}
+              className="flex items-center justify-center rounded-full p-1.5 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            >
+              {replayPlaying ? (
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M8 5h3v14H8z" />
+                  <path d="M13 5h3v14h-3z" />
+                </svg>
+              ) : (
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 4l13 8-13 8V4z" />
+                </svg>
+              )}
+            </button>
+            <button
+              onClick={() => {
+                setReplayPlaying(false);
+                setReplayStep(s => Math.min(moves.length, s + 1));
+              }}
+              disabled={replayStep >= moves.length}
+              title={t["Next move"]}
+              className="flex items-center justify-center rounded-full p-1.5 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 disabled:pointer-events-none disabled:opacity-30 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 4l10 8-10 8V4z" />
+                <path d="M19 5v14" />
+              </svg>
+            </button>
+          </div>
+
+          <div className="flex items-center rounded-full border border-zinc-200 px-4 py-1 text-zinc-500 tabular-nums dark:border-zinc-800 dark:text-zinc-400">
+            {`${t["Step"]} ${replayStep} / ${moves.length}`}
+          </div>
+
+          <div className="flex items-center rounded-full border border-zinc-200 p-0.5 dark:border-zinc-800">
+            <button
+              onClick={() => {
+                setReplay(false);
+                setReplayPlaying(false);
+                setReplayStep(moves.length);
+              }}
+              title={t["Exit replay"]}
+              className="rounded-full px-4 py-1 text-zinc-500 transition-colors duration-150 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            >
+              {t["Exit replay"]}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 禅模式退出（悬浮于棋盘右上角，圆形 + 等宽字体 x） */}
       {zen && (
@@ -875,7 +1270,7 @@ function KatagoBoard({ translations }) {
               </button>
               <button
                 onClick={runConfirm}
-                className="rounded-md bg-zinc-900 px-3 py-1.5 text-xs text-zinc-50 transition-opacity hover:opacity-80 dark:bg-zinc-100 dark:text-zinc-900"
+                className="rounded-md bg-zinc-900 px-3 py-1.5 text-xs text-zinc-50 transition-opacity hover:opacity-80 dark:bg-zinc-500 dark:text-zinc-50"
               >
                 {dialog.confirmText}
               </button>
