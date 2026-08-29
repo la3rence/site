@@ -10,7 +10,7 @@ const SortIndicator = ({ column, sortConfig }) => {
 
 const StatusDot = ({ status }) => (
   <span
-    className={`inline-block w-5 h-5 rounded-full
+    className={`inline-block w-5 h-5 rounded-full align-middle shrink-0
       ${
         status === "在用"
           ? "bg-green-500"
@@ -91,62 +91,93 @@ export default function Things(props) {
         <h1 id="title" className={`articleTitle text-balance text-2xl mb-0 mt-14`}>
           {title}
         </h1>
+        {/* 表格 edge-to-edge：填满内容列，不再内缩。
+            窄屏：内层容器定高并 overflow-auto，表头 sticky 粘在表格框顶部、横向照常滚动；
+            桌面（md+）：容器恢复 overflow-visible（不再是滚动容器），表头 sticky 重新对视口生效 */}
         <div className="mt-10">
-          <table className="min-w-full">
-            <thead>
-              <tr className="sticky top-0 z-50 bg-white dark:bg-zinc-900 shadow-2xs">
-                <th className="py-4">设备</th>
-                <th className="cursor-pointer" onClick={() => handleSort("purchaseDate")}>
-                  日期
-                  <SortIndicator column="purchaseDate" sortConfig={sortConfig} />
-                </th>
-                <th className="cursor-pointer" onClick={() => handleSort("price")}>
-                  价格
-                  <SortIndicator column="price" sortConfig={sortConfig} />
-                </th>
-                <th className="cursor-pointer" onClick={() => handleSort("daysOwned")}>
-                  天数
-                  <SortIndicator column="daysOwned" sortConfig={sortConfig} />
-                </th>
-                <th className="cursor-pointer" onClick={() => handleSort("dailyCost")}>
-                  日均
-                  <SortIndicator column="dailyCost" sortConfig={sortConfig} />
-                </th>
-                <th className="py-4">状态</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {items.map((item, index) => (
-                <tr
-                  key={index}
-                  className="transition-all border-b border-zinc-300 duration-200
-                 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:border-zinc-700"
-                >
-                  <td className="text-balance py-4">
-                    <span className="mx-1 pl-2">{item.emoji}</span>
-                    {item.name}
-                  </td>
-                  <td className="text-center font-mono">{item.purchaseDate}</td>
-                  <td className="text-center">{item.price?.toLocaleString()}￥</td>
-                  <td className="text-center">{calculateDaysOwned(item.purchaseDate)}</td>
-                  <td className="text-center">
-                    {calculateDailyCost(item.price, item.purchaseDate)}￥
-                  </td>
-                  <td className="py-4 flex items-center justify-center">
-                    <StatusDot status={item.status} />
-                  </td>
+          <div className="max-h-[70vh] overflow-auto md:max-h-none md:overflow-visible">
+            <table className="w-full min-w-[30rem] text-sm md:text-base">
+              {/* sticky 必须放在 <thead> 上：<tr> 的 sticky 在 Chrome 中不可靠 */}
+              <thead className="sticky top-0 z-50 bg-white dark:bg-zinc-900 shadow-2xs">
+                <tr>
+                  {/* 表头保持浏览器默认的单元格内居中，与 日期/价格/天数/日均/状态 一致 */}
+                  <th className="py-4 text-center whitespace-nowrap">设备</th>
+                  <th
+                    className="cursor-pointer text-center whitespace-nowrap"
+                    onClick={() => handleSort("purchaseDate")}
+                  >
+                    日期
+                    <SortIndicator column="purchaseDate" sortConfig={sortConfig} />
+                  </th>
+                  <th
+                    className="cursor-pointer text-center whitespace-nowrap"
+                    onClick={() => handleSort("price")}
+                  >
+                    价格
+                    <SortIndicator column="price" sortConfig={sortConfig} />
+                  </th>
+                  <th
+                    className="cursor-pointer text-center whitespace-nowrap"
+                    onClick={() => handleSort("daysOwned")}
+                  >
+                    天数
+                    <SortIndicator column="daysOwned" sortConfig={sortConfig} />
+                  </th>
+                  <th
+                    className="cursor-pointer text-center whitespace-nowrap"
+                    onClick={() => handleSort("dailyCost")}
+                  >
+                    日均
+                    <SortIndicator column="dailyCost" sortConfig={sortConfig} />
+                  </th>
+                  <th className="py-4 text-center whitespace-nowrap">状态</th>
                 </tr>
-              ))}
-              <tr className=" bg-zinc-50 dark:bg-zinc-800 border-t-2 border-zinc-300 dark:border-zinc-700">
-                <td className="text-balance py-4 pl-2 mx-1">🟰 SUM()</td>
-                <td className="text-center font-mono">-</td>
-                <td className="text-center">{summary.totalPrice.toLocaleString()}￥</td>
-                <td className="text-center">{summary.averageDaysOwned.toFixed(1)}</td>
-                <td className="text-center">{summary.totalDailyCost.toFixed(2)}￥</td>
-                <td className="py-4 flex items-center justify-center">-</td>
-              </tr>
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y">
+                {items.map((item, index) => (
+                  <tr
+                    key={index}
+                    className="transition-all border-b border-zinc-300 duration-200
+                 hover:bg-zinc-100 dark:hover:bg-zinc-800 dark:border-zinc-700"
+                  >
+                    <td className="text-balance py-4 align-middle">
+                      <span className="mx-1 pl-2">{item.emoji}</span>
+                      {item.name}
+                    </td>
+                    <td className="text-center font-mono whitespace-nowrap align-middle">
+                      {item.purchaseDate}
+                    </td>
+                    <td className="text-center whitespace-nowrap align-middle">
+                      {item.price?.toLocaleString()}￥
+                    </td>
+                    <td className="text-center whitespace-nowrap align-middle">
+                      {calculateDaysOwned(item.purchaseDate)}
+                    </td>
+                    <td className="text-center whitespace-nowrap align-middle">
+                      {calculateDailyCost(item.price, item.purchaseDate)}￥
+                    </td>
+                    <td className="py-4 text-center align-middle">
+                      <StatusDot status={item.status} />
+                    </td>
+                  </tr>
+                ))}
+                <tr className=" bg-zinc-50 dark:bg-zinc-800 border-t-2 border-zinc-300 dark:border-zinc-700">
+                  <td className="text-balance py-4 pl-2 mx-1 align-middle">🟰 SUM()</td>
+                  <td className="text-center font-mono align-middle">-</td>
+                  <td className="text-center whitespace-nowrap align-middle">
+                    {summary.totalPrice.toLocaleString()}￥
+                  </td>
+                  <td className="text-center whitespace-nowrap align-middle">
+                    {summary.averageDaysOwned.toFixed(1)}
+                  </td>
+                  <td className="text-center whitespace-nowrap align-middle">
+                    {summary.totalDailyCost.toFixed(2)}￥
+                  </td>
+                  <td className="py-4 text-center align-middle">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>
