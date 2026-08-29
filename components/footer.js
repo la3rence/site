@@ -12,7 +12,7 @@ const Footer = ({ translations }) => {
           <span className="mr-1">{translations["Privacy"]}</span>
         </A>
         ·{" "}
-        <A href="https://status.lawrenceli.me/">
+        <A href="https://uptime.lawrenceli.me/">
           <span className="mr-1">{translations["Status"]}</span>
         </A>
         · <span>{copyrightYear} ©️ </span>
