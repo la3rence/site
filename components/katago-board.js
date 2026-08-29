@@ -749,7 +749,7 @@ function KatagoBoard({ translations }) {
         <svg
           ref={svgRef}
           viewBox={`0 0 ${S} ${S}`}
-          className={`${styles.goBoard} h-auto w-full select-none rounded-lg shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800 ${
+          className={`${styles.goBoard} h-auto w-full select-none rounded-none shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800 ${
             phase === "thinking" ? "cursor-wait" : ""
           }`}
           style={{ backgroundColor: "var(--go-board-bg)" }}

@@ -72,6 +72,16 @@ export default function Vix(props) {
   const [lastUpdated, setLastUpdated] = useState(new Date(props.initialTimestamp));
   const [loading, setLoading] = useState(false);
 
+  // 标题下方展示的日期：初始与 SSR 一致，挂载后更新为当前日期
+  const [displayDate, setDisplayDate] = useState(blogProps.date);
+  useEffect(() => {
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    setDisplayDate(`${yyyy}-${mm}-${dd}`);
+  }, []);
+
   // 判断当前是否在中国股市交易时间内 (北京时间 9:30-15:00)
   const isChinaMarketHours = useCallback(() => {
     // 获取UTC时间
@@ -192,7 +202,12 @@ export default function Vix(props) {
   }, [isChinaMarketHours]);
 
   return (
-    <Blog {...blogProps} title={`${blogProps.title}: ${current || "加载中..."}`} noReply>
+    <Blog
+      {...blogProps}
+      date={displayDate}
+      title={`${blogProps.title}: ${current || "加载中..."}`}
+      noReply
+    >
       <div className="h-72 md:h-96 w-full text-center my-10">
         <div className="mb-2">
           沪深 300 股指期权隐含波动率 当前: {current !== null ? current.toFixed(2) : "加载中..."}

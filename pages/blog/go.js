@@ -6,7 +6,7 @@ import withLocalization from "../../components/withI18n";
 const KatagoBoard = dynamic(() => import("../../components/katago-board"), {
   ssr: true,
   loading: () => (
-    <div className="mx-auto my-8 aspect-square max-w-180 animate-pulse rounded-lg bg-zinc-100 dark:bg-zinc-900" />
+    <div className="mx-auto my-8 aspect-square max-w-180 animate-pulse rounded-none bg-zinc-100 dark:bg-zinc-900" />
   ),
 });
 
