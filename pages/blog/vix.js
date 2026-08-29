@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import dynamic from "next/dynamic";
 import Blog from "../../components/blog";
 import cfg from "../../lib/config.mjs";
@@ -26,6 +26,19 @@ export const blogProps = {
     dataType: "minute",
   },
 };
+
+const formatDate = date => {
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+};
+
+// 日期没有可订阅的外部数据源，空订阅即可
+const subscribeToNothing = () => () => {};
+const getTodaySnapshot = () => formatDate(new Date());
+// SSR 与水合阶段返回静态值，避免服务端/客户端日期不一致导致水合失败
+const getServerDateSnapshot = () => blogProps.date;
 
 export const getStaticProps = async () => {
   try {
@@ -72,15 +85,12 @@ export default function Vix(props) {
   const [lastUpdated, setLastUpdated] = useState(new Date(props.initialTimestamp));
   const [loading, setLoading] = useState(false);
 
-  // 标题下方展示的日期：初始与 SSR 一致，挂载后更新为当前日期
-  const [displayDate, setDisplayDate] = useState(blogProps.date);
-  useEffect(() => {
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, "0");
-    const dd = String(now.getDate()).padStart(2, "0");
-    setDisplayDate(`${yyyy}-${mm}-${dd}`);
-  }, []);
+  // 标题下方展示的日期：SSR/水合阶段与 blogProps.date 一致，渲染后自动切换为当前日期
+  const displayDate = useSyncExternalStore(
+    subscribeToNothing,
+    getTodaySnapshot,
+    getServerDateSnapshot,
+  );
 
   // 判断当前是否在中国股市交易时间内 (北京时间 9:30-15:00)
   const isChinaMarketHours = useCallback(() => {
