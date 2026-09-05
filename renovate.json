@@ -4,8 +4,8 @@
   "packageRules": [
     {
       "matchDatasources": ["npm"],
-      "minimumReleaseAge": "1 day",
-      "stabilityDays": 3
+      "minimumReleaseAge": "3 days",
+      "stabilityDays": 5
     }
   ]
 }
