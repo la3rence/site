@@ -30,8 +30,8 @@ const renderMarkdown = async md => {
   const rehypeStringify = (await import("rehype-stringify")).default;
   const result = await remark()
     .use(remarkGfm)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeStringify, { allowDangerousHtml: true })
+    .use(remarkRehype)
+    .use(rehypeStringify)
     .process(md);
   return String(result);
 };
