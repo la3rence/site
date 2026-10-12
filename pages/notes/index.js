@@ -28,11 +28,7 @@ const renderMarkdown = async md => {
   const remarkGfm = (await import("remark-gfm")).default;
   const remarkRehype = (await import("remark-rehype")).default;
   const rehypeStringify = (await import("rehype-stringify")).default;
-  const result = await remark()
-    .use(remarkGfm)
-    .use(remarkRehype)
-    .use(rehypeStringify)
-    .process(md);
+  const result = await remark().use(remarkGfm).use(remarkRehype).use(rehypeStringify).process(md);
   return String(result);
 };
 
