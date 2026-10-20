@@ -1,11 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
+  "timezone": "Asia/Shanghai",
+  "schedule": ["before 9am on Monday"],
   "packageRules": [
     {
       "matchDatasources": ["npm"],
-      "minimumReleaseAge": "3 days",
-      "stabilityDays": 5
+      "minimumReleaseAge": "3 days"
     }
   ]
 }
